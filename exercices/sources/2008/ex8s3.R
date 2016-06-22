@@ -1,0 +1,5 @@
+x <- c(54, 57, 61, 51, 49, 56, 60, 52, 45, 66)
+t0 <- qt(0.95,9)
+taille <- length(x)
+seuilcritique <- mean(x) + t0 * sd(x)/sqrt(taille)
+t.test(x,mu=58,alternative="less")

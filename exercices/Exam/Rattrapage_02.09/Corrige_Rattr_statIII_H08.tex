@@ -1,0 +1,340 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage{heg_exam, amsfonts}
+
+
+\begin{document}
+\title{CORRIGE RATTRAPAGE MODULAIRE}
+\semestre{hiver 2008}
+\author{Sacha Varone}
+\departement{\'Economie d'entreprise}
+\module{Branches instrumentales}
+\cours{Statistiques III}
+\date{Février 2009}
+\indication{Veuillez laisser cet examen agrafé. Si vous choisissez d'enlever l'agrafe, tout manque de page sera sous votre entière responsabilité. La précision de vos calculs doit être de 4 chiffres après la virgule.\\[5mm]
+Formulaire de 3 pages (recto-verso) autorisé et calculatrice.}
+\nomexaminateur{Varone}
+\prenomexaminateur{Sacha}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%          Corrigé  Examen Stat III                 %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Salaires (5 points)} % test de la médiane : test du rang signé de Wilcoxon
+% \cite{Groebner2006} ex 16.2 p. 673
+Vous désirez être engagé dans une entreprise, et un responsable RH vous laisse entendre que  la moitié des personnes travaillent moins de 40 heures par semaine, et l'autre moitié plus de 40 heures par semaine. Vous connaissez 7 personnes travaillant pour cette entreprise, et vous leur demandez le nombre d'heures de travail par semaine qu'elles font. (Ces données ne proviennent pas d'une distribution normale).
+
+\centerline{31 48 23 56 28 29 44}
+
+Sur la base des ces données, estimez-vous vraisemblable que le 50\% des employés travaillent moins de  40 h/semaine, et 50\% plus de 40h/semaine, avec un risque de première espèce de 0.1 ? (Justifiez et indiquez toutes les étapes)
+
+	\begin{rep}
+\begin{eqnarray*}
+	H_0 &:& \tilde{\mu}=40\\
+	H_1 &:& \tilde{\mu}\not= 40
+\end{eqnarray*}
+
+$\begin{array}{cccccc}
+\mbox{Valeur} & \mbox{Différence} & |\mbox{Différence}| & \mbox{Rang} & R+ & R-\\
+31 & -9 & 9 & 3 & & 3\\
+48 & 8 & 8 & 2 & 2 & \\
+23 & -17 & 17 & 7 & & 7\\
+56 & 16 & 16 & 6 & 6 & \\
+28 & -12 & 12 & 5 & & 5\\
+29 & -11 & 11 & 4 & & 4\\
+44 & 4 & 4 & 1 & 1 & \\
+\hline
+& & & & W_{\mbox{inf}}=9 & W_{\mbox{sup}}=19
+\end{array}$
+
+Il s'agit d'un test bilatéral, nous pouvons donc utiliser soit la somme des R+ soit la somme des R-. Nous avons $n=7$ différences non nulles et $\alpha=0.1$, ce qui donne des valeurs critiques de 3 et 25.\\
+La région de rejet est R$=\IN\backslash]3;25[$\\
+Comme $W_{\mbox{inf}}=9\not\in R$ (ou $W_{\mbox{sup}}=19\not\in R$), nous ne pouvons pas rejeter l'hypothèse nulle à un niveau de confiance de 0.9
+
+\begin{verbatim}
+x <- c(31, 48, 23, 56, 28, 29, 44)
+summary(x)
+wilcox.test(x, alternative = "two.sided", mu=40, 
+            exact = TRUE, conf.level=0.9, conf.int = TRUE)
+\end{verbatim}
+\end{rep}
+
+
+
+
+
+
+
+
+\newpage
+% Exo 5 de l'exam
+\section{Traders (3 points)}
+% Résultat du test non paramétrique à interpréter 
+Une base de données comportant les résultats de traders et la saison est résumée dans le tableau croisé suivant. La variable colonne ''Qualité'' indique la qualité des résultats de traders, et la variable ligne ''Type'' indique la catégorie dans laquelle figure les traders.
+ 
+\begin{tabular}{r|cccc}
+& Très mauvais & Mauvais & Bon & Excellent\\
+\hline\\
+Novice   &    84   &   50   &   44   &    16\\
+\'Etabli     &    82   &   64   &   34   &    10\\
+Expert &    44   &   21   &    8   &     5
+\end{tabular}              
+
+Un test sur l'indépendance de ces deux variables a été fait à l'aide du logiciel R, dont le résultat est fourni ci-dessous.
+\'Ecrivez les hypothèses nulle et alternative, concluez en fonction du résultat et commentez. Le risque de première espèce est fixé à 10\%.
+
+\begin{verbatim}
+        Pearson's Chi-squared test
+
+data:  Traders 
+X-squared = 10.6935, df = 6, p-value = 0.09833
+\end{verbatim}
+
+\begin{rep}
+\begin{enumerate}
+ \item (1pt) Quelles sont les hypothèses nulle et alternatives ?
+% \vspace{2cm}
+\begin{eqnarray*}
+	H_0 &:& \mbox{''Type'' et ''Qualité'' sont indépendantes}\\
+	H_1 &:& \mbox{Les deux variables ne sont pas indépendantes}
+\end{eqnarray*}
+ \item (1 pt) Sous quelle condition ce test est-il valide ?
+ \vspace{0.5cm}
+\newline 
+Les cellules doivent avoir un effectif d'au moins 5
+ \vspace{0.5cm}
+ \item (1 pt) Quelle est votre conclusion ?
+ \vspace{0.5cm}
+\newline
+La p-valeur est inférieure au seuil critique spécifié. 
+Il y a suffisamment d'évidence pour conclure que les deux variables sont ne sont pas indépendantes, avec un niveau de confiance de 90\%.
+ \vspace{0.5cm}
+\begin{verbatim}
+%Traders <- matrix(c(84,50,44,16,82,64,34,10,44,21,8,5),ncol=4,byrow=TRUE)
+%rownames(Traders)<-c("Novice","Établi","Expert")
+%colnames(Traders)<-c("Très mauvais","Mauvais","Bon","Excellent")
+%Traders <- as.table(Traders)
+%Traders
+%chisq.test(Traders)
+%\end{verbatim}
+\end{enumerate}
+\end{rep}
+
+
+
+
+
+
+
+
+
+
+\newpage
+% Exo 3 de l'exam
+\section{Tomates (11 points)} % IC pour une variance, $\mu$ et $\sigma$ inconnus et Test sur variance
+% Groebner, 7th edition, p.
+Un cultivateur de tomates utilise une nouvelle serre, qui devrait permettre de réduire la variabilité de l'arrivée à maturité de ses tomates (la durée nécessaire à leur maturité, en jours). Il fait un test sur 12 nouvelles serres et trouve les rendements suivant par serre, qui sont issus d'une loi normale:
+
+\begin{center}
+\begin{tabular}{cccc}
+	89 & 85 & 91 & 95\\
+	95 & 97 & 81 & 89\\
+	94 & 86 & 87 & 82
+\end{tabular}
+\end{center}
+
+\'A partir de ces données sont calculées les valeurs suivantes:
+\\{\it médiane = 89; moyenne = 89.25; variance = 27.84}
+
+
+\begin{enumerate}
+	\item (8 pts) Le fabricant de la nouvelle serre assure que l'écart type  des rendements est de 6 par hectare. Le cultivateur peut-il dire, avec un niveau de confiance de 90\%, que  la nouvelle serre génère une telle variabilité de la production ? 
+
+\begin{rep}
+\begin{enumerate}
+	\item (1 pt) Quel est le paramètre d'intérêt ?
+%\vspace{2cm} 
+	\\Le paramètre d'intérêt est l'écart type du rendement.
+	\item (1 pt) Quelles sont les hypothèses nulles et alternatives ?
+%\vspace{2cm}
+\begin{eqnarray*}
+	H_0 &:& \sigma^2=36\\
+	H_1 &:& \sigma^2\not=36
+\end{eqnarray*}
+%	\item Le niveau de signification est de $\alpha = 0.1$.
+  \item (1 pt) Quelle loi (distribution) suit la statistique de test, et sous quelle condition ?
+%\vspace{3cm}
+	\\La statistique de test suit une loi du $\ki^2$ à 11 degrés de liberté. 
+ La population doit suivre une loi normale.
+  \item (1 pt) Déterminez la ou les valeur(s) critique(s).
+%\vspace{2cm}
+	$$\ki^2_{1-\alpha/2,n-1}=\ki^2_{0.95,11}=4.5748\quad \ki^2_{\alpha/2,n-1}=\ki^2_{0.05,11}=19.6751$$
+  \item (1 pt) Déterminez la région de rejet de l'hypothèse nulle.
+%\vspace{2cm}
+	\\ La région de rejet est donnée par toutes les valeurs inférieures à 
+	$$\ki^2_{1-\alpha/2,n-1}=\ki^2_{0.95,11}=4.5748$$
+ et toutes les valeurs supérieures à 
+ $$ \ki^2_{\alpha/2,n-1}=\ki^2_{0.05,11}=19.6751$$
+  \item (1 pt) Que vaut la statistique de test ?
+%\vspace{2cm}
+	$s^2=27.84$ et 
+	$$\ki^2 =\frac{(n-1)s^2}{\sigma^2}=8.5069$$
+  \item (1 pt) Rejetez-vous l'hypothèse nulle (Justifiez) ?
+%\vspace{2cm}
+	\\Comme $\ki^2_{0.95,11}=4.5748< \ki^2=8.5069 < 19.6751=\ki^2_{0.05,11}$, on ne peut pas rejeter $H_0$
+  \item (1 pt) Concluez
+%\vspace{2cm}
+	\\ Ainsi, le fabricant de la serre a raison.
+\end{enumerate}
+\end{rep}
+
+	\item (3 pts) Calculez un intervalle de confiance à 90\% sur la variabilité de l'arrivée à maturation avec la nouvelle serre. Indiquez les étapes (au minimum les valeurs critiques et l'intervalle de confiance).\\
+{\it Indication: certains résultats de la partie précédente peuvent être repris}
+
+	\begin{rep}
+Valeurs critiques: 
+	$$\ki^2_{1-\alpha/2,n-1}=\ki^2_{0.95,11}=4.5748\quad \ki^2_{\alpha/2,n-1}=\ki^2_{0.05,11}=19.6751$$
+
+	En reprenant les données du point précédent, nous trouvons que l'intervalle de confiance à 90\% sur la variabilité de la production annuelle est le suivant:
+	
+	$$\frac{(n-1)s^2}{\ki^2_{0.95}}=\frac{(12-1)27.84}{19.6752}=15.56485
+	\leq \sigma^2 \leq 
+	\frac{(n-1)s^2}{\ki^2_{0.05}}=\frac{(12-1)27.84}{4.5748}=66.94063$$
+	\end{rep}
+\end{enumerate}
+
+%\begin{verbatim}
+%x <- c(89, 85, 91, 95, 95, 97, 81, 89, 94, 86, 87, 83)
+%summary(x)
+%# chisq.test(x) non utilisable
+%\end{verbatim}
+
+
+
+
+
+
+
+\newpage
+% Exo 2 de l'exam
+\section{Corrections: 7 points} % IC pour une moyenne, $\mu$ et $\sigma$ inconnus
+% Groebner, 7th edition, p.342
+Un profeseur désire estimer la durée moyenne de correction d'un examen, dont la distribution suit une loi normale. Il relève la durée de 25 corrections de manière aléatoire, et calcule une durée moyenne de  30 minutes, avec un écart type de 10 minutes. Votre tâche est de l'aider à calculer un intervalle de confiance à 95\% pour la durée moyenne d'une correction.
+
+
+\begin{rep}
+\begin{enumerate}
+  \item (1 pt) Quel est le paramètre d'intérêt ?
+%\vspace{2cm}
+		\\La population d'intérêt est l'ensemble de toutes les corrections d'un examen et le paramètre d'intérêt est la durée moyenne de toutes les corrections.
+  \item (1 pt) Quelle loi (distribution) suit la statistique de test, et sous quelle condition ?
+%\vspace{3cm}
+  \\La distribution de Student, ou $t$-distribution, qui demande une population suivant une loi normale.
+  \item (2 pt) Quelles sont les valeurs critiques ?
+%\vspace{2cm}
+  \\ Nombre de degrés de liberté vaut 25-1=24. Comme l'intervalle de confiance a un niveau de confiance de 0.95, cela signifie
+  \\ $t_{\alpha/2,dl}=t_{0.025,24}=2.0639$ et $t_{1-\alpha/2,dl}=t_{0.975,24}=-2.0639$
+  \item (1 pt) Quelles sont les statistiques, et leur valeur, calculées sur l'échantillon ?
+%\vspace{2cm}
+		\\ La durée moyenne de l'échantillon est de $\bar{x}=30$ minutes et l'écart type est de $s=10$ minutes.
+  \item (1 pt) Quelle est l'erreur standard de la moyenne ? 
+%\vspace{2cm}
+		$$\frac{s}{\sqrt{25}}=\frac{10}{\sqrt{25}}=2$$
+  \item (1 pt) Quelle est l'intervalle de confiance ?
+		$$\bar{x}\pm t\frac{s}{\sqrt{n}}=30\pm 2.0639\times 2 = 30\pm 4.1278 = [25.8722;34.1278]$$
+\end{enumerate}
+\end{rep}
+
+
+
+
+
+
+
+
+
+\newpage
+% Exo 1 de l'exam
+\section{Compréhension: 4 points} % IC
+Le nombre de minutes passées à réviser le cours de statistique inférentielle  suit une loi normale $\norm (900,50)$.
+
+\begin{enumerate}
+	\item (2 pts) Considérons le nombre $y$ de minutes passées par l'étudiant Stud à réviser le cours de statistique inférentielle. Quelle est la probabilité que $y$ soit supérieur à 900 ? Quelle est la probabilité que $y$ soit inférieure à 900 ? Justifiez.
+%\vspace{6cm}
+
+	\begin{rep}
+	Les deux probabilités sont équivalentes car la loi normale est symétrique. Ces probabilités valent 0.5 chacune.
+	\end{rep}
+	
+	\item (2 pts) Un échantillon de 6 étudiants, à qui l'on a demandé le nombre de minutes passées à réviser le cours de statistique inférentielle,  a servi à calculer l'intervalle de confiance à 90\% suivant: $[810;890]$. Interprétez ce résultat, en indiquant ce que signifie un tel intervalle de confiance.
+	
+	\begin{rep}
+	Sur tous les échantillons possibles de taille 6, 90\% comprennent la vraie moyenne (ici supposée 900). Comme cet intervalle de confiance ne comprend pas la vraie moyenne, et en supposant qu'effectivement le temps passé par chaque étudiant pour réviser l'examen de Statistique III suive une loi $\norm (900,50)$, alors cet intervalle de confiance fait partie des 10\% ne comprenant pas la véritable moyenne $\mu=900$.
+	\end{rep}
+	
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\newpage
+% Exo 6 de l'exam
+\section{Panneaux Solaires (5 points)}
+% Résultat du test paramétrique à interpréter.
+Le rendements de panneaux solaires est considéré (variable rendement). 
+Un test portant sur le rendement moyen a été réalisé à l'aide du logiciel R. Voici ci-dessous le résultat du test. Le risque de première espèce est fixé à 5\%.
+
+\begin{verbatim}
+        One Sample t-test
+
+data:  rendement 
+t = -0.3771, df = 14, p-value = 0.3559
+alternative hypothesis: true mean is less than 40 %
+95 percent confidence interval:
+     -Inf 42.24088 
+sample estimates:
+mean of x 
+ 39.38949 
+\end{verbatim}
+
+\begin{rep}
+
+%\begin{verbatim}
+%âge <- rnorm(15,mean=39,sd=5)
+%t.test(âge,mu=40, alternative="less")
+%\end{verbatim}
+
+\begin{enumerate}
+  \item (1 pt) Quelles sont les hypothèses nulle et alternative ?
+%\vspace{2cm}
+\begin{eqnarray*}
+	H_0 &:& \bar{\mbox{âge}}\geq 40\%\\
+	H_1 &:& \bar{\mbox{âge}}< 40 \%
+\end{eqnarray*}
+
+ \item (1 pt) Sous quelle condition ce test est-il valide ?
+% \vspace{2cm}
+  \\La population est supposée suivre une loi normale, sinon, le test n'est pas applicable.
+ \item (1 pt) Quelle est la taille de l'échantillon sélectionné ?
+% \vspace{2cm}
+ \\L'échantillon est de taille 15 car le nombre de degrés de liberté est de 14.
+ \item (1 pt) Qu'est-ce que ''$t = -0.3771$'' ?
+% \vspace{2cm}
+  \\La valeur de la statistique de test.
+ \item (1 pt) Quelle doit être la conclusion du test ?
+\\Il n'y a pas suffisamment d'évidence pour rejeter $H_0$, car la p-valeur est supérieure à 0.05 (=risque de première espèce). Donc le rendement des panneaux solaires peut être considéré comme étant supérieur ou égal à 40 %.
+
+\end{enumerate}
+
+\end{rep}
+
+
+\end{document}

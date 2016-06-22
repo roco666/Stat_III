@@ -1,0 +1,99 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Corrigé 8}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 8: Test de la proportion et variance    %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{enumerate}
+%	\item Spécifier la valeur de la population d'intérêt.
+%	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+%	\item Choisir le niveau de signification $\alpha$
+%	\item Déterminer la région critique.
+%	\item Calculer la statistique associée à l'échantillon.
+%	\item Rejeter $H_0$ si la statistique appartient à la région critique.\\
+%	Ne pas rejeter $H_0$ dans le cas contraire.
+%	\item Énoncer une conclusion.
+%\end{enumerate}
+
+\section{} % Loi du Chi-deux
+	% cf exo Andre Berchtold
+En 2005, une enquête menée auprès de femmes quant à leur âge $x_i$ à la naissance de leur premier enfant a donné, pour 51 femmes interrogées au hasard, les résultats suivants: 
+$$ \bar{x} = 28 \mbox{ années } $$ 
+$$ \sum (x_i - \bar{x})^2 = 816 \: \mbox{années}^2  $$ 
+Les âges $x_i$ représentent les réalisations d'une variable aléatoire $X$ distribuée selon une loi normale ($\mu$, $\sigma^2$).
+
+Des études similaires ont établi que l'écart type est de 5 ans.
+Avec un seuil de signification de 0.05, cet écart type semble-t-il correspondre à celui de l'enquête de 2005 ?
+%Tester l'hypothèse $H_0 : \sigma = \sigma_0 = 5$ contre l'hypothèse $H_1 :\sigma = \sigma_1 < \sigma_0$ avec un risque de première espèce de 5\%. Commenter.
+\begin{enumerate}
+\item Le paramètre d'intérêt est $\sigma^2=25$
+\item 
+$$\begin{array}{ll}
+ & H_0 : \sigma^2 = \sigma_0^2 \geq 25 \\
+ \mbox{ contre} & H_1 : \sigma^2 = \sigma_1^2 < 25
+ \end{array}$$
+\item Le niveau de signification est $\alpha = 0.05$
+\item Test de la variance avec moyenne inconnue: 
+$$Q_0 = \frac{\sum_{i=1}^n (X_i-\bar X)^2}{\sigma_0^2} \sim \chi_{n-1}^2$$
+La région critique est celle d'un test unilatéral gauche
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(1.5,0.5){\line(-1,-2){.2}}
+        \put(1.2,0.5){\line(-1,-2){.2}}
+        \put(.9,0.5){\line(-1,-2){.2}}
+        \put(.6,0.5){\line(-1,-2){.2}}
+        \put(.3,0.5){\line(-1,-2){.2}}
+        \put(1.6,0.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(3.3,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.9,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+        \put(1.6,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+    \end{picture}
+Le seuil de rejet est donc $r=q^{(n-1)}_{1-\alpha}=q^{(50)}_{0.95}=34.76$
+\item La statistique est 
+$$q_0=\frac{\sum_{i=1}^n (x_i-\bar x)^2}{\sigma_0^2}=\frac{816}{5^2}=32.64$$
+\item Comme $q_0=32.64< 34.76=r$, l'hypothèse $H_0$ est rejetée.
+\item En conclusion, il y a suffisamment d'évidence pour affirmer que l'écart-type est plus petit que 5.
+\end{enumerate} 
+
+\section{} % Test d'une proportion, unilatéral
+	% \cite{groebner2006} ex 8.29 p. 330
+Un professeur de la HEG estime que si ses étudiants suivent régulièrement son cours et font les exercices demandés, alors au moins 70\% des étudiants devraient atteindre la moyenne à son examen. Un échantillon de 100 étudiants a été sélectionné, parmi ceux ayant suivi son cours, effectué les exercices et fait l'examen. Sur les 100 étudiants, 63 ont réussi l'examen.
+
+\begin{enumerate}
+\item En utilisant un niveau de signification de 0.05, quelle conclusion devrait avoir ce professeur  en regard de la difficulté de l'examen ?
+	\begin{enumerate}
+		\item Le paramètre est $p=0.7$
+		\item $$\begin{array}{ll}
+	 & H_0 : p \geq 0.70 \\
+	 \mbox{ contre} & H_1 : p < 0.7
+	 \end{array}$$
+	  \item Le niveau de signification est $\alpha=0.05$
+	  \item La région critique est l'ensemble des valeurs inférieures à $z_{0.05}$ i.e. $[\infty ; -1.645]$
+	  \item La statistique est $\bar{p}=63/100=0.63$
+	  \item $$z = \frac{0.63 – 0.70}{\sqrt{\frac{0.7(1-0.7)}{100}}}  = -1.5275$$
+	  Comme $z = -1.5275 > -1.645=z_{0.05}$ l'hypothèse $H_0$ n'est pas rejetée
+	  \item La conclusion est que la difficulté du test semble être appropriée
+	\end{enumerate}
+\item Décrire ce que représente une erreur de seconde espèce dans ce contexte.
+\\Une erreur de type II signifie que la proportion d'étudiants ayant réussi l'examen est en fait inférieure à 0.7, mais le résultat de l'échantillon amène le professeur à croire que la proportion réelle est d'au moins 70\%. Ainsi, un examen de même difficulté sera supposé satisfaire les exigences du professeur.
+\end{enumerate}
+\end{document}

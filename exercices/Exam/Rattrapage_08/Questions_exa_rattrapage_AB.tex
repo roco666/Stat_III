@@ -1,0 +1,128 @@
+ \documentclass[a4paper,11pt]{article}
+
+ \usepackage{a4e,tp_heg}
+ \usepackage[french]{babel}
+ \usepackage[T1]{fontenc}
+
+ \parindent 0cm
+ \begin{document}
+
+ %------------------------------------------------------------------
+ \begin{center}
+     \fbox{\parbox{12cm}{\footnotesize\center\bfseries\vspace{-2ex}
+			Durée de l'examen: 90 minutes.\\
+	  		{* * *} \\
+            Toute documentation autorisée, à l'exception des ordinateurs.\\
+            {* * *} \\
+			Les réponses doivent être données dans les cadres prévus à cet effet.\\
+	  		{* * *} \\
+            Il est indispensable de justifier les réponses.\\
+        }   }
+ \end{center}
+ %-----------------------------------------------------------------
+
+
+
+ \newpage
+
+ {\bfseries EXERCICE 1}
+
+ \vspace*{1ex} 
+ 
+ Vous vous occupez du recrutement au sein d'une entreprise du bâtiment. Chaque jour ouvrable, vous rencontrez un certain nombre de demandeurs
+d'emploi. L'échantillon suivant représente le nombre de demandeurs que vous avez rencontrés durant 9 jours sélectionnés au hasard durant less
+jours ouvrables de l'année 2007:
+
+ \begin{center}
+ 4 \quad 2 \quad 1 \quad 6 \quad 6 \quad 4 \quad 8 \quad 4 \quad 3
+ \end{center}
+
+
+ \begin{enumerate}
+    \item Valeur 8 points.\\ Construisez un intervalle de confiance à 95\% pour le nombre moyen de demandeurs d'emploi rencontrés
+quotidiennement. Commentez le résultat.
+
+ \vspace*{1ex}
+
+       \definboxwidth
+       \framebox[\linewidth][l] {\parbox{\inboxwidth}{
+       \vspace{10cm}
+       }}
+ \vspace*{1ex}
+ 
+    \item Valeur 1 point.\\ Selon vous, est-il courant de rencontrer plus de 7 demandeurs d'emploi un même jour? Justifiez votre réponse.
+
+ \vspace*{1ex}
+
+       \definboxwidth
+       \framebox[\linewidth][l] {\parbox{\inboxwidth}{
+       \vspace{4cm}
+       }}
+ \end{enumerate}
+
+ \newpage
+
+ {\bfseries EXERCICE 2}
+
+ \vspace*{1ex}
+ Valeur 8 points.\\
+ Vous vous occupez du recrutement au sein d'une entreprise du bâtiment. Chaque jour ouvrable, vous rencontrez un certain nombre de demandeurs
+d'emploi. L'échantillon suivant représente le nombre de demandeurs que vous avez rencontrés durant 10 jours sélectionnés au hasard durant les
+jours ouvrables de l'année 2005:
+
+ \begin{center}
+ 6 \quad 7 \quad 1 \quad 7 \quad 6 \quad 3 \quad 8 \quad 9 \quad 3 \quad 7
+ \end{center}
+
+
+ Nous aimerions tester l'hypothèse selon laquelle la variance du nombre de demandeurs d'emploi rencontrés chaque
+jour est égale à 6. Effectuez un test bilatéral avec un risque $\alpha$ de 5\% et commentez le résultat.
+
+ \vspace*{1ex}
+
+       \definboxwidth
+       \framebox[\linewidth][l] {\parbox{\inboxwidth}{
+       \vspace{14cm}
+       }}
+ 
+
+
+ \newpage
+
+ {\bfseries EXERCICE 3}
+
+ \vspace*{1ex}
+ Valeur 5 points.\\
+ Nous voulons à présent savoir si le nombre moyen de demandeurs d'emploi rencontrés quotidiennement a évolué entre 2005 et 2007. Pour cela, nous
+avons effectué un test de Student pour la comparaison des moyennes. Le listing suivant a été obtenu à l'aide du logiciel R:
+ \vspace*{1ex}
+
+
+ \begin{verbatim}
+ 	Two Sample t-test
+ 
+ data:  var3 by var4
+ t = -1.3559, df = 17, p-value = 0.1929
+ alternative hypothesis: true difference in means is not equal to 0
+ 95 percent confidence interval:
+  -3.7772633  0.8217077
+ sample estimates:
+ mean in group 2007 mean in group 2005
+           4.222222           5.700000
+ \end{verbatim}
+
+ \vspace*{1ex}
+
+ Ecrivez les hypothèses nulle et alternative, concluez en fonction du listing et commentez l'ensemble des résultats fournis. Le
+risque de première espèce, $\alpha$, est toujours fixé à 5\%.
+
+ \vspace*{1ex}
+
+       \definboxwidth
+       \framebox[\linewidth][l] {\parbox{\inboxwidth}{
+       \vspace{11cm}
+       }}
+
+
+ 
+ \end{document}

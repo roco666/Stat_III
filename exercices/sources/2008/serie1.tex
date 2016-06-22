@@ -1,0 +1,159 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+\usepackage{multicol}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Série 1}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%    COURS 1: Loi normale      %%%%%%%%%%%%%%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Population vs échantillon}
+%Nous nous intéressons aux succursales des différentes chaînes de la grande distribution alimentaire en Suisse. Nous disposons de données récoltées auprès de 8 succursales genevoises de la Migros.
+%
+%\begin{enumerate}
+%    \item Les 8 succursales pour lesquelles nous disposons de données constituent-elles une population ou un échantillon?
+%    \item Peut-on dire que chacune des 8 succursales considérée est une unité statistique?
+%    \item Quelle est la population qui nous intéresse?
+%    \item Dans quelles conditions pourrait-on dire que les 8 succursales considérées sont une population?
+%\end{enumerate}
+
+%\section{Loi normale}
+%	% source Andre Berchtold ex. B.5.1
+%Soit une variable $Z$ distribuée selon une loi normale centrée-réduite. Calculer la probabilité pour la variable $Z$ de se trouver dans chacun des cas suivants:
+%
+%\begin{multicols}{2}[]
+% \begin{enumerate}
+%    \item Entre $z=0$ et $z=1.2$.
+%    \item Entre $z=-0.68$ et $z=0$.
+%    \item Entre $z=-0.46$ et $z=2.21$.
+%    \item Entre $z=0.81$ et $z=1.94$.
+%    \item A gauche de $z=-0.6$.
+%    \item A droite de $z=-1.28$.
+%    \item A droite de $z=2.05$ et à gauche de $z=-1.44$.
+%    \item A droite de $z=2.05$ ou à gauche de $z=-1.44$.
+% \end{enumerate}	
+%\end{multicols}
+
+\section{Loi normale}
+% source Andre Berchtold ex. B.5.2
+Soit $Z$, une variable aléatoire suivant une loi normale centrée et  réduite $N(0,1)$.
+
+\begin{enumerate}
+\begin{multicols}{2}[]
+ \item % 1
+	Déterminer les probabilités suivantes :
+ \begin{enumerate}
+    \item $Z < 2.14$
+    \item $Z < -2.14$
+    \item $Z \in [-2.14 \; ;\; 2.14]$
+ \end{enumerate}
+ \item % 2
+ Pour quel seuil $a$ a-t-on $P(Z < a) = p$ lorsque $p$ prend les valeurs  suivantes : 
+ \begin{enumerate}
+    \item $p = 0.8686$
+    \item $p = 0.9719$
+    \item $p = 0.2912$
+ \end{enumerate}
+\end{multicols}
+ 
+ \hspace*{-6ex} Soit $X$, une variable aléatoire suivant une loi normale $N(2,1)$.
+\begin{multicols}{2}[]
+ \item % 3
+ Déterminer les probabilités suivantes :
+ \begin{enumerate}
+    \item $P(X < 3.98)$
+    \item $P(X < 1.5)$
+    \item $P(X \in  [2\;;\;3])$
+ \end{enumerate}
+ \item % 4
+ Pour quelle valeur de $a$ a-t-on :
+ \begin{enumerate}
+    \item $P(X < a) = 0.7454$
+    \item $P(-a+2 < X < a+2) = 0.7458$
+ \end{enumerate}
+\end{multicols}
+ 
+ \hspace*{-6ex} Soit $Y$, une variable aléatoire suivant une loi normale $N(2,9)$.
+\begin{multicols}{2}[]
+ \item % 5
+ Déterminer les probabilités suivantes:
+ \begin{enumerate}
+    \item $P(Y < 4.25)$
+    \item $P(Y < 1.5)$
+    \item $P( |Y| < 1)$
+ \end{enumerate}
+ \item % 6
+   Pour quelle valeur de $a$ a-t-on: 
+   \begin{enumerate}
+    \item $P(Y < a) = 0.64$
+    \item $P(a < Y < 2.5) = 0.3788$
+    \item $P(- a < Y < a) = 0.9$
+ \end{enumerate}
+\end{multicols}
+\end{enumerate}
+
+
+\section{Temps de trajet} % Loi normale
+% source: \cite{Groebner2005} p. 202
+Une entreprise de transport a évalué le temps de trajet des citadins pour se rendre à leur travail. Elle en conclut que ce temps de trajet est une variable aléatoire suivant une loi normale, que la moyenne des temps est de 15 minutes et que l'écart type des temps est de 3.5 minutes. Un citadin affirme que son temps de trajet est de 22 minutes. Le but est de trouver la probabilité qu'un citoyen ait un temps de trajet de 22 minutes ou plus.
+\begin{enumerate}
+	\item Déterminer la moyenne et l'écart-type de la loi suivie par la variable aléatoire X=''Temps de trajet''.
+	\item Définir l'événement d'intérêt.
+	\item Convertir la variable aléatoire en une variable standardisée $Z$
+	\item Trouver la probabilité associée
+\end{enumerate}
+
+\section{Deux lois normales} % Loi normale
+% source Andre Berchtold ex. B.5.3
+Un ensemble de scores d'arithmétique obtenus par des enfants de quatrième année présente
+une moyenne de 30 et un écart type de 6. Un ensemble de scores obtenus par des enfants de
+neuvième année présente une moyenne de 36 et un écart type de 12. Nous supposons que les
+distributions sont normales.
+ 
+\begin{enumerate}
+    \item Faites un schéma approximatif de ces données en représentant les deux groupes sur la même figure.
+    \item Quel pourcentage des élèves de quatrième année obtiennent-ils de meilleurs scores que la moyenne des élèves de neuvième année?
+    \item Quel pourcentage des élèves de neuvième année obtiennent-ils de moins bons scores que la moyenne des élèves de quatrième année?
+\end{enumerate}
+
+\section{Voitures électriques*} % Loi normale
+% source: \cite{Groebner2005} p. 205
+L'entreprise ElecBat propose une batterie de voiture, qui, à une vitesse de 50 km/h, permet de rouler en moyenne pendant 8h. Des tests ont montré que l'écart type est de 0.4 heures, et que le modèle pouvait se baser sur une loi normale.
+\begin{enumerate}
+  \item Quelle est la variable aléatoire ?
+  % X=''durée de trajet avant le déchargement complet de la batterie ''
+	\item Quelle est la probabilité qu'une telle batterie permette de rouler moins de 7h30 ?
+	% \\$P(X\leq 7.5) = P(Z\leq \frac{7.5-8}{0.4}) = P(Z\leq -1.25) = 0.1056$
+	\item Les fabricants automobiles mentionnent dans le SLA qu'une durée de 7h30 ou moins n'est acceptable que dans 2.5\% des cas. Quelle doit donc être la durée moyenne afin de satisfaire le SLA imposé par les fabricants (conservez une loi normale d'écart type 0.4 heure) $?^*$
+	% \\Il faut trouver $\mu$. Soit $X\sim\norm (\mu,0.4)$
+	% \\Nous avons $0.025=P(X\leq 7.5)$
+	% \\Or $P(Z\leq -1.96 ) = 0.025$. 
+	% \\Comme $Z=\frac{7.5-\mu}{0.4}=-1.96$, nous avons donc $\mu=8.284$ heures
+\end{enumerate}
+
+%\section{Traitement de dossier} % Loi uniforme
+%La durée de traitement d'un dossier pour l'octroi d'une carte de crédit varie uniformément entre 27 et 39 heures. 
+%\begin{enumerate}
+%	\item Quelle est la variable aléatoire? % X = temps de traitement d'un dossier
+%	\item Quelle est la loi suivie par la variable aléatoire, ainsi que ses paramètres? % $X\sim\unif (27,39)$
+%	\item Quelle est le temps de traitement moyen d'un dossier? % $\mu = (27+39)/2=33$
+%	\item Représentez graphiquement cette loi, avec sa moyenne. % hauteur = 1/(39-27) = 1/12
+%	\item Quelle est la probabilité que le traitement d'un dossier prenne entre 30 et 35 heures? % $P(30\leq X \leq 37)=(35-30)/(39-27) = 5/12 = 0.4167$
+%	\item Quelle est la probabilité que le traitement d'un dossier prenne moins de 30 heures ? % $P(X<30)=P(X\leq 30)=(30-27)/(39-27)=1/4$
+%\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,235 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Lois continues (suite)}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 2}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir utiliser 
+\begin{itemize}
+	\item une loi du $\ki^2$
+	\item une loi de Student $\st_n$
+\end{itemize}
+\end{slide}
+
+\section{Rappels}
+\begin{slide}[toc=]{Loi normale}
+$$X\sim \norm (\mu,\sigma^2)$$
+Paramètre $\mu$: position de la distribution.\\
+Paramètre $\sigma^2$: forme de la distribution
+$$\includegraphics[scale=0.3]{normalesMu0}
+\includegraphics[scale=0.3]{normalesV1}$$
+\end{slide}
+
+\begin{slide}[toc=]{Loi normale centrée réduite}
+$$X\sim \norm (\mu,\sigma^2)\quad\Rightarrow\quad Z=\frac{X-\mu}{\sigma}\sim\norm (0,1)$$
+Et donc 
+$$P(X\leq x)=P(Z\leq\frac{x-\mu}{\sigma})$$
+\end{slide}
+
+\section{Loi de Student $\st_n$}
+\begin{slide}[toc=]{William Gosset}
+$$\includegraphics[scale=1.5]{BieresStudent}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+
+\begin{slide}[toc=Distribution]{$\st_n$}
+Loi de Student à $n$ degrés de liberté\\
+\begin{itemize}
+	\item Distribution de Student ($\st$-distribution) = famille de distribution en forme de cloche et symétrique.
+	\item Caractéristique: nombre de degrés de liberté
+\end{itemize}
+$$\includegraphics[scale=0.3]{normalevsStudent}$$
+\end{slide}
+
+\begin{slide}{Propriétés}
+\begin{itemize}
+	\item $\E(\st_n) = 0\, , \quad n>1$\\
+	Espérance n'existe pas lorsque $n=1$.
+	\item $\var (\st_n) =  \frac{n}{n-2} \, , \quad n>2$\\
+	Variance infinie pour $n\leq 2$
+	\item Symétrie autour de 0. 
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Remarque}
+Lorsque le nombre de degrés de liberté $n$ tend vers l'infini, la loi de Student tend vers la loi normale $N(0,1)$.
+\end{slide}
+
+\begin{slide}[toc=]{William Gosset}
+$$\includegraphics{DrunkStudent}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+\begin{slide}{Table de Student}
+La distribution de Student est tabulée, tout comme la loi normale.
+\begin{itemize}
+	\item Ligne\\
+	nombre de degrés de liberté $n$
+	\item Colonne\\
+	une erreur de première espèce $\alpha$.
+	\item Intersection ligne/colonne $t_{\alpha,n}$
+$$P(\st_n\geq t_{\alpha,n})=\alpha$$
+\end{itemize}
+La relation entre $p$ et $\alpha$ est $p=1-\alpha$.
+\end{slide}
+
+\begin{slide}{Exemple}
+$$P(\st_{10}\leq t_{\alpha,10}) = 0.95  \quad \Longrightarrow t_{0.05,10} = 1.8125$$
+{\small
+\begin{tabular}{r|rrrrrr}
+$t$ & \multicolumn{6}{c}{\bf Valeurs de $\alpha$}\\
+&
+{\bf 0.2}&
+{\bf 0.1}&
+{\bf 0.05}&
+{\bf 0.025}&
+{\bf 0.01}&
+{\bf 0.005}\\
+\hline
+{\bf dl} & \\
+1&$1.3764$&$3.0777$&$6.3138$&$12.7062$&$31.8205$&$63.6567$\\
+2&$1.0607$&$1.8856$&$2.9200$&$ 4.3027$&$ 6.9646$&$ 9.9248$\\
+3&$0.9785$&$1.6377$&$2.3534$&$ 3.1824$&$ 4.5407$&$ 5.8409$\\
+4&$0.9410$&$1.5332$&$2.1318$&$ 2.7764$&$ 3.7469$&$ 4.6041$\\
+5&$0.9195$&$1.4759$&$2.0150$&$ 2.5706$&$ 3.3649$&$ 4.0321$\\
+6&$0.9057$&$1.4398$&$1.9432$&$ 2.4469$&$ 3.1427$&$ 3.7074$\\
+7&$0.8960$&$1.4149$&$1.8946$&$ 2.3646$&$ 2.9980$&$ 3.4995$\\
+8&$0.8889$&$1.3968$&$1.8595$&$ 2.3060$&$ 2.8965$&$ 3.3554$\\
+9&$0.8834$&$1.3830$&$1.8331$&$ 2.2622$&$ 2.8214$&$ 3.2498$\\
+10&$0.8791$&$1.3722$&$1.8125$&$ 2.2281$&$ 2.7638$&$ 3.1693$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
+\end{tabular}
+}
+\end{slide}
+
+\begin{slide}{Théorème}
+Soit un échantillon aléatoire de taille $n$, de moyenne $\bar{x}$ et de variance $s^2$, issu d'une loi normale $\norm(\mu,\sigma^2)$. Alors
+$$\frac{\bar{x}- \mu}{\frac{s}{\sqrt{n}}}\sim \st_{n - 1}$$
+Utilité: inférence sur la moyenne d'une population suivant une loi normale de moyenne $\mu$ et de variance $\sigma^2$ inconnue.
+\end{slide}
+
+\section{Loi du $\ki^2$}
+\begin{slide}{Définition}
+Soit $n$ variables aléatoires normales centrées-réduites $Z_i$, indépendantes les unes des autres et identiquement distribuées: $Z_i  \mbox{ i.i.d.} \sim\norm(0,1)$, $i=1,2,\ldots,n$. Alors la variable formée de la somme des carrés de ces variables
+$$Q_n = \sum_{i=1}^{n} Z_i^2 \sim \chi^2$$
+suit une \emph{loi du $\chi^2$ à $n$ degrés de liberté}.
+\\[5mm]
+Notation: $\chi^2(n)$ ou $\chi^2_n$\\
+Remarque: uniquement des valeurs positives.
+\end{slide}
+
+\begin{slide}{Propriétés}
+\begin{itemize}
+	\item Son espérance vaut $n$
+	%$\E (Q_n) = \sum_i\var (Z_i) = n$
+	\item Sa variance vaut $2n$
+	%$\var (Q_n)= \sum_i\var (Z_i^2) = 2n$
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Illustration}
+$$\includegraphics[scale=0.5]{chisquare}$$
+\end{slide}
+
+\begin{slide}[toc=]{Table}
+Soit $Q_n\sim \chi^2_n$\\
+$p = P(Q_n\leq q_{\alpha,n})$ et $\alpha = P(Q_n>q_{\alpha,n})$
+avec
+$$p=1-\alpha$$
+$$\includegraphics[scale=0.8]{chi2b}$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+$P(Q_7 \leq q_{\alpha,7}) = 0.95$\\
+Alors $\alpha=1-0.95=0.05$\\
+Et donc $\quad q_{0.05,7} = 14.0671$
+\\[5mm]
+{\small
+ \begin{tabular}{l|rrrrrr}
+& \multicolumn{6}{c}{\bf Valeurs de $\alpha$}\\
+&
+\multicolumn{1}{c}{\bf 0.99}&
+\multicolumn{1}{c}{\bf 0.975}&
+\multicolumn{1}{c}{\bf 0.95}&
+\multicolumn{1}{c}{\bf 0.9}&
+\multicolumn{1}{c}{\bf 0.1}&
+\multicolumn{1}{c}{\bf 0.05}\\
+\hline
+{\bf dl}\\
+1&$ 0.0002$&$ 0.0010$&$ 0.0039$&$ 0.0158$&$  2.7055$&$  3.8415$\\
+2&$ 0.0201$&$ 0.0506$&$ 0.1026$&$ 0.2107$&$  4.6052$&$  5.9915$\\
+3&$ 0.1148$&$ 0.2158$&$ 0.3518$&$ 0.5844$&$  6.2514$&$  7.8147$\\
+4&$ 0.2971$&$ 0.4844$&$ 0.7107$&$ 1.0636$&$  7.7794$&$  9.4877$\\
+5&$ 0.5543$&$ 0.8312$&$ 1.1455$&$ 1.6103$&$  9.2364$&$ 11.0705$\\
+6&$ 0.8721$&$ 1.2373$&$ 1.6354$&$ 2.2041$&$ 10.6446$&$ 12.5916$\\
+7&$ 1.2390$&$ 1.6899$&$ 2.1673$&$ 2.8331$&$ 12.0170$&$ 14.0671$\\
+8&$ 1.6465$&$ 2.1797$&$ 2.7326$&$ 3.4895$&$ 13.3616$&$ 15.5073$\\
+9&$ 2.0879$&$ 2.7004$&$ 3.3251$&$ 4.1682$&$ 14.6837$&$ 16.9190$\\
+10&$ 2.5582$&$ 3.2470$&$ 3.9403$&$ 4.8652$&$ 15.9872$&$ 18.3070$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
+\end{tabular}
+}
+\end{slide}
+
+\begin{slide}[toc=]{Propriété}
+La statistique $\chi^2$ à $n-1$ degrés de liberté vaut
+$$\chi^2 = \frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{ccl}
+$\chi^2$ & = & variable chi-2 standard\\
+$s^2$ &= &  variance de l'échantillon\\
+$\sigma^2$ & = & variance de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\\[5mm]
+Utilité: inférence sur la variance d'une population
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

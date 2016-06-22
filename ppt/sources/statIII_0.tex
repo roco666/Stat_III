@@ -1,0 +1,208 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\usepackage{hyperref}
+% Definitions hyperref
+\hypersetup{colorlinks,%
+            citecolor=black,%
+            filecolor=black,%
+            linkcolor=black,%
+            urlcolor=blue}
+\graphicspath{{../../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Statistique inférentielle}
+\author{Dr Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 0}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Bienvenu(e)s!}
+\end{slide}
+
+\section{Informations}
+\begin{slide}{Infos}
+Contact:
+\begin{itemize}
+	\item Site web: \href{http://campus.hesge.ch/varones}{campus.hesge.ch/varones}
+    \item Assistante: Geneviève Mbocka, bureau F310
+	\item Sur rdv: bureau F314, sacha.varone@hesge.ch
+\end{itemize}
+\'Evaluation
+\begin{itemize}
+	\item Test en blanc (date à définir ultérieurement)
+	\item Examen
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Plan de cours}
+\begin{itemize}
+	\item Distributions continues
+	\item Estimation ponctuelle
+	\item Intervalle de confiance
+	\item Test paramétrique
+	\item Test non paramétrique
+	\item Régression linéaire simple
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Bibliographie}
+\begin{itemize}
+	\item David F.~Groebner, Patrick W.~Shannon, Phillip C.~Fry, Kent D.~Smith, ''{\it Business Statistics:A Decision-Making Approach}'', Prentice Hall, 2005
+	\item Thomas~H. Wonnacott, Ronald~J. Wonnacott, ''{\it Statistique}, Economica, Paris, 1991.
+\end{itemize}
+\end{slide}
+
+\section{Rappels}
+\begin{slide}{A se remémorer}
+Rappels des cours de Statistique I et II\\[5mm]
+	\begin{itemize}
+		\item Mesures de positionnement
+		\item Mesures de dispersion
+%		\item Données singulières
+		\item Loi de probabilité
+	\end{itemize}
+\end{slide}
+
+\begin{slide}{Mesures de positionnement}
+	\begin{itemize}
+		\item Mode: valeur la plus fréquente
+		\item Moyenne
+		$$\bar{x} =\frac{x_1+\ldots +x_n}{n}=\frac{1}{n}\sum_{i=1}^{n} x_i$$
+		\item Médiane\\
+		50\% des observation au dessous, 50\% des observations au dessus
+	\end{itemize}
+\end{slide}
+
+\begin{slide}{Mesures de dispersion}
+	\begin{itemize}
+		\item \'Etendue
+			$$x_{[n]}-x_{[1]}$$
+		\item Quantiles (exemple: quartiles)
+		Le \emph{quantile d'ordre $\alpha$}, est une valeur telle que  $\alpha\%$ des données sont inférieures et $(100-\alpha)\%$ des données sont supérieures.
+		\item \'Ecart type et variance
+		$$\sigma^2=\frac{1}{N}\sum\limits_{i=1}^N (x_i-\mu)^2$$
+		ou
+		$$\sigma^2=\frac{1}{N-1}\sum\limits_{i=1}^N (x_i-\mu)^2$$
+	\end{itemize}
+\end{slide}
+
+%\begin{slide}{Données singulières}
+%\begin{itemize}
+%	\item Variable centrée réduite $z_i=\frac{x_i-\bar{x}}{s}$
+%  \item Règle de Chebyshev\\
+%  {\it Au moins $(1-1/z^2)$ des observations doivent se situer dans l'intervalle $[\bar{x}-zs;\bar{x}+zs]$, avec $z$ supérieur à 1.}
+%  \item Règle empirique\\
+%  Pour des distribution en forme de cloche,\\
+%  environ 68\% des observations se situent dans l'intervalle $[\bar{x}-s;\bar{x}+s]$\\
+%	environ 95\% des observations se situent dans l'intervalle $[\bar{x}-2s;\bar{x}+2s]$\\
+%	environ 99.7\%  des observations (presque toutes) se situent entre $\bar{x}-3s$ et  $\bar{x}+3s$
+%\end{itemize}
+%\end{slide}
+
+\begin{slide}{Loi de probabilités discrètes}
+\begin{itemize}
+  \item Probabilité \href{http://www.youtube.com/v/eY5lvKnPj_M&rel=1}{exemple}
+	\item Variable aléatoire\\
+	Variable qui affecte une valeur numérique à chaque issue d'une expérience aléatoire.
+	\item Loi de probabilité\\
+	Ensemble de toutes les valeurs de probabilité pour chaque réalisation d'une v.a.
+	\item Espérance mathématique d'une loi discrète\\
+	$$\E(X) = \sum_{i = 1}^{n} x_i \, \cdot \, P(X = x_i)$$
+	\item Fonction de répartition d'une loi discrète\\
+	$$F_X(x)=P(X\leq x)$$
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Loi de probabilités continues}
+\begin{itemize}
+	\item Une variable aléatoire continue $X$ prend ses valeurs dans un intervalle qui est un sous-ensemble de l'ensemble des nombres réels $\IR$.
+  
+\item
+La fonction de répartition, notée $F(x)$ est définie par
+$$F(a) = P(X \leq a) = \int^a_{-\infty} f(x) dx$$
+
+\item La fonction de densité est une fonction $f$ qui vérifie
+$$
+\int_{-\infty}^{+\infty} f(x) dx = 1
+$$
+\end{itemize}
+\end{slide}
+
+
+\section{Inférence statistique}
+
+\begin{slide}{Termes}
+\textcolor{red}{Inférer} (lat. \it{inferre}, alléguer) : tirer comme conséquence d'un fait, d'un principe.
+
+\begin{itemize}
+	\item Une \emph{unité statistique} est le plus petit élément sur lequel
+porte l'analyse statistique.
+  \item Une \emph{variable statistique} est une caractéristique d'une
+unité statistique.
+  \item Une \emph{population} est un ensemble de toutes les unités statistiques sur lequel porte une étude
+statistique.
+  \item Un \emph{échantillon} est un sous-ensemble de la population.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=]{Termes (suite)}
+\begin{itemize}
+	\item Un \emph{paramètre} est une mesure calculée à partir d'une population entière.
+  \item Une \emph{statistique} est une mesure calculée à partir d'un échantillon.
+  \item L'\emph{erreur d'échantillonnage} est la valeur de la différence entre une statistique et le paramètre évalué.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=]{Inférence}
+$$\includegraphics[scale=0.6]{inference}$$
+\end{slide}
+
+\begin{slide}{Citation}
+\begin{center}
+\og \emph{Les statistiques, c'est comme le bikini. Ce qu'elles révèlent est suggestif. Ce qu'elles dissimulent est essentiel.} Aaron Levenstein (statisticien et professeur américain).
+\end{center}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,299 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{../../../../LaTeX/Template/heg_exam}
+\usepackage{graphicx}
+  \graphicspath{{../../../../LaTeX/Template/}}
+
+\newcommand{\justification}{\smallskip Justification : \hrulefill \\[4pt] \mbox{}\hrulefill}
+\newcommand{\vraifaux}{\smallskip
+\begin{tabular}{ll}
+$\square$ VRAI &
+$\square$ FAUX
+\end{tabular}
+}
+\newcommand{\reponse}[1]{\smallskip {\blue Réponse : #1}}
+\newcommand{\hypotabular}[2]{\smallskip
+\begin{tabular}[t]{ll}
+$H_0$ : & #1
+\\
+$H_1$ : & #2
+\end{tabular}}
+
+\begin{document}
+\title{TEST BLANC}
+\semestre{hiver 2009}
+\author{Sacha Varone et Christophe Hebeisen}
+\departement{\'Economie d'entreprise}
+\module{Branches instrumentales}
+\cours{Statistiques III}
+\date{Novembre 2009}
+\indication{
+\item   Documentation et matériel autorisés :
+\begin{itemize}
+    \item formulaire personnel manuscrit de 3 pages A4 recto-verso maximum ;
+    \item machine à calculer, de quoi écrire
+\end{itemize}
+\item   Les réponses doivent être données dans les emplacements prévus à cet effet.
+\item   Ne pas écrire en rouge (c'est \emph{notre} privilège).
+\item   La précision de vos calculs doit être de 4 chiffres après la virgule.}
+\nomexaminateur{}
+\prenomexaminateur{}
+\maketitle
+
+\section{Vrai ou Faux (4 points)}
+Cocher la case qui convient pour répondre Vrai ou Faux.
+
+\begin{enumerate}
+\item Soit $X$ une variable de distribution normale. Il existe une valeur $a$ telle que $P(X>a)=-0.5080$
+
+\vraifaux
+	%\reponse{Faux. $P(X>a)$ est une probabilité/représente l'aire sous la courbe, qui est nécessairement positive.}
+%\item Soit $T_8$ une variable de Student à 8 degrés de liberté. La valeur $b$ telle que $P(T_8 \geq b) = 0.025$ représente l'aire sous la courbe à partir de $0.025$
+%
+%\vraifaux
+%	%\reponse{Faux. C'est l'inverse : $0.025$ représente l'aire sous la courbe à partir de $b$. Autre argument : comme $b=2.306$, il ne peut s'agir de l'aire (max 1).}
+%\item Soit $Q_{11}$ une variable Chi-deux à 11 degrés de liberté. Alors $P(Q_{11} < 19.6751) = 0.05$
+%
+%\vraifaux
+%	%\reponse{Faux. La table donne la valeur avec \og$>$\fg : $P(Q_{11} > 19.6751) = 0.05$}
+\item Soit un échantillon de taille 100, à partir duquel on construit un intervalle de confiance (IC) pour une moyenne. Alors l'IC à 90\% est contenu dans l'IC à 95\%.
+
+\vraifaux
+	%\reponse{Vrai. Plus le degré de confiance est grand, plus l'IC est grand ($z_{\frac{\alpha}{2}}$ augmente lorsque le risque $\alpha$ diminue). Cas extrême = 100 \%}
+%\item Soit un échantillon de taille 100. L'erreur d'échantillonnage moyen diminue lorsque le degré de confiance diminue.
+%
+%\vraifaux
+%	%\reponse{Vrai. Degré de confiance diminue $\Ra$ IC plus petit $\Ra$ erreur standard diminue.}
+\item Soit une estimation d'une moyenne, faite à partir d'un échantillon de taille 20. L'erreur d'échantillonnage maximale absolue est $\mu-x_{\min}$), où $x_{\min}$ est le plus petit élément de l'échantillon, et $\mu$ la moyenne de la population.
+
+\vraifaux
+	%\reponse{Faux. Il se peut qu'elle soit obtenue en prenant le plus grand.}
+%\item Soit $X$ une variable normale de moyenne 10 et d'écart-type 10. Alors en prenant un échantillon de taille 100, la moyenne d'échantillonnage suivra une loi $\bar{X}\sim\norm(10,1)$
+%
+%\vraifaux
+%	%\reponse{Vrai. On a $\mu=10$ et $\sigma^2=100$. Comme $n>30$, par le TCL on aura $\bar{X}\sim\norm(10,\frac{100}{100})$}
+%\item La formulation d'hypothèses suivante correspond à un test unilatéral à droite :
+%
+%\hypotabular{$\mu<10$}{$\mu \geq 10$}
+%
+%\vraifaux
+%	%\reponse{Faux. L'hypothèse nulle doit contenir un signe d'égalité.}
+%\item On sait d'une étude précédente que la moyenne d'une certaine population est de 10.34. Sur la base d'un échantillon de taille 100 tiré de cette population, l'IC à 95\% suivant est calculé : $[\, 9.44 \,;\, 10.21 \,]$. Alors la probabilité que l'IC contienne la vraie valeur de la moyenne est de 95\%.
+%	%
+%	%\vraifaux
+%	%	%\reponse{Faux. L'IC ne contient pas 10.34, donc la probabilité est de 0.}
+\item Soit un échantillon de taille 100, à partir duquel on construit un IC pour une proportion. Alors un IC à 90\% possible est $[\, -0.056 \,;\, 0.143 \,]$.
+
+\vraifaux
+	%\reponse{Vrai. Une proportion est nécessairement positive, mais l'intervalle peut être plus grand!}
+	%\item[j)]
+	%Soit un test unilatéral à gauche sur une moyenne, et soient $\alpha$ et $\beta$ les erreurs de première et deuxième espèce associées. Alors il existe une valeur critique $r$ telle que $\alpha=\beta$
+	%
+	%\vraifaux
+	%\reponse{Vrai. Prendre la valeur correspondant à l'intersection des deux courbes, qui est à égale distance de $\mu_0$ et $\mu_1$ si l'écart-type est le même} <- = problème, ou alors modifier la donnée
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\newpage
+\section{Hockey (7 points)}
+Le nombre de buts marqués en moyenne par une équipe de hockey sur glace lors des 8 saisons précédentes suit une loi normale de moyenne 100 et d'écart-type 20. Un nouvel attaquant vient d'être engagé moyennant une forte somme d'argent, et l'entraîneur espère que le nombre de buts marqués durant la prochaine saison suivra une loi $\norm (120, 400)$.
+
+\begin{enumerate}
+\item
+\textbf{1 point}
+Sur quelle valeur devra-t-on effectuer un test ?
+%\reponse{sur la moyenne de buts marqués par saison}
+\item
+\textbf{1 point}
+Formuler les hypothèses nulle et alternative.
+%\reponse{\hypotabular{$\mu=100$ (ou $\mu\leq 100$)}{$\mu>100$}}
+%\item
+%\textbf{2 points}
+%Soient $\alpha$ et $\beta$ les erreurs de première et deuxième espèce associées à ce test. Trouver géométriquement la valeur critique $r$ pour laquelle $\alpha=\beta$.
+%	%\reponse{$r=110$. En effet, comme l'écart-type est le même, il suffit de prendre l'intersection des deux courbes normales, qui correspond à la valeur située à égale distance de $\mu_0=100$ et $\mu_1=120$. Ou en imposant $100+20z_\alpha = 120-20z_\beta$, avec $\alpha=\beta$, ce qui mène à $z_\alpha = 0.5$, d'où $r=110$ (et accessoirement $\alpha = 1-0.6915 = 0.3085$, ce qui répond à la question suivante).}
+%\item
+%\textbf{2 points}
+%Quelle est alors la probabilité de faire une erreur de première espèce ?
+%	%\reponse{On calcule $\alpha = P(X>110) = P(Z>\frac{110-100}{20}) = P(Z>0.5) = 1-P(Z<0.5) = 1-0.6915 = 0.3085$.
+%	%
+%	%On peut aussi poser $r=110=100+20z_\alpha$, d'où $z_\alpha = 0.5$, et donc $\alpha = 0.3085$.
+%	%}
+\item
+\textbf{1 points}
+Quelle est la probabilité de commettre une erreur de première espèce, si le seuil de confiance est fixé à 90\% ?
+%\reponse{0.1}.
+\item
+\textbf{3 point}
+Supposons maintenant que la valeur critique soit 110 (buts marqués en moyenne).
+Quelle est alors la probabilité de ne pas rejeter $H_0$ si en réalité le nombre de buts marqués suit une loi $\norm (120, 400)$?
+%\reponse{$\beta=P(X<110|X\sim\norm (120,400))=P(z<\frac{110-120}{20})=0.3085$. De plus, dans ce cas on a $\beta=\alpha$ (voir p.ex. géométriquement)}
+\item
+\textbf{1 point}
+Supposons ensuite que l'on ait calculé avec un logiciel la $p$-valeur suivante : $p$-valeur $= 0.4567$. Quelle va être la conclusion du test ? L'entraîneur a-t-il de quoi se réjouir, ou au contraire doit-il se mordre les doigts ?
+%\reponse{Comme $p$-valeur $= 0.4567 > 0.3085 = \alpha$, on ne va pas rejeter $H_0$. La situation ne va donc pas changer la saison prochaine, et l'argent du transfert a été dépensé pour rien.}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section{Fast-food (14 points)}
+Le gérant d'un \emph{fast-food} souhaite estimer le montant moyen dépensé par client lors d'une commande. Pour cela, il a pris un échantillon de 13 commandes et a relevé les montants encaissés suivants :
+$$
+\begin{array}{*{13}c}
+12.50 &
+21.50 &
+9.90 &
+15.10 &
+13.50 &
+27 &
+16.10 &
+7.90 &
+14.90 &
+9.90 &
+14 &
+18 &
+21.50
+\end{array}
+$$
+\begin{enumerate}
+\item
+\textbf{4 points}
+Vérifier si la population semble être distribuée normalement.
+%\centerline{\includegraphics[height=7cm]{boxplot_TestBlanc}}
+%
+%\centerline{\includegraphics[height=7cm]{montants_histogram}}
+%
+%\reponse{Dans l'ordre, on a
+%$$
+%\begin{array}{*{13}c}
+%x_{(1)} & x_{(2)} & x_{(3)} & x_{(4)} & x_{(5)} & x_{(6)} & x_{(7)} & x_{(8)} & x_{(9)} & x_{(10)} & x_{(11)} & x_{(12)} & x_{(13)}
+%\\[6pt]
+%7.90 &
+%9.90 &
+%9.90 &
+%12.50 &
+%13.50 &
+%14 &
+%14.90 &
+%15.10 &
+%16.10 &
+%18 &
+%21.50 &
+%21.50 &
+%27
+%\end{array}
+%$$
+%Les quartiles sont $q_1 = x_{(4)} = 12.50$, médiane $= q_2 = x_{(7)} = 14.90$, et $q_3 = x_{(10)} = 18$
+%
+%IQR $= q_3 - q_1 = 18-12.5 = 5.5$
+%
+%L-max moustaches $= 1.5\cdot 5.5 = 8.25$, et donc moustaches de 7.90 à $q_1$ et de $q_3$ à 21.5 (27 = valeur aberrante).
+%
+%Donc l'exemple construit donne bien un boxplot symétrique autour de la médiane, donc hypothèse de normalité remplie.
+%Code R :
+%}
+%{\blue
+%\begin{verbatim}
+%> montants <- c(7.9,9.9,9.9,12.5,13.5,14,14.9,15.1,16.1,18,21.5,21.5,27)
+%> boxplot.stats(montants, coef = 1.5, do.conf = FALSE, do.out = TRUE)
+%$stats
+%[1]  7.9 12.5 14.9 18.0 21.5
+%$n
+%[1] 13
+%$out
+%[1] 27
+%> boxplot(montants, coef = 1.5)
+%> hist(montants)
+%\end{verbatim}
+%}
+\item
+\textbf{4 points}
+On donne $\sum x_i = 201.8$ et $\sum x_i^2 =3479.66$.
+Construire un intervalle de confiance à 90\% pour le montant moyen par commande.
+%\reponse{On calcule $\bar{x} = \frac{201.8}{13} = 15.523$ et $s^2 = \frac{13}{12} \bigl(\frac{1}{13}\cdot 3479.66 - (15.523)^2\bigr) = 28.927$, d'où $s = 5.378$ ; avec $t_{0.05 ; 12} = 1.7823$ on a donc
+%
+%$\IC_{90\%} = 15.523 \pm 1.7823 \cdot \frac{5.378}{\sqrt{13}} = [12,86 \,;\, 18,18]$
+%}
+%
+%{\blue Avec R :
+%\begin{verbatim}
+%> mean(montants)
+%[1] 15.52308
+%> sd(montants)
+%[1] 5.378221
+%> t.test(montants,conf.level=0.9)
+%
+%        One Sample t-test
+%
+%data:  montants
+%t = 10.4066, df = 12, p-value = 2.324e-07
+%alternative hypothesis: true mean is not equal to 0
+%90 percent confidence interval:
+% 12.86453 18.18163
+%sample estimates:
+%mean of x
+% 15.52308
+%\end{verbatim}
+%}
+\item
+\textbf{6 points}
+Le gérant exige de ses employés qu'ils se chargent de servir les clients le plus rapidement possible tout en fournissant un service de qualité, et dans ce but a mis en place des nouvelles directives. Il estime qu'un temps de service moyen de 3 minutes avec une variation de $\pm 2$ minutes est acceptable.
+
+Laissant de côté la valeur $x_{\max} = 27$ de son échantillon, qu'il considère comme aberrante, le gérant note les différences, en minutes, entre le temps moyen estimé et celui de l'attente effective du client :
+$$
+\begin{array}{*{12}c}
+3 & 5 & -2 & 3 & 0 & 1 & 2 & 1 & -1 & 0 & -2.5 & -2.5
+\end{array}
+$$
+Il calcule ensuite :
+\emph{médiane $\tilde{y} = 0.5$ ; moyenne $\bar{y} = 0.58\bar{3}$ ; écart type $s_y = 2.382$}
+
+Testez la variabilité de ces temps d'attente avec un degré de confiance de 90\%, par rapport aux souhaits du gérant, en supposant que la distribution suit une loi normale. Indiquez toutes les étapes.
+%
+%\reponse{
+%\begin{verbatim}
+%attente <- c(3,5,-2,3,0,1,2,1,-1,0,-2.5,-2.5)
+%sigma0 <- 4
+%pchisq( var(attente)*(length(attente)-1)/sigma0, length(attente)-1, lower.tail= FALSE)
+%\end{verbatim}
+% 
+%\begin{enumerate}
+%\item
+%\textbf{1 point}
+%La valeur de la population d'intérêt est la variation des délais d'attente, transformés en variance.
+%
+%
+%\item
+%\textbf{1 point}
+%Hypothèses :
+%\hypotabular{$\sigma^2\leq 4$}{$\sigma^2 > 4$}
+%
+%\item
+%\textbf{1 point}
+%Le niveau de signification est fixé à $\alpha = 0.1$
+%
+%\item
+%\textbf{1 point}
+%La région de rejet du test est l'ensemble des valeurs supérieures à
+%$$
+%\ki^2_{0.1, 11} = 17.275
+%$$
+%
+%\item
+%\textbf{1 point}
+%Comme $s^2 = 5.674$, $\sigma^2=4$ et $n-1 = 11$, la statistique associée à l'échantillon est
+%$$
+%\ki^2 = \frac{11\cdot 5.674}{4} = 15.6035
+%$$
+%
+%\item
+%\textbf{1 point}
+%Comme $15.6035$ n'appartient pas à la région critique, l'hypothèse $H_0$ n'est pas rejetée.
+%
+%\item
+%\textbf{1 point}
+%Conclusion : les directives ont l'effet voulu, à savoir qu'il est très probable que la variation de temps de service effectif soit tout à fait acceptable aux yeux du gérant.
+%\end{enumerate}
+%}
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

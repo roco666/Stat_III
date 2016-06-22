@@ -1,0 +1,325 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts,amsmath}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../../fig/}}
+%\usepackage{bm} % gras mathématique avec \bmath déf. ci-dessous
+%    \newcommand{\bmath}[1]{\ensuremath\bm{#1}}
+
+% Definitions Maths
+\include{mydef_slides}
+
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Distributions continues}
+\author{Dr Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 1}
+}
+
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectifs}
+Savoir reconnaître et utiliser
+\begin{itemize}
+\item une loi normale $\norm$
+\item une loi du $\ki^2$
+\item une loi de Student $\st_n$
+\end{itemize}
+\end{slide}
+
+\section{Loi normale (Rappel)}
+\begin{slide}[toc=]{Famille de lois normales}
+\vspace{-9mm}
+$$
+\includegraphics[scale=0.3]{normalesMu0}
+\includegraphics[scale=0.3]{normalesV1}
+$$
+%
+\centerline{$X\sim  \norm (\mu,\sigma^2)$}
+
+\bigskip
+$\sigma^2$ détermine la largeur de la courbe. Plus sa valeur est élevée, plus la courbe sera large et aplatie.
+$\mu$ détermine la position de la moyenne.
+\end{slide}
+
+\begin{slide}{Probabilités}
+Probabilité $\rightarrow$ aire sous la courbe de densité $f(x)$.
+
+Par symétrie $P(X\leq\mu)=P(X\geq\mu)=0.5$\\
+Donc $P(X\leq x) = 1-P(X\geq x)$
+$$\includegraphics[scale=0.35]{norm_table}$$
+\end{slide}
+
+
+\begin{slide}[toc=Table]{Table de la loi normale}
+La table de la loi normale donne les probabilités d'occurrence jusqu'à la $z$-valeur considérée. La ligne donne la valeur de $Z$ jusqu'au dixième, et la colonne donne la valeur au centième.\\[5mm]
+
+{\footnotesize
+\begin{tabular}{r|rrrrrr}
+
+         $z$ &       0.00 &       0.01 &       0.02 &       0.03 &       0.04 & ...\\
+\hline
+           &            &            &            &            &            \\
+
+         0 &     0.5000 &     0.5040 &     0.5080 &     0.5120 &     0.5160  & ...\\
+
+       0.1 &     0.5398 &     0.5438 &     0.5478 &     0.5517 &     0.5557  & ...\\
+
+       0.2 &     0.5793 &     0.5832 &     0.5871 &     0.5910 &     0.5948  & ...\\
+
+       0.3 &     0.6179 &     0.6217 &     0.6255 &     0.6293 &     0.6331  & ...\\
+
+       0.4 &     0.6554 &     0.6591 &     0.6628 &     0.6664 &     0.6700   & ...\\
+
+           &            &            &            &            &            \\
+
+       0.5 &     0.6915 &     0.6950 &     0.6985 &     0.7019 &     0.7054  & ...\\
+
+       0.6 &     0.7257 &     0.7291 &     0.7324 &     0.7357 &     0.7389  & ...\\
+
+       0.7 &     0.7580 &     0.7611 &     0.7642 &     0.7673 &     0.7704  & ...\\
+
+       0.8 &     0.7881 &     0.7910 &     0.7939 &     0.7967 &     0.7995  & ...\\
+
+       0.9 &     0.8159 &     0.8186 &     0.8212 &     0.8238 &     0.8264  & ...\\
+       ...  & ...  & ...  & ...  & ...  & ...  & ...
+\end{tabular}
+}
+\end{slide}
+
+
+\begin{slide}[toc=Définition]{Normale centrée réduite}
+Une loi normale de moyenne nulle et d'écart type 1, écrite $\norm (0,1)$, est dite \emph{loi normale centrée réduite}. La fonction de densité est alors
+$$f(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$
+\end{slide}
+
+\begin{slide}{Transformation}
+$$X\sim \norm (\mu,\sigma^2)\quad\Rightarrow\quad Z=\frac{X-\mu}{\sigma}\sim\norm (0,1)$$
+Les probabilités suivantes sont alors équivalentes
+
+$$X\leq x\quad\Rightarrow\quad Z\leq\frac{x-\mu}{\sigma}$$
+$$P(X\leq x)=P(Z\leq\frac{x-\mu}{\sigma})$$
+
+Inversement, on a
+$$Z\sim\norm (0,1)\quad\Rightarrow\quad X = \mu+Z\sigma\sim \norm (\mu,\sigma^2)$$
+
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+Soit $X$ est une variable aléatoire suivant une loi normale de centre $\mu=100$ et d'écart type $\sigma=50$, \emph{i.e.}
+$$X\sim\norm (100,2500) \quad\quad Z=\frac{X-\mu}{\sigma}\sim\norm (0,1)$$
+
+$\begin{pspicture}(-1.5,0)(1.5,3.1)
+\psset{linewidth=0.5pt,xunit=3cm,yunit=3cm}
+\parametricplot[plotpoints=100]{-0.5}{2.5}{t 1 0.5 2 3.1416 mul sqrt mul div 2.71828 t 1 sub 2 exp 2 0.5 2 exp mul div neg exp mul}
+\psaxes[arrowscale=1.5,ticks=none,labels=none]{->}(-0.5,0)(2.5,1.0)
+\psline(1,-0.1)(1,0.1)
+\uput[90](1.0,-0.3){100}
+\uput[90](1.0,-0.45){\red 0}
+\psline(2.0,-0.1)(2.0,0.1)
+\uput[90](2.0,-0.3){200}
+\uput[90](2.5,-0.3){X}
+\uput[90](2.0,-0.45){\red 2}
+\uput[90](2.5,-0.45){\red Z}
+\uput[90](2,0.8){$X\sim\norm (100,2500)$}
+\uput[90](2,0.5){\red $Z\sim\norm (0,1)$}
+\end{pspicture}$
+\\[15mm]
+Si $X=200$ alors  $Z=\frac{200-100}{50}=2$\\
+Et donc $\mu + Z \sigma = 100+2\cdot 50 = 200 = X$
+\end{slide}
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Loi de Student $\st_n$}
+\begin{slide}[toc=]{William Gosset}
+$$\includegraphics[scale=1.5]{BieresStudent}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+
+\begin{slide}[toc=Distribution]{$\st_n$}
+Loi de Student à $n$ degrés de liberté\\
+\begin{itemize}
+	\item Distribution de Student ($t$-distribution) = famille de distribution en forme de cloche et symétrique.
+	\item Caractéristique: nombre de degrés de liberté
+\end{itemize}
+$$\includegraphics[scale=0.3]{normalevsStudent}$$
+\end{slide}
+
+\begin{slide}{Propriétés}
+\begin{itemize}
+	\item $\E(\st_n) = 0\, , \quad n>1$
+
+	Espérance n'existe pas lorsque $n=1$.
+
+    Symétrie autour de 0.
+
+	\item $\Var (\st_n) =  \frac{n}{n-2} \, , \quad n>2$
+
+	Variance infinie pour $n\leq 2$
+\end{itemize}
+
+\textbf{Remarque.}
+Lorsque le nombre de degrés de liberté $n$ tend vers l'infini, la loi de Student tend vers la loi normale $\norm(0,1)$.
+\end{slide}
+
+
+\begin{slide}[toc=]{William Gosset}
+$$\includegraphics{DrunkStudent}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+\begin{slide}{Table de Student}
+La distribution de Student est tabulée, tout comme la loi normale.
+\begin{itemize}
+	\item Ligne\\
+	nombre de degrés de liberté $n$
+	\item Colonne\\
+	une erreur de première espèce $\alpha$.
+	\item Intersection ligne/colonne $t_{\alpha,n}$
+$$P(\st_n > t_{\alpha,n})=\alpha \quad \text{et} \quad P(\st_n\leq t_{\alpha,n}) = p$$
+
+\end{itemize}
+La relation entre $p$ et $\alpha$ est $p=1-\alpha$.
+\end{slide}
+
+\begin{slide}{Exemple}
+$$P(\st_{10}\leq t_{\alpha,10}) = 0.95  \quad \Longrightarrow t_{0.05,10} = 1.8125$$
+{\small
+\begin{tabular}{r|rrrrrr}
+$t$ & \multicolumn{6}{c}{\bf Valeurs de $\alpha$}\\
+&
+{\bf 0.2}&
+{\bf 0.1}&
+{\bf 0.05}&
+{\bf 0.025}&
+{\bf 0.01}&
+{\bf 0.005}\\
+\hline
+{\bf dl} & \\
+1&$1.3764$&$3.0777$&$6.3138$&$12.7062$&$31.8205$&$63.6567$\\
+2&$1.0607$&$1.8856$&$2.9200$&$ 4.3027$&$ 6.9646$&$ 9.9248$\\
+3&$0.9785$&$1.6377$&$2.3534$&$ 3.1824$&$ 4.5407$&$ 5.8409$\\
+4&$0.9410$&$1.5332$&$2.1318$&$ 2.7764$&$ 3.7469$&$ 4.6041$\\
+5&$0.9195$&$1.4759$&$2.0150$&$ 2.5706$&$ 3.3649$&$ 4.0321$\\
+6&$0.9057$&$1.4398$&$1.9432$&$ 2.4469$&$ 3.1427$&$ 3.7074$\\
+7&$0.8960$&$1.4149$&$1.8946$&$ 2.3646$&$ 2.9980$&$ 3.4995$\\
+8&$0.8889$&$1.3968$&$1.8595$&$ 2.3060$&$ 2.8965$&$ 3.3554$\\
+9&$0.8834$&$1.3830$&$1.8331$&$ 2.2622$&$ 2.8214$&$ 3.2498$\\
+10&$0.8791$&$1.3722$&$1.8125$&$ 2.2281$&$ 2.7638$&$ 3.1693$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
+\end{tabular}
+}
+\end{slide}
+
+\begin{slide}{Théorème}
+Soit un échantillon aléatoire de taille $n$, de moyenne $\bar{x}$ et de variance $s^2$, issu d'une loi normale $\norm(\mu,\sigma^2)$. Alors
+$$\frac{\bar{x}- \mu}{\frac{s}{\sqrt{n}}}\sim \st_{n - 1}$$
+Utilité: inférence sur la moyenne d'une population suivant une loi normale de moyenne $\mu$ et de variance $\sigma^2$ inconnue.
+\end{slide}
+
+\section{Loi du $\ki^2$}
+\begin{slide}{Définition et propriétés}
+Soit $n$ variables aléatoires normales centrées-réduites $Z_i$, indépendantes les unes des autres et identiquement distribuées: $Z_i \ \stackrel{i.i.d.}{\sim} \ \norm(0,1)$, $i=1,2,\ldots,n$. Alors la variable formée de la somme des carrés de ces variables
+$$Q_n = \sum_{i=1}^{n} Z_i^2 \sim \chi^2$$
+suit une \emph{loi du $\chi^2$ à $n$ degrés de liberté}, ce que l'on note souvent $\chi^2(n)$ ou $\chi^2_n$.
+\\[3mm]
+Remarque: les valeurs sont forcément positives.
+\\[3mm]
+Propriétés :
+\begin{itemize}
+	\item Son espérance vaut $\E (Q_n) = n$
+	%$\E (Q_n) = \sum_i \E (Z_i^2) = n$ %E(XY) = E(X)E(Y) si X,Y indépendants
+	\item Sa variance vaut $\Var (Q_n) = 2n$
+	%$\Var (Q_n)= \sum_i\Var (Z_i^2) = 2n$
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}{Illustration}
+$$\includegraphics[scale=0.5]{chisquare}$$
+\end{slide}
+
+\begin{slide}[toc=]{Table}
+Soit $Q_n\sim \chi^2_n$
+
+$P(Q_n\leq q_{\alpha,n}) = p$ \quad et \quad $P(Q_n>q_{\alpha,n}) = \alpha$ \quad
+avec
+$$p=1-\alpha$$
+$$\includegraphics[scale=0.8]{chi2b}$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+$P(Q_7 \leq q_{\alpha,7}) = 0.95$\\
+Alors $\alpha=1-0.95=0.05$\\
+Et donc $\quad q_{0.05,7} = 14.0671$
+\\[5mm]
+{\small
+ \begin{tabular}{l|rrrrrr}
+& \multicolumn{6}{c}{\bf Valeurs de $\alpha$}\\
+&
+\multicolumn{1}{c}{\bf 0.99}&
+\multicolumn{1}{c}{\bf 0.975}&
+\multicolumn{1}{c}{\bf 0.95}&
+\multicolumn{1}{c}{\bf 0.9}&
+\multicolumn{1}{c}{\bf 0.1}&
+\multicolumn{1}{c}{\bf 0.05}\\
+\hline
+{\bf dl}\\
+1&$ 0.0002$&$ 0.0010$&$ 0.0039$&$ 0.0158$&$  2.7055$&$  3.8415$\\
+2&$ 0.0201$&$ 0.0506$&$ 0.1026$&$ 0.2107$&$  4.6052$&$  5.9915$\\
+3&$ 0.1148$&$ 0.2158$&$ 0.3518$&$ 0.5844$&$  6.2514$&$  7.8147$\\
+4&$ 0.2971$&$ 0.4844$&$ 0.7107$&$ 1.0636$&$  7.7794$&$  9.4877$\\
+5&$ 0.5543$&$ 0.8312$&$ 1.1455$&$ 1.6103$&$  9.2364$&$ 11.0705$\\
+6&$ 0.8721$&$ 1.2373$&$ 1.6354$&$ 2.2041$&$ 10.6446$&$ 12.5916$\\
+7&$ 1.2390$&$ 1.6899$&$ 2.1673$&$ 2.8331$&$ 12.0170$&$ 14.0671$\\
+8&$ 1.6465$&$ 2.1797$&$ 2.7326$&$ 3.4895$&$ 13.3616$&$ 15.5073$\\
+9&$ 2.0879$&$ 2.7004$&$ 3.3251$&$ 4.1682$&$ 14.6837$&$ 16.9190$\\
+10&$ 2.5582$&$ 3.2470$&$ 3.9403$&$ 4.8652$&$ 15.9872$&$ 18.3070$\\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$
+\end{tabular}
+}
+\end{slide}
+
+\begin{slide}[toc=]{Propriété}
+La statistique $\chi^2$ à $n-1$ degrés de liberté vaut
+$$\chi^2 = \frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{ccl}
+$\chi^2$ & = & variable chi-2 standard\\
+$s^2$ &= &  variance de l'échantillon\\
+$\sigma^2$ & = & variance de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\\[5mm]
+Utilité: inférence sur la variance d'une population
+\end{slide}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

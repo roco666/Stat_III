@@ -1,0 +1,11 @@
+# \cite{Groebner2005} p. 277 Heritage Software
+x <- c(7.1,13.6,1.4,3.6,1.9,11.6,1.7,16.9,2.6,7.7,12.4,11,3.7,14.6,8.8,8.5,6.1,3.3,6.1,6.9,0.4,11,0.8,6.4,9.1)
+t.test(x)
+
+# Simuler des intervalles de confiance
+m = 50; n=20; p = .5; # toss 20 coins 50 times
+phat = rbinom(m,n,p)/n # divide by n for proportions
+SE = sqrt(phat*(1-phat)/n) # compute SE
+alpha = 0.10;zstar = qnorm(1-alpha/2)
+matplot(rbind(phat - zstar*SE, phat + zstar*SE),rbind(1:m,1:m),type="l",lty=1)
+abline(v=p)

@@ -1,0 +1,325 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\StandardLayout
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Intervalle de confiance}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 5}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Comprendre et savoir calculer un intervalle de confiance pour la moyenne
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=$\hat{\Theta}$]{Estimation ponctuelle}
+Une \emph{estimation ponctuelle}, ou point d'estimation, est une valeur calculée à partir d'un échantillon pour estimer un paramètre d'une population.\\[5mm]
+Une \emph{distribution d'échantillonnage} d'une estimateur $\hat{\Theta}$ est la distribution des valeurs possible d'une statistique pour un échantillon de taille fixée, sélectionné à partir d'une population.\\[5mm]
+Le \emph{biais} : $\E(\hat{\Theta}-\theta) = \E(\hat{\Theta})-\theta$\\[5mm]
+Estimateur \emph{convergent} si, lorsque la taille $n$ de l'échantillon devient grande
+\begin{enumerate}
+	\item le biais disparaît: $\lim_{n\rightarrow\infty} \biais(\hat{\Theta}) = 0$
+  \item la variance devient nulle: $\lim_{n\rightarrow\infty} \mbox{Var}(\hat{\Theta}) = 0$
+\end{enumerate} 
+\end{slide}
+
+\begin{slide}[toc=TCL]{Théorème central limite}
+Soit une suite $(X_1, X_2, \ldots, X_n)$ de $n$ variables aléatoires identiquement et indépendamment distribuées $(\mu,\sigma^2)$.\\
+Lorsque $n \rightarrow \infty$, 
+$$\overline{X} = \sim \norm (\mu, \frac{\sigma^2}{n}\bigr)$$
+où\\
+\begin{tabular}{rcl}
+$\mu$ & = & moyenne dans la population\\
+$\sigma^2$ & = & variance dans la population\\
+$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{}
+$$\includegraphics{AlmostNormal}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+\begin{slide}[toc=$\hat{p}$]{Estimateur d'une proportion}
+Lorsque $np\geq 5$ et $n(1-p)\geq 5$ la distribution de  
+$$\hat{p}\sim\norm(p, \frac{p(1-p)}{n})$$
+où\\
+\begin{tabular}{rcl}
+$p$ & = & proportion dans la population\\
+$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    Intervalle de confiance               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Intervalle de confiance}
+\begin{slide}[toc=]{}
+$$\includegraphics[scale=0.7]{ICmeurtre}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+\begin{slide}{Principe}
+\begin{tabular}{l|l}
+Estimation ponctuelle & Estimation par intervalle\\
+\hline
+$\rightarrow$ une valeur précise $\hat{\theta}$ & $\rightarrow$ intervalle $\left[\hat{\theta}_{inf} \; ; \; \hat{\theta}_{sup}\right]$\\
+& avec un niveau de confiance fixé.\\
+$$\includegraphics[scale=1.2]{cible_abs_biais}$$ & $$\includegraphics[scale=1.2]{cible_interv}$$
+\end{tabular}
+%
+%Estimation ponctuelle $\rightarrow$ une valeur précise $\hat{\theta}$\\
+%Estimation par intervalle $\rightarrow$ intervalle $\left[\hat{\theta}_{inf} \; ; \; \hat{\theta}_{sup}\right]$, avec un niveau de confiance fixé.
+% $$\includegraphics[scale=0.9]{cible_abs_biais} \hfill
+% \includegraphics[scale=0.9]{cible_interv}$$
+\end{slide}
+
+\begin{slide}{Définition}
+$1-\alpha$ est appelé le \emph{degré de confiance} ou \emph{niveau de confiance}; il indique la probabilité que la vraie valeur du paramètre $\theta$ soit comprise dans l'intervalle de confiance.\\
+$$    \underbrace{1-\alpha}_{\parbox{3cm}{\centering\small degré de
+    confiance}}
+    = \; P\bigl(\;\theta \in
+    \underbrace{
+    [\hat\theta_{\mbox{inf}}\;;\;\hat\theta_{\mbox{sup}}]
+    }_{\mbox{\small intervalle aléatoire}}\bigr)\quad
+$$
+Le \emph{risque de première espèce} $\alpha$ est le risque que l'intervalle ne recouvre pas $\theta$.
+\end{slide}
+
+\begin{slide}[toc=$\alpha$]{Choix du degré de confiance}
+\begin{itemize}
+    \item $\alpha$ petit $\Rightarrow$ intervalle fiable, mais large
+    \item $\alpha$ grand $\Rightarrow$ intervalle précis, mais risque de non recouvrement du paramètre
+\end{itemize}
+
+En pratique: $\alpha=$ 5\% ou 10 \%.
+\end{slide}
+
+\begin{slide}[toc=]{Illustration}
+$$\includegraphics[scale=3]{CartoonDegreConfiance}$$
+\end{slide}
+
+\begin{slide}[toc=]{Définition}
+Un \emph{intervalle de confiance} de niveau $1 - \alpha$ pour un paramètre inconnu $\theta$ d'une population est un intervalle tel que la probabilité pour que $\theta$ appartienne à cet intervalle est $1 - \alpha$.\\[5mm] 
+Les bornes de cet intervalle se calculent à partir d'un échantillon.
+\end{slide}
+
+\begin{slide}[toc=Construction]{Construction d'un IC}
+\begin{center}
+Estimation ponctuelle $\pm$ (Valeur critique) (\'Ecart type)
+\end{center}
+
+ \begin{center}
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(8,1.8)(0,-0.8)
+        \thicklines
+        \put(0,0){\line(1,0){8}}
+        \put(0,-.50){\line(0,1){.6}}
+        \put(0,-1){\parbox[t]{0em}{\makebox[0pt][c]{$\hat{\theta}_{\mbox{inf}}$}}}
+        \put(4,-.50){\line(0,1){.6}}
+        \put(4,0.5){\parbox[t]{0em}{\makebox[0pt][c]{Estimation ponctuelle}}}
+        \put(4,-1){\parbox[t]{0em}{\makebox[0pt][c]{$\hat{\theta}$}}}
+        \put(8,-.50){\line(0,1){.6}}
+        \put(8,-1){\parbox[t]{0em}{\makebox[0pt][c]{$\hat{\theta}_{\mbox{sup}}$}}}
+    \end{picture}
+  \end{center}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    Estimation de mu, sigma connu         %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour $\mu$}
+\begin{slide}[toc=$\sigma^2$ connu]{IC pour estimer $\mu$, $\sigma^2$ connu}
+Population qui suit une loi normale de variance $\sigma^2$ connue,
+
+$$\bar{x}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+$\sigma$ &= &  écart type de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+Considérons la population suivante: l'ensemble des pots de peinture d'1lt remplis par une machine industrielle.
+Supposons que la quantité de peinture est une variable aléatoire $X$ suivant une loi normale d'écart type $\sigma=0.04$lt. Votre but en tant que responsable qualité est de contrôler qu'en moyenne, la machine remplisse 1lt de peinture par pot.
+
+Vous prenez 4 pots au hasard
+\begin{center}
+\begin{tabular}{c|cccc}
+	Pot & $x_1$ & $x_2$ & $x_3$ & $x_4$\\
+	\hline
+	Quantité [lt] & 1.0 & 0.98 & 1.1 & 1.1
+\end{tabular}
+\end{center}
+
+Intervalle de confiance à 95\% pour la quantité de peinture par pot ?
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{enumerate}
+	\item Population d'intérêt  \pause  = ensemble des pots.
+	\item Degré de confiance $1-\alpha$ \pause  = 0.95
+	\item Moyenne de l'échantillon \pause  = $\bar{x}=\frac{1.0+0.98+1.1+1.1}{4}=1.045$
+	\item Erreur standard de la moyenne \pause  = $\sigma_{\bar{x}} = \frac{0.04}{\sqrt{4}}=0.02$
+	\item Les pots peuvent être trop peu remplis, ou trop remplis. L'erreur de première espèce $\alpha$ est alors divisée en 2 parties. La valeur critique est donc $z_{\alpha/2}=z_{0.25}=1.96$
+	\item L'intervalle de confiance est \pause
+	$$\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 1.045\pm 1.96\cdot 0.02 = [1.0058;1.0842]$$
+\end{enumerate}
+\pause
+Conclusion: l'IC ne comprend pas la valeur 1lt. Donc la machine est mal réglée.
+\end{slide}
+
+\begin{slide}[toc=\'Etapes]{\'Etapes de construction}
+Calcul d'un IC estimé pour une moyenne de population, lorsque l'écart type de la population est connue, et\\
+- soit la moyenne suit une loi normale\\
+- soit l'échantillon est de taille au moins 30.
+
+\begin{enumerate}
+	\item Définir la population d'intérêt et sélectionner un échantillon aléatoire de taille $n$
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Calculer la moyenne de l'échantillon
+	$\bar{x}=\frac{\sum x_i}{n}$
+	\item Déterminer l'erreur standard de la moyenne
+	$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$
+	\item Déterminer la valeur critique $z_{\alpha/2}$
+	\item Calculer l'intervalle de confiance
+	$$\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$$
+\end{enumerate}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    Estimation de mu, sigma inconnu       %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{slide}[toc=$\sigma^2$ inconnu]{IC pour estimer $\mu$, $\sigma^2$ inconnu}
+Hypothèse: {\red la distribution de la population suit une loi normale}.\\
+
+$$\bar{x}\pm t_{\alpha/2}^{(n-1)} \frac{s}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$t_{\alpha/2}^{(n-1)}$ &= &  valeur critique de la $\st$-distribution à $n-1$ dl\\
+& & pour un degré de confiance de $1-\alpha$\\
+$s$ &= &  écart type de l'échantillon\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+En tant que responsable d'un ''backoffice'' dans une entreprise, vous souhaitez calculer l'intervalle de confiance à 95\% du temps moyen passé au téléphone par les employés du ''backoffice'' avec les clients. Vous avez recueilli les temps, en minutes, de 25 appels.
+$$\begin{array}{ccccc}
+	 7.1 & 13.6 &  1.4 &  3.6 & 1.9\\
+	11.6 &  1.7 & 16.9 &  2.6 & 7.7\\
+	12.4 & 11.0 &  3.7 & 14.6 & 8.8\\
+	 8.5 &  6.1 &  3.3 &  6.1 & 6.9\\
+	 0.4 & 11.0 &  0.8 &  6.4 & 9.1
+\end{array}$$
+\begin{enumerate}
+	\item Population : \pause tous les appels des clients au ''backoffice''
+	\item Niveau de confiance souhaité : \pause $1-\alpha=0.95$
+	\item Moyenne estimée \pause $\bar{x}\approx 7.088$ et écart type estimé $s\approx 4.64$
+	\item l'erreur standard de la moyenne \pause $\sigma_{\bar{x}}=\frac{s}{\sqrt{n}}\approx 0.928$
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+	\item[5. ] Comme vous ne savez pas à priori si la population est normalement distribuée, vous vérifiez à l'aide d'une boîte à moustache que la distribution de votre échantillon soit normalement distribuée:\\
+	% avec R
+	%% x <- c(7.1,13.6,1.4,3.6,1.9,11.6,1.7,16.9,2.6,7.7,12.4,11,3.7,14.6,8.8,8.5,6.1,3.3,6.1,6.9,0.4,11,0.8,6.4,9.1)
+	%% boxplot(x,main="Durée des appels", horizontal=TRUE)
+	%% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/fig")
+	%% dev.copy2eps(file="exICstudent.eps")
+	\centerline{$\includegraphics[scale=0.25]{exICstudent}$}
+	la valeur critique vaut $t_{0.025}^{(24)} = 2.0639$
+	\item[6. ] IC : \pause $7.088\pm 2.0639\cdot 0.928 \mbox{ i.e. } [5.173;9.003]$
+	%% t.test(x)
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=\'Etapes]{\'Etapes de construction}
+IC pour une moyenne de population, lorsque la variance de la population est inconnue, échantillon de petite taille ($n\leq 30)$\\
+Hypothèse: population distribuée suivant une loi normale\\
+\begin{enumerate}
+	\item Définir la population d'intérêt et sélectionner un échantillon aléatoire de taille $n$
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Calculer la moyenne et l'écart type de l'échantillon
+	$\bar{x}=\frac{\sum x_i}{n}\quad s=\sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$
+	\item Déterminer l'erreur standard de la moyenne
+	$\sigma_{\bar{x}} = \frac{s}{\sqrt{n}}$
+	\item Déterminer la valeur critique $t_{\alpha/2}^{(n-1)}$ 
+	\item Calculer l'intervalle de confiance
+	$$\bar{x}\pm t_{\alpha/2}^{(n-1)}\sigma_{\bar{x}}$$
+\end{enumerate}
+\end{slide}
+
+\begin{slide}{Remarque}
+\'Echantillon de grande taille ($n\geq 30)$
+ $$\bar{x}\pm z_{\alpha/2} \frac{s}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+$s$ &= &  écart type de l'échantillon\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

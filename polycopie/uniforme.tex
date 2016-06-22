@@ -1,0 +1,62 @@
+\subsection{Loi uniforme}
+Un inspecteur du travail au noir décide de visiter des restaurants afin de vérifier si tous les employés sont déclarés ou non. Sur une journée de travail, entre 8h00 et 18h00, il peut choisir le moment pendant lequel il visitera un restaurant. Ainsi, il y a la même probabilité qu'il contrôle le restaurant entre 11h et 12h, qu'entre 16h et 18h. La probabilité est la même quelle que soit l'intervalle de temps choisi au cours de la journée. Cette distribution de probabilité est dite uniforme
+
+\begin{defi}
+Une \emph{distribution uniforme} entre $a$ et $b$ est définie par la densité de probabilité
+$$f(x)=\left\{
+\begin{array}{ll}
+	\frac{1}{b-a} & a\leq x \leq b\\
+	0 & \mbox{sinon}
+\end{array}
+\right.
+$$
+\end{defi}
+
+La représentation graphique d'une distribution uniforme est un rectangle.
+
+\begin{ex}
+L'inspecteur choisit de visiter un restaurant entre 8h00 et 18h00 de manière aléatoire, sans privilégier un instant par rapport à un autre. La distribution de probabilité est une distribution uniforme, et donc chaque intervalle de temps d'une heure de contrôle a une probabilité de $1h/(18h-8h)$ d'être sélectionné comme temps de visite.
+
+\psset{yunit=8, xunit=0.5}
+\begin{pspicture}(3,-0.5)(24,0.3)
+    \psframe[fillstyle=solid, fillcolor=blue](8,0)(18,0.1)
+    \rput[Br](3.6,0.1){$\frac{1}{18-8}$}\psline[linestyle=dashed](4,0.1)(8,0.1)
+    %\def\zigzag{\psline(0,0)(.5,1)(1.5,-1)(2,0)}
+    %\psset{unit=.25,linewidth=1.5pt}
+		%\multips(0,0)(2,0){8}{\zigzag}
+    \psaxes[linewidth=0.5pt,arrowscale=1.5, Dx=2, Ox=4]{->}(4,0)(4,-0.1)(22,0.2)
+    \rput(22.5,0){x} \rput(4,0.25){$f(x)$}
+\end{pspicture}
+\end{ex}
+
+\begin{pro}
+\begin{itemize}
+	\item L'espérance d'une distribution uniforme vaut $$\frac{a+b}{2}$$
+	\item L'écart type d'une distribution uniforme vaut $$\frac{b-a}{\sqrt{12}}$$
+\end{itemize}
+\end{pro}
+
+\begin{ex}
+L'inspecteur, qui visite toujours entre 8h00 et 18h00 de manière aléatoire les restaurants, procède ainsi depuis de nombreux mois. L'heure moyenne pendant laquelle il visite un restaurant sera donc $(8+18)/2=13$ h.
+\end{ex}
+
+\begin{ex}
+L'orangered est une variété d'abricots, dont la grosseur varie entre 35 mm et 55 mm à maturité. La grosseur est considérée comme une variable aléatoire suivant une loi uniforme. Sa commercialisation est possible dès 40 mm, pour des fruits de qualité répondant aux attentes des consommateurs. 
+\begin{enumerate}
+  \item Quelle est la grosseur moyenne de ces abricots à maturité ?
+  \item Quelle est la proportion de récolte ne pouvant pas être vendue directement aux clients, car ne satisfaisant pas les attentes des consommateurs ?
+	\item Un consommateur achète un cagot de ces abricots. A quelle grosseur moyenne doit-il s'attendre ?
+\end{enumerate}
+
+\begin{Rep}
+\begin{enumerate}
+	\item $\mu = \frac{55+35}{2}=45$ millimètres
+	\item La probabilité de distribution uniforme vaut
+	$$f(x)=\frac{1}{55-35}=0.05$$
+	Ainsi, la probabilité cherchée est $p(x<40)=(40-35)(0.05)=0.25$ soit 25\%
+	\item Seuls les abricots de 40 mm à 55 mm sont présents dans le cagot. Comme la répartition est uniforme, la taille moyenne des abricots du cagot devrait être de $(40+55)/2=47.5$ mm
+\end{enumerate}
+\end{Rep}
+\end{ex}
+
+

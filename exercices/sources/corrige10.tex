@@ -1,0 +1,97 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel, amsfonts}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Corrigé 10}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 10: Test de la médiane                  %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Lampe de beamer} % Test de la médiane
+	% \cite{groebner2006} ex 16.5 p. 674
+Un fabricant de beamer affirme que les lampes de ses produits ont une durée de vie médiane de 4000 heures. Un magazine de consommateurs décide de vérifier les dires de ce fabricant et teste la durée de vie de 12 beamers.
+
+\begin{tabular}{*{6}{c}}
+1973 & 4838 & 3805 & 4494 & 4738 & 5249\\
+4459 & 4098 & 4722 & 5894 & 3322 & 4800
+\end{tabular}
+
+En utilisant un niveau de signification de 0.05, quelle conclusion le magazine de consommateurs peut-il avoir ?
+
+Le test ne peut pas être fait sur une moyenne car la population ne suit pas une loi normale.
+
+\begin{verbatim}
+x <- c(1973, 4838, 3805, 4494, 4738, 5249, 4459, 4098, 4722, 5894, 3322, 4800)
+hist(x)
+wilcox.test(x, alternative = "two.sided", mu=4000, exact = TRUE, conf.level=0.95, conf.int = TRUE)
+\end{verbatim}
+
+
+	\begin{enumerate}
+		\item Le paramètre est $\tilde{\mu}=4000$
+		\item 
+			\begin{enumerate}
+				\item $\begin{array}{ll}
+							  H_0 :& \tilde{\mu}\leq 4000 \\
+							  H_1 :& \tilde{\mu} > 4000
+							 \end{array}$
+				\item $\begin{array}{ll}
+							  H_0 :& \tilde{\mu}\geq 4000 \\
+							  H_1 :& \tilde{\mu} < 4000
+							 \end{array}$
+				\item $\begin{array}{ll}
+							  H_0 :& \tilde{\mu}= 4000 \\
+							  H_1 :& \tilde{\mu}\not= 4000
+							 \end{array}$
+			\end{enumerate}
+	  \item Le niveau de signification est $\alpha=0.05$
+	  \item La région critique est 
+			  \begin{enumerate}
+					\item $[61 ; \infty [$
+					\item $[0 ; 17]$
+					\item $\IQ\backslash ]13; 65[$
+				\end{enumerate}
+	  \item Calcul de la statistique
+	  
+\begin{tabular}{*{6}{c}}
+Données & Différences & Abs(Différences) & Rang	& Rang + & 	Rang -\\
+1973 & -2027 & 2027 & 12 &  & 12\\
+4838 & 838 & 838 & 9 & 9 &\\
+3805 & -195 & 195 & 2 & &  2\\
+4494 & 494 & 494 & 4 & 4 & \\
+4738 & 738 & 738 & 7 & 7 & \\
+5249 & 1249 & 1249 & 10 & 10 & \\
+4459 & 459 & 459 & 3 & 3 & \\
+4098 & 98 & 98 & 1 & 1 & \\
+4722 & 722 & 722 & 6 & 6 & \\
+5894 & 1894 & 1894 & 11 & 11 & \\
+3322 & -678 & 678 & 5 &  & 5\\
+4800 & 800 & 800 & 8 & 8 & \\
+ & & & & W=	59 &	
+\end{tabular}
+	  
+	  \item 
+		  \begin{enumerate}
+				\item Comme $W=59<61=W_0$ l'hypothèse $H_0$ n'est pas rejetée
+				\item Comme $W=59>17=W_0$ l'hypothèse $H_0$ n'est pas rejetée
+				\item Comme $W=59\in [13,65]$ l'hypothèse $H_0$ n'est pas rejetée
+			\end{enumerate}
+	  \item La conclusion est qu'il n'y a pas suffisamment d'évidence pour rejeter l'affirmation du fabricant
+	\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,98 @@
+\chapter{Tables statistiques}
+\newpage
+%\section{Table de la loi binomiale avec $p$=0.5}
+%\label{sec:tablebinomiale}
+%\begin{center}
+%\includegraphics[width=0.5\linewidth,clip]{table_bin_0_5}
+%\end{center}
+
+\section{Loi normale centrée réduite}
+\label{sec:tablenormale}
+% \newpage
+% \section{Table de la loi normale centrée-réduite}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_normale}
+% \end{center}
+$$\includegraphics[scale=0.25]{norm_table}$$
+%% Avec R
+% x <- seq(0,3.09,by=0.01)
+% z <- matrix(signif(pnorm(x),digits=4), ncol=10, byrow=TRUE, dimnames = list( seq(0,3,by=0.1), seq(0.00,0.09,by=0.01) ))
+% library(Hmisc)
+% latex(z, file="") # print to screen instead of write into file y.tex
+{\footnotesize \input{tableNormale}}
+
+
+
+\newpage
+\section{Table de la loi du $\chi^2$}
+\label{sec:tablechideux}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_chi2}
+% \end{center}
+%
+%% Avec R
+% # Se mettre dans le bon répertoire
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/polycopie")
+% # Degrés de liberté
+% dl <- c( seq(1,30,by=1),seq(40,100,by=10) )
+% # Erreurs de première espèce
+% alpha <- c(0.995,0.99,0.975,0.95,0.9,0.1,0.05,0.025,0.01,0.005)
+% # Fonction à utiliser pour trouver la valeur du pertile
+% f <- function(dl,alpha ) round(qchisq(alpha,dl,lower.tail=FALSE),digits=4) 
+% # Tableau des résultats
+% q2 <- outer(dl,alpha,f)
+% # Entête des lignes et colonnes du tableau de résultat
+% dimnames(q2) <- list(dl,alpha)
+% # Package pour convertir en LaTeX
+% library(Hmisc)
+% # Conversion en LaTeX
+% latex(q2, file="tableChiCarre.tex") # print to screen instead of write into file y.tex
+{\footnotesize \input{tableChiCarre}}
+
+\newpage
+\section{Table de la loi de Student}
+%\begin{center}
+%\includegraphics[width=\linewidth,clip]{table_student}
+%\end{center}
+%% Avec R
+% # Se mettre dans le bon répertoire
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/polycopie")
+% # Degrés de liberté
+% dl <- c( seq(1,30,by=1),seq(40,100,by=10),200,500)
+% # Erreurs de première espèce
+% alphaonetail <- c(0.45,0.4,0.3,0.25,0.2,0.1,0.05,0.025,0.01,0.005)
+% # Fonction à utiliser pour trouver la valeur du pertile
+% f <- function(dl,alphaonetail ) round(qt(alphaonetail,dl, lower.tail=FALSE),digits=4) 
+% # Tableau des résultats
+% t <- outer(dl,alphaonetail,f)
+% # Entête des lignes et colonnes du tableau de résultat
+% dimnames(t) <- list(dl,alphaonetail)
+% # Package pour convertir en LaTeX
+% library(Hmisc)
+% # Conversion en LaTeX
+% latex(t, file="tableStudent.tex") # print to screen instead of write into file y.tex
+{\footnotesize \input{tableStudent}}
+
+% \newpage
+% \section{Table de la loi de Fisher, $p$=0.95}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_fisher_95}
+% \end{center}
+%
+% \newpage
+% \section{Table de la loi de Fisher, $p$=0.99}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_fisher_99}
+% \end{center}
+
+
+%\newpage
+%\section{Table du test des rangs signés de Wilcoxon}\label{sec:wilcoxonsigne}
+%Les valeurs critiques sont données par la table suivante:\\[5mm]
+%\input{tableWilcoxon}
+
+% \newpage
+% \section{Table du test de la somme des rangs de Wilcoxon}
+%$$\includegraphics[width=\linewidth,clip]{table_wilcoxon}$$
+
+

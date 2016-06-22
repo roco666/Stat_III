@@ -1,0 +1,89 @@
+\usepackage{color}
+
+% Profondeur de la table des matieres
+\setcounter{tocdepth}{1}     % 1 = \section
+
+% Definitions Style
+\hoffset         -1in
+\voffset         -1in
+\topmargin        2cm
+\oddsidemargin    2.5cm
+\evensidemargin   2.5cm
+\textwidth        16cm
+\textheight       23cm
+\footskip         10eX
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.3cm}
+%\setlength{\parskip}{0.5em}
+\headheight             15pt
+
+\newtheorem{theo}{\textcolor{red}{Th\'eor\`eme}}[chapter]
+\newtheorem{exo}{Exercice}[chapter]
+\newtheorem{defi}{\textcolor{green} {D\'efinition}}[chapter]
+\newtheorem{pro}[theo]{\textcolor{red}{Propri\'et\'e}}
+\newtheorem{lem}[theo]{\textcolor{red}{Lemme}}
+\newtheorem{cor}[theo]{\textcolor{red}{Corollaire}}
+
+\newenvironment{proof}
+{\begin{quote}\textbf{Preuve:}\\}
+{\\$\sharp$\end{quote}}
+%
+\newenvironment{ex}
+{\textit{Exemple:}\begin{quote}}
+{\end{quote}}
+%
+\newenvironment{rem}
+{\textit{Remarque: }}
+{}
+%
+\newenvironment{algoC}
+{\scriptsize\setlength{\parskip}{0.2em}\begin{multicols}{2}}
+{\end{multicols}}
+
+
+% Definitions Maths
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\corr}{Corr}
+\DeclareMathOperator{\biais}{Biais}
+%\DeclareMathOperator{\sup}{sup}
+%\DeclareMathOperator{\inf}{inf}
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm P}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+%\newcommand{\expo}{\mathcal{Exp}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+% Definir un mode de reponse
+\newenvironment{Rep}
+{\textcolor{red}{R\'eponse}: \begin{quote}}
+{\end{quote}}
+
+
+%%%% Enlever la num\'erotation des pages de la tdm %%%%
+\makeatletter
+\def\addcontentsline@toc#1#2#3{%
+   \addtocontents{#1}{\protect\thispagestyle{empty}}%
+   \addtocontents{#1}{\protect\contentsline{#2}{#3}{\thepage}}}
+\def\addcontentsline#1#2#3{%
+  \expandafter\@ifundefined{addcontentsline@#1}%
+  {\addtocontents{#1}{\protect\contentsline{#2}{#3}{\thepage}}}
+  {\csname addcontentsline@#1\endcsname{#1}{#2}{#3}}}
+\makeatother
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "ref"
+%%% End:

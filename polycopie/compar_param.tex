@@ -1,0 +1,374 @@
+ \chapter{Comparaisons paramétriques}
+
+
+ \section{Problématique}
+
+ \begin{itemize}
+ \item On dispose de deux échantillons et l'on aimerait déterminer s'ils proviennent ou
+non de la même population.\\
+ \item On dispose de deux échantillons provenant de deux populations distinctes et l'on
+aimerait déterminer si ces deux populations peuvent être considérées comme similaires.
+ \end{itemize}
+ \vspace*{2ex}
+
+ La solution paramétrique à ces problèmes consiste à comparer les espérances (moyennes) des deux populations au moyen du {\bfseries
+test de Student}.
+
+
+ \vspace*{2ex}
+ 
+ {\bfseries Echantillons appariés versus échantillons indépendants}
+
+ \fbox{\parbox{\linewidth}{\textbf{Echantillons appariés}\\Deux
+échantillons sont dits \textit{appariés} si chaque élément du
+premier échantillon correspond exactement à un élément du second
+échantillon, et vice versa.}}
+
+ \vspace*{2ex}
+
+ \textit{Exemple: Les deux échantillons sont constitués des même personnes interrogées sur le même sujet à une année d'intervalle.}
+
+ \vspace*{2ex}
+
+ \fbox{\parbox{\linewidth}{\textbf{Echantillons
+indépendants (ou non-appariés)}\\Deux échantillons sont dits \textit{indépendants} ou \textit{non-appariés} s'il n'existe aucune relation
+particulière entre un élément du premier échantillon et un élément du second.}}
+
+ \vspace*{2ex}
+
+ \textit{Remarque: Deux échantillons appariés com\-por\-tent
+toujours le même nombre de données, alors que ce n'est pas
+forcément le cas pour des échantillons indépendants.}
+                                    
+
+ 
+ \section{Comparaison de deux populations appariées}
+
+ \textit{Soit $X$ et $Y$, deux échantillons appariés représentant respectivement le nombre de fois où $n$=7 personnes ont été au cinéma en
+2004 et 2005:}
+
+ \begin{center}
+ \begin{tabular}{|c|cc|c|}
+ \hline\hline&&&\\[-1.7ex]
+ $i$ & $X$ & $Y$ & $D=Y-X$\\
+ \hline
+ 1 & 6 &  9& 3\\
+ 2 & 4 &  9& 5\\
+ 3 & 7 &  8& 1\\
+ 4 & 2 &  6& 4\\
+ 5 & 7 &  6& -1\\
+ 6 & 3 &  5& 2\\
+ 7 & 7 & 10 & 3\\
+ \hline
+ moyenne & 5.14 & 7.57 & 2.43\\
+ \hline
+ \end{tabular}
+ \end{center}
+ 
+
+ Le test de Student compare les espérances des deux populations dont proviennent les échantillons:
+ \begin{eqnarray*}
+ H_0 &:& \mu_X=\mu_Y\\
+ H_1 &:& \mu_X \neq \mu_Y
+ \end{eqnarray*}
+
+ Dans le cas d'échantillons appariés, on travaille à partir de la différence $D=Y-X$ entre les échantillons et le test se reformule de la
+façon suivante:
+ \begin{eqnarray*}
+ H_0 &:& \mu_D=\mu_Y-\mu_X=0\\
+ H_1 &:& \mu_D=\mu_Y-\mu_X\neq 0
+ \end{eqnarray*}
+
+
+ 
+ Le test s'effectue en utilisant la statistique suivante:
+
+ \[
+    T = \frac{\overline{D}-\mu_D}{\hat{\sigma}_{\overline{D}}} =
+\frac{\overline{D}}{\hat{\sigma}_{\overline{D}}} \sim St_{n-1}
+ \]
+
+ avec
+
+ \[
+ \hat{\sigma}_{\overline{D}}^2 = \frac{\hat\sigma_D^2}{n} =
+\frac{\frac{n}{n-1}\;S_D^2}{n} = \frac{S_D^2}{n-1}
+ \]
+
+ et
+
+ \[
+ \hat{\sigma}_{\overline{D}} = \frac{S_D}{\sqrt{n-1}}
+ \]
+
+ \textit{Remarque: Cette statistique suppose soit que les données des échantillons $X$ et $Y$ sont distribuées de façon normale, soit que
+le nombre $n$ de données est grand (théorème central limite).}\\
+
+
+ 
+ \textit{Cinéma en 2004 et 2005:}\\
+
+ $n$=7, $\overline{d}$=2.43, $s_d^2$ = 3.39, $s_d$=1.84, $\alpha=5\%$
+
+ \vspace*{-3ex}
+ \begin{eqnarray*}
+ H_0 &:& \mu_D=0\\
+ H_1 &:& \mu_D\neq 0
+ \end{eqnarray*}
+
+ \vspace*{-3ex}
+ \[
+ \Longrightarrow \hat{\sigma}_{\overline{D}} = \frac{1.84}{\sqrt{ 7-1}} = 0.75
+ \]
+
+ \vspace*{-3ex}
+ \[
+    \Longrightarrow \quad t_0=\frac{2.43}{0.75}=3.24
+ \]
+
+ {\itshape Pour un test bilatéral et $n-1$=6 degrés de liberté, la table de Student donne les seuils suivants:}
+
+ \begin{eqnarray*}
+ [t_{\alpha/2}^{(6)} = t_{0.025}^{(6)} &;& t_{1-\alpha/2}^{(6)} =
+t_{0.975}^{(6)}] \\[2ex]
+ [-2.447 &;& 2.447]
+ \end{eqnarray*}
+
+ {\itshape La valeur calculée de la statistique, 3.24, se trouve dans la zone de rejet de droite du test. On peut donc admettre avec un
+degré de confiance de 95\% que la moyenne de la différence entre les deux populations est supérieure à zéro, ce qui revient à dire que le
+nombre moyen de fois où les gens ont été au cinéma en 2005 a augmenté par rapport à 2004.}
+
+ 
+
+ 
+ \section{Comparaison de deux populations indépendantes}
+
+ Lorsque les deux échantillons $X$ et $Y$ sont indépendants, il n'est pas possible de calculer la différence terme à terme entre eux, car
+cette différence n'a pas de signification. De plus, les échantillons peuvent avoir des tailles $n_X$ et $n_Y$ différentes.\\
+
+ \textit{On considère deux échantillons $X$ et $Y$ donnant la distance en kilomètres entre le domicile et le lieu de travail pour
+différentes personnes et l'on aimerait déterminer s'ils proviennent de la même population.}
+
+ \begin{center}
+ \begin{tabular}{c|cc}
+ \hline\hline&&\\[-1.7ex]
+ $i$ & $X$ & $Y$ \\
+ \hline
+ 1 & 9 & 6 \\
+ 2 & 8 & 9 \\
+ 3 & 6 & 8 \\
+ 4 & 3 & 6 \\
+ 5 & 3 & 6 \\
+ 6 & 2 & 7 \\
+ 7 & 4 \\
+ 8 & 5\\
+ \hline
+ moyenne & 5 & 7 \\
+ variance & 5.5 & 1.33\\
+ \hline
+ \end{tabular}
+ \end{center}
+
+
+ 
+ Le test de Student va permettre de vérifier si les populations
+dont sont issus les deux échantillons ont la même espérance,
+c'est-à-dire si $\mu_X=\mu_Y$. Ceci peut se reformuler de la façon
+suivante:
+
+ \begin{eqnarray*}
+    H_0 &:& \mu_Y - \mu_X = 0\\[1.5ex]
+    H_1 &:& \mu_Y - \mu_X \neq 0
+ \end{eqnarray*}
+
+ Sous l'hypothèse que les échantillons $X$ et $Y$ sont
+indépendants et que les données qui les composent sont distribuées
+de façon normale, leurs moyennes sont aussi distribuées
+normalement et
+
+ \[
+    \overline{Y} - \overline{X} \sim N\left(\mu_Y-\mu_X \: , \: \frac{\sigma_X^2}{n_X} +
+\frac{\sigma_Y^2}{n_Y}\right)
+ \]
+
+ Deux cas doivent être distingués selon que les variances des
+populations $\sigma_X^2$ et $\sigma_Y^2$ sont égales ou non.
+
+
+ 
+ \subsection{Cas de variances égales}
+
+ Lorsque les deux populations ont la même variance $\sigma^2$
+inconnue, cette dernière est estimée à partir des variances des
+échantillons. Nous pouvons écrire:
+ \begin{eqnarray*}
+ \hat{\sigma}_X^2 &=& \frac{1}{n_X-1} \sum_{i=1}^{n_X}
+(X_i-\overline{X})^2 = \frac{n_X}{n_X-1} \; S_X^2\\[1.5ex]
+ \hat{\sigma}_Y^2 &=& \frac{1}{n_Y-1} \sum_{i=1}^{n_Y}
+(Y_i-\overline{Y})^2 = \frac{n_Y}{n_Y-1} \; S_Y^2
+ \end{eqnarray*}
+
+ Nous avons donc deux estimations différentes de $\sigma^2$. La
+meilleure méthode consiste alors à construire une
+approximation $\hat{\sigma}^2$ de $\sigma^2$ en faisant une moyenne
+pondérée de $\hat{\sigma}_X^2$ et $\hat{\sigma}_Y^2$:
+
+ \begin{eqnarray*}
+    \hat\sigma^2 &=&
+        \Bigl(\frac{n_X-1}{n_X+n_Y-2}\Bigr)\hat\sigma_X^2
+        +
+        \Bigl(\frac{n_Y-1}{n_X+n_Y-2}\Bigr)\hat\sigma_Y^2
+    \\[2ex]
+        &=&
+        \frac{n_X S_X^2 \; + \; n_Y S_Y^2}{n_X+n_Y-2}
+ \end{eqnarray*}
+
+
+
+ Le test s'effectue en utilisant une statistique $T$ distribuée selon une loi de
+Student:
+
+ \[
+    T = \dfrac{(\bar Y -\bar X) - (\mu_Y - \mu_X)}
+        {\hat\sigma_{\bar Y - \bar X}}
+        \; \sim \; St_{n_X + n_Y -2}
+ \]
+
+ Etant donné que $\mu_Y - \mu_X=0$ sous $H_0$, nous obtenons
+
+ \[
+    T = \dfrac{\bar Y -\bar X}
+        {\hat\sigma_{\bar Y - \bar X}}
+        \; \sim \; St_{n_X + n_Y -2}
+ \]
+
+ avec
+
+ \[
+    \hat\sigma_{\bar Y - \bar X} =
+        \sqrt{\frac{n_X S_X^2 \; + \; n_Y S_Y^2}{n_X+n_Y-2}
+        \; \Bigl(\frac{1}{n_X} + \frac{1}{n_Y} \Bigr)}
+ \]
+
+
+ \vspace*{2ex}
+
+ \textit{Nous considérons l'exemple de la distance entre le domicile et le lieu de travail. Etant donné que $n_X$=8, $n_Y$=6, $s_X^2=5.5$
+et $s_Y^2=1.33$, nous pouvons estimer la variance de la population par}
+
+ \begin{eqnarray*}
+    \hat\sigma^2 &=& \frac{n_X S_X^2 \; + \; n_Y
+S_Y^2}{n_X+n_Y-2}\\[2ex]
+ &=& \frac{8 \cdot 5.5 \; + \; 6 \cdot 1.33}{8+6-2} = 4.33
+ \end{eqnarray*}
+
+ {\itshape d'où une estimation de l'écart-type de la différence des moyennes égale à}
+
+ \[
+    \hat\sigma_{\bar Y - \bar X} =
+        \sqrt{4.33
+        \; \Bigl(\frac{1}{8} + \frac{1}{6} \Bigr)} = 1.12
+ \]
+
+
+ 
+ {\itshape La statistique calculée vaut alors}
+
+ \[
+    t_0 = \frac{7-5}{1.12} = 1.79
+ \]
+
+ {\itshape Sous l'hypothèse $H_0$, la statistique $T$ est distribuée selon une loi de Student à $n_X+n_Y-2$ degrés de liberté. Avec
+$\alpha$=5\%, les seuils de rejet s'écrivent}
+
+ \begin{eqnarray*}
+ [t_{0.025}^{(12)} &;& t_{0.975}^{(12)}]\\[2ex]
+ [-2.179 &;& 2.179]
+ \end{eqnarray*}
+
+ {\itshape La valeur calculée de la statistique se situant entre les seuils de rejet, nous sommes dans la zone d'acceptation de $H_0$ et
+nous pouvons donc admettre que les échantillons proviennent d'une même population.}
+
+
+ 
+ \subsection{Cas de variances inégales}
+
+ Il arrive fréquemment que les échantillons proviennent de populations ayant des
+variances inégales. Dans ce cas, nous pouvons définir la statistique $T'$ suivante:
+
+ \[
+    T' =
+\frac{\overline{Y}-\overline{X}}{\hat{\sigma}_{\overline{Y}-\overline{X}}}
+ \]
+
+ avec
+ \[
+    \hat{\sigma}_{\overline{Y}-\overline{X}} = \sqrt{\frac{\hat{\sigma}_X^2}{n_X} + \frac{\hat{\sigma}_Y^2}{n_Y}}
+=\sqrt{\frac{S_X^2}{n_X-1} + \frac{S_Y^2}{n_Y-1}}
+ \]
+
+ Les variances étant supposées inégales, nous n'effectuons pas ici une moyenne pondérée de leurs estimations.\\
+
+
+ 
+ De façon générale, la statistique $T'$ n'est pas distribuée selon une loi de Student. Behrens et Fisher ont publié une table de
+la distribution de $T'$, mais celle-ci est incomplète et donc difficilement utilisable.\\
+
+ Une autre approche a été proposée par Welch et Satterthwaite: Nous supposons que $T'$ est bien une loi de Student, mais dont le nombre de
+degrés de liberté est inconnu. Ce nombre peut être calculé à l'aide de la formule suivante:
+
+ \[
+    d\ell' = \frac{\left(\frac{\hat\sigma_X^2}{n_X} +
+\frac{\hat\sigma_Y^2}{n_Y}\right)^2}{\frac{\left(
+\frac{\hat\sigma_X^2}{n_X} \right)^2}{n_X-1} + \frac{\left(
+\frac{\hat\sigma_Y^2}{n_Y} \right)^2}{n_Y-1}}
+ =
+ \frac{\left(\frac{S_X^2}{n_X-1} +
+\frac{S_Y^2}{n_Y-1}\right)^2}{\frac{\left( \frac{S_X^2}{n_X-1}
+\right)^2}{n_X-1} + \frac{\left( \frac{S_Y^2}{n_Y-1}
+\right)^2}{n_Y-1}}
+ \]
+
+ Dans le cas où la quantité $d\ell'$ n'est pas entière, elle est remplacée par l'entier inférieur.\\
+
+ Le test s'effectue ensuite en comparant la valeur $t'$ calculée avec les seuils d'une loi de Student à $d\ell'$ degrés de liberté.\\
+
+
+ 
+ \textit{Nous reprenons l'exemple de la distance entre le domicile et le lieu de travail. Nous obtenons une estimation de l'écart type de
+la différence des moyennes égale à }
+
+ \begin{eqnarray*}
+    \hat{\sigma}_{\overline{Y}-\overline{X}} &=&
+\sqrt{\frac{S_X^2}{n_X-1} + \frac{S_Y^2}{n_Y-1}}\\[2ex]
+ &=& \sqrt{\frac{5.5}{7}+\frac{1.33}{5}} = 1.03
+ \end{eqnarray*}
+
+ {\itshape La statistique calculée vaut alors}
+
+ \[
+    t_0' = \frac{7-5}{1.03} = 1.94
+ \]
+
+ {\itshape En utilisant l'approche de Welch et Satterthwaite, nous pouvons admettre que cette quantité est distribuée selon une loi de
+Student à $d\ell'$ degrés de liberté où $d\ell'$ se calcule comme}
+
+ \[ 
+    d\ell' = \frac{\left(\frac{5.5}{7} +
+\frac{1.33}{5}\right)^2}{\frac{\left( \frac{5.5}{7} \right)^2}{7} +
+\frac{\left( \frac{1.33}{5} \right)^2}{5}} = 10.81  
+ \]
+
+ {\itshape Ce nombre n'étant pas entier, nous l'arrondissons à l'entier inférieur, soit $d\ell'$=10.}\\
+
+ {\itshape Avec un risque de première espèce $\alpha$=5\%, les seuils de rejets d'une loi de Student à 10 degrés de liberté sont -2.228
+et 2.228.}\\
+
+ {\itshape Etant donné que la valeur calculée $t_0'$=1.94 se situe entre ces deux seuils, nous acceptons l'hypothèse nulle}
+ \[
+    H_0 \; : \; \mu_Y-\mu_X = 0
+ \]
+
+ {\itshape Nous pouvons donc admettre que les deux échantillons proviennent d'une même population.}\\
+
+

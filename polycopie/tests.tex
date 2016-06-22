@@ -1,0 +1,715 @@
+\chapter{Tests paramétriques}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%%        Principe des tests                 %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Principe des tests d'hypothèses}
+\begin{center}
+\includegraphics[width=9cm]{inference_2}
+\end{center}
+Le but de l'estimation est de quantifier, alors que le but d'un test est de valider/invalider une hypothèse.
+Pour cela, on procède de la manière suivante:
+\begin{enumerate}
+  \item On formule une hypothèse sur la population ou sur la distribution étudiée.
+  \item On vérifie si l'échantillon utilisé provient bien de la population ou de la distribution étudiée, avec un certain degré de confiance.
+\end{enumerate}
+Le test statistique lui-même correspond à la règle de décision.\\
+
+\begin{defi}
+Les \emph{tests paramétriques} présupposent que les données sont distribuées selon une loi particulière.
+Le test s'effectue alors en comparant certains paramètres de la distribution, comme la moyenne ou la variance.
+\end{defi}
+
+\begin{defi}
+Les \emph{tests non-paramétriques} ne présupposent pas de distribution particulière des données. Les tests s'effectuent en tirant des conclusions à partir des valeurs observées des échantillons, sans faire appel à des paramètres tels que la moyenne ou la variance.
+\end{defi}
+
+Les tests non-paramétriques ont un champ d'application plus large que les tests paramétriques, car ils ne nécessitent pas une distribution particulière des données. En revanche, ils sont généralement moins puissants et le risque total d'erreur est plus grand.
+
+\subsection{Hypothèses nulle et alternative}
+Un test consiste à choisir entre deux hypothèses en fonction d'un échantillon. L'hypothèse nulle, $H_0$, est celle que l'on veut tester. L'hypothèse alternative, $H_1$, est son ``contraire''.
+
+\begin{defi}
+L'\emph{hypothèse nulle $H_0$} est l'affirmation au sujet d'un paramètre de la population, qui sera testée. L'hypothèse nulle sera rejetée seulement si la statistique calculée à partir de l'échantillon, apporte une contradiction suffisamment forte.
+\end{defi}
+
+\begin{defi}
+L'\emph{hypothèse alternative $H_1$} est l'ensemble des valeurs d'un paramètre de la population non couvert par l'hypothèse nulle. L'hypothèse alternative est réputée vraie si l'hypothèse nulle est rejetée.
+\end{defi}
+
+\begin{eqnarray*}
+	H_0 &:& \mbox{hypothèse nulle (à tester)}\\
+	H_1 &:& \mbox{hypothèse alternative}
+\end{eqnarray*}
+
+En fonction des hypothèses de départ, le résultat d'un test est toujours univoque: soit il y a suffisamment d'évidence pour rejeter l'hypothèse nulle, soit il n'y en a pas suffisamment (et donc \emph{a fortiori} acceptation de l'hypothèse nulle).
+
+\begin{ex}
+% Exemple d'Andre Berchtold transformé
+On suppose que les petites entreprises suisses ont en moyenne 35 employés avec une variance égale à 220.
+Un échantillon aléatoire de taille 20 a donné un nombre moyen d'employés égal à 27 et une variance de 334.7.
+
+ \begin{center}
+ \begin{tabular}{cccccccccc}
+ 2 & 2 & 5 & 6 & 7 & 8 & 12 & 14 & 23 & 26\\
+ 28 & 31 & 40 & 42 & 46 & 47 & 48 & 49 & 52 & 52
+ \end{tabular}
+ \end{center}
+
+En fonction du résultat donné par l'échantillon, est-il statistiquement admissible que le nombre moyen d'employés dans l'ensemble des petites entreprises du pays soit réellement égal à 35?
+Pour répondre à cette question, il faut former l'hypothèse nulle et l'hypothèse alternative suivantes:
+\begin{eqnarray*}
+	H_0 &:& \mu=35\\
+	H_1 &:& \mu\not=35
+\end{eqnarray*}
+\end{ex}
+
+Les règles suivantes aident à formuler l'hypothèse nulle et l'hypothèse alternative:
+\begin{enumerate}
+	\item L'hypothèse nulle et l'hypothèse alternative doivent être formulées en termes du paramètre de la population d'intérêt.
+	\item L'hypothèse nulle représente un statu quo. Elle représente la condition qui est supposée exister, à moins qu'il n'y ait suffisamment d'évidence montrant que la situation a changé.
+	\item L'hypothèse nulle  doit contenir un signe d'égalité $=$ ou $\geq$ ou $\leq$.
+\end{enumerate}
+
+\begin{ex}
+Les étudiants en emploi bénéficient d'un horaire tenant compte de leur situation, à savoir un travail de 25h par semaine, correspondant à un temps partiel de 60\%.  Afin de tenir compte au mieux de leur situation réelle, le management désire savoir si la situation réelle a changé. Les étapes suivantes permettent de formuler l'hypothèse nulle et l'hypothèse alternative:
+\begin{enumerate}
+	\item Déterminer le paramètre de la population d'intérêt\\
+	Le paramètre à considérer est le nombre d'heures de travail moyen par semaine des étudiants en emploi.
+	\item Définir la situation qui est supposée vraie à moins qu'il y ait suffisamment d'évidence que cela ne soit plus le cas.\\
+	Le statu quo est de considérer que les étudiants en emploi travaillent 25 heures ou moins par semaine en moyenne. S'il y a suffisamment d'évidence que la moyenne est plus grande que 25h/semaine , alors cela impliquera un effort considérable de réorganisation. Dans ce dernier cas, il s'agit de rejeter le status quo.
+	\item Formuler l'hypothèse nulle et l'hypothèse alternative\\
+\begin{eqnarray*}
+	H_0 &:& \mu\leq25\\
+	H_1 &:& \mu>25
+\end{eqnarray*}	
+\end{enumerate}
+\end{ex}
+
+\begin{rem}
+Une \emph{hypothèse simple} correspond à une valeur spécifique, une situation déterminée (une hypothèse sur une égalité).
+Une \emph{hypothèse composite} correspond à un ensemble de valeurs, de situations (une hypothèse sur une inégalité).
+\end{rem}
+
+\subsection{Région critique et valeur critique}
+Le principe du test est de rejeter l'hypothèse $H_0$ si la valeur de la statistique $Q_0$ observée dans l'échantillon est trop différente de la valeur théorique postulée sous $H_0$ pour la population.
+
+A cette fin, l'espace des valeurs possibles de la statistique $Q_0$ est divisé en deux zones:
+\begin{itemize}
+    \item $A$ : ensemble des valeurs probables de $Q_0$ lorsque l'hypothèse $H_0$ est vraie.\\
+    Il s'agit de la région d'acceptation de $H_0$.
+    \item $R$ : ensemble des valeurs peu probables de $Q_0$ lorsque l'hypothèse $H_0$ est vraie.\\
+    Il s'agit de la région de rejet de $H_0$ (région critique).
+ \end{itemize}
+
+\begin{center}
+\fbox{\parbox{\linewidth}{
+\textbf{Règle de décision}
+\begin{eqnarray*}
+   q_0 \notin R & \Longleftrightarrow &
+   \text{Acceptation}\text{ de } H_0\\[1ex]
+   q_0 \in R & \Longleftrightarrow & \text{Rejet de } H_0
+\end{eqnarray*}
+}}
+\end{center}
+
+\textbf{Forme de la région critique $R$}\\
+La forme de la région critique $R$ dépend du type d'hypothèse alternative retenue. On distingue les trois cas suivants:
+\begin{itemize}
+    \item
+    \parbox[t]{.55\linewidth}{test unilatéral à gauche\\$H_1$ : $q=q_1<q_0$}\quad
+    %
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(1.5,0.5){\line(-1,-2){.2}}
+        \put(1.2,0.5){\line(-1,-2){.2}}
+        \put(.9,0.5){\line(-1,-2){.2}}
+        \put(.6,0.5){\line(-1,-2){.2}}
+        \put(.3,0.5){\line(-1,-2){.2}}
+        \put(1.6,0.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(3.3,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.9,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+        \put(1.6,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+    \end{picture}\\[2ex]
+
+  \item
+    \parbox[t]{.55\linewidth}{test unilatéral à droite\\$H_1$ :
+$q=q_1>q_0$}\quad
+    %
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(3.5,0.1){\line(1,2){.2}}
+        \put(3.8,0.1){\line(1,2){.2}}
+        \put(4.1,0.1){\line(1,2){.2}}
+        \put(4.4,0.1){\line(1,2){.2}}
+        \put(4.7,0.1){\line(1,2){.2}}
+        \put(3.4,0.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(3.4,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+        \put(2,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(4.4,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+    \end{picture}\\[2ex]
+
+  \item
+    \parbox[t]{.55\linewidth}{test bilatéral\\$H_1$ :
+$q=q_1\neq q_0$}\quad
+    %
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(-0.2,0.3){\line(1,0){5.4}}
+        \put(.9,0.5){\line(-1,-2){.2}}
+        \put(.6,0.5){\line(-1,-2){.2}}
+        \put(.3,0.5){\line(-1,-2){.2}}
+        \put(.0,0.5){\line(-1,-2){.2}}
+        \put(1,0.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(1,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r_1$}}}
+        \put(4.1,0.1){\line(1,2){.2}}
+        \put(4.4,0.1){\line(1,2){.2}}
+        \put(4.7,0.1){\line(1,2){.2}}
+        \put(5,0.1){\line(1,2){.2}}
+        \put(4,0.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(4,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r_2$}}}
+        \put(2.6,.8){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.3,.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_1$}}}
+        \put(4.8,.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_2$}}}
+    \end{picture}
+\end{itemize}
+
+\begin{defi}
+La \emph{valeur critique} $r$ , aussi appelée seuil critique, est la valeur d'une statistique correspondante à un certain niveau de signification.
+Cette valeur seuil détermine la frontière entre les échantillons dont le test statistique conduit au rejet de l'hypothèse nulle, et les échantillons dont le test statistique ne conduit pas au rejet de l'hypothèse nulle.
+\end{defi}
+
+La valeur critique $r$ (ou les valeurs critiques $r_1$ et $r_2$) est choisie de façon à limiter le risque d'erreur.
+
+\subsection{Risques de première et de seconde espèce}
+Lorsqu'une hypothèse est testée, il y a un risque d'erreur dû à l'échantillonnage. Ce risque d'erreur, appelé aussi risque total d'erreur,  se compose de deux parties: un risque $\alpha$ de première espèce et un risque $\beta$ de deuxième espèce.
+
+\begin{defi}
+Le \emph{risque de première espèce $\alpha$}, dit aussi risque de type I, est le risque de rejeter l'hypothèse nulle $H_0$ alors qu'elle est en fait vraie.
+Il est aussi appelé \emph{niveau de signification}.
+$$\alpha = P(Q_0 \in R \mid H_0)$$
+\end{defi}
+
+\begin{defi}
+Le \emph{risque de deuxième espèce $\beta$}, dit aussi risque de type II, est le risque d'accepter l'hypothèse nulle $H_0$ alors qu'elle est en fait fausse.
+$$\beta = P(Q_0 \notin R \mid H_1)$$
+\end{defi}
+
+Voici un tableau résumant ces risques. Seulement l'une de ces quatre possibilités peut se réaliser lors d'un test d'hypothèses.
+%\begin{center}
+%    \begin{tabular}{cc|c|c|}
+%     & & \multicolumn{2}{c|}{\'Etat de la nature} \\
+%     & \parbox{3.5cm}{\centering Décision} &
+%     \multirow{2}*{\rotatebox{90}{Décision}}\\
+%     & \parbox{2cm}{\centering $H_0$ vraie} &\parbox{2cm}{\centering $H_1$} \\
+%     & \hline
+%     & $H_0$ accepté   &  correct  &   $\beta$ \\
+%     & \hline
+%     & $H_1$  accepté  & $\alpha$  &   correct \\
+%     \hline
+%    \end{tabular}
+%\end{center}
+
+\begin{center}
+\begin{tabular}{c|c|c|}
+& \multicolumn{2}{c}{\'Etat de la nature}\\
+& $H_0$ vraie & $H_1$ vraie \\
+\hline
+$H_0$ accepté & correct & \textcolor{red}{ $\beta$} \\
+\hline
+$H_1$ accepté & \textcolor{red}{$\alpha$} &  correct\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{rem}
+$\alpha$ est spécifié avant d'effectuer le test et $\beta$ est directement influencé par ce choix. Ces deux erreur sont inversement liées.
+\end{rem}
+
+\begin{figure}[ht]
+	$$\includegraphics[width=11cm]{alpha_beta}$$
+	\label{alphabeta}
+	\caption{Risques $\alpha$ et $\beta$}
+\end{figure}
+
+\begin{figure}[ht]
+	$$\includegraphics[width=11cm]{alpha_beta_2}$$
+	\caption{$\alpha$ petit, donc $\beta$ grand}
+\end{figure}
+
+
+\begin{figure}[ht]
+	$$\includegraphics[width=11cm]{alpha_beta_3}$$
+	\caption{$H_1$ peu différent de $H_0$ $\Rightarrow \beta$ grand}
+\end{figure}
+
+
+\begin{defi}
+Le \emph{risque total d'erreur} est défini par la relation
+$$\alpha \;\underbrace{P(H_0)}_{\text{inconnu}}\;+\;\beta \;\underbrace{P(H_1)}_{\text{inconnu}}$$
+\end{defi}
+
+Cette relation implique que le risque total est inconnu.\\
+En pratique, on détermine le seuil critique $r$ pour un $\alpha$ choisi arbitrairement petit (en général $5\;\%$ ou $10\;\%$).
+
+\subsection{Procédure de test statistique}
+Pour tester une hypothèse, vous pouvez procéder ainsi:
+\begin{enumerate}
+	\item Spécifier la valeur de la population d'intérêt.
+	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+	\item Choisir le niveau de signification $\alpha$
+	\item Déterminer la région critique.
+	\item Calculer la statistique associée à l'échantillon.
+	\item Rejeter $H_0$ si la statistique appartient à la région critique.\\
+	Ne pas rejeter $H_0$ dans le cas contraire.
+	\item Énoncer une conclusion.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%% Test mu, sigma connu, grand échantillon   %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de $\mu$, $\sigma^2$ connu, grand échantillon}
+Lorsque nous connaissons la variance et que l'échantillon est de grande taille $n\geq 30$, nous savons par le théorème central limite \ref{theoCentralLimit} que l'estimateur de la moyenne $\bar{x}$ suit une loi normale de moyenne $\mu$ et d'écart type $\frac{\sigma}{\sqrt{n}}$. La statistique à utiliser est donc
+
+$$z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$\sigma$  & = écart type de la population\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+
+\begin{ex}
+\label{ex:testMuSigmaConnu}
+Une étude sur la mobilité des employés de l'entreprise ''Jeux Mendors'' affirme que la moyenne des temps de trajet des employés pour venir à leur travail excède 40 minutes. Vous devez tester cette affirmation avec une niveau de signification de 0.05. Pour cela, 100 employés vous ont indiqué leur temps de trajet actuel, dont la moyenne est 43.5 minutes. Basé sur une étude précédente, vous pouvez supposer que l'écart type de la population est de 8 minutes.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est le temps de trajet.
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu\leq 40$ minutes\\
+	  $H_1$ & $\mu >40$ minutes\\	
+    \end{tabular}
+  \item Le niveau de signification est de 0.05
+  \item La région critique est $[z_{0.05}=1.645;\infty[$
+  \item La statistique est $z=\frac{43.5-40}{\frac{8}{\sqrt{100}}}=4.38$
+  \item Comme 4.38 appartient à la région critique, l'hypothèse $H_0$ est rejetée.
+  \item La conclusion est que la moyenne des temps de trajet excède 40 minutes.
+\end{enumerate}
+\end{ex}
+
+
+%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%% Test mu, sigma inconnu, grand échantillon %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de $\mu$, $\sigma^2$ inconnu, grand échantillon}
+Dans la plupart des cas pratiques, la variance de la population n'est pas connue. Toutefois, il est possible d'estimer cette variance de la population à l'aide de la variance de l'échantillon. Si la taille de l'échantillon est suffisamment grande, en pratique d'au moins 30, la statistique de test peut être approchée par une $z$-valeur grâce au théorème central limite \ref{theoCentralLimit}.
+
+$$z=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$s$       & = écart type de l'échantillon\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%% Test mu, sigma inconnu, petit échantillon %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de $\mu$, $\sigma^2$ inconnu, petit échantillon}\label{sec:mu-sigmainconnu-petit}
+Lorsque la variance de la population n'est pas connue et que l'on ne dispose que d'un échantillon de petite taille $n<30$, nous pouvons utiliser la distribution de Student dans le test de la moyenne.
+
+La statistique de test à utiliser suit une loi de Student à $n-1$ degrés de libertés:
+$$t=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$s$       & = écart type de l'échantillon\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+
+Toutefois, afin de pouvoir utiliser la $t$-distribution (= distribution de Student), nous devons faire la \textcolor{red}{supposition suivante}:\\
+\textsc{La population est normalement distribuée}
+
+\begin{ex}\label{exMuSigmaInconnuPetit}
+Nous voulons tester la moyenne d'un échantillon du nombre d'employés par petite entreprise suisse contre la moyenne de la population, $\mu=35$, en ne connaissant pas la valeur de la variance de la population. Par des études précédentes, nous savons que le nombre d'employés est distribué selon une loi normale. Pour cela, 20 petites entreprises suisses ont été interrogées sur le nombre d'employés qu'elles occupent. La moyenne calculée vaut $\overline{x}=27$ et la variance calculée vaut $s^2=334.7$. Nous souhaitons un niveau de signification de 0.05.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est le nombre d'employés de petites entreprises suisses.
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu = 35$ personnes\\
+	  $H_1$ & $\mu \not= 35$ personnes\\	
+    \end{tabular}
+  \item Le niveau de signification est de 0.05
+  \item La région critique est composée de 2 zones distinctes car nous avons un test bilatéral à effectuer.\\
+		$$R = R_1 \cup R_2 = \{t_0 \mid t_0 \leq r_1\} \cup \{t_0 \mid t_0 \geq r_2\}$$
+    \begin{center}
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,2)
+        \thicklines
+        \put(-0.2,1.3){\line(1,0){5.4}}
+        \put(.9,1.5){\line(-1,-2){.2}}
+        \put(.6,1.5){\line(-1,-2){.2}}
+        \put(.3,1.5){\line(-1,-2){.2}}
+        \put(.0,1.5){\line(-1,-2){.2}}
+        \put(1,1.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(1,0.4){\parbox[t]{0em}{\makebox[0pt][c]{$r_1$}}}
+        \put(4.1,1.1){\line(1,2){.2}}
+        \put(4.4,1.1){\line(1,2){.2}}
+        \put(4.7,1.1){\line(1,2){.2}}
+        \put(5,1.1){\line(1,2){.2}}
+        \put(4,1.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(4,0.4){\parbox[t]{0em}{\makebox[0pt][c]{$r_2$}}}
+        \put(2.6,1.8){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.3,1.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_1$}}}
+        \put(4.8,1.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_2$}}}
+    \end{picture}
+    \end{center}
+
+    Les seuils critiques $r_1$ et $r_2$ sont déterminés à partir de la table de la loi de Student:\\
+		$P(T_0 \geq r_2) = \frac{\alpha}{2} = 0.025$ et donc $r_2=t_{\alpha/2,19}= 2.093$\\
+    Donc $r_1=-t_{\alpha/2,19}= - 2.093$
+  \item La statistique est
+  $$t = \frac{27 - 35}{\sqrt{\frac{334.7}{20}}} = -1.955587$$
+  \item Comme $t=-1.955587$ n'appartient pas à la région critique, l'hypothèse $H_0$ n'est pas rejetée.
+  \item La conclusion est que la vraie moyenne de la population peut être égale à 35 employés par petite entreprise suisse.
+\end{enumerate}
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%%        Value at Risk                      %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Value at Risk}
+Nous traitons ici très sommairement d'une mesure de risque très utilisée en finance. Le but n'est pas d'expliciter de manière exhaustive tout ce que le concept de Value at Risk (VaR) recouvre, mais simplement de donner un exemple d'application de test unilatéral sur la moyenne. Nous allons voir comment est calculée une VaR paramétrique par l'approche delta-normale.
+
+\begin{defi}
+La \emph{Value at Risk} est définie comme la perte maximale sur un horizon donné $T$, avec un niveau de confiance $1-\alpha$.
+\end{defi}
+
+De manière statistique, en considérant une variable aléatoire $X$ suivant une loi normale $\norm(\mu,\sigma^2)$, la VaR s'exprime comme
+$$P\left( X\leq \mbox{VaR}(\alpha,T)\right) = \alpha \quad\Leftrightarrow\quad P\left( X\geq \mbox{VaR}(\alpha,T)\right) = 1-\alpha$$
+
+La notion de risque financier peut être estimée à l'aide de l'écart type annuel des performances financières, appelé dans le jargon bancaire la \emph{volatilité}. L'horizon est quant à lui souvent donné en jours (1, 10, ...), qui est à mettre en regard du nombre de jours ouvrables considéré dans la branche (250 ou 252 généralement). Considérons $X$ une variable aléatoire indiquant les rendements, suivant une même loi normale $\norm(\mu,\sigma^2)$ sur une seule période.  Alors, sur la période $T$, les rendements sont également gausssiens de moyenne $\mu T$ et de variance $\sigma^2 T$. La variable centrée réduite s'écrit :
+$$z_{\alpha}=\frac{\mbox{VaR}(\alpha,T)-\mu T}{\sigma\sqrt{T}}$$
+Et donc
+$$\mbox{VaR}(\alpha,T) = \mu T + z_{\alpha}\sigma\sqrt{T}$$
+
+\begin{ex}
+{\it\small Source: Rapport annuel 2007 de l'UBS}\\
+La position du secteur Banque d'investissement de l'UBS, sur un horizon de 1 jour, à un niveau de confiance de 99\%, en utilisant des données sur 5 ans, est de
+\begin{itemize}
+	\item 149 millions en 2007
+	\item 160 millions en 2006
+\end{itemize}
+\end{ex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%%        Test de la proportion              %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de la proportion}
+Il est souvent utile de pouvoir contrôler l'évolution d'une proportion. Par exemple, un responsable qualité doit s'assurer qu'une machine de production reste bien calibrée et satisfait ainsi aux normes établies pour cette machine. Comme une proportion peut être considérée comme une moyenne particulière, les mêmes concepts peuvent être appliqués dans le cas d'une proportion.
+
+La statistique de test à utiliser, suivant une loi normale, est:
+$$z=\frac{\bar{p}-\pi}{\sqrt{\frac{\pi(1-\pi)}{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{p}$ & = proportion de l'échantillon\\
+	$\pi$       & = proportion supposée de la population étudiée\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+
+Toutefois, afin de pouvoir utiliser la distribution normale, nous devons faire la \textcolor{red}{supposition suivante}:\\
+\textsc{La taille de l'échantillon doit être suffisamment grande}\\
+en pratique, il suffit que
+$$n\bar{p}\geq 5\quad\mbox{et}\quad n(1-\bar{p})\geq 5$$
+
+\begin{ex}\label{exTestProportion}
+Un contrôle interne doit être effectué dans une banque pour vérifier que les contrats des hypothèques accordées comportent tous les documents nécessaires. Parfois, un contrat ne comporte pas tous les documents, auquel cas, le dossier n'est pas complet. La banque a octroyé 22500 hypothèques. et exige qu'il n'y ait pas plus d'1\% de contrats incomplets. L'équipe chargée du contrôle n'a pas le temps d'examiner les 22500 contrats et décide de contrôler 600 contrats choisis aléatoirement, et fixe le niveau de signification à 0.02. Elle trouve 9 contrats incomplets.
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est la proportion de contrats incomplets
+	$$\pi=0.01$$
+	Comme la taille de l'échantillon est suffisamment grande:\\
+	$$600\times 0.01 = 6\geq 5\quad\mbox{et}\quad 600\times (1-0.01)=594\geq 5$$
+	l'utilisation de la statistique $z$ est possible.
+	\item $H_0$: $\pi\leq 0.01$\\
+	      $H_1$: $\pi> 0.01$
+	\item Le niveau de signification est $\alpha = 0.02$
+	\item La région critique est $[z_\alpha \approx 2.05;\infty [$
+	\item La statistique associée à l'échantillon est
+	$$\bar{p}=9/600=0.015 \quad z=\frac{0.015-0.01}{\sqrt{\frac{0.01(1-0.01)}{600}}}=1.23$$
+	\item Comme $z=1.23<2.05$, $H_0$ n'est pas rejetée.
+	\item L'équipe de contrôle interne peut donc supposer que l'exigence de la banque est satisfaite.
+\end{enumerate}
+\end{ex}
+
+\begin{rem}
+\begin{itemize}
+	\item Lors d'un test unilatéral, la valeur critique est déterminée par 
+	\begin{itemize}
+		\item $z_{\alpha}$ s'il s'agit d'un test unilatéral à droite
+		\item $-z_{\alpha}$ s'il s'agit d'un test unilatéral à gauche
+	\end{itemize}
+	\item Lors d'un test bilatéral, les valeurs critiques sont déterminées par $\pm z_{\alpha/2}$
+\end{itemize}
+\end{rem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%%     Test de la variance, mu inconnu       %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de la variance avec moyenne inconnue}
+Lorsque l'intérêt se porte sur la dispersion des données, l'indicateur utilisé le plus souvent est l'écart type. Or, il n'existe pas de test sur l'écart type, mais par contre, des tests existent sur la variance. Comme généralement la moyenne de la population n'est pas connue, afin de calculer la variance, il faudra aussi l'estimer grâce à l'échantillon.
+
+La statistique de test à utiliser suit une loi du $\ki^2$ à $n-1$ degrés de libertés:
+$$\ki^2=\frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{cl}
+	$\sigma^2$ & = variance supposée de la population\\
+	$s^2$       & = variance de l'échantillon\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+
+Hypothèse: échantilllon provenant d'une population dont les éléments sont \textcolor{red} {indépendants et identiquement distribués, de distribution normale}.
+
+\begin{rem}
+Le nombre de degrés de liberté n'est pas $n$ mais $n-1$ car la véritable moyenne  (de la population) n'est pas connue. Il faut donc l'estimer par la moyenne de l'échantillon.
+\end{rem}
+
+\begin{ex}
+Le système de satellites Galileo est un projet européen prévu pour concurrencer le système GPS américain actuel. Supposons qu'un constructeur de GPS fournisse un appareil utilisant Galileo, et annonce une précision de $\pm 5$ cm. Un test est effectué pour vérifier cette affirmation, en utilisant un échantillon de taille 20, et un niveau de signification de 0.05. Les données de l'échantillon suivent une loi normale, et l'on peut supposer qu'il en est de même pour la population. La variance de l'échantillon est calculée $s^2=0.0108$.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est la précision de l'appareil, qui est une variance.
+	\item $H_0$: $\sigma^2\leq 0.0025$\\
+	      $H_1$: $\sigma^2 > 0.0025$
+	\item Le niveau de signification est fixé à $\alpha = 0.05$
+	\item La région de rejet du test est l'ensemble des valeurs supérieures à
+	$$\ki^2_{0.05}\approx 30.1435$$
+	La valeur limite calculée est celle pour une distribution $\ki^2$ à $20-1=19$ degrés de liberté, et un niveau de signification de 0.05.
+	\item La statistique associée à l'échantillon est
+	$$s^2=0.0108 \quad \ki^2=\frac{(20-1)0.0108}{0.0025}=82.08$$
+	\item Comme  $\ki^2=82.08$ appartient à la région critique, l'hypothèse $H_0$ est rejetée.
+	\item Il est donc très peu probable que la précision  annoncée soit correcte.
+\end{enumerate}
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%% Méthode de la p-valeur                    %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Méthode de la $p$-valeur}
+Il existe une autre méthode permettant d'interpréter le résultat de n'importe quel test d'hypothèse selon la même procédure. Cette procédure, dite de la $p$-valeur, est notamment utilisée lorsque l'on travaille avec un ordinateur.
+
+\begin{defi}
+La \emph{$p$-valeur}, appelée \emph{niveau (ou degré) de signification observé},  est la probabilité d'observer l'échantillon réellement utilisé sachant que l'hypothèse nulle $H_0$ est vraie.
+\end{defi}
+
+La $p$-valeur s'interprète aussi comme la probabilité d'obtenir à partir d'un autre échantillon tiré de la même population une valeur du paramètre testé au moins aussi extrême (plus éloignée de $H_0$) que la valeur réellement observée.
+
+Voici comment interpréter cette $p$-valeur:\\
+Si la $p$-valeur calculée est plus petite que la probabilité $\alpha$ associée à la région de rejet, alors l'hypothèse nulle $H_0$ est rejetée. Sinon, l'hypothèse nulle $H_0$ n'est pas rejetée. Cette méthode est populaire car la plupart des logiciels, y-compris Excel, Calc, Gnumeric, ...,  permettent de calculer cet $p$-valeur. L'avantage de rapporter cette $p$-valeur est qu'elle donne plus d'information que simplement le rejet ou non d'une hypothèse. En effet, elle donne le degré de signification associé au résultat.
+
+\begin{ex}
+Dans le cas d'un test unilatéral à gauche, la situation décrite par le graphique suivant conduit au rejet de $H_0$, car la $p$-valeur (zone hachurée verticalement) est plus petite que le risque $\alpha$ (zone hachurée horizontalement).
+
+ \begin{center}
+ \includegraphics[width=11cm]{p_value_4}
+ \end{center}
+\end{ex}
+
+\newpage
+\subsection{Procédure de test statistique utilisant la $p$-valeur}
+Pour tester une hypothèse en utilisant la $p$-valeur, vous pouvez procéder ainsi:
+\begin{enumerate}
+	\item Spécifier la valeur de la population d'intérêt.
+	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+	\item Choisir le niveau de signification $\alpha$
+	\item Déterminer la région critique:\\
+	Si la $p$-valeur est inférieure à $\alpha$, alors rejeter $H_0$\\
+	Sinon, ne pas rejeter $H_0$
+	\item Calculer la $p$-valeur associée à l'échantillon.
+	\item Prendre une  décision.\\
+	(Rejeter $H_0$ seulement si la $p$-valeur est inférieure à $\alpha$)
+	\item Énoncer une conclusion.
+\end{enumerate}
+
+\begin{ex}
+Test unilatéral\\
+Reprenons l'exemple \ref{ex:testMuSigmaConnu}.\\
+Une étude sur la mobilité des employés de l'entreprise ''Jeux Mendors'' affirme que la moyenne des temps de trajet des employés pour venir à leur travail excède 40 minutes. Vous devez tester cette affirmation avec une niveau de signification de 0.05. Pour cela, 100 employés vous ont indiqué leur temps de trajet actuel, dont la moyenne est 43.5 minutes. Basé sur une étude précédente, vous pouvez supposer que l'écart type de la population est de 8 minutes.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est le temps de trajet moyen.
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu\leq 40$ minutes\\
+	  $H_1$ & $\mu >40$ minutes\\	
+    \end{tabular}
+  \item Le niveau de signification est de 0.05
+  \item La région critique est celle dont la $p$-valeur est inférieure à $\alpha$
+  \item Le calcul de la $p$-valeur s'effectue de la manière suivante:
+  $$z=\frac{43.5-40}{\frac{8}{\sqrt{100}}}=4.38$$
+  Il faut ensuite calculer la probabilité suivante:
+  $$p\mbox{-valeur} = \mbox{P}(z>4.38)=1-\mbox{P}(z\leq 4.38) \approx 0$$
+  \item Comme la $p$-valeur appartient à la région critique, l'hypothèse $H_0$ est rejetée.
+  \item La conclusion est que la moyenne des temps de trajet excède 40 minutes.
+\end{enumerate}
+\end{ex}
+
+Lors d'un test bilatéral, on ne peut se trouver que dans l'une ou l'autre région de rejet du test, et non pas dans les deux à la fois. Considérons une statistique suivant une distribution symétrique. Afin de calculer la $p$-valeur, on commence par calculer la probabilité que la statistique prenne des valeurs plus extrêmes que celles obtenue à partir de l'échantillon, du côté correspondant à la situation observée. Puis, cette probabilité est doublée pour obtenir la $p$-valeur.
+
+\begin{ex}
+\label{ex:moyennePME}
+Test bilatéral\\
+Reprenons l'exemple \ref{exMuSigmaInconnuPetit}\\
+Nous voulons tester la moyenne d'un échantillon du nombre d'employés par petite entreprise suisse contre la moyenne de la population, $\mu=35$, en ne connaissant pas la valeur de la variance de la population. Par des études précédentes, nous savons que le nombre d'employés est distribué selon une loi normale. Pour cela, 20 petites entreprises suisses ont été interrogées sur le nombre d'employés qu'elles occupent. La moyenne calculée vaut $\overline{x}=27$ et la variance calculée vaut $s^2=334.7$. Nous souhaitons un niveau de signification de 0.05.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est le nombre moyen d'employés de petites entreprises suisses.
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu = 35$ employés\\
+	  $H_1$ & $\mu \not= 35$ employés\\	
+    \end{tabular}
+  \item Le niveau de signification est de 0.05
+  \item La région critique est celle dont la $p$-valeur est inférieure à $\alpha$
+  \item Le calcul de la $p$-valeur s'effectue de la manière suivante:
+  $$t = \frac{27 - 35}{\sqrt{\frac{334.7}{20}}}= -1.955587$$
+  Comme la moyenne de l'échantillon est inférieure à la moyenne de la population postulée sous $H_0$, on considère tout d'abord la région de rejet de gauche.
+  Il faut donc calculer la probabilité suivante:
+  $$\mbox{P}(t_{\frac{\alpha}{2},19}<-1.955587)\approx 0.0327$$
+  S'agissant d'un test bilatéral, cette probabilité doit être doublée\\
+  $p$-value = $2\times \mbox{P}(\frac{\alpha}{2},19<-1.955587)\approx 0.0654$
+  \item Comme la $p$-valeur n'appartient pas à la région critique, l'hypothèse $H_0$ n'est pas rejetée.
+  \item La conclusion est que la vraie moyenne de la population peut être égale à 35 employés par petite entreprise suisse.
+\end{enumerate}
+\end{ex}
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%%  Relation IC et tests statistiques        %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Relation entre IC et tests statistiques}
+\subsection{Test dans l'unité du paramètre}
+Dans l'exemple précédent \ref{ex:moyennePME}, nous avons transformé la valeur observée $\overline{x}=27$ en une valeur sans unité $t_0=-1.955587$ pouvant être comparée avec les seuils de la loi de Student, en conservant un niveau de signification $\alpha=0.05$. De façon équivalente, il est également possible d'effectuer le
+test en comparant la valeur observée $\overline{x}=27$ avec des transformations $r_{1, \bar x}$ et $r_{2, \bar x}$ des seuils de la loi
+de Student.
+$$\includegraphics[width=12cm]{test_t_vs_x}$$
+\'Etant donné que nous avons utilisé la statistique
+$$t = \frac{\bar{x} - \mu}{\hat\sigma_{\bar{x}}}$$
+nous pouvons effectuer la transformation suivante
+$$\bar{x} = \mu + t \; \hat\sigma_{\bar{x}}$$
+et les seuils de rejet dans l'unité de mesure de l'échantillon s'écrivent
+\begin{eqnarray*}
+    r_{1,\bar{x}} &=& \mu + t_{1-\frac{\alpha}{2},19} \;
+\hat{\sigma}_{\bar x}\\
+ &\approx& 35 - 2.093024 \cdot 4.090843 \approx 26.43777
+\end{eqnarray*}
+et
+\begin{eqnarray*}
+    r_{2,\bar{x}} &=& \mu + t_{\frac{\alpha}{2},19} \;
+\hat{\sigma}_{\bar{x}}\\
+ &\approx & 35 + 2.093024 \cdot 4.090843 \approx 43.56223
+\end{eqnarray*}
+Comme $\overline{x}=27$ se trouve entre les deux seuils, l'hypothèse $H_0$ est acceptée.
+
+\subsection{Intervalle de confiance et test statistique}
+Reprenons encore l'exemple précédent avec variance inconnue et calculons un intervalle de confiance pour $\mu$ en gardant un risque
+$\alpha=0.05$.
+    \begin{eqnarray*}
+        \mu & \in & \bar{x} \pm \hat\sigma_{\bar{x}}\;t_{\frac{\alpha}{2},n-1}\\
+         & \approx & 27 \pm 4.09 \cdot 2.093 \\
+            & = & 27 \pm 8.56
+    \end{eqnarray*}
+Et donc  P($\mu \in [18.44 , 35.56]$) = 95\%
+
+La largeur de l'intervalle de confiance construit autour de $\overline{x}$ est identique à la distance séparant les deux seuils de rejet du test.
+$$\includegraphics[width=10cm]{test_vs_interval}$$
+Nous pouvons déduire de la figure ci-dessus que lorsque le test bilatéral est accepté,
+$$r_1 < \overline{x} < r_2$$
+ce qui implique
+$$i_{\inf} < \mu_0 < i_{\sup}$$
+Il y a donc équivalence entre le test d'hypothèse bilatéral et l'intervalle de confiance:\\
+Si $\mu_0$ se trouve dans l'intervalle de confiance construit autour de $\overline{x}$, alors l'hypothèse $H_0: \mu=\mu_0$ est acceptée et vice versa.
+
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                           %%
+%%                Résumé                     %%
+%%                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Résumé}
+Le tableau suivant résume les distributions utilisées pour représenter la moyenne, la proportion et la variance d'une population.
+
+\begin{center}
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & distribution
+    \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu,  &\\
+            & distr. normale ou $n\geq 30$
+        & $Z =
+%    \dfrac{\bar X-\mu}{\sigma/\sqrt{n}}=  \dfrac{\bar X-\mu}{\sigma_{\bar X}}\;\sim\norm (0,1)$
+    \dfrac{\bar X-\mu}{\sigma/\sqrt{n}}\sim\norm (0,1)$
+    \\[3ex]
+  & $\sigma^2$ inconnu, distr. normale
+     & $T_{(n-1)} =
+%    \dfrac{\bar X - \mu}{s/\sqrt{n-1}}=\dfrac{\bar X - \mu}{\hat \sigma_{\bar X}} \; \sim\st_{n-1}$
+    \dfrac{\bar X - \mu}{s/\sqrt{n}}\sim\st_{n-1}$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\pi$ & $n\pi\geq 5$ et $n(1-\pi)\geq 5$ &
+    $Z=\frac{\bar{P}-\pi}{\sqrt{\frac{\pi(1-\pi)}{n}}}\sim\norm (0,1)$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale
+    & $Q_{(n)}=\dfrac{\sum_{i=1}^{n} (X_i - \mu)^2}{\sigma^2} \;\sim\; \chi^2_n$
+    \\[3ex]
+     & $\mu$ inconnu, distr. normale
+    & $Q_{(n-1)}=\dfrac{\sum_{i=1}^{n} (X_i - \bar X)^2}{\sigma^2}= \dfrac{(n-1)s^2}{\sigma^2} \;\sim\; \chi^2_{n-1}$
+    \\[3ex]
+    \hline
+    \end{tabular}
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+

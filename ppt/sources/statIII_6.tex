@@ -1,0 +1,380 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Test paramétrique}
+\author{Dr Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 6}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+\begin{itemize}
+	\item Connaître les principales définitions
+	\item Comprendre le principe d'un test statistique paramétrique
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=]{Intervalle de confiance}
+{\small
+\begin{center}
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & intervalle \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu, &\\
+            & distr. normale ou $n\geq 30$
+            & $\mu \in \bar x \pm z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$\\[3ex]
+  & $\sigma^2$ inconnu, distr. normale
+     & $\mu \in \bar x \pm t_{\frac{\alpha}{2},n-1}\frac{s}{\sqrt{n}}$\\[3ex]
+    \hline&&\\[-1ex]
+    $\pi$ & $n\bar{p}\geq 5$ et $n(1-\bar{p})\geq 5$ & $\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$ \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale
+    & $\left[ \frac{\sum (x_i - \mu)^2}{q_{\frac{\alpha}{2},n}}
+        \;;\; \frac{\sum (x_i - \mu)^2}{q_{1-\frac{\alpha}{2},n}}
+        \right]$\\[3ex]
+     & $\mu$ inconnu, distr. normale
+    & $\left[ \frac{\sum (x_i - \bar{x})^2}{q_{\frac{\alpha}{2},n-1}}
+        \;;\; \frac{\sum (x_i - \bar{x})^2}{q_{1-\frac{\alpha}{2},n-1}}
+        \right]$\\[4ex]
+    \hline
+    \end{tabular}
+\end{center}
+}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'hypothèse                     %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'hypothèse}
+\begin{slide}[toc=]{Illustration}
+\centerline{\includegraphics[scale=0.8]{inference_2}}
+But de l'estimation: quantifier\\
+But de l'inférence: valider/invalider
+\end{slide}
+
+\begin{slide}[toc=Type]{Type de test}
+\begin{tabular}{c|cc}
+& paramétriques & non paramétriques\\
+\hline
+\hline
+Données & {\red distribuées selon} & {\green pas de distribution}\\
+ & {\red une loi particulière} & {\green particulière}\\
+ \hline
+Puissance & {\green\huge +} & {\red\huge -} \\
+\hline
+Risque erreur & {\green\huge -} & {\red\huge +}\\
+\hline
+Exemple &  moyenne, variance & médiane
+\end{tabular}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Hypothèse nulle et alternative       %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hypothèse nulle/alternative}
+\begin{slide}[toc=$H_0$ et $H_1$]{Hypothèse nulle et alternative}
+Principe: choisir entre deux hypothèses\\[5mm]
+Hypothèse nulle $H_0$ = affirmation testée.\\
+Hypothèse alternative $H_1$ = ensemble des valeurs non couvertes par l'hypothèse nulle (non $H_0$). \\
+\vspace{5mm}
+\begin{itemize}
+	\item $H_0$ rejeté si contradiction suffisamment évidente.
+	\item Sinon, non rejet de $H_0$
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Exemple}
+Supposition : les PME suisses ont en moyenne $\mu=35$ employés avec une variance égale à 220.\\
+\'Echantillon aléatoire de taille 20: $\bar{x}=27$,  $s^2=334.7$
+\\[5mm]
+ \begin{center}
+ \begin{tabular}{cccccccccc}
+ 2 & 2 & 5 & 6 & 7 & 8 & 12 & 14 & 23 & 26\\
+ 28 & 31 & 40 & 42 & 46 & 47 & 48 & 49 & 52 & 52
+ \end{tabular}
+ \end{center}
+ 
+Question: statistiquement admissible que $\mu=35$?
+\pause
+\begin{eqnarray*}
+	H_0 &:& \mu=35\\
+	H_1 &:& \mu\not=35
+\end{eqnarray*}
+\end{slide}
+
+\begin{slide}[toc=Trucs]{Règles de formulation}
+\begin{enumerate}
+	\item $H_0$ et $H_1$ formulées en termes du paramètre de la population d'intérêt.
+	\item $H_0$ = statu quo, condition supposée exister\\
+  $H_1$ si suffisamment d'évidence de changement.
+	\item $H_0$ contient $=$ ou $\geq$ ou $\leq$.
+\end{enumerate}
+\end{slide}
+
+\begin{slide}{Exemple}
+\'Etudiants en emploi $\rightarrow$ horaire tenant compte de leur situation.\\
+(i.e. travail jusqu'à 25h par semaine, $\approx$ 60\%).\\
+La situation réelle a-t-elle changé ? 
+\begin{enumerate}
+	\item Déterminer le paramètre de la population d'intérêt\\
+	\pause
+	Nombre d'heures de travail moyen par semaine des étudiants en emploi.
+	\item Définir la situation qui est supposée vraie.\\
+	\pause
+	Statu quo $\mu\leq 25$h.
+	\item Formuler l'hypothèse nulle et l'hypothèse alternative\\
+	\pause
+\begin{eqnarray*}
+	H_0 &:& \mu\leq25\\
+	H_1 &:& \mu>25
+\end{eqnarray*}	
+\end{enumerate} 
+\end{slide}
+
+\begin{slide}{Remarque}
+Une \emph{hypothèse simple} correspond à une valeur spécifique, une situation déterminée (une hypothèse sur une égalité).
+Une \emph{hypothèse composite} correspond à un ensemble de valeurs, de situations (une hypothèse sur une inégalité).
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Région critique                      %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Région critique}
+\begin{slide}{Zone critique}
+Principe du test : rejet de $H_0$ si la valeur de la statistique $Q_0$ est trop différente du paramètre \\[5mm]
+Deux zones à définir
+\begin{itemize}
+    \item $A$ : ensemble des valeurs probables de $Q_0$ lorsque l'hypothèse $H_0$ est vraie.\\ 
+    Il s'agit de la région d'acceptation de $H_0$.
+    \item $R$ : ensemble des valeurs peu probables de $Q_0$ lorsque l'hypothèse $H_0$ est vraie.\\ 
+    Il s'agit de la région de rejet de $H_0$ (région critique).
+ \end{itemize}
+\vspace{3mm}
+\pause
+Règle de décision
+\begin{eqnarray*}
+   q_0 \notin R & \Longleftrightarrow &
+   \mbox{Acceptation de } H_0\\[1ex]
+   q_0 \in R & \Longleftrightarrow & \mbox{Rejet de } H_0
+\end{eqnarray*}
+\end{slide}
+
+\begin{slide}[toc=]{Jeu}
+Un meneur de jeu, plusieurs joueurs.\\[5mm]
+% Indication au meneur de jeux: ne choisir qu'un seul nombre et non pas 5
+Principe: loterie
+\begin{enumerate}
+	\item Le meneur choisit 5 nombres secrets entre 1 et 10.
+	\item Un joueur annonce son nombre
+	\item Le meneur de jeu vérifie et annonce au joueur s'il a gagné
+	\item Retour en 1.
+\end{enumerate}
+Après quelques itérations, analyser les résultats.
+% le probabilité de réussite ne correspondent pas à celle espérée.
+\end{slide}
+
+\begin{slide}[toc=forme]{Forme de la région critique}
+\begin{itemize}
+    \item
+    \parbox[t]{.55\linewidth}{test unilatéral à gauche\\$H_1$ : $q=q_1<q_0$}\quad
+    %
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(1.5,0.5){\line(-1,-2){.2}}
+        \put(1.2,0.5){\line(-1,-2){.2}}
+        \put(.9,0.5){\line(-1,-2){.2}}
+        \put(.6,0.5){\line(-1,-2){.2}}
+        \put(.3,0.5){\line(-1,-2){.2}}
+        \put(1.6,0.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(3.3,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.9,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+        \put(1.6,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+    \end{picture}\\[2ex]
+ 
+  \item
+    \parbox[t]{.55\linewidth}{test unilatéral à droite\\$H_1$ :
+$q=q_1>q_0$}\quad
+    %
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(3.5,0.1){\line(1,2){.2}}
+        \put(3.8,0.1){\line(1,2){.2}}
+        \put(4.1,0.1){\line(1,2){.2}}
+        \put(4.4,0.1){\line(1,2){.2}}
+        \put(4.7,0.1){\line(1,2){.2}}
+        \put(3.4,0.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(3.4,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+        \put(2,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(4.4,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+    \end{picture}\\[2ex]
+                     
+  \item
+    \parbox[t]{.55\linewidth}{test bilatéral\\$H_1$ :
+$q=q_1\neq q_0$}\quad
+    %      
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(-0.2,0.3){\line(1,0){5.4}}
+        \put(.9,0.5){\line(-1,-2){.2}}
+        \put(.6,0.5){\line(-1,-2){.2}}
+        \put(.3,0.5){\line(-1,-2){.2}}
+        \put(.0,0.5){\line(-1,-2){.2}}
+        \put(1,0.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(1,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r_1$}}}
+        \put(4.1,0.1){\line(1,2){.2}}
+        \put(4.4,0.1){\line(1,2){.2}}
+        \put(4.7,0.1){\line(1,2){.2}}
+        \put(5,0.1){\line(1,2){.2}}
+        \put(4,0.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(4,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r_2$}}}
+        \put(2.6,.8){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.3,.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_1$}}}
+        \put(4.8,.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_2$}}}
+    \end{picture}
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Valeur critique}
+La \emph{valeur critique} $r$, aussi appelée seuil critique, est la valeur d'une statistique correspondant à un certain niveau de signification.\\[5mm]
+But: déterminer la frontière pour le rejet de $H_0$\\
+Choix: de façon à limiter le risque d'erreur.
+\end{slide}
+
+\begin{slide}[toc=]{}
+$$\includegraphics[scale=0.7]{Evidence}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Risques                              %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Risques}
+\begin{slide}[toc=Type]{Type de risque}
+Risque de première espèce $\alpha$ (risque de type I)\\
+Rejet de $H_0$ alors qu'elle est en fait vraie.
+$$\alpha = P(Q_0 \in R \mid H_0)$$ 
+\pause
+Risque de deuxième espèce $\beta$ (risque de type II)\\
+Accepter $H_0$ alors qu'elle est en fait fausse. 
+$$\beta = P(Q_0 \notin R \mid H_1)$$
+\pause
+Remarque: $\alpha$ est aussi appelé \emph{niveau de signification}.
+\end{slide}
+
+\begin{slide}[toc=Tableau]{Tableau des risques}
+\begin{center}
+\begin{tabular}{c|c|c|}
+& \multicolumn{2}{c}{\'Etat de la nature}\\
+& $H_0$ vraie & $H_1$ vraie \\
+\hline
+$H_0$ accepté & correct & {\red $\beta$} \\
+\hline
+$H_1$ accepté & {\red $\alpha$} &  correct\\
+\hline
+\end{tabular}
+\end{center}
+\end{slide}
+
+\begin{slide}[toc=Risques liés]{Risques $\alpha$ et $\beta$}
+	$$\includegraphics[width=11cm]{alpha_beta}$$
+\end{slide}
+
+\begin{slide}[toc=]{$\alpha$ petit, donc $\beta$ grand}
+$$\includegraphics[width=11cm]{alpha_beta_2}$$
+\end{slide}
+
+\begin{slide}[toc=]{$H_1$ peu différent de $H_0$ $\Rightarrow \beta$ grand}
+$$\includegraphics[width=11cm]{alpha_beta_3}$$
+\end{slide}
+
+\begin{slide}{Risque total}
+Le \emph{risque total d'erreur} est défini par la relation
+$$\alpha \;\underbrace{P(H_0)}_{\mbox{inconnu}}\;+\;\beta \;\underbrace{P(H_1)}_{\mbox{inconnu}}$$
+\end{slide}
+
+\begin{slide}{En pratique}
+En pratique, on détermine le seuil critique $r$ pour un $\alpha$ choisi arbitrairement petit (en général $5\;\%$ ou $10\;\%$).
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test                                 %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test}
+\begin{slide}{Procédure de test}
+\begin{enumerate}
+	\item Spécifier la valeur de la population d'intérêt.
+	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+	\item Choisir le niveau de signification $\alpha$
+	\item Déterminer la région critique.
+	\item Calculer la statistique associée à l'échantillon.
+	\item Rejeter $H_0$ si la statistique appartient à la région critique.\\
+	Ne pas rejeter $H_0$ dans le cas contraire.
+	\item Énoncer une conclusion.
+\end{enumerate}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

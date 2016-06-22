@@ -1,0 +1,94 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Corrigé 7}
+\author{Dr. S. Varone}
+\date{Semaine 44, 2008}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 7: Test d'hypothèse                     %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Formulation d'hypothèses I}
+Un responsable de production d'Emmental doit vérifier que le processus de fabrication du fromage Emmental utilise en moyenne 12 litres de lait pour 1kg de fromage. Si le nombre moyen de litres de lait est trop élevé, les pertes sont au préjudice de l'entreprise. Si le nombre moyen de litre de lait est trop faible, le fromage n'aura pas une qualité suffisante. 
+\begin{enumerate}
+	\item Sur quelle valeur doit-il effectuer un test ?
+\\Sur le nombre moyen de litres de lait par kg de fromage
+	\item Quelle situation est supposée être vraie, tant qu'il n'y a pas suffisamment d'évidence du contraire ?
+\\$\mu=12$ litres de lait 
+	\item Formuler les hypothèses nulle et alternative.
+\\$H_0$ : $\mu=12$\\
+\\$H_1$ : $\mu\not= 12$
+\end{enumerate}
+
+\section{Formulation d'hypothèses II}
+Une zone agricole est utilisée pour expérimenter un nouvel engrais, qui devrait permettre de diminuer la variation de rendement des cultures. Sur les 8 années précédentes, il a été observé des variations de $\pm 10\%$ des rendements. 
+\begin{enumerate}
+	\item Sur quelle valeur devra-t-on effectuer un test ?
+\\Sur la variance des rendements
+	\item Quelle situation est supposée être vraie, tant qu'il n'y a pas suffisamment d'évidence du contraire ?
+\\$\sigma^2=100$ 
+	\item Formuler les hypothèses nulle et alternative.
+\\$H_0$ : $\sigma^2\geq 100$\\
+\\$H_1$ : $\sigma^2 < 100$
+\end{enumerate}
+
+
+\section{Erreur de première et deuxième espèce} % cf exo Andre Berchtold 4.6
+Supposons que la facture de chauffage mensuelle d'un petit appartement suive une loi normale de moyenne 100 Sfr et d'écart type 20. L'isolation ayant été refaite, la charge mensuelle de chauffage est espérée suivre une loi $\norm (80, 400)$.
+
+Il s'agit de tester si la variable aléatoire suit encore une loi normale $\norm(100,400)$. La situation espérée est la suivante $X\sim \norm(80,400)$\\[5mm]
+$H_0$ : $\mu_0\geq 100$\\
+$H_1$ : $\mu_0<100$
+
+En choisissant une erreur de première espèce $\alpha=0.05$, 
+\begin{enumerate}
+	\item quel est la valeur critique $r$?\\
+		\begin{eqnarray*}
+		x_c &=& \mu_0+ z_\alpha\cdot \sigma_0
+		\\&=& \mu_0+ z_{0.05}\cdot \sigma_0
+		\\&=&100+(-1.645)\cdot 20
+		\\&=&67.1
+		\end{eqnarray*}
+	\item quel est la probabilité de commettre une erreur de deuxième espèce ?\\
+		\begin{eqnarray*}
+		\beta &=& P(x_1> x_c \quad | \quad x_1 \;\sim\; N(\mu_1=80,\sigma^2_1 =400))
+		\\&&\\&=& P(z_1> \frac{x_c-80}{20} \quad | \quad z_1 \;\sim\; N(0,1))
+		\\&&\\&=& P(z_1> \frac{67.1-80}{20})
+		\\&&\\&=& P(z_1> -0.645)
+		\\&&\\&\approx& 0.74
+		\end{eqnarray*}
+\end{enumerate}
+
+En choisissant une erreur de première espèce $\alpha=0.01$, 
+\begin{enumerate}
+	\item quel est la valeur critique $r$?\\
+		\begin{eqnarray*}
+		x_c &=& \mu_0+ z_\alpha\cdot \sigma_0
+		\\&=& \mu_0+ z_{0.01}\cdot \sigma_0
+		\\&=&100+(-2.33)\cdot 20
+		\\&=&53.4
+		\end{eqnarray*}
+	\item quel est la probabilité de commettre une erreur de deuxième espèce ?\\
+		\begin{eqnarray*}
+		\beta &=& P(x_1> x_c \quad | \quad x_1 \;\sim\; N(\mu_1=80,\sigma^2_1 =400))
+		\\&&\\&=& P(z_1> \frac{x_c-80}{20} \quad | \quad z_1 \;\sim\; N(0,1))
+		\\&&\\&=& P(z_1> \frac{53.4-80}{20})
+		\\&&\\&=& P(z_1> -1.33)
+		\\&&\\&=& 0.9082
+		\end{eqnarray*}
+\end{enumerate}
+
+\end{document}

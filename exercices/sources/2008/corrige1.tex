@@ -1,0 +1,199 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+\graphicspath{{../fig/}}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel, fancyhdr, latexsym}
+\usepackage{hegexo}
+%\usepackage{hyperref}
+
+% Definitions hyperref
+%\hypersetup{colorlinks,%
+%            citecolor=black,%
+%            filecolor=black,%
+%            linkcolor=black,%
+%            urlcolor=blue}
+
+\begin{document}
+\title{Corrigé 1}
+\author{Dr. S. Varone}
+\date{Semaine 38, 2007}
+\cours{Statistique inférentielle}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%         COURS 1: Loi normale                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{} % Loi normale
+%	% source Andre Berchtold ex. B.5.1
+%Soit une variable $Z$ distribuée selon une loi normale centrée-réduite. Calculer la probabilité pour la
+%variable Z de se trouver dans chacun des cas suivants :
+%\begin{enumerate}
+%\item Entre z = 0 et z = 1.2: F(1.2)-F(0) = 0.3849303
+%\item Entre z = -0.68 et z = 0: F(0)-F(-0.68) = 0.2517478
+%\item Entre z = -0.46 et z = 2.21: F(2.21)-F(-0.46) = 0.6636893
+%\item Entre z = 0.81 et z = 1.94: F(1.94)-F(0.81) = 0.1827802
+%\item A gauche de z = -0.6: F(-0.6) = 1-F(0.6) = 0.2742531
+%\item A droite de z = -1.28: F(1.28) = 0.8997274
+%\item A droite de z = 2.05 et à gauche de z = -1.44: 0 (ensemble vide)
+%\item A droite de z = 2.05 ou à gauche de z = -1.44. 1-F(2.05) + 1-F(1.44) = 0.09511591
+%\end{enumerate}
+
+\section{} % Loi normale
+% source Andre Berchtold ex. B.5.2
+\begin{itemize}
+	\item Soit $Z$, une variable aléatoire suivant une loi normale centrée et réduite $\norm (0, 1)$
+	\begin{enumerate}
+	  \item Déterminer la probabilité des événements suivants :
+	   \begin{enumerate}
+	      \item $Z < 2.14$: F(2.14) = 0.9838226
+	      \item $Z < -2.14$: F(-2.14) = 1-F(2.14) = 0.01617738
+	      \item $Z \in [-2.14 ; 2.14]$ F(2.14) - ( 1-F(2.14) ) = 0.9676452
+     \end{enumerate}
+     \item Pour quel seuil $a$ a-t-on $P(Z < a) = p$ lorsque $p$ prend les valeurs suivantes :
+	   \begin{enumerate}
+	      \item p = 0.8686: a = 1.12
+	      \item p = 0.9719: a = 1.91
+	      \item p = 0.2912: symétrique de 1-0.2912 = 0.7088 et donc -a = 0.55 et donc a = -0.55
+     \end{enumerate}
+  \end{enumerate}
+  \item Soit $X$, une variable aléatoire suivant une loi normale $\norm (2, 1)$
+	\begin{enumerate}
+	  \item Déterminer les probabilités suivantes :
+	   \begin{enumerate}
+	      \item $P(X < 3.98) = P(Z<\frac{3.98-2}{1}) = 0.9761482$
+	      \item $P(X < 1.5)$ = P(z<-0.5) = 0.3085375
+	      \item $P(X \in [2 ; 3])$ = P($Z\in [0,1]$) = 0.3413447
+     \end{enumerate}
+     \item Pour quelle valeur de $a$ a-t-on :
+	   \begin{enumerate}
+	      \item $P(X < a) = P(Z< \frac{a-2}{1}) = 0.7454$: $\frac{a-2}{1}=0.66$ et donc $a = 0.66\times 1+2 = 2.66$
+	      \item $P(-a + 2 < X < a + 2) = 0.7458$\\
+	       $P(-a<Z<a) = F_Z(a)-(1-F_Z(a)) = 2 F_Z(a)-1 = 0.7458$\\
+	       $\Leftrightarrow F(a) = \frac{0.7458+1}{2} = 0.8729$\\
+	       Alors a = 1.14
+     \end{enumerate}
+  \end{enumerate}
+  \item Soit $Y$ , une variable aléatoire suivant une loi normale $\norm (2, 9)$
+	\begin{enumerate}
+	  \item Déterminer les probabilités suivantes :
+	   \begin{enumerate}
+	      \item $P(Y < 4.25)$
+	          \begin{eqnarray*}
+				     P(Y < 4.25) &=& P(Z<\frac{4.25-2}{3})\\
+				     &=& P(Z<0.75)=0.7734
+				     \end{eqnarray*} 
+	      \item $P(Y < 1.5)$
+	           \begin{eqnarray*}
+				     P(Y < 1.5) &=& P(Z<\frac{1.5-2}{3})\\
+				     &\approx & P(Z<-0.17)\\
+				      &=& 1-P(Z<0.17)\\
+				      &=&1-0.5675 =0.4325
+				     \end{eqnarray*} 
+	      \item $P(|Y | < 1)$
+	        \begin{eqnarray*}
+					 P(Y<1)-P(Y<-1) &=& P(Z<\frac{1-2}{3})-\frac{-1-2}{3})\\
+					 &\approx& P(Z<-0.33)-P(Z<-1)\\
+					 &=& (1-P(Z<0.33)-(1-P(Z<1))\\
+					  &=& P(Z<1)-P(Z<0.33)\\
+					  &=&0.8413-0.6293=0.212
+			     \end{eqnarray*} 
+     \end{enumerate}
+     \item Pour quelle valeur de $a$ a-t-on :
+	   \begin{enumerate}
+	      \item $P(Y < a) = 0.64$
+		      \begin{eqnarray*}
+						P(Y<a)&=&0.64\\
+						P(Z<\frac{a-2}{3})&=&0.64\\
+						\frac{a-2}{3}&\approx& 0.36\\
+						a&=&3\cdot 0.36+2=3.08
+					\end{eqnarray*} 
+	      \item $P(a < Y < 2.5) = 0.3788$
+			    \begin{eqnarray*}
+						P(Y<2.5)-P(Y<a)&=&0.3788\\
+						P(Z<\frac{2.5-2}{3}) -P(Z<\frac{a-2}{3})&=&0.3788\\
+						P(Z<0.17) -P(Z<\frac{a-2}{3})&\approx&0.3788\\
+						0.5675 -P(Z<\frac{a-2}{3})&\approx&0.3788\\
+						 P(Z<\frac{a-2}{3})&\approx&0.5675 -0.3788\\
+						  P(Z<\frac{a-2}{3})&\approx&0.1887\\
+						  1-P(Z<\frac{a-2}{3})&\approx&1-0.1887\\
+						  P(Z<-\frac{a-2}{3})&\approx&0.8113\\
+						  -\frac{a-2}{3} &\approx& 0.88\\
+						  a&\approx&2-3\cdot 0.88 = -0.64 
+					\end{eqnarray*} 
+	      \item $P(-a < Y < a) = 0.9$
+					  \begin{eqnarray*}  
+					   P(Y<a)-P(Y<-a) &=& 0.9 \\
+					   P(Z<\frac{a-2}{3})-P(Z<-\frac{-a-2}{3}) &=& 0.9
+					  \end{eqnarray*}  
+					  Pas de solution direct car il n'est pas possible d'utiliser la symétrie.
+					  En faisant varier la valeur de $a$ il est possible de trouver la solution:
+					  $a\approx 5.917$ 
+     \end{enumerate}
+  \end{enumerate}
+\end{itemize}
+
+\section{Temps de trajet} % Loi normale
+% source: \cite{Groebner2005} p. 202
+Une entreprise de transport a évalué le temps de trajet des citadins pour se rendre à leur travail. Elle en conclut que ce temps de trajet est une variable aléatoire suivant une loi normale, que la moyenne des temps est de 15 minutes et que l'écart type des temps est de 3.5 minutes. Un citadin affirme que son temps de trajet est de 22 minutes. Le but est de trouver la probabilité qu'un citoyen ait un temps de trajet de 22 minutes ou plus.
+\begin{enumerate}
+	\item Déterminer la moyenne et l'écart-type de la loi suivie par la variable aléatoire X=''Temps de trajet''.
+	\\ $\mu = 15$ et $\sigma = 3.5$
+	\item Définir l'événement d'intérêt.
+	\\ $P(X\geq 22)$
+	\item Convertir la variable aléatoire en une variable standardisée $Z$
+	\\ $Z=\frac{22-15}{3.5}=2.0$
+	\item Trouver la probabilité associée
+	\\ $P(X\geq 22)=P(Z\geq 2) = 1-0.9772 = 0.0228$ 
+\end{enumerate}
+
+\section{Résultats scolaires} % Loi normale
+% source Andre Berchtold ex. B.5.3
+Un ensemble de scores d'arithmétique obtenus par des enfants de quatrième année présente une moyenne de 30 et un écart type de 6. Un ensemble de scores obtenus par des enfants de neuvième année présente une moyenne de 36 et un écart type de 12. Nous supposons que les distributions sont normales.
+\\ $X\sim\norm (30,36)$ et $Y\sim\norm (36, 144)$
+\begin{enumerate}
+	\item Faites un schéma approximatif de ces données en représentant les deux groupes sur la même
+figure.\\
+R: x <- seq(20,50,by=0.05); y1 <- dnorm(x,30,6); y2 <- dnorm(x,36,12);\\ 
+plot(x,y1,type="l", ylab="", lwd=2); lines(x,y2, col="red", lwd=2);\\
+legend(x="right", y="top",c("N(30,36)","N(36,144)"),col=c("black","red"), lwd=2);\\ dev.copy2eps(file="s10ex4a.eps");
+$$\includegraphics[scale=0.5]{s1ex4a}$$
+
+  \item Quel pourcentage des élèves de quatrième année obtiennent-ils de meilleurs scores que la moyenne des élèves de neuvième année ?
+\\$P(X\geq 36)= 1-P(X\leq 36) = 1-P(Z\leq \frac{36-30}{6}) = 1-P(Z\leq 1) = 0.1587$
+  \item Quel pourcentage des élèves de neuvième année obtiennent-ils de moins bons scores que la moyenne des élèves de quatrième année ?
+\\$P(Y\leq 30) = P(Z\leq \frac{30-36}{12}) = P(Z\leq -0.5) = 1-P(Z\leq 0.5) = 0.3085$
+\end{enumerate} 
+
+\section{Voitures électriques} % Loi normale
+% source: \cite{Groebner2005} p. 205
+L'entreprise ElecBat propose une batterie de voiture, qui, à une vitesse de 50 km/h, permet de rouler en moyenne pendant 8h. Des tests ont montré que l'écart type est de 0.4 heures, et que le modèle pouvait se baser sur une loi normale.
+\begin{enumerate}
+  \item Quelle est la variable aléatoire ?
+  \\ X=''durée de trajet avant le déchargement complet de la batterie ''
+	\item Quelle est la probabilité qu'une telle batterie permette de rouler moins de 7h30 ?
+	\\$P(X\leq 7.5) = P(Z\leq \frac{7.5-8}{0.4}) = P(Z\leq -1.25) = 0.1056$
+	\item Les fabricants automobiles mentionnent dans le SLA qu'une durée de 7h30 ou moins n'est acceptable que dans 2.5\% des cas. Quelle doit donc être la durée moyenne afin de satisfaire le SLA imposé par les fabricants (conservez une loi normale d'écart type 0.4 heure) $?^*$
+	\\Il faut trouver $\mu$.\\
+	Soit $Y\sim\norm (\mu,0.16)$
+	\\Nous avons $0.025=P(Y\leq 7.5) = P(Z<\frac{7.5-\mu}{0.4}) = 1-P(Z<-\frac{7.5-\mu}{0.4})$
+	\\$\Leftrightarrow 1-0.025 = 0.975 = P(Z<-\frac{7.5-\mu}{0.4})$
+	\\Or $P(Z\leq 1.96 ) = 0.975$. 
+	\\Ainsi $1.96=-\frac{7.5-\mu}{0.4} \Leftrightarrow \mu=8.284$ heures.
+\end{enumerate}
+
+%\section{Traitement de dossier} % Loi uniforme
+%La durée de traitement d'un dossier pour l'octroi d'une carte de crédit varie uniformément entre 27 et 39 heures. 
+%\begin{enumerate}
+%	\item Quelle est la variable aléatoire? % X = temps de traitement d'un dossier
+%	\item Quelle est la loi suivie par la variable aléatoire, ainsi que ses paramètres? % $X\sim\unif (27,39)$
+%	\item Quelle est le temps de traitement moyen d'un dossier? % $\mu = (27+39)/2=33$
+%	\item Représentez graphiquement cette loi, avec sa moyenne. % hauteur = 1/(39-27) = 1/12
+%	\item Quelle est la probabilité que le traitement d'un dossier prenne entre 30 et 35 heures? % $P(30\leq X \leq 37)=(35-30)/(39-27) = 5/12 = 0.4167$
+%	\item Quelle est la probabilité que le traitement d'un dossier prenne moins de 30 heures ? % $P(X<30)=P(X\leq 30)=(30-27)/(39-27)=1/4$
+%\end{enumerate}
+
+\end{document}

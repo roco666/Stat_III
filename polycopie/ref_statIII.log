@@ -1,0 +1,1045 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.8.9)  15 SEP 2011 10:59
+entering extended mode
+**ref_statIII.tex
+("P:\Mes Documents\Cours\Stat_III\polycopie\ref_statIII.tex"
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+(C:\EID\Latex\MiKTeX\tex\latex\base\report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(C:\EID\Latex\MiKTeX\tex\latex\base\size12.clo
+File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(C:\EID\Latex\MiKTeX\tex\latex\graphics\graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\EID\Latex\MiKTeX\tex\latex\graphics\keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(C:\EID\Latex\MiKTeX\tex\latex\graphics\graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\EID\Latex\MiKTeX\tex\latex\graphics\trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(C:\EID\Latex\MiKTeX\tex\latex\00miktex\graphics.cfg
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(C:\EID\Latex\MiKTeX\tex\latex\pdftex-def\pdftex.def
+File: pdftex.def 2011/04/25 v0.06b Graphics/color for pdfTeX
+
+(C:\EID\Latex\MiKTeX\tex\generic\oberdiek\infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+(C:\EID\Latex\MiKTeX\tex\generic\oberdiek\ltxcmds.sty
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(C:\EID\Latex\MiKTeX\tex\latex\base\fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(C:\EID\Latex\MiKTeX\tex\latex\base\t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+(C:\EID\Latex\MiKTeX\tex\generic\babel\babel.sty
+Package: babel 2008/07/06 v3.8l The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\EID\Latex\MiKTeX\tex\latex\00miktex\bblopts.cfg
+File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
+)
+(C:\EID\Latex\MiKTeX\tex\generic\babel\frenchb.ldf
+Language: frenchb 2009/03/16 v2.3d French support from the babel system
+
+(C:\EID\Latex\MiKTeX\tex\generic\babel\babel.def
+File: babel.def 2008/07/06 v3.8l Babel common definitions
+\babel@savecnt=\count89
+\U@D=\dimen105
+)
+Package babel Info: Making : an active character on input line 120.
+Package babel Info: Making ; an active character on input line 121.
+Package babel Info: Making ! an active character on input line 122.
+Package babel Info: Making ? an active character on input line 123.
+\FB@Mht=\dimen106
+\std@mcc=\count90
+\dec@mcc=\count91
+\parindentFFN=\dimen107
+
+*************************************
+* Local config file frenchb.cfg used
+*
+(C:\EID\Latex\MiKTeX\tex\generic\babel\frenchb.cfg)))
+(C:\EID\Latex\MiKTeX\tex\latex\carlisle\scalefnt.sty)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty"
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+) (C:\EID\Latex\MiKTeX\tex\latex\ams\math\amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip52
+
+For additional information on amsmath, use the `?' option.
+(C:\EID\Latex\MiKTeX\tex\latex\ams\math\amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(C:\EID\Latex\MiKTeX\tex\latex\ams\math\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks15
+\ex@=\dimen108
+))
+(C:\EID\Latex\MiKTeX\tex\latex\ams\math\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen109
+)
+(C:\EID\Latex\MiKTeX\tex\latex\ams\math\amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count92
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count93
+\leftroot@=\count94
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count95
+\DOTSCASE@=\count96
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen110
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count97
+\c@MaxMatrixCols=\count98
+\dotsspace@=\muskip10
+\c@parentequation=\count99
+\dspbrk@lvl=\count100
+\tag@help=\toks16
+\row@=\count101
+\column@=\count102
+\maxfields@=\count103
+\andhelp@=\toks17
+\eqnshift@=\dimen111
+\alignsep@=\dimen112
+\tagshift@=\dimen113
+\tagwidth@=\dimen114
+\totwidth@=\dimen115
+\lineht@=\dimen116
+\@envbody=\toks18
+\multlinegap=\skip53
+\multlinetaggap=\skip54
+\mathdisplay@stack=\toks19
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(C:\EID\Latex\MiKTeX\tex\latex\amsfonts\amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\frontendlayer\tikz
+.sty"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgf.sty
+"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfrcs.s
+ty"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfuti
+l-common.tex"
+\pgfutil@everybye=\toks20
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfuti
+l-latex.def"
+\pgfutil@abb=\box28
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\ms\everyshi.sty"
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfrcs
+.code.tex"
+Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
+))
+Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\basiclayer\pgfcore
+.sty"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\systemlayer\pgfsys
+.sty"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfs
+ys.code.tex"
+Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkey
+s.code.tex"
+\pgfkeys@pathtoks=\toks21
+\pgfkeys@temptoks=\toks22
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkey
+sfiltered.code.tex"
+\pgfkeys@tmptoks=\toks23
+))
+\pgf@x=\dimen117
+\pgf@y=\dimen118
+\pgf@xa=\dimen119
+\pgf@ya=\dimen120
+\pgf@xb=\dimen121
+\pgf@yb=\dimen122
+\pgf@xc=\dimen123
+\pgf@yc=\dimen124
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count104
+\c@pgf@countb=\count105
+\c@pgf@countc=\count106
+\c@pgf@countd=\count107
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgf.
+cfg"
+File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
+)
+Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfs
+ys-pdftex.def"
+File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfs
+ys-common-pdf.def"
+File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
+)))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfs
+yssoftpath.code.tex"
+File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
+\pgfsyssoftpath@smallbuffer@items=\count108
+\pgfsyssoftpath@bigbuffer@items=\count109
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\systemlayer\pgfs
+ysprotocol.code.tex"
+File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
+))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(C:\EID\Latex\MiKTeX\tex\latex\00miktex\color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+re.code.tex"
+Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmath.cod
+e.tex"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathcalc
+.code.tex"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathutil
+.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathpars
+er.code.tex"
+\pgfmath@dimen=\dimen125
+\pgfmath@count=\count110
+\pgfmath@box=\box29
+\pgfmath@toks=\toks24
+\pgfmath@stack@operand=\toks25
+\pgfmath@stack@operation=\toks26
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.code.tex"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.basic.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.trigonometric.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.random.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.comparison.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.base.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.round.code.tex")
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfunc
+tions.misc.code.tex")))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\math\pgfmathfloa
+t.code.tex"
+\c@pgfmathroundto@lastzeros=\count111
+))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+repoints.code.tex"
+File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
+\pgf@picminx=\dimen126
+\pgf@picmaxx=\dimen127
+\pgf@picminy=\dimen128
+\pgf@picmaxy=\dimen129
+\pgf@pathminx=\dimen130
+\pgf@pathmaxx=\dimen131
+\pgf@pathminy=\dimen132
+\pgf@pathmaxy=\dimen133
+\pgf@xx=\dimen134
+\pgf@xy=\dimen135
+\pgf@yx=\dimen136
+\pgf@yy=\dimen137
+\pgf@zx=\dimen138
+\pgf@zy=\dimen139
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+repathconstruct.code.tex"
+File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
+\pgf@path@lastx=\dimen140
+\pgf@path@lasty=\dimen141
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+repathusage.code.tex"
+File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
+\pgf@shorten@end@additional=\dimen142
+\pgf@shorten@start@additional=\dimen143
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+rescopes.code.tex"
+File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
+\pgfpic=\box30
+\pgf@hbox=\box31
+\pgf@layerbox@main=\box32
+\pgf@picture@serial@count=\count112
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+regraphicstate.code.tex"
+File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
+\pgflinewidth=\dimen144
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+retransformations.code.tex"
+File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
+\pgf@pt@x=\dimen145
+\pgf@pt@y=\dimen146
+\pgf@pt@temp=\dimen147
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+requick.code.tex"
+File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+reobjects.code.tex"
+File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+repathprocessing.code.tex"
+File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+rearrows.code.tex"
+File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+reshade.code.tex"
+File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
+\pgf@max=\dimen148
+\pgf@sys@shading@range@num=\count113
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+reimage.code.tex"
+File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+reexternal.code.tex"
+File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
+\pgfexternal@startupbox=\box33
+))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+relayers.code.tex"
+File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+retransparency.code.tex"
+File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\basiclayer\pgfco
+repatterns.code.tex"
+File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
+)))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodul
+eshapes.code.tex"
+File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
+\pgfnodeparttextbox=\box34
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodul
+eplot.code.tex"
+File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfc
+omp-version-0-65.sty"
+Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
+\pgf@nodesepstart=\dimen149
+\pgf@nodesepend=\dimen150
+)
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\compatibility\pgfc
+omp-version-1-18.sty"
+Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
+))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgffor.s
+ty"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\latex\pgf\utilities\pgfkeys.
+sty"
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgfkey
+s.code.tex"))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\utilities\pgffor
+.code.tex"
+Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
+\pgffor@iter=\dimen151
+\pgffor@skip=\dimen152
+\pgffor@stack=\toks27
+\pgffor@toks=\toks28
+))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\ti
+kz\tikz.code.tex"
+Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflib
+raryplothandlers.code.tex"
+File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
+\pgf@plot@mark@count=\count114
+\pgfplotmarksize=\dimen153
+)
+\tikz@lastx=\dimen154
+\tikz@lasty=\dimen155
+\tikz@lastxsaved=\dimen156
+\tikz@lastysaved=\dimen157
+\tikzleveldistance=\dimen158
+\tikzsiblingdistance=\dimen159
+\tikz@figbox=\box35
+\tikz@tempbox=\box36
+\tikztreelevel=\count115
+\tikznumberofchildren=\count116
+\tikznumberofcurrentchild=\count117
+\tikz@fig@count=\count118
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\modules\pgfmodul
+ematrix.code.tex"
+File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
+\pgfmatrixcurrentrow=\count119
+\pgfmatrixcurrentcolumn=\count120
+\pgf@matrix@numberofcolumns=\count121
+)
+\tikz@expandcount=\count122
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\ti
+kz\libraries\tikzlibrarytopaths.code.tex"
+File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
+)))
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\frontendlayer\ti
+kz\libraries\tikzlibraryarrows.code.tex"
+File: tikzlibraryarrows.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\generic\pgf\libraries\pgflib
+raryarrows.code.tex"
+File: pgflibraryarrows.code.tex 2008/10/27 v2.10 (rcs-revision 1.9)
+\arrowsize=\dimen160
+))
+("P:\Mes Documents\Cours\Stat_III\polycopie\mydef_stat.tex"
+\c@theo=\count123
+\c@exo=\count124
+\c@defi=\count125
+)
+("P:\Mes Documents\Cours\Stat_III\polycopie\ref_statIII.aux"
+("P:\Mes Documents\Cours\Stat_III\polycopie\titre.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\introduction.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\va_continues.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\normale.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\student.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\chi2.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\estimation.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\tests.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\nonparametrique.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\chi2test.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\regression.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\tables.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\logiciels.aux"))
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+
+("Q:\Application Data\Local\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count126
+\scratchdimen=\dimen161
+\scratchbox=\box37
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen162
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks30
+)
+LaTeX Info: Redefining \degres on input line 30.
+LaTeX Info: Redefining \dots on input line 30.
+LaTeX Info: Redefining \up on input line 30.
+ ABD: EveryShipout initializing macros
+("P:\Mes Documents\Cours\Stat_III\polycopie\titre.tex"
+LaTeX Font Info:    Try loading font information for U+msa on input line 1.
+
+(C:\EID\Latex\MiKTeX\tex\latex\amsfonts\umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 1.
+
+(C:\EID\Latex\MiKTeX\tex\latex\amsfonts\umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+<../fig/HEG_fr_ang.pdf, id=4, 221.59027pt x 54.12701pt>
+File: ../fig/HEG_fr_ang.pdf Graphic file (type pdf)
+
+<use ../fig/HEG_fr_ang.pdf>
+Package pdftex.def Info: ../fig/HEG_fr_ang.pdf used on input line 1.
+(pdftex.def)             Requested size: 155.11212pt x 37.88863pt.
+ [1
+
+
+{Q:/Application Data/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <P:/Mes Documen
+ts/Cours/Stat_III/fig/HEG_fr_ang.pdf>] [1]
+("P:\Mes Documents\Cours\Stat_III\polycopie\ref_statIII.bbl") [2
+
+]
+("P:\Mes Documents\Cours\Stat_III\polycopie\ref_statIII.toc" [3
+
+] [4])
+\tf@toc=\write4
+) [5]
+("P:\Mes Documents\Cours\Stat_III\polycopie\introduction.tex"
+Chapitre 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--16
+
+ []
+
+[1
+
+
+
+] <../fig/inference.pdf, id=41, 330.23375pt x 212.795pt>
+File: ../fig/inference.pdf Graphic file (type pdf)
+
+<use ../fig/inference.pdf>
+Package pdftex.def Info: ../fig/inference.pdf used on input line 52.
+(pdftex.def)             Requested size: 198.14177pt x 127.67796pt.
+) [2 <P:/Mes Documents/Cours/Stat_III/fig/inference.pdf>] ("P:\Mes Documents\Co
+urs\Stat_III\polycopie\va_continues.tex"
+Chapitre 2.
+[3
+
+
+
+] [4]) [5] ("P:\Mes Documents\Cours\Stat_III\polycopie\normale.tex"
+<../fig/norm_0_1.pdf, id=66, 518.93875pt x 517.935pt>
+File: ../fig/norm_0_1.pdf Graphic file (type pdf)
+
+<use ../fig/norm_0_1.pdf>
+Package pdftex.def Info: ../fig/norm_0_1.pdf used on input line 5.
+(pdftex.def)             Requested size: 259.46873pt x 258.96686pt.
+ [6
+
+
+ <P:/Mes Documents/Cours/Stat_III/fig/norm_0_1.pdf>] <../fig/norm_table.pdf, id
+=78, 518.93875pt x 517.935pt>
+File: ../fig/norm_table.pdf Graphic file (type pdf)
+
+<use ../fig/norm_table.pdf>
+Package pdftex.def Info: ../fig/norm_table.pdf used on input line 26.
+(pdftex.def)             Requested size: 259.46873pt x 258.96686pt.
+
+<../fig/normalesMu0.pdf, id=79, 518.93875pt x 517.935pt>
+File: ../fig/normalesMu0.pdf Graphic file (type pdf)
+
+<use ../fig/normalesMu0.pdf>
+Package pdftex.def Info: ../fig/normalesMu0.pdf used on input line 31.
+(pdftex.def)             Requested size: 207.57182pt x 207.17032pt.
+
+<../fig/normalesV1.pdf, id=80, 518.93875pt x 517.935pt>
+File: ../fig/normalesV1.pdf Graphic file (type pdf)
+
+<use ../fig/normalesV1.pdf>
+Package pdftex.def Info: ../fig/normalesV1.pdf used on input line 32.
+(pdftex.def)             Requested size: 207.57182pt x 207.17032pt.
+ [7 <P:/Mes Documents/Cours/Stat_III/fig/norm_table.pdf> <P:/Mes Documents/Cour
+s/Stat_III/fig/normalesMu0.pdf> <P:/Mes Documents/Cours/Stat_III/fig/normalesV1
+.pdf>]
+<../fig/Rnormal.pdf, id=98, 505.89pt x 504.88625pt>
+File: ../fig/Rnormal.pdf Graphic file (type pdf)
+ <use ../fig/Rnormal.pdf>
+Package pdftex.def Info: ../fig/Rnormal.pdf used on input line 94.
+(pdftex.def)             Requested size: 202.3524pt x 201.95091pt.
+
+[8]) [9 <P:/Mes Documents/Cours/Stat_III/fig/Rnormal.pdf>]
+("P:\Mes Documents\Cours\Stat_III\polycopie\student.tex"
+<../fig/normalevsStudent.pdf, id=110, 505.89pt x 504.88625pt>
+File: ../fig/normalevsStudent.pdf Graphic file (type pdf)
+
+<use ../fig/normalevsStudent.pdf>
+Package pdftex.def Info: ../fig/normalevsStudent.pdf used on input line 10.
+(pdftex.def)             Requested size: 354.12057pt x 353.41795pt.
+ [10
+
+
+ <P:/Mes Documents/Cours/Stat_III/fig/normalevsStudent.pdf>]) [11] ("P:\Mes Doc
+uments\Cours\Stat_III\polycopie\chi2.tex"
+<../fig/chisquare.pdf, id=121, 492.84125pt x 491.8375pt>
+File: ../fig/chisquare.pdf Graphic file (type pdf)
+
+<use ../fig/chisquare.pdf>
+Package pdftex.def Info: ../fig/chisquare.pdf used on input line 26.
+(pdftex.def)             Requested size: 344.98651pt x 344.28389pt.
+ [12
+
+
+ <P:/Mes Documents/Cours/Stat_III/fig/chisquare.pdf>] <../fig/chi2b.pdf, id=128
+, 273.02pt x 148.555pt>
+File: ../fig/chi2b.pdf Graphic file (type pdf)
+ <use ../fig/chi2b.pdf>
+Package pdftex.def Info: ../fig/chi2b.pdf used on input line 49.
+(pdftex.def)             Requested size: 284.52756pt x 154.82675pt.
+)
+[13 <P:/Mes Documents/Cours/Stat_III/fig/chi2b.pdf>]
+("P:\Mes Documents\Cours\Stat_III\polycopie\estimation.tex"
+Chapitre 3.
+[14
+
+
+
+] <../fig/cible_biais.pdf, id=151, 106.3975pt x 110.4125pt>
+File: ../fig/cible_biais.pdf Graphic file (type pdf)
+
+<use ../fig/cible_biais.pdf>
+Package pdftex.def Info: ../fig/cible_biais.pdf used on input line 72.
+(pdftex.def)             Requested size: 142.26378pt x 147.64027pt.
+
+<../fig/cible_abs_biais.pdf, id=153, 89.33376pt x 109.40875pt>
+File: ../fig/cible_abs_biais.pdf Graphic file (type pdf)
+
+<use ../fig/cible_abs_biais.pdf>
+Package pdftex.def Info: ../fig/cible_abs_biais.pdf used on input line 72.
+(pdftex.def)             Requested size: 113.81102pt x 139.39328pt.
+ [15 <P:/Mes Documents/Cours/Stat_III/fig/cible_biais.pdf> <P:/Mes Documents/Co
+urs/Stat_III/fig/cible_abs_biais.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 118--124
+
+ []
+
+[16] [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
+
+ []
+
+[19] <../fig/central-limite.pdf, id=181, 470.75874pt x 595.22375pt>
+File: ../fig/central-limite.pdf Graphic file (type pdf)
+
+<use ../fig/central-limite.pdf>
+Package pdftex.def Info: ../fig/central-limite.pdf used on input line 281.
+(pdftex.def)             Requested size: 398.33858pt x 503.6629pt.
+ [20] [21 <P:/Mes Documents/Cours/Stat_III/fig/central-limite.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 337--338
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--359
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
+
+ []
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 362--363
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 367--368
+
+ []
+
+File: ../fig/cible_abs_biais.pdf Graphic file (type pdf)
+<use ../fig/cible_abs_biais.pdf>
+Package pdftex.def Info: ../fig/cible_abs_biais.pdf used on input line 420.
+(pdftex.def)             Requested size: 125.06639pt x 153.17117pt.
+
+<../fig/cible_interv.pdf, id=200, 86.3225pt x 89.33376pt>
+File: ../fig/cible_interv.pdf Graphic file (type pdf)
+
+<use ../fig/cible_interv.pdf>
+Package pdftex.def Info: ../fig/cible_interv.pdf used on input line 422.
+(pdftex.def)             Requested size: 120.85063pt x 125.06639pt.
+ [23]
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
+
+ []
+
+[24 <P:/Mes Documents/Cours/Stat_III/fig/cible_interv.pdf>]
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 537.
+
+
+(C:\EID\Latex\MiKTeX\tex\latex\base\t1cmss.fd
+File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+) [25]
+Overfull \hbox (0.10281pt too wide) in paragraph at lines 595--596
+\T1/cmr/m/n/12 Comme l'in-ter-valle de confiance ne com-prend pas la va-leur de
+ 1lt, vous concluez
+ []
+
+[26] [27]
+Underfull \hbox (badness 10000) in paragraph at lines 707--713
+
+ []
+
+<../fig/exICstudent.pdf, id=223, 505.89pt x 504.88625pt>
+File: ../fig/exICstudent.pdf Graphic file (type pdf)
+
+<use ../fig/exICstudent.pdf>
+Package pdftex.def Info: ../fig/exICstudent.pdf used on input line 713.
+(pdftex.def)             Requested size: 252.94437pt x 252.44249pt.
+ [28 <P:/Mes Documents/Cours/Stat_III/fig/exICstudent.pdf>] [29] [30]
+Underfull \hbox (badness 10000) in paragraph at lines 847--848
+
+ []
+
+<../fig/interv_stat_asym.pdf, id=238, 329.23pt x 143.53625pt>
+File: ../fig/interv_stat_asym.pdf Graphic file (type pdf)
+
+<use ../fig/interv_stat_asym.pdf>
+Package pdftex.def Info: ../fig/interv_stat_asym.pdf used on input line 857.
+(pdftex.def)             Requested size: 284.52756pt x 124.04982pt.
+ [31 <P:/Mes Documents/Cours/Stat_III/fig/interv_stat_asym.pdf>] [32]) [33]
+("P:\Mes Documents\Cours\Stat_III\polycopie\tests.tex"
+Chapitre 4.
+<../fig/inference_2.pdf, id=255, 344.28625pt x 214.8025pt>
+File: ../fig/inference_2.pdf Graphic file (type pdf)
+
+<use ../fig/inference_2.pdf>
+Package pdftex.def Info: ../fig/inference_2.pdf used on input line 10.
+(pdftex.def)             Requested size: 256.0748pt x 159.76749pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
+
+ []
+
+[34
+
+
+
+ <P:/Mes Documents/Cours/Stat_III/fig/inference_2.pdf>] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
+
+ []
+
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 115--116
+ [] 
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 122--138
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--157
+
+ []
+
+[37] <../fig/alpha_beta.pdf, id=280, 285.065pt x 153.57375pt>
+File: ../fig/alpha_beta.pdf Graphic file (type pdf)
+
+<use ../fig/alpha_beta.pdf>
+Package pdftex.def Info: ../fig/alpha_beta.pdf used on input line 237.
+(pdftex.def)             Requested size: 312.9803pt x 168.61293pt.
+
+<../fig/alpha_beta_2.pdf, id=281, 285.065pt x 153.57375pt>
+File: ../fig/alpha_beta_2.pdf Graphic file (type pdf)
+
+<use ../fig/alpha_beta_2.pdf>
+Package pdftex.def Info: ../fig/alpha_beta_2.pdf used on input line 243.
+(pdftex.def)             Requested size: 312.9803pt x 168.61293pt.
+
+<../fig/alpha_beta_3.pdf, id=282, 285.065pt x 153.57375pt>
+File: ../fig/alpha_beta_3.pdf Graphic file (type pdf)
+
+<use ../fig/alpha_beta_3.pdf>
+Package pdftex.def Info: ../fig/alpha_beta_3.pdf used on input line 249.
+(pdftex.def)             Requested size: 312.9803pt x 168.61293pt.
+ [38 <P:/Mes Documents/Cours/Stat_III/fig/alpha_beta.pdf>] [39 <P:/Mes Document
+s/Cours/Stat_III/fig/alpha_beta_2.pdf> <P:/Mes Documents/Cours/Stat_III/fig/alp
+ha_beta_3.pdf>] [40] [41]
+Underfull \hbox (badness 10000) in paragraph at lines 364--365
+
+ []
+
+[42] [43]
+Underfull \hbox (badness 10000) in paragraph at lines 455--457
+
+ []
+
+[44] [45] <../fig/p_value_4.pdf, id=326, 392.46625pt x 194.7275pt>
+File: ../fig/p_value_4.pdf Graphic file (type pdf)
+
+<use ../fig/p_value_4.pdf>
+Package pdftex.def Info: ../fig/p_value_4.pdf used on input line 543.
+(pdftex.def)             Requested size: 312.9803pt x 155.29787pt.
+ [46 <P:/Mes Documents/Cours/Stat_III/fig/p_value_4.pdf>] [47] [48] <../fig/tes
+t_t_vs_x.pdf, id=346, 480.79625pt x 364.36125pt>
+File: ../fig/test_t_vs_x.pdf Graphic file (type pdf)
+
+<use ../fig/test_t_vs_x.pdf>
+Package pdftex.def Info: ../fig/test_t_vs_x.pdf used on input line 626.
+(pdftex.def)             Requested size: 341.43306pt x 258.75389pt.
+ [49 <P:/Mes Documents/Cours/Stat_III/fig/test_t_vs_x.pdf>] <../fig/test_vs_int
+erval.pdf, id=361, 366.36874pt x 154.5775pt>
+File: ../fig/test_vs_interval.pdf Graphic file (type pdf)
+
+<use ../fig/test_vs_interval.pdf>
+Package pdftex.def Info: ../fig/test_vs_interval.pdf used on input line 656.
+(pdftex.def)             Requested size: 284.52756pt x 120.05339pt.
+ [50 <P:/Mes Documents/Cours/Stat_III/fig/test_vs_interval.pdf>]) [51]
+("P:\Mes Documents\Cours\Stat_III\polycopie\nonparametrique.tex"
+Chapitre 5.
+) [52
+
+
+
+] ("P:\Mes Documents\Cours\Stat_III\polycopie\chi2test.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 50--51
+
+ []
+
+[53
+
+
+] [54]
+Overfull \hbox (67.66078pt too wide) in paragraph at lines 118--123
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+) [55] ("P:\Mes Documents\Cours\Stat_III\polycopie\regression.tex"
+Chapitre 6.
+[56
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 71--73
+
+ []
+
+[57]
+Overfull \hbox (32.18556pt too wide) in paragraph at lines 79--86
+[][] 
+ []
+
+[58]
+Overfull \hbox (32.18556pt too wide) in paragraph at lines 160--175
+[] 
+ []
+
+[59] [60]
+Overfull \hbox (0.31421pt too wide) in paragraph at lines 215--216
+[]\T1/cmr/m/n/12 Les étapes sui-vantes montrent com-ment ef-fec-tuer une ana-ly
+se de ré-gres-sion li-néaire simple : 
+ []
+
+) [61] ("P:\Mes Documents\Cours\Stat_III\polycopie\tables.tex"
+Annexe A.
+[62
+
+
+
+]
+File: ../fig/norm_table.pdf Graphic file (type pdf)
+ <use ../fig/norm_table.pdf>
+Package pdftex.def Info: ../fig/norm_table.pdf used on input line 16.
+(pdftex.def)             Requested size: 129.73436pt x 129.48343pt.
+
+("P:\Mes Documents\Cours\Stat_III\polycopie\tableNormale.tex") [63]
+("P:\Mes Documents\Cours\Stat_III\polycopie\tableChiCarre.tex"
+Overfull \hbox (44.53128pt too wide) in paragraph at lines 4--58
+ [] 
+ []
+
+) [64] ("P:\Mes Documents\Cours\Stat_III\polycopie\tableStudent.tex")) [65]
+("P:\Mes Documents\Cours\Stat_III\polycopie\logiciels.tex"
+Annexe B.
+[66
+
+
+
+] [67] [68]
+Overfull \hbox (72.31728pt too wide) in paragraph at lines 155--160
+[][] 
+ []
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 170.
+
+(C:\EID\Latex\MiKTeX\tex\latex\base\t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Overfull \hbox (475.46051pt too wide) in paragraph at lines 174--174
+ []\T1/cmtt/m/n/12 y <- c( -0.04,  0.11, -0.10,  0.05,  0.20, -0.05, -0.04,  0.
+13,  0.01,  0.05,-0.05,  0.04, -0.03,  0.11,  0.05, -0.03, -0.21,  0.19,  0.04,
+ -0.14)[] 
+ []
+
+
+Overfull \hbox (24.79556pt too wide) in paragraph at lines 174--174
+ []\T1/cmtt/m/n/12 p= pchisq( var(y)*(length(y)-1)/sigmacarre, length(y)-1,lowe
+r.tail=FALSE)[] 
+ []
+
+
+Overfull \hbox (61.83652pt too wide) in paragraph at lines 210--210
+ []\T1/cmtt/m/n/12 colnames(amendes)<-c("Vitesse","Parcage","Feux grillÃ©s","Se
+rvice_AP", "Autre")[] 
+ []
+
+[69]
+Overfull \hbox (37.14255pt too wide) in paragraph at lines 227--227
+ []\T1/cmtt/m/n/12 proportion <- c(0.13, 0.16, 0.21, 0.18, 0.18, 0.19, 0.15, 0.
+17, 0.13, 0.11)[] 
+ []
+
+
+Overfull \hbox (24.79556pt too wide) in paragraph at lines 227--227
+ []\T1/cmtt/m/n/12 cor.test(taille, proportion, method = "pearson", alternative
+ = "greater")[] 
+ []
+
+) [70] ("P:\Mes Documents\Cours\Stat_III\polycopie\ref_statIII.aux"
+("P:\Mes Documents\Cours\Stat_III\polycopie\titre.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\introduction.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\va_continues.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\normale.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\student.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\chi2.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\estimation.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\tests.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\nonparametrique.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\chi2test.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\regression.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\tables.aux")
+("P:\Mes Documents\Cours\Stat_III\polycopie\logiciels.aux")) )
+(\end occurred inside a group at level 2)
+
+### simple group (level 2) entered at line 860 ({)
+### simple group (level 1) entered at line 617 ({)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 11787 strings out of 494053
+ 220853 string characters out of 3151819
+ 278624 words of memory out of 3000000
+ 14697 multiletter control sequences out of 15000+200000
+ 29184 words of font info for 74 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 56i,15n,75p,737b,975s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
+\ec\dpi600\ectt1200.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljfour\j
+knappen\ec\dpi600\ecbx1000.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\l
+jfour\jknappen\ec\dpi600\ecss1200.pk> <Q:\Application Data\Local\MiKTeX\2.9\fon
+ts\pk\ljfour\jknappen\ec\dpi600\ecrm0800.pk> <Q:\Application Data\Local\MiKTeX\
+2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti0800.pk> <Q:\Application Data\Local\
+MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <Q:\Application Data
+\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1200.pk> <Q:\Applicati
+on Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1200.pk> <Q:\Ap
+plication Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk>
+ <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1
+728.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi60
+0\ecbx1200.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
+c\dpi600\ecti1200.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
+appen\ec\dpi600\ecrm1200.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts\pk\ljf
+our\jknappen\ec\dpi600\ecbx2488.pk> <Q:\Application Data\Local\MiKTeX\2.9\fonts
+\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <Q:\Application Data\Local\MiKTeX\2.
+9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1095.pk> <Q:\Application Data\Local\Mi
+KTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk><C:/EID/Latex/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmex10.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public
+/amsfonts/cmextra/cmex8.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/
+EID/Latex/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/EID/Latex/MiKTeX/
+fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/EID/Latex/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+12.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/EID/Lat
+ex/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/EID/Latex/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmsy10.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public/amsfo
+nts/cm/cmsy6.pfb><C:/EID/Latex/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+<C:/EID/Latex/MiKTeX/fonts/type1/public/amsfonts/latxfont/linew10.pfb><C:/EID/L
+atex/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on ref_statIII.pdf (76 pages, 782287 bytes).
+PDF statistics:
+ 1169 PDF objects out of 1200 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+

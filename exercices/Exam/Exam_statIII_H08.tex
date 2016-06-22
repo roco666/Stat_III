@@ -1,0 +1,375 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage{heg_exam}
+
+
+\begin{document}
+\title{EXAMENS MODULAIRES}
+\semestre{hiver 2008}
+\author{Sacha Varone}
+\departement{\'Economie d'entreprise}
+\module{Branches instrumentales}
+\cours{Statistiques III}
+\date{13 Janvier 2009}
+\indication{Veuillez laisser cet examen agrafé. Si vous choisissez d'enlever l'agrafe, tout manque de page sera sous votre entière responsabilité. La précision de vos calculs doit être de 4 chiffres après la virgule.\\[5mm]
+Formulaire de 3 pages (recto-verso) autorisé et calculatrice.}
+\nomexaminateur{Varone}
+\prenomexaminateur{Sacha}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%             Examen Stat III                       %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Compréhension: 4 points} % IC
+Le nombre de skieurs sur les pentes enneigées de Nax lors des dimanches ensoleillés suit une loi normale $\norm (1000,50)$.
+
+\begin{enumerate}
+	\item (2 pts) Dimanche prochain sera une journée ensoleillée. Le manager Opti Mist suppose que le nombre moyen de skieurs sera supérieur à 1000. Son frère, le manager Pessi Mist suppose que le nombre moyen de skieurs sera inférieur à 1000. L'un d'eux a-t-il une plus forte probabilité d'avoir raison ? Justifiez.
+\vspace{6cm}
+
+%	\begin{rep}
+%	Les deux probabilités sont équivalentes car la loi normale est symétrique. Ces probabilités valent 0.5 chacune.
+%	\end{rep}
+	
+	\item (2 pts) Un échantillon de 10 dimanches ensoleillés a servi à calculer l'intervalle de confiance à 90\% suivant: $[910;990]$. Interprétez ce résultat, en indiquant ce que signifie un tel intervalle de confiance.
+	
+%	\begin{rep}
+%	Sur tous les échantillons possibles de taille 10, 90\% comprennent la vraie moyenne (ici supposée 1000). Comme cet intervalle de confiance ne comprend pas la vraie moyenne, et en supposant qu'effectivement le nombre de skieurs par dimanche ensoleillé suive une loi $\norm (1000,50)$, alors cet intervalle de confiance fait partie des 10\% ne comprenant pas la véritable moyenne $\mu=1000$.
+%	\end{rep}
+	
+\end{enumerate}
+
+\newpage
+\section{TCS: 7 points} % IC pour une moyenne, $\mu$ et $\sigma$ inconnus
+% Groebner, 7th edition, p.342
+Un responsable de centre d'interventions du TCS désire connaître la durée moyenne des interventions, dont la distribution suit une loi normale. Il relève la durée de 25 interventions de manière aléatoire, et calcule une durée moyenne de  30 minutes, avec un écart type de 10 minutes. Votre tâche est de l'aider à calculer un intervalle de confiance à 95\% pour la durée moyenne d'une intervention.
+
+
+%\begin{rep}
+\begin{enumerate}
+  \item (1 pt) Quel est le paramètre d'intérêt ?
+\vspace{2cm}
+%		\\La population d'intérêt est l'ensemble de toutes les interventions et le paramètre d'intérêt est la durée moyenne de toutes les interventions.
+  \item (1 pt) Quelle loi (distribution) suit la statistique de test, et sous quelle condition ?
+\vspace{3cm}
+%  \\ la distribution de Student, ou $t$-distribution, qui demande une population suivant une loi normale.
+  \item (2 pt) Quelles sont les valeurs critiques ?
+\vspace{2cm}
+% Nombre de degrés de liberté vaut 25-1=24. Comme l'intervalle de confiance a un niveau de confiance de 0.95, cela signifie
+%  \\ $t_{\alpha/2,dl}=t_{0.025,24}=2.0639$ et $t_{1-\alpha/2,dl}=t_{0.975,24}=-2.0639$
+  \item (1 pt) Quelles sont les statistiques, et leur valeur, calculées sur l'échantillon ?
+\vspace{2cm}
+%		\\ La durée moyenne de l'échantillon est de $\bar{x}=30$ minutes et l'écart type est de $s=10$ minutes.
+  \item (1 pt) Quelle est l'erreur standard de la moyenne ? 
+\vspace{2cm}
+%		$$\frac{s}{\sqrt{25}}=\frac{10}{\sqrt{25}}=2$$
+  \item (1 pt) Quelle est l'intervalle de confiance ?
+%		$$\bar{x}\pm t\frac{s}{\sqrt{n}}=30\pm 2.0639\times 2 = 30\pm 4.1278 = [25.8722;34.1278]$$
+\end{enumerate}
+%\end{rep}
+
+\newpage
+\section{Fertilisant (11 points)} % IC pour une variance, $\mu$ et $\sigma$ inconnus et Test sur variance
+% Groebner, 7th edition, p.
+Un producteur de céréales utilise un nouveau fertilisant, qui devrait permettre de une faible variabilité de la production annuelle. Il fait un test sur 12 champs d'1 hectare et trouve les rendements suivant par hectare, qui sont issus d'une loi normale:
+
+\begin{center}
+\begin{tabular}{cccc}
+	89 & 85 & 91 & 95\\
+	95 & 97 & 81 & 89\\
+	94 & 86 & 87 & 82
+\end{tabular}
+\end{center}
+
+\'A partir de ces données sont calculées les valeurs suivantes:
+\\{\it médiane = 89; moyenne = 89.25; variance = 27.84}
+
+
+\begin{enumerate}
+	\item (8 pts) Le fabricant du nouvel engrais assure que l'écart type  des rendements est de 6 par hectare. Le producteur peut-il dire, avec un niveau de confiance de 90\%, que  le nouvel engrais génère une telle variabilité de la production ? 
+
+%	\begin{rep}
+\begin{enumerate}
+	\item (1 pt) Quel est le paramètre d'intérêt ?
+\vspace{2cm} 
+%	\\Le paramètre d'intérêt est l'écart type du rendement.
+	\item (1 pt) Quelles sont les hypothèses nulles et alternatives ?
+\vspace{2cm}
+%\begin{eqnarray*}
+%	H_0 &:& \sigma^2=36\\
+%	H_1 &:& \sigma^2\not=36
+%\end{eqnarray*}
+%	\item Le niveau de signification est de $\alpha = 0.1$.
+  \item (1 pt) Quelle loi (distribution) suit la statistique de test, et sous quelle condition ?
+\vspace{3cm}
+%	\\La statistique de test suit une loi du $\ki^2$ à 11 degrés de liberté
+% La population doit suivre une loi normale.
+  \item (1 pt) Déterminez la ou les valeur(s) critique(s).
+\vspace{2cm}
+%	$$$\ki^2_{1-\alpha/2,n-1}=\ki^2_{0.95,11}=4.5748$\quad \ki^2_{\alpha/2,n-1}=\ki^2_{0.05,11}=19.6751$$
+  \item (1 pt) Déterminez la région de rejet de l'hypothèse nulle.
+\vspace{2cm}
+%	La région de rejet est donnée par toutes les valeurs inférieures à 
+%	$$\ki^2_{1-\alpha/2,n-1}=\ki^2_{0.95,11}=4.5748$$
+% et toutes les valeurs supérieures à 
+% $$ \ki^2_{\alpha/2,n-1}=\ki^2_{0.05,11}=19.6751$$
+  \item (1 pt) Que vaut la statistique de test ?
+\vspace{2cm}
+%	$s^2=27.84$ et 
+%	$$\ki^2 =\frac{(n-1)s^2}{\sigma^2}=8.5069$$
+  \item (1 pt) Rejetez-vous l'hypothèse nulle (Justifiez) ?
+\vspace{2cm}
+%	\\Comme $\ki^2_{0.95,11}=4.5748< \ki^2=8.5069 < 19.6751=\ki^2_{0.05,11}$, on ne peut pas rejeter $H_0$
+  \item (1 pt) Concluez
+\vspace{2cm}
+%	\item Ainsi, le producteur ne peut pas conclure à une diminution de la variabilité due au nouvel engrais. 
+\end{enumerate}
+%	\end{rep}
+
+	\item (3 pts) Calculez un intervalle de confiance à 90\% sur la variabilité de la production annuelle avec le nouvel engrais. Indiquez les étapes (au minimum les valeurs critiques et l'intervalle de confiance).\\
+{\it Indication: certains résultats de la partie précédente peuvent être repris}
+
+%	\begin{rep}
+%Valeurs critiques: 
+%	$$\ki^2_{1-\alpha/2,n-1}=\ki^2_{0.95,11}=4.5748$\quad \ki^2_{\alpha/2,n-1}=\ki^2_{0.05,11}=19.6751$
+
+%	En reprenant les données du point précédent, nous trouvons que l'intervalle de confiance à 90\% sur la variabilité de la production annuelle est le suivant:
+%	
+%	$$\frac{(n-1)s^2}{\ki^2_{0.95}}=\frac{(12-1)27.84}{19.6752}=15.56485
+%	\leq \sigma^2 \leq 
+%	\frac{(n-1)s^2}{\ki^2_{0.05}}=\frac{(12-1)27.84}{4.5748}=66.94063$$
+%	\end{rep}
+\end{enumerate}
+
+%\begin{verbatim}
+%x <- c(89, 85, 91, 95, 95, 97, 81, 89, 94, 86, 87, 83)
+%summary(x)
+%# chisq.test(x) non utilisable
+%\end{verbatim}
+
+\newpage
+\section{Course alpine (5 points)} % test de la médiane : test du rang signé de Wilcoxon
+% \cite{Groebner2006} ex 16.2 p. 673
+L'organisateur d'une course en montagne doit répartir les équipes médicales le long du parcours. Pour cela, il pense que la moitié des personnes nécessitent des soins avant 40 km de parcours, et l'autre moitié après 40 km de parcours. Il dispose des données de la précédente course, indiquant pour chacun des 7 coureurs ayant nécessité des soins le nombre de km parcourus. (Ces données ne proviennent pas d'une distribution normale).
+
+\centerline{31 48 23 56 28 29 44}
+
+Sur la base des ces données, l'organisateur a-t-il raison de penser que le 50\% des soins doivent être dispensés avant 40km, et 50\% après 40 km de course, avec un risque de première espèce de 0.1 ? (Justifiez et indiquez toutes les étapes)
+
+%	\begin{rep}
+%\begin{eqnarray*}
+%	H_0 &:& \tilde{\mu}=40\\
+%	H_1 &:& \tilde{\mu}\not= 40
+%\end{eqnarray*}
+%
+%$\begin{array}{cccccc}
+%\mbox{Valeur} & \mbox{Différence} & |\mbox{Différence}| & \mbox{Rang} & R+ & R-\\
+%31 & -9 & 9 & 3 & & 3\\
+%48 & 8 & 8 & 2 & 2 & \\
+%23 & -17 & 17 & 7 & & 7\\
+%56 & 16 & 16 & 6 & 6 & \\
+%28 & -12 & 12 & 5 & & 5\\
+%29 & -11 & 11 & 4 & & 4\\
+%44 & 4 & 4 & 1 & 1 & \\
+%\hline
+%& & & & W_{\mbox{inf}}=9 & W_{\mbox{sup}}=19
+%\end{array}$
+%
+%Il s'agit d'un test bilatéral, nous pouvons donc utiliser soit la somme des R+ soit la somme des R-. Nous avons $n=7$ différences non nulles et $\alpha=0.1$, ce qui donne des valeurs critiques de 3 et 25.\\
+%Comme $W_{\mbox{inf}}=9>3$ (ou $W_{\mbox{sup}}=19<25$), nous ne pouvons pas rejeter l'hypothèse nulle à un niveau de confiance de 0.9
+%
+%\begin{verbatim}
+%x <- c(31, 48, 23, 56, 28, 29, 44)
+%summary(x)
+%wilcox.test(x, alternative = "two.sided", mu=40, exact = TRUE, conf.level=0.9, conf.int = TRUE)
+%\end{verbatim}
+%
+%	\end{rep}
+
+\newpage
+\section{Indépendance (3 points)}
+% Résultat du test non paramétrique à interpréter 
+Un sondage portant sur la consultation des horoscopes publiés dans les journaux a fourni le tableau croisé suivant. La variable colonne ''Fréquence de lecture'' indique fréquence de consultation des horoscopes, et la variable ligne ''Niveau d'étude'' indique le niveau d'étude atteint.
+ 
+\begin{tabular}{r|cccc}
+& Jamais & Parfois & Souvent & Toujours\\
+\hline\\
+Obligatoire   &    84   &   50   &   44   &    16\\
+Secondaire    &    82   &   64   &   34   &    10\\
+Universitaire &    44   &   21   &    8   &     5
+\end{tabular}              
+
+Un test sur l'indépendance de ces deux variables a été fait à l'aide du logiciel R, dont le résultat est fourni ci-dessous.
+\'Ecrivez les hypothèses nulle et alternative, concluez en fonction du résultat et commentez. Le risque de première espèce est fixé à 10\%.
+
+\begin{verbatim}
+        Pearson's Chi-squared test
+
+data:  horoscope 
+X-squared = 10.6935, df = 6, p-value = 0.09833
+\end{verbatim}
+
+%\begin{rep}
+\begin{enumerate}
+ \item (1pt) Quelles sont les hypothèses nulle et alternatives ?
+ \vspace{2cm}
+%\begin{eqnarray*}
+%	H_0 &:& \mbox{''Niveau d'étude'' et ''Fréquence de lecture'' sont indépendantes}\\
+%	H_1 &:& \mbox{Les deux variables ne sont pas indépendantes}
+%\end{eqnarray*}
+ \item (1 pt) Sous quelle condition ce test est-il valide ?
+ \vspace{2cm}
+ % les cellules doivent avoir un effectif d'au moins 5
+ \item (1 pt) Quelle est votre conclusion ?
+%La p-valeur est inférieure au seuil critique spécifié. 
+%Il y a suffisamment d'évidence pour conclure que les deux variables sont ne sont pas indépendantes, avec un niveau de confiance de 90\%.
+%
+%\begin{verbatim}
+%horoscope <- matrix(c(84,50,44,16,82,64,34,10,44,21,8,5),ncol=4,byrow=TRUE)
+%rownames(horoscope)<-c("Obligatoire","Secondaire","Universitaire")
+%colnames(horoscope)<-c("Jamais","Parfois","Souvent","Toujours")
+%horoscope <- as.table(horoscope)
+%horoscope
+%chisq.test(horoscope)
+%\end{verbatim}
+\end{enumerate}
+%\end{rep}
+
+\newpage
+\section{Âge des employés (5 points)}
+% Résultat du test paramétrique à interpréter.
+L'âge des employés d'une entreprise est considéré (variable âge, unité: année). 
+Un test portant sur l'âge moyen a été réalisé à l'aide du logiciel R. Voici ci-dessous le résultat du test. Le risque de première espèce est fixé à 5\%.
+
+\begin{verbatim}
+        One Sample t-test
+
+data:  âge 
+t = -0.3771, df = 14, p-value = 0.3559
+alternative hypothesis: true mean is less than 40 
+95 percent confidence interval:
+     -Inf 42.24088 
+sample estimates:
+mean of x 
+ 39.38949 
+\end{verbatim}
+
+%	\begin{rep}
+%\begin{verbatim}
+%âge <- rnorm(15,mean=39,sd=5)
+%t.test(âge,mu=40, alternative="less")
+%\end{verbatim}
+%
+\begin{enumerate}
+  \item (1 pt) Quelles sont les hypothèses nulle et alternative ?
+\vspace{2cm}
+%\begin{eqnarray*}
+%	H_0 &:& \bar{\mbox{âge}}\geq 40\\
+%	H_1 &:& \bar{\mbox{âge}}< 40
+%\end{eqnarray*}
+%
+ \item (1 pt) Sous quelle condition ce test est-il valide ?
+ \vspace{2cm}
+ \item (1 pt) Quelle est la taille de l'échantillon sélectionné ?
+ \vspace{2cm}
+ % 15 car le nombre de degrés de liberté est de 14
+ \item (1 pt) Qu'est-ce que ''$t = -0.3771$'' ?
+ \vspace{2cm}
+ % la valeur de la statistique de test
+ \item (1 pt) Quelle doit être la conclusion du test ?
+%Il n'y a pas suffisamment d'évidence pour rejeter $H_0$, car la p-valeur est supérieure à 0.05 (=risque de première espèce). Donc l'âge moyen des employés de cette entreprise peut être considéré comme étant supérieur ou égal à 40 ans.
+%\\L'échantillon est de taille 15 car le nombre de degrés de liberté est de 14 
+%\\La population est supposée suivre une loi normale, sinon, le test n'est pas applicable.
+\end{enumerate}
+%	\end{rep}
+
+\appendix
+\newpage
+\section{Loi normale centrée réduite}
+\label{sec:tablenormale}
+% \newpage
+% \section{Table de la loi normale centrée-réduite}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_normale}
+% \end{center}
+$$\includegraphics[scale=0.25]{../../fig/norm_table}$$
+%% Avec R
+% x <- seq(0,3.09,by=0.01)
+% z <- matrix(signif(pnorm(x),digits=4), ncol=10, byrow=TRUE, dimnames = list( seq(0,3,by=0.1), seq(0.00,0.09,by=0.01) ))
+% library(Hmisc)
+% latex(z, file="") # print to screen instead of write into file y.tex
+{\footnotesize \input{../../polycopie/tableNormale}}
+
+
+
+\newpage
+\section{Table de la loi du $\chi^2$}
+\label{sec:tablechideux}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_chi2}
+% \end{center}
+%
+%% Avec R
+% # Se mettre dans le bon répertoire
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/polycopie")
+% # Degrés de liberté
+% dl <- c( seq(1,30,by=1),seq(40,100,by=10) )
+% # Erreurs de première espèce
+% alpha <- c(0.995,0.99,0.975,0.95,0.9,0.1,0.05,0.025,0.01,0.005)
+% # Fonction à utiliser pour trouver la valeur du pertile
+% f <- function(dl,alpha ) round(qchisq(alpha,dl,lower.tail=FALSE),digits=4) 
+% # Tableau des résultats
+% q2 <- outer(dl,alpha,f)
+% # Entête des lignes et colonnes du tableau de résultat
+% dimnames(q2) <- list(dl,alpha)
+% # Package pour convertir en LaTeX
+% library(Hmisc)
+% # Conversion en LaTeX
+% latex(q2, file="tableChiCarre.tex") # print to screen instead of write into file y.tex
+{\footnotesize \input{../../polycopie/tableChiCarre}}
+
+\newpage
+\section{Table de la loi de Student}
+%\begin{center}
+%\includegraphics[width=\linewidth,clip]{table_student}
+%\end{center}
+%% Avec R
+% # Se mettre dans le bon répertoire
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/polycopie")
+% # Degrés de liberté
+% dl <- c( seq(1,30,by=1),seq(40,100,by=10),200,500)
+% # Erreurs de première espèce
+% alphaonetail <- c(0.45,0.4,0.3,0.25,0.2,0.1,0.05,0.025,0.01,0.005)
+% # Fonction à utiliser pour trouver la valeur du pertile
+% f <- function(dl,alphaonetail ) round(qt(alphaonetail,dl, lower.tail=FALSE),digits=4) 
+% # Tableau des résultats
+% t <- outer(dl,alphaonetail,f)
+% # Entête des lignes et colonnes du tableau de résultat
+% dimnames(t) <- list(dl,alphaonetail)
+% # Package pour convertir en LaTeX
+% library(Hmisc)
+% # Conversion en LaTeX
+% latex(t, file="tableStudent.tex") # print to screen instead of write into file y.tex
+{\footnotesize \input{../../polycopie/tableStudent}}
+
+% \newpage
+% \section{Table de la loi de Fisher, $p$=0.95}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_fisher_95}
+% \end{center}
+%
+% \newpage
+% \section{Table de la loi de Fisher, $p$=0.99}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_fisher_99}
+% \end{center}
+
+\newpage
+\section{Table du test des rangs signés de Wilcoxon}
+Les valeurs critiques sont données par la table suivante:\\[5mm]
+\input{../../polycopie/tableWilcoxon}
+
+\end{document}

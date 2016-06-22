@@ -1,0 +1,209 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Test non paramétrique\\
+- Test des rangs signés de Wilcoxon -}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 11}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir effectuer et interpréter un test sur la médiane
+\end{slide}
+
+\section{Rappels}
+\begin{slide}[toc=$p$-valeur]{Méthode de la $p$-valeur}
+La \emph{$p$-valeur}, appelée \emph{niveau (ou degré) de signification observé},  est la probabilité d'observer l'échantillon réellement utilisé sachant que l'hypothèse nulle $H_0$ est vraie.
+$$ \includegraphics[scale=0.5]{p_value_4}$$
+[4. ] Rejeter $H_0$ si $p$-valeur < $\alpha$
+\end{slide}
+
+\begin{slide}{Résumé}
+{\tiny
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & distribution
+    \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu
+        & $Z =
+%    \dfrac{\bar X-\mu}{\sigma/\sqrt{n}}=  \dfrac{\bar X-\mu}{\sigma_{\bar X}}\;\sim\norm (0,1)$
+    \frac{\bar X-\mu}{\sigma/\sqrt{n}}\sim\norm (0,1)$
+    \\[3ex]
+  & $\sigma^2$ inconnu, distr. normale 
+     & $T_{(n-1)} =
+%    \dfrac{\bar X - \mu}{s/\sqrt{n-1}}=\dfrac{\bar X - \mu}{\hat \sigma_{\bar X}} \; \sim\st_{n-1}$
+    \frac{\bar X - \mu}{s/\sqrt{n}}\sim\st_{n-1}$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $p$ & $np\geq 5$ et $n(1-p)\geq 5$ & 
+    $Z=\frac{\bar{P}-p}{\sqrt{\frac{p(1-p)}{n}}}\sim\norm (0,1)$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale  
+    & $Q_{(n)}=\frac{\sum_{i=1}^{n} (X_i - \mu)^2}{\sigma^2} \;\sim\; \chi^2_n$
+    \\[3ex]
+     & $\mu$ inconnu, distr. normale  
+    & $Q_{(n-1)}=\frac{\sum_{i=1}^{n} (X_i - \bar X)^2}{\sigma^2}= \frac{(n-1)s^2}{\sigma^2} \;\sim\; \chi^2_{n-1}$
+    \\[3ex]
+    \hline
+    \end{tabular}
+}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test des rangs signés de Wilcoxon    %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de la médiane}
+\begin{slide}{Tests non paramétriques}
+Que faire si les hypothèses sur la distribution ne sont pas respectées ?\\
+\pause
+Test non paramétrique : \\
+\begin{itemize}
+	\item moins restrictif
+  \item mais moins puissant
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Principe}
+Principe:\\
+Médiane =\\
+valeur de séparation d'une population en deux parties de même taille.\\
+Si la médiane hypothétique de la population est trop éloignée de la médiane de l'échantillon, 
+alors $H_0$ rejeté.\\[5mm]
+-> Test des rangs signés de Wilcoxon
+\end{slide}
+
+\begin{slide}{Exemple}
+Une étude a été faite sur les salaires en début de carrière des diplômés de l'école ''Jess Aitou'', afin de savoir si le salaire médian est supérieur à 35000 Euros, à un seuil $\alpha=0.05$. Les données récoltées sont les salaires en euros:\\
+36400
+38500
+27000
+35000
+29000\\
+40000
+52000
+34000
+38900
+41000
+
+\begin{enumerate}
+  \pause
+	\item La valeur de la population d'intérêt est le salaire médian en début de carrière.
+	\pause
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & $\tilde{\mu} \leq 35'000$ euros\\
+	  $H_1$ & $\tilde{\mu} > 35'000$ euros\\	  
+    \end{tabular}
+  \pause
+  \item Le niveau de signification est de 0.05
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+\begin{itemize}
+  \item[4. 5. ] 
+	$$
+	\begin{array}{crcccc}
+	\mbox{Salaire}=x_i & d_i=x_i-\tilde{\mu} & |d_i| & \mbox{Rang} & R_+ & R_-\\
+	\hline
+	36400 & 1400  & 1400 & 2   & 2 & \\ 
+	38500 &  3500 & 3500 & 3   & 3 & \\
+	27000 & -8000 & 8000 & 8   &   & 8\\
+	35000 &     0 & 0    &     &   & \\
+	29000 & -6000 & 6000 & 6.5 &   & 6.5\\
+	40000 &  5000 & 5000 & 5   & 5 & \\
+	52000 & 17000 & 17000& 9   & 9 & \\
+	34000 & -1000 & 1000 & 1   &   & 1\\
+	38900 &  3900 & 3900 & 4   & 4 & \\
+	41000 &  6000 & 6000 & 6.5 & 6.5\\
+	\hline
+	      &       &      &      & W=29.5 & 15.5
+	\end{array}$$	
+	Soit $n$ le nombre de $d_i$ différents de 0. Il y a donc $n=9$ rangs attribués.\\
+	La valeur critique du test est $W_{\alpha}=37$
+\end{itemize}
+\end{slide}
+	
+\begin{slide}[toc=]{Exemple}
+\begin{itemize}
+	\item[4. 5. ] La statistique est $W=29.5$, la valeur critique est $W_{\alpha}=37$
+	\pause
+  \item[6. ] Comme $$W=29.5<37$$
+  l'hypothèse $H_0$ ne peut pas être rejetée.
+  \pause
+  \item[7. ] Nous ne pouvons donc pas conclure que le salaire médian en début de carrière dépasse 35000 euros.
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=Statistique]{Construction de la statistique}
+La statistique de test $W$ suit la loi tabulée pour le test des rangs signés de Wilcoxon.
+\begin{enumerate}
+	\item Calculer les différences $d_i$ entre chaque valeur et la médiane postulée $\tilde{\mu}$
+	\item Calculer la valeur absolue des différences précédentes: $|d_i|$
+	\item Déterminer le rang pour chacune des valeurs $|d_i|$, en ne tenant pas compte des valeurs nulles.\\
+	Si des observations ont la même valeur $|d_i|$, alors affecter le rang moyen de ces observations.
+	\item Calculer la statistique $W$ qui est la somme des rangs dont les $d_i$ sont positifs.
+\end{enumerate}
+Rejet de $H_0$ si $W > W_{\alpha}$ = valeur critique.
+\end{slide}
+
+\begin{slide}[toc=Grand échantillon]{Échantillon de grande taille}
+En pratique lorsque $n>20$,\\ 
+Statistique de test 
+$$z=\frac{W-\frac{n(n+1)}{4}}{\sqrt{\frac{n(n+1)(2n+1)}{24}}}$$
+où\\
+\begin{tabular}{cl}
+	$n$       & = taille de l'échantillon\\
+	$W$ & = somme des rangs positifs $R_+$
+\end{tabular}
+suit une loi normale centrée réduite.
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

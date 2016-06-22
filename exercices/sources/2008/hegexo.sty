@@ -1,0 +1,103 @@
+%
+% 
+%
+% $Author: S. Varone $
+% $Date: 2008/09/01 10:00:00 $
+% $Modified: 2007 by varone $
+%
+% $Log$
+%
+% Original author: Paolo Ienne
+% Original file: EPFL_Rpt.sty
+%
+
+\renewcommand{\textheight}{24cm}
+\renewcommand{\textwidth}{17cm}
+\setlength{\oddsidemargin}{-0.5cm}
+\setlength{\evensidemargin}{-0.5cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+ 
+%  MACRO: \maketitle
+%
+%  Purpose
+%     This macro redefines the standard "\maketitle".
+%     The following definitions are required:
+%        \title{}
+%        \date{}
+%        \cours{}
+\def\cours#1{\gdef\@cours{#1}}
+
+
+\def\maketitle{
+  \thispagestyle{empty}
+  HEG Genève\hfill \@cours \\
+  \@author\hfill \@date \\
+  \begin{center}
+    \LARGE \bf \@title \\[1em]
+    \normalsize \mdseries 
+%    (\`a rendre le  \textbf{\@arendre} avant 12h00 devant le bureau MA C1 573)
+  \end{center}
+  \gdef\@date{}\gdef\@title{}%\gdef\@arendre{}%
+  \let\maketitle\relax}
+
+%  MACROS: \section \subsection
+%
+%  Purpose
+%     This macro redefines the standard "\section" and "\subsection"
+
+\renewcommand\thesection{Probl\`eme \@arabic\c@section}
+\renewcommand\thesubsection{}
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+
+%  MACROS:
+%
+%  Purpose
+%     This redefines the changing of paragraph.
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+%  MACROS:
+%
+%  Purpose
+%     This redefines the numbering of enumerations.
+
+\renewcommand\theenumi{\@alph\c@enumi}
+\renewcommand\theenumii{\@roman\c@enumii}
+\renewcommand\theenumiii{\@arabic\c@enumiii}
+\renewcommand\theenumiv{\@Alph\c@enumiv}
+
+\renewcommand\labelenumi{\theenumi)}
+\renewcommand\labelenumii{\theenumii)}
+\renewcommand\labelenumiii{\theenumiii.}
+\renewcommand\labelenumiv{\theenumiv.}
+
+% Maths MACROS
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\newcommand{\absol}[1]{\left |\, #1 \,\right |}
+\newcommand{\mod}{\,mod\,}
+\newcommand{\pgcd}[2]{\textup{PGCD}(#1,#2)}
+\newcommand{\var} {\mbox{var}}
+\newcommand{\cov} {\mbox{cov}}
+\newcommand{\corr} {\mbox{corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}

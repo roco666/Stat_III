@@ -1,0 +1,92 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+\newcommand{\ki}{\mathcal{\chi}}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Série 11}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%% COURS 11: Test d'ajustement et d'indépendance     %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{} % Test d'ajustement
+	% \cite{groebner2006} ex 12.1 p.483
+Une émission de radio permet à ses auditeurs de s'exprimer. Afin de gérer les appels, l'animateur désire établir un modèle sur le nombre d'appels par heure à son émission. Il veut vérifier si le nombre d'appels est distribué selon une distribution de Poisson de moyenne 5 appels/heure. Pour cela, il a collecté les données suivantes lors des 100 dernières heures de ses émissions:
+
+\begin{tabular}{l|*{10}{c}}
+Nombre d'appels /heure & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & $\geq 9$\\
+\hline
+Fréquence & 0 & 2 & 4 & 10 & 7 & 14 & 11 & 13 & 5 & 34
+\end{tabular}
+
+
+\begin{itemize}
+	\item En tant que consultant, aidez-le à effectuer le test avec un niveau de signification de 0.05. 
+%Comme la fréquence par cellule doit être au moins 5, il est nécessaire de grouper les cellules 0,1 et 2.
+%
+%\begin{tabular}{l|*{7}{c}}
+%Nombre d'appels /heure & $\leq 2$ & 3 & 4 & 5 & 6 & 7 & 8 & $\geq 9$\\
+%\hline
+%Fréquence & 6 & 10 & 7 & 14 & 11 & 13 & 5 & 34
+%\end{tabular}
+%
+%\\La règle de décision est la suivante: si la statistique $\ki^2$ est plus grande que la valeur critique, alors $H_0$ est rejeté.
+%\\Valeur critique: $\ki^{(7)_{0.05}=14.0671$
+%
+%La statistique vaut  $\ki^2=122.015$.  
+%Comme $\ki^2=122.015 > 14.0671=\ki^{(7)_{0.05}$, l'hypothèse nulle est rejetée.
+%Ainsi, le nombre d'appels ne suit pas une loi de Poisson de moyenne 5 appels par heure.
+	\item Quel type d'erreur pourriez-vous commettre ?
+%L'hypothèse nulle étant rejetée, une erreur de première espèce pourrait avoir été commise
+\end{itemize}
+
+\section{} % Test d'indépendance
+	% \cite{groebner2006} ex 12.19 p. 493
+Les amendes d'ordre des automobilistes à genève sont représentées ci-dessous en fonction du sexe du conducteur.
+
+\begin{tabular}{l|cc}
+Infraction & Homme & Femme\\
+\hline
+Vitesse & 240 & 160\\
+Parcage & 80 & 40\\
+Feux grillés & 32 & 18\\
+Service anti-pollution & 11 & 9\\
+Autres & 5 & 4 
+\end{tabular}
+
+Utilisez un niveau de signification de 0.05 pour déterminer si les deux variables sont indépendantes.
+
+%La valeur critique vaut $\ki^(4)_{0.05} = 9.4877$\\
+%La statistique $\ki^2=2.356$\\
+%Comme la valeur de la statistique est inférieure au seuil critique, l'hypothèse nulle n'est pas rejetée.
+%\\Ainsi, on peut supposer que les deux variables sont indépendantes.
+%\\Note: comme l'hypothèse nulle n'est pas rejetée, aucune erreur de type I n'est commise. Par conséquent, il est inutile de s'inquiéter au sujet de la fréquence inférieure à 5 de la dernière cellule du tableau.
+
+{\it Indication}: Voici le résultat donné par le logiciel R
+
+\begin{verbatim}
+        Pearson's Chi-squared test
+
+data:  amendes 
+X-squared = 2.3537, df = 4, p-value = 0.671
+
+Warning message:
+In chisq.test(amendes) : l'approximation du Chi-2 est peut-être incorrecte
+\end{verbatim}
+
+
+\end{document}

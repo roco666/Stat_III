@@ -1,0 +1,146 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage{heg_exam}
+
+
+\begin{document}
+\title{CORRIGE TEST BLANC}
+\semestre{hiver 2008}
+\author{Sacha Varone}
+\departement{\'Economie d'entreprise}
+\module{Branches instrumentales}
+\cours{Statistiques III}
+\date{Novembre 2009}
+\indication{La précision de vos calculs doit être de 4 chiffres après la virgule.\\[5mm]
+Formulaire de 3 pages (recto-verso) autorisé et calculatrice.}
+\nomexaminateur{}
+\prenomexaminateur{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%             Test en Blanc                       %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Compréhension [7 points]} % IC
+
+\begin{enumerate}
+	\item  Afin de décider du montant de sa franchise, Madame Solice a calculé un intervalle de confiance à 95\% sur les coûts mensuels pour sa santé, basé sur les données des 20 derniers mois: [40;120].
+Elle suppose que son état de santé restera stationnaire pour les prochains 12 mois.\\
+Madame Solice vous demande si l'intervalle de confiance [40;120] contient la véritable moyenne. Quelle est votre réponse ? (Justifiez) [3  points]
+
+\begin{rep}
+ 1pt Impossible de le savoir en ne connaissant pas toute la population.
+\\ 1pt Il y a une probabilité associée à l'IC, que celui-ci contienne la vraie moyenne
+\\ 1pt $P(\mu \in [40;120]) = 0.95$ et donc $P(\mu \notin [40;120]) = 0.05$
+\end{rep}
+
+	\item Un intervalle de confiance associé à une moyenne d'une population a été calculé. Vous souhaitez réduire la marge d'erreur de l'intervalle de confiance. Pour cela vous pourriez: [2 points] 
+	\begin{enumerate}
+		\item Décroître la taille de l'échantillon \label{un}
+		\item Réduire le niveau de confiance \label{deux}
+		\item \ref{un}) et \ref{deux})
+		\item aucune des propositions ci-dessus.
+	\end{enumerate}
+	
+\begin{rep}
+ 1 point Réduire le niveau de confiance
+\\ 1 point: ne pas sélectionner les autres
+\end{rep}
+	
+	\item Vrai ou Faux ? [2 point] 
+	\begin{enumerate}
+		\item Dans un test d'hypothèse, l'hypothèse nulle contient un signe d'égalité.
+
+\begin{rep}Vrai (1pt)\end{rep}
+		
+		\item Le niveau de signification dans un test d'hypothèse correspond à la probabilité maximale de commettre une erreur de première espèce.
+
+\begin{rep}Vrai (1pt)\end{rep}
+	\end{enumerate}
+\end{enumerate}
+
+\section{Fournisseurs [9 points]} % Test sur une variance
+Vous occupez le nouveau poste de Responsable Achat et devez évaluer la fiabilité des délais du fournisseur de produits semi-finis, afin que l'équipe de production puisse planifier leurs tâches.
+Le fournisseur s'engage à respecter les délais d'approvisionnement négociés à $\pm 2$ jours. Les différences, en jours, entre le délai d'approvisionnement négocié et celui de livraison effective pour les produits semi-finis sont connus pour 12 commandes:
+
+\begin{center}
+\begin{tabular}{cccc}
+	3 & 5 & -2 & 3\\
+	0 & 1 & 2 & 1\\
+	-1 & 0 & -5 & -3
+\end{tabular}
+\end{center}
+
+{\it médiane = 0.5; moyenne = $0.\bar{3}$; variance = $7.\overline{87}$}
+
+Testez la variabilité de ces délais avec un degré de confiance de 90\%, par rapport aux engagements du fournisseur. Indiquez toutes les étapes.
+
+\begin{rep}
+\begin{verbatim}
+x <- c(3,5,-2,3, 0 , 1 , 2 , 1,	-1 , 0 , -5 , -3)
+summary(x); sd(x); sd(x)^2; hist(x); stem(x)
+\end{verbatim}
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/exercices/Exam")
+% dev.copy2eps(file="hist_ex2.eps");
+
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est la variation des délais, qui est une variance. (1 point)
+	\item (1pt)
+       \\$H_0$: $\sigma^2\leq 4$\\
+	      $H_1$: $\sigma^2 > 4$
+	\item (1pt) Le niveau de signification est fixé à $\alpha = 0.1$
+	\item (1pt) La région de rejet du test est l'ensemble des valeurs supérieures à 
+	$$\ki^2_{0.1}\approx 17.275$$
+	La valeur limite calculée est celle pour une distribution $\ki^2$ à $12-1=11$ degrés de liberté, et un niveau de signification de 0.1.
+	\\ (2 pts) La distribution suit bien une loi normale (histogramme ou boxplot)
+	$$\includegraphics[scale=0.5]{hist_ex2}$$
+	\item (1 pt) La statistique associée à l'échantillon est 
+	$$s^2=7.\overline{87} \quad \ki^2=\frac{(12-1)7.\overline{87}}{4}=21.64$$
+	La région de rejet est donc $[21.64;\infty[$
+	\item (1 pt) Comme  $\ki^2=$ appartient à la région critique, l'hypothèse $H_0$ est rejetée.
+	\item (1 pt) Il est donc très peu probable que le fournisseur respecte ses engagements.
+\end{enumerate}
+\end{rep}
+
+
+\section{Production [5 pts]} % test de la moyenne
+La production mensuelle de cellules solaires d'une entreprise est considérée (variable quantité, unité: milliers). 
+Un test portant sur la quantité moyenne produite par mois a été réalisé à l'aide du logiciel R. Voici ci-dessous le résultat du test. \'Ecrivez les hypothèses nulle et alternative, concluez en fonction du résultat et commentez. Le risque de première espèce est fixé à 5\%.
+
+\begin{verbatim}
+        One Sample t-test
+
+data:  quantité 
+t = -1.2357, df = 19, p-value = 0.1158
+alternative hypothesis: true mean is less than 18 
+95 percent confidence interval:
+     -Inf 18.70146 
+sample estimates:
+mean of x 
+ 16.24318 
+\end{verbatim}
+
+\begin{rep}
+\begin{verbatim}
+quantité <- rchisq(20,14)
+t.test(quantité,mu=18, alternative="less")
+\end{verbatim}
+
+(1 pts)
+\begin{eqnarray*}
+	H_0 &:& \overline{\mbox{quantité}}\geq 18\\
+	H_1 &:& \overline{\mbox{quantité}}< 18
+\end{eqnarray*}
+
+(1 pt) Il n'y a pas suffisamment d'évidence pour rejeter $H_0$, car la p-valeur est supérieure à 0.05 (=risque de première espèce). 
+\\(1 pt) Donc la quantité moyenne [millier] produite  peut être considéré comme étant supérieur ou égal à 18'000.
+\\ (1 pt) L'échantillon est de taille 20 car le nombre de degrés de liberté est de 19 
+\\ (1 pt) La population est supposée suivre une loi normale, sinon, le test n'est pas applicable.
+\\ (1 pt bonus) La statistique de test vaut t=-1.2357
+
+\end{rep}
+
+\end{document}

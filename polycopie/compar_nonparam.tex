@@ -1,0 +1,245 @@
+ \chapter{Comparaisons non-paramétriques}
+
+
+ Lorsque les hypothèses des tests paramétriques pour la comparaison de populations ne sont pas respectées, il est possible d'utiliser des
+tests non-paramétriques, peut-être moins puissants, mais beaucoup plus robustes. \\
+
+ Le tableau suivant donne la correspondance entre tests paramétriques et non-paramétriques:\\
+
+ \begin{table}[htb]
+ \begin{center}
+ \begin{tabular}{lll}
+ \hline \hline
+ Situation & Test paramétrique & Test non-paramétrique\\
+ \hline
+ 2 populations appariées  & test de Student & {\bfseries test du signe}\\
+ && test du signe de Wilcoxon\\
+ \hline
+ 2 populations non-appariées & test de Student & {\bfseries test de la somme des rangs}\\
+ && {\bfseries de Wilcoxon}\\
+ && test de Mann-Whitney\\
+ \hline
+ \end{tabular}
+ \end{center}
+ \end{table}
+
+
+
+ \section{Comparaison de deux populations appariées}
+
+
+ Le {\bfseries test du signe} est un test non-paramétrique permettant de comparer deux échantillons appariés sans faire d'hypothèses
+préalables sur la distribution des données.\\
+
+ Soit $X$ et $Y$ deux échantillons appariés et soit $D=Y-X$ leur différence. Le test du signe revient à vérifier si la médiane des
+différences $D_i$ est égale à zéro ou non:
+ \begin{eqnarray*}
+   && H_0 : \med(D) = 0\\
+   && H_1 : \med(D) \neq 0
+ \end{eqnarray*}
+
+ Sous l'hypothèse $H_0$, le nombre de différences $D_i$ positives
+est égal au nombre de différences $D_i$ négatives. Nous pouvons
+donc écrire:
+ \[
+    \mbox{signe}(D_i) = \left\{ \begin{array}{lcl}
+    + & , & \mbox{probabilité } q=0.5\\[1.5ex]
+    - & , & \mbox{probabilité } 1-q=0.5
+    \end{array}
+    \right.
+ \]
+
+
+ 
+ Soit $N_+$, le nombre de $D_i$ positifs et $N_-$, le nom\-bre de
+$D_i$ négatifs. Sous l'hypothèse $H_0$, ces deux quantités sont
+distribuées selon des lois binomiales:
+ \begin{eqnarray*}
+ N_+ &\sim& \bin (n,q=0.5)\\[1.5ex]
+ N_- &\sim& \bin (n, 1-q=0.5)
+ \end{eqnarray*}
+
+ Après avoir fixé un risque de première espèce $\alpha$, le test du signe s'effectue selon la procédure suivante:
+
+ \begin{enumerate}
+    \item Calculer $n_+$ et $n_-$, les nombres de signes positifs et négatifs de la variable
+$D$.
+    \item Calculer les quantités suivantes:
+    \begin{eqnarray*}
+    &&m_-=\min\{n_-\,;\,n_+\}\\
+    &&m_+=\max\{n_-\,;\,n_+\}
+    \end{eqnarray*}
+    \item Calculer la $p$-valeur du test:
+ \[
+    p = P(M_- \leq m_-)+ P(M_+ \geq m_+)
+ \]
+ \item Décider: Si $p$ est supérieur à $\alpha$, $H_0$ est acceptée, sinon l'hypothèse nulle est rejetée.
+
+ \end{enumerate}
+
+
+
+ \textit{Remarques:
+ \begin{enumerate}
+    \item Lorsqu'une différence est égale à zéro, on compte 1/2
+signe positif et 1/2 signe négatif.
+    \item Les nombres $m_-$ et $m_+$ sont symétriques par rapport à
+$n/2$, la moitié du nombre total de données. Etant donné que la loi
+binomiale est symétrique, on peut alors écrire
+ \begin{eqnarray*}
+    p &=& P(M_- \leq m_-)+ P(M_+ \geq m_+)\\
+    &=& 2 \, P(M_- \leq m_-)\\
+    &=& 2 \, P(M_+ \geq m_+)
+ \end{eqnarray*}
+    \item Lorsque $m_-$ et $m_+$ sont petits, on peut calculer les probabilités correspondantes directement par la loi binomiale. En
+revanche, lorsque ces nom\-bres sont grands, les probabilités doivent être calculées en utilisant une approximation par la loi normale
+(l'approximation par la loi de Poisson ne donne pas de bons résultats ici, car la probabilité $q$=0.5 est éloignée de zéro).
+ \end{enumerate}}
+
+ \vspace*{2ex}
+ {\itshape Nous considérons le nombre de fois où des gens ont été au cinéma en 2004 (variable $X$) et 2005 ($Y$). Le risque de première
+espèce est fixé à 5\%.}\\
+
+ \begin{center}
+ \begin{tabular}{c|cc|cc}
+ \hline\hline&&&&\\[-1.7ex]
+ $i$ & $X$ & $Y$ & $D=Y-X$ & signe de $D$\\
+ \hline
+ 1 & 9 & 6 & -3 & -\\
+ 2 & 4 & 9 & 5 & +\\
+ 3 & 7 & 8 & 1 & +\\
+ 4 & 2 & 6 & 4 & +\\
+ 5 & 9 & 6 & -3 & -\\
+ 6 & 4 & 4 & 0 & 0\\
+ 7 & 7 & 10 & 3 & +\\
+ \hline
+ \end{tabular}
+ \end{center}
+  
+ {\itshape
+ \begin{enumerate}
+    \item Nous avons $n$=7, $n_-$=2.5 et $n_+$=4.5.
+    \item $m_-=2.5$, $m_+=4.5$
+    \item Calcul de la $p$-valeur:
+    \begin{eqnarray*}
+    P(M_- \leq 2.5) &=& P(M_-=0, \; 1 \mbox{ ou } 2)\\
+    &=& 0.0078 + 0.0547 + 0.1641\\
+    &=& 0.2266\\
+    &=& P(M_+ \geq 4.5)
+    \end{eqnarray*}
+ \[
+ \Longrightarrow \quad p=2\cdot 0.2266 = 0.4532
+ \]
+    \item La $p$-valeur 0.4532 est strictement supérieure au risque $\alpha=5\%$, donc
+l'hypothèse $H_0$ est acceptée.
+ \end{enumerate}
+ }
+
+ 
+
+
+
+ \section{Comparaison de deux populations indépendantes}
+
+ 
+ Le {\bfseries test de la somme des rangs de Wilcoxon} vérifie l'égalité des médianes de deux populations dans le cas de données
+indépendantes:
+ \begin{eqnarray*}
+ H_0 &:& \med(X) = \med (Y)\\
+ H_1 &:& \med(X) \neq \med(Y)
+ \end{eqnarray*}
+  On utilise la notion de \textit{rang des observations} plutôt que les valeurs elles-mêmes: Les deux échantillons sont ordonnés
+simultanément, chaque observation se voit attribuer un rang et les sommes des rangs des deux échantillons sont comparées. Si les deux
+échantillons sont distribués de façon similaire, alors chacun doit avoir la même somme des rangs et les médianes sont identiques.\\
+
+ {\itshape Exemple:}
+ \begin{center}
+ \begin{tabular}{cc}
+ \hline\hline
+ $X$ & $Y$\\
+ \hline
+ 3 & 5\\
+ 2 & 7\\
+ 4 & 8\\
+ 5 & 6\\
+ & 4\\
+ \hline
+ $n_X$=4 & $n_Y$=5
+ \end{tabular}
+ \end{center}
+
+
+
+ Le tableau suivant présente les deux échantillons ordonnés (ici par
+ordre croissant) et donne le rang de chaque observation:
+
+ \begin{center}
+ \begin{tabular}{|c|cc|cc|}
+ \hline\hline
+ $i$ & rang($X$) & $X$ & $Y$ & rang($Y$)\\
+ \hline
+ 1 & 1 & 2&&\\
+ 2 & 2 & 3&&\\
+ 3 & 3.5 & 4&&\\
+ 4 & && 4 & 3.5\\
+ 5 & 5.5 & 5&&\\
+ 6 & && 5 & 5.5\\
+ 7 & && 6 & 7\\
+ 8 & && 7 & 8\\
+ 9 & && 8 & 9\\
+ \hline
+ Total & 12 &&& 33\\
+ \hline
+ \end{tabular}
+ \end{center}
+
+ Nous notons $W$ la somme des rangs du plus petit échantillon ordonné par ordre
+croissant.
+
+ Il est aussi possible d'ordonner les échantillons par ordre
+décroissant. Dans ce cas, la somme des rangs du plus petit
+échantillon, notée $W_i$, se calcule comme
+ \[
+   W_i = n_X \; (n_X + n_Y +1) - W
+ \]
+
+ où $n_X$ est le nombre d'observations du plus petit échantillon. Ici, $w$=12 et
+$w_i$=28.\\
+
+
+
+ L'hypothèse $H_0$ du test devra être rejetée dans deux cas:
+ \begin{enumerate}
+    \item Les valeurs du plus petit échantillon sont nettement
+inférieures à celles du second échantillon, ce qui revient à avoir un
+$W$ trop petit (zone de rejet de gauche).
+    \item Les valeurs du plus petit échantillon sont nettement
+supérieures à celles du second échantillon, ce qui revient à avoir un
+$W_i$ trop petit (zone de rejet de droite).
+ \end{enumerate}
+
+ \vspace*{2ex}
+
+ \textit{Remarques:
+ \begin{enumerate}
+    \item Si les deux échantillons sont de même taille, on cherche
+les plus petites sommes des rangs possibles pour l'un ou l'autre des
+échantillons.
+    \item En cas d'égalité de valeurs, on attribue à chacune de
+ces valeurs leur rang moyen.
+ \end{enumerate}}
+
+ \vspace*{2ex}
+
+ Le résultat du test de Wilcoxon peut être lu dans une table. Chaque table correspond à un risque de première espèce $\alpha$ particulier.
+La taille du plus petit échantillon se lit en colonne et la taille du plus grand échantillon en ligne. Le seuil de rejet du test se lit à
+l'intersection de la ligne et de la colonne correspondant aux tailles respectives des deux échantillons.\\
+
+  Si la statistique calculée est strictement supérieure au seuil de
+rejet, l'hypothèse $H_0$ est acceptée. Sinon, l'hypothèse $H_0$ est
+rejetée et les médianes sont différentes.\\
+
+ 
+ {\itshape Dans notre exemple, nous avons $n_X$=4, $n_Y$=5 et $w_{\mbox{min}}$=12. En prenant $\alpha=5\%$ pour un test bilatéral, le
+seuil de rejet vaut 11. Etant donné que 12 > 11, l'hypothèse $H_0$ d'égalité des médianes est acceptée.}\\
+

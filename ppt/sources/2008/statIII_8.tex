@@ -1,0 +1,257 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+\usepackage{hyperref}
+% Definitions hyperref
+\hypersetup{colorlinks,%
+            citecolor=black,%
+            filecolor=black,%
+            linkcolor=black,%
+            urlcolor=blue}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Test de la moyenne}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 8}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir effectuer un test sur la moyenne
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=Illustration]{Illustration d'un test}
+$$\includegraphics[width=11cm]{alpha_beta}$$
+\end{slide}
+
+\begin{slide}[toc=\'Etapes]{\'Etapes d'un test}
+\begin{enumerate}
+	\item Spécifier la valeur de la population d'intérêt.
+	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+	\item Choisir le niveau de signification $\alpha$
+	\item Déterminer la région critique.
+	\item Calculer la statistique associée à l'échantillon.
+	\item Rejeter $H_0$ si la statistique appartient à la région critique.\\
+	Ne pas rejeter $H_0$ dans le cas contraire.
+	\item Énoncer une conclusion.
+\end{enumerate}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'une moyenne                   %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test de la moyenne}
+\begin{slide}[toc=$\sigma^2$ connu]{Test de $\mu$, $\sigma^2$ connu}
+Population qui suit une loi normale de variance $\sigma^2$ connue
+
+$$\bar{x}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+$\sigma$ &= &  écart type de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+Une étude sur la mobilité des employés de l'entreprise ''Jeux Mendors'' affirme que la moyenne des temps de trajet des employés pour venir à leur travail excède 40 minutes. Vous devez tester cette affirmation avec une niveau de signification de 0.05. Pour cela, 100 employés vous ont indiqué leur temps de trajet actuel, dont la moyenne est 43.5 minutes. Basé sur une étude précédente, vous pouvez supposer que l'écart type de la population est de 8 minutes.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est \\
+	\pause le temps de trajet.
+	\item Les hypothèses nulle et alternative sont:\\
+	\pause
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu\leq 40$ minutes\\
+	  $H_1$ & $\mu >40$ minutes\\	  
+    \end{tabular}
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+  \item[3. ] Le niveau de signification est \pause 0.05
+  \item[4. ] La région critique est \pause $[z_{0.05}=1.645;\infty[$
+  \item[5. ] La statistique est \pause $z=\frac{43.5-40}{\frac{8}{\sqrt{100}}}=4.38$
+  \item[6. ] Comme 4.38 appartient à la région critique, l'hypothèse $H_0$ est rejetée.
+  \item[7. ] La conclusion est \pause que la moyenne des temps de trajet excède 40 minutes.
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=TCL]{Rappel du Théorème Central Limite}
+Soit une suite $(X_1, X_2, \ldots, X_n)$ de $n$ variables aléatoires identiquement et indépendamment distribuées $(\mu,\sigma^2)$.\\
+Lorsque $n \rightarrow \infty$, 
+$$\overline{X} = \sim \norm (\mu, \frac{\sigma^2}{n}\bigr)$$
+où\\
+\begin{tabular}{rcl}
+$\mu$ & = & moyenne dans la population\\
+$\sigma^2$ & = & variance dans la population\\
+$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=$\sigma^2$ inconnu et $n$ grand]{Test de $\mu$, $\sigma^2$ inconnu, $n$ grand}
+Par le TCL, si $n\geq 30$,
+$$z=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$s$       & = écart type de l'échantillon\\
+	$n$       & = taille de l'échantillon 
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=$\sigma^2$ inconnu et $n$ petit]{Test de $\mu$, $\sigma^2$ inconnu, $n$ petit}
+Utiliser la distribution de Student, à $n-1$ degrés de liberté
+$$t=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n-1}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$s$       & = écart type de l'échantillon\\
+	$n$       & = taille de l'échantillon 
+\end{tabular}
+
+\vspace{5mm}
+{\red Supposition}:\textsc{population normalement distribuée}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+Tester la moyenne d'un échantillon du nombre d'employés par PME suisse contre la moyenne de la population, $\mu=35$, en ne connaissant pas la valeur de la variance de la population.\\
+Par des études précédentes, nous savons que le nombre d'employés est distribué selon une loi normale.\\
+20 PME suisses ont été interrogées sur le nombre d'employés qu'elles occupent.\\
+La moyenne calculée vaut $\overline{x}=27$ et la variance calculée vaut $s^2=334.7$.\\
+Choix d'un niveau de signification de 0.05.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est \\
+	\pause
+	le nombre moyen d'employés des PME suisses.
+	\item Les hypothèses nulle et alternative sont:\\
+	\pause
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu = 35$ personnes\\
+	  $H_1$ & $\mu \not= 35$ personnes\\	  
+    \end{tabular}
+\end{enumerate}
+\end{slide}
+    
+    
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+  \item[3. ] Le niveau de signification est \pause 0.05
+  \item[4. ] La région critique est composée de 
+  \pause 2 zones distinctes car nous avons un test bilatéral à effectuer.\\
+		$R = R_1 \cup R_2 = \{t_0 \mid t_0 \leq r_1\} \cup \{t_0 \mid t_0 \geq r_2\}$
+    \begin{center}
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,2)
+        \thicklines
+        \put(-0.2,1.3){\line(1,0){5.4}}
+        \put(.9,1.5){\line(-1,-2){.2}}
+        \put(.6,1.5){\line(-1,-2){.2}}
+        \put(.3,1.5){\line(-1,-2){.2}}
+        \put(.0,1.5){\line(-1,-2){.2}}
+        \put(1,1.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(1,0.4){\parbox[t]{0em}{\makebox[0pt][c]{$r_1$}}}
+        \put(4.1,1.1){\line(1,2){.2}}
+        \put(4.4,1.1){\line(1,2){.2}}
+        \put(4.7,1.1){\line(1,2){.2}}
+        \put(5,1.1){\line(1,2){.2}}
+        \put(4,1.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(4,0.4){\parbox[t]{0em}{\makebox[0pt][c]{$r_2$}}}
+        \put(2.6,1.8){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.3,1.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_1$}}}
+        \put(4.8,1.8){\parbox[t]{0em}{\makebox[0pt][c]{$R_2$}}}
+    \end{picture}
+    \end{center}
+   	$P(T_0 \leq r_1) = \frac{\alpha}{2} = 0.025\Rightarrow r_1=t_{\alpha/2}^{(19)}= -2.093$\\
+    $P(T_0 \geq r_2) = 1-\frac{\alpha}{2} = 0.975\Rightarrow r_2=t_{1-\alpha/2}^{(19)}= 2.093$
+\end{itemize}
+\end{slide}
+    
+\begin{slide}[toc=]{Exemple (fin)}
+\begin{itemize}
+  \item[5. ] La statistique est 
+  \pause
+  $$t = \frac{27 - 35}{\sqrt{\frac{334.7}{20}}} = -1.955$$
+  \item[6. ] Comme $t=-1.955$ n'appartient pas à la région critique, l'hypothèse $H_0$ n'est pas rejetée.
+  \item[7. ] La conclusion est que \pause la vraie moyenne de la population peut être égale à 35 employés par petite entreprise suisse.
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=VaR]{Value at Risk}
+La \emph{Value at Risk} (VaR) est définie comme la perte maximale sur un horizon donné $T$, avec un niveau de confiance $1-\alpha$.\\[5mm]
+Considérons une variable aléatoire $X\sim \norm(\mu,\sigma^2)$
+$$P\left( X\leq \mbox{VaR}(\alpha,T)\right) = \alpha \quad\Leftrightarrow\quad P\left( X\geq \mbox{VaR}(\alpha,T)\right) = 1-\alpha$$
+\end{slide}
+
+\begin{slide}[toc=]{VaR en Finance}
+La notion de risque financier peut être estimé à l'aide de l'écart type annuelle des performances financières, appelé dans le jargon bancaire la \emph{volatilité}. L'horizon est quant à lui souvent donné en jours (1, 10, ...), qui est à mettre en regard du nombre de jours ouvrables considéré dans la branche (250 ou 252 généralement). Considérons $X$ une variable aléatoire indiquant les rendements, suivant une même loi normale $\norm(\mu,\sigma^2)$ sur une seule période.  Alors, sur la période $T$, les rendements sont également gausssiens de moyenne $\mu T$ et de variance $\sigma^2 T$. La variable centrée réduite s'écrit :
+$$z_{\alpha}=\frac{\mbox{VaR}(\alpha,T)-\mu T}{\sigma\sqrt{T}}$$
+Et donc 
+$$\mbox{VaR}(\alpha,T) = \mu T + z_{\alpha}\sigma\sqrt{T}$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+{\it\small Source: \href{http://www.ubs.com/1/e/investors/annualreporting.html}{Rapport annuel 2007 de l'UBS}\\
+version anglaise, ''Risk, Treasury and Capital Management'', p. 39 }\\
+La position du secteur Banque d'investissement de l'UBS, sur un horizon de 1 jour, à un niveau de confiance de 99\%, en utilisant des données sur 5 ans, est de 
+\begin{itemize}
+	\item 160 millions en 2007
+	\item 169 millions en 2006
+\end{itemize} 
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

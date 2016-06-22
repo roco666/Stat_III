@@ -1,0 +1,82 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+\usepackage{hyperref}
+% Definitions hyperref
+\hypersetup{colorlinks,%
+            citecolor=black,%
+            filecolor=black,%
+            linkcolor=black,%
+            urlcolor=blue}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Test de la moyenne}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - complément 8}
+}
+
+\begin{document}
+%\maketitle
+
+\begin{slide}[toc=VaR]{Value at Risk}
+La \emph{Value at Risk} (VaR) est définie comme la perte maximale sur un horizon donné $T$, avec un niveau de confiance $1-\alpha$.\\[5mm]
+Considérons une variable aléatoire $X\sim \norm(\mu,\sigma^2)$
+$$P\left( X\leq \mbox{VaR}(\alpha,T)\right) = \alpha \quad\Leftrightarrow\quad P\left( X\geq \mbox{VaR}(\alpha,T)\right) = 1-\alpha$$
+\end{slide}
+
+\begin{slide}[toc=]{VaR en Finance}
+La notion de risque financier peut être estimé à l'aide de l'écart type annuelle des performances financières, appelé dans le jargon bancaire la \emph{volatilité}. L'horizon est quant à lui souvent donné en jours (1, 10, ...), qui est à mettre en regard du nombre de jours ouvrables considéré dans la branche (250 ou 252 généralement). Considérons $X$ une variable aléatoire indiquant les rendements, suivant une même loi normale $\norm(\mu,\sigma^2)$ sur une seule période.  Alors, sur la période $T$, les rendements sont également gausssiens de moyenne $\mu T$ et de variance $\sigma^2 T$. La variable centrée réduite s'écrit :
+$$z_{\alpha}=\frac{\mbox{VaR}(\alpha,T)-\mu T}{\sigma\sqrt{T}}$$
+Et donc 
+$$\mbox{VaR}(\alpha,T) = \mu T + z_{\alpha}\sigma\sqrt{T}$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+{\it\small Source: \href{http://www.ubs.com/1/e/investors/annualreporting.html}{Rapport annuel 2007 de l'UBS}\\
+version anglaise, ''Risk, Treasury and Capital Management'', p. 39 }\\
+La position du secteur Banque d'investissement de l'UBS, sur un horizon de 1 jour, à un niveau de confiance de 99\%, en utilisant des données sur 5 ans, est de 
+\begin{itemize}
+	\item 160 millions en 2007
+	\item 169 millions en 2006
+\end{itemize} 
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

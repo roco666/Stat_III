@@ -1,0 +1,445 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+\title{Régression linéaire simple}
+\author{Dr Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 12}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir valider et estimer la qualité d'une régression linéaire simple.
+\end{slide}
+
+\section{Rappels}
+\begin{slide}{Test d'ajustement du $\chi^2$}
+Supposition nécessaire pour certain tests : la population suit une loi spécifique (p.ex. loi normale).
+
+\bigskip
+Principe :
+
+1. Acquisition d'un échantillon de taille suffisamment grande.\\
+2. Classement en $k$ différentes catégories des données.\\
+3. Calcul des fréquences absolues observées.\\
+4. Comparaison des fréquences absolues théoriques $e_i$ et fréquences observées.\\[5mm]
+Rejet de $H_0$ = distribution théorique\\
+si une trop grande différence existe.
+\end{slide}
+
+\begin{slide}[toc=]{Statistique de test}
+La statistique à utiliser suit une loi du $\ki^2$ à $k-1$ degrés de liberté et est calculée ainsi:
+$$
+\ki^2=\sum\limits_{i=1}^k \frac{(o_i-e_i)^2}{e_i}
+$$
+où\\[4pt]
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée pour la catégorie $i$\\
+	$e_i$     & = fréquence théorique pour la catégorie $i$\\
+	$k$       & = nombre de catégories
+\end{tabular}
+\\[5mm]
+{\red Supposition}: \textsc{la taille de l'échantillon est suffisamment grande}.
+\end{slide}
+
+
+\begin{slide}{Test d'indépendance}
+But   : Tester l'indépendance de deux variables de type catégorielles.\\
+Moyen : Table de contingence.\\[5mm]
+Principe du test :\\
+Comparaison des fréquences observées avec les fréquences théoriques $e_i$ en cas d'indépendance.\\
+Si une trop grande différence existe, alors l'hypothèse d'indépendance des variables est rejetée.
+$$
+e_{ij} = \frac{(\mbox{Total ligne }i)\cdot (\mbox{Total colonne }j)}{\mbox{Taille de l'échantillon}}
+$$
+\end{slide}
+
+\begin{slide}[toc=]{Statistique du test}
+$$\ki^2=\sum\limits_{i=1}^r\sum\limits_{j=1}^c\frac{(o_{ij}-e_{ij})^2}{e_{ij}}$$
+où\\[4pt]
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée de la cellule $(i,j)$\\
+	$e_i$     & = fréquence théorique de la cellule $(i,j)$\\
+	$r$       & = nombre de lignes\\
+	$c$       & = nombre de colonnes
+\end{tabular}
+\\[5mm]
+{\red Supposition}: \textsc{la taille de l'échantillon est suffisamment grande}.\\[5mm]
+En pratique, effectif observé par cellule $\geq 5$.
+\end{slide}
+
+
+
+
+
+\section{Régression linéaire}
+\begin{slide}{Modèle simple}
+Le \emph{modèle de régression linéaire simple} est défini par l'équation suivante :
+$$
+y=\beta_0 + \beta_1 x + \epsilon
+$$
+avec\\[4pt]
+\begin{tabular}{ccl}
+$y$ &=& variable dépendante (ou variable expliquée)\\
+$x$ &=& variable indépendante (ou variable explicative)\\
+$\beta_0$ &=& constante de la droite de régression pour la population\\
+&& (ordonnée à l'origine)\\
+$\beta_1$ &=& pente de la droite de régression pour la population\\
+$\epsilon$ &=& terme d'erreur (ou résidu)
+\end{tabular}
+
+\bigskip
+Hypothèses : 
+\begin{itemize}
+\item
+les erreurs sont i.i.d. selon une loi normale ;
+%$\norm(0,\sigma^2)$ ;
+
+\item
+la relation linéaire entre les deux variables est légitime.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=]{Estimation du modèle}
+Méthode des moindres carrés : la somme des carrés des résidus est minimisée.
+
+\bigskip
+La droite d'ajustement s'écrit :
+$$
+\hat{y}=b_0+b_1x
+$$
+
+avec\\[4pt]
+\begin{tabular}{ccl}
+$\hat{y}$ &=& valeur estimée de $y$\\
+$x$ &=& valeur de la variable indépendante\\[2mm]
+$b_1$ &=& $\displaystyle \frac{s_{xy}}{s_x^2} = \frac{\sum (x_i-\bar{x})(y_i-\bar{y})} {\sum(x_i-\bar{x})^2}$\\[4mm]
+$b_0$ &=& $\bar{y}-b_1\bar{x}$
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=Corrélation]{Coefficient de corrélation}
+Le \emph{coefficient de corrélation linéaire} de Pearson d'un échantillon est la valeur
+$$
+\begin{array}{rcl}
+r_{xy} = \displaystyle\frac{s_{xy}}{s_x\cdot s_y} &=&
+\displaystyle
+\frac{ \sum(x_i-\bar{x})(y_i-\bar{y}) }{ \sqrt{\sum(x_i-\bar{x})^2 \cdot \sum(y_i-\bar{y})^2} }
+\\[18pt]
+&=& 
+\displaystyle
+\frac{ \sum x_iy_i - n\bar{x}\bar{y} }{ \sqrt{\bigl(\sum x_i^2 - n\bar{x}^2\bigr) \cdot \bigl(\sum y_i^2 - n\bar{y}^2\bigr)} }
+\end{array}
+$$
+
+\bigskip
+Une corrélation linéaire $r$ étant le plus souvent calculée à partir d'un échantillon, sa valeur est sujette à des erreur d'échantillonnage. Ainsi, $r_{xy}$ n'est qu'une estimation de la véritable valeur du coefficient de corrélation linéaire $\rho$. 
+
+\bigskip
+\textbf{Remarque.} La dernière formule permet un calcul plus rapide.
+\end{slide}
+
+
+
+\begin{slide}[toc=Validité]{Validité d'une corrélation}
+Test sur l'existence ou non d'une corrélation linéaire :
+\begin{eqnarray*}
+	H_0 &:& \rho = 0 \\
+	H_1 &:& \rho\not = 0
+\end{eqnarray*}
+
+La statistique de test à considérer est la suivante:
+$$
+t = \frac{r}{\sqrt{\frac{1-r^2}{n-2}}} \qquad dl=n-2
+$$
+avec\\[4pt]
+\begin{tabular}{ccl}
+$t$ &=& nombre d'écart-type de $r$ depuis 0\\
+$r$ &=& coefficient de corrélation linéaire\\
+$n$ &=& taille de l'échantillon
+\end{tabular}
+
+\end{slide}
+
+
+
+\begin{slide}{Exemple}
+Une entreprise souhaite analyser la relation entre la taille d'une annonce publicitaire, et le nombre d'appels reçus générés par l'annonce. Elle veut savoir s'il existe une corrélation linéaire positive entre ces deux variables, au seuil 0.05. Pour cela, elle demande à ses clients d'indiquer quelle annonce leur a fait connaître l'entreprise.
+
+\bigskip
+Le dépouillement de l'enquête donne:\\[3mm]
+
+%% Dans R
+%taille <- c(9, 16, 25, 16, 20, 16, 20, 20, 16, 9); taille <- 10*taille;
+%proportion <- c(0.13, 0.16, 0.21, 0.18, 0.18, 0.19, 0.15, 0.17, 0.13, 0.11)
+%cor(taille, proportion)
+%cor.test(taille, proportion, method = "pearson", alternative = "greater")
+
+\begin{tabular}{l|*{6}{r}}
+Taille [cm$^2$] & 90 & 160 & 250 & 160 & 200 & \ldots\\
+\hline
+Prop. appels & 0.13 & 0.16 & 0.21 & 0.18 & 0.18 & \ldots
+\end{tabular}
+
+\bigskip
+\begin{tabular}{l|*{6}{r}}
+Taille [cm$^2$] & \ldots & 160 & 200 & 200 & 160 & 90 \\
+\hline
+Prop. appels & \ldots & 0.19 & 0.15 & 0.17 & 0.13 & 0.11 
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{enumerate}
+\item 
+Le paramètre d'intérêt est la corrélation linéaire $\rho$ entre la taille d'une annonce publicitaire et la proportion d'appels générés par l'annonce.
+
+\item 
+L'hypothèse nulle et alternative sont :
+
+\medskip
+\centerline{
+$\begin{array}{rcl}
+	H_0 &:& \rho\leq 0\\
+	H_1 &:& \rho >0
+\end{array}$
+}
+\vspace{-2pt}
+
+\item 
+Le niveau de signification choisi est $\alpha=0.05$
+
+\item 
+La $p$-valeur associée est 0.003921
+
+\item 
+Comme la $p$-valeur est inférieure au niveau de signification, l'hypothèse nulle est rejetée.
+
+\item 
+L'échantillon suppose la possibilité d'une relation linéaire positive entre la taille d'une annonce publicitaire et la proportion d'appels générés par l'annonce.
+\end{enumerate}
+\end{slide}
+
+
+\begin{slide}[toc=Qualité]{Qualité d'un modèle linéaire}
+On définit :
+{\small
+\begin{itemize}
+\item
+La somme des carrés totale (SST = \emph{Total Sum of Squares}) :
+
+\smallskip
+\centerline{$\mbox{SST} = \sum\limits_{i=1}^n (y_i-\bar{y})^2$}
+
+\item
+La somme des carrés des erreurs (SSE = \emph{Sum of Squares Errors}) :
+
+\vspace{-2pt}
+\centerline{$\mbox{SSE} =  \sum\limits_{i=1}^n (y_i-\hat{y}_i)^2$}
+
+\item
+La somme des carrés de régression (SSR = \emph{Sum of Squares Regression}) :
+
+\vspace{-2pt}
+\centerline{$\mbox{SSR} =  \sum\limits_{i=1}^n (\hat{y}_i-\bar{y})^2$}
+\end{itemize}
+}
+\vspace{-2pt}
+où\\[4pt]
+\begin{tabular}{ccl}
+$n$ & = & taille de l'échantillon\\
+$y_i$ & = & $i$-ème valeur de la variable dépendante\\
+$\hat{y}_i$ &=& $i$-ème valeur prédite\\
+$\bar{y}$ &=& moyenne de la variable dépendante\\
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}[toc=]{Variance totale}
+La variance totale se décompose en une partie expliquée et une partie non-expliquée (ou résiduelle) :
+$$
+\mbox{SST} = \mbox{SSE} + \mbox{SSR}
+$$
+
+\bigskip
+Cette propriété est à la base de l'analyse de variance, utilisée pour tester si plusieurs populations sont significativement différentes les unes des autres.
+\end{slide}
+
+
+
+\begin{slide}[toc=]{Propriété}
+Soit une droite de régression linéaire, basée sur la minimisation de la somme des carrés.
+\begin{itemize}
+\item 
+La somme des résidus est nulle : 
+
+\smallskip
+\centerline{$\sum\limits_{i=1}^n (y_i-\hat{y}_i)=0$}
+
+\item 
+La somme des carrés des résidus (SSE) est minimale.
+
+\smallskip
+\centerline{$\mbox{SSE} =  \sum\limits_{i=1}^n (y_i-\hat{y}_i)^2$}
+
+\item 
+La droite de régression linéaire simple passe par le point $(\bar{x},\bar{y})$.
+
+\item 
+Les coefficients estimés $b_0$ et $b_1$ sont des estimateurs sans biais de $\beta_0$ et $\beta_1$.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=]{Illustration}
+\begin{center}
+\includegraphics[height=8cm]{Linreg}
+\end{center}
+\end{slide}
+
+
+
+\begin{slide}[toc=Coefficient $R^2$]{Coefficient de détermination}
+Le \emph{coefficient de détermination} $R^2$ est la proportion de variation totale dans la variable dépendante qui est expliquée par sa relation avec la variable dépendante.
+$$
+R^2=\frac{\mbox{SSR}}{\mbox{SST}}
+$$
+
+\bigskip
+C'est une mesure de la qualité d'un modèle de régression linéaire. $R^2$ varie entre 0 et 1. Plus il se rapproche de 1, meilleur est le modèle. En pratique, des valeurs supérieures ou égales à 0.7 indiquent que le modèle est satisfaisant.
+
+\bigskip
+\textbf{Remarque :} dans le cas d'une seule variable indépendante, le coefficient de détermination est égal au carré de la valeur du coefficient de corrélation linéaire de Pearson: $R^2=r_{xy}^2$
+\end{slide}
+
+
+\begin{slide}[toc=]{Illustration}
+\begin{center}
+\includegraphics[width=0.95\textwidth]{Correlation_examples}
+\end{center}
+
+\bigskip
+\textbf{Remarque :} la valeur <<~?~>> est due au fait que SST vaut 0 ($y_i = \bar{y}$ pour tout $i$). Toutefois la dépendance est clairement linéaire.
+\end{slide}
+
+
+\begin{slide}[toc=Exemple]{Exemple (suite)}
+L'entreprise souhaitant analyser la relation entre la taille d'une annonce publicitaire et le nombre d'appels reçus générés par l'annonce est parvenue à la conclusion qu'une relation linéaire existe probablement.
+\\[3mm]
+%% Dans R
+%taille <- c(9, 16, 25, 16, 20, 16, 20, 20, 16, 9); taille <- 10*taille;
+%proportion <- c(0.13, 0.16, 0.21, 0.18, 0.18, 0.19, 0.15, 0.17, 0.13, 0.11)
+%cor(taille, proportion)
+%cor.test(taille, proportion, method = "pearson", alternative = "greater")
+
+\bigskip
+Le coefficient de détermination vaut
+$$
+R^2 = r_{xy}^2 = 0.7795506
+$$
+
+\bigskip
+Ainsi, environ 78\% de la variance du nombre d'appels est expliquée par la taille de l'annonce.
+\end{slide}
+
+
+\begin{slide}[toc=Validité]{Validité du modèle}
+Pour tout modèle, il est nécessaire d'en vérifier sa validité. Autrement dit, il est nécessaire de connaître si le modèle est statistiquement significatif. Pour le modèle linéaire simple, en supposant valides les postulats  sur les résidus (i.i.d. et suivant une loi normale), il existe deux méthode de test équivalentes :
+\begin{enumerate}
+	\item Test de signification de la corrélation entre $x$ et $y$ (déjà vu)
+	\item Test de signification du coefficient de la pente de régression
+\end{enumerate}
+\end{slide}
+
+
+\begin{slide}[toc=]{Test sur le coefficient de la pente de régression}
+On utilise les hypothèses nulle et alternative suivantes :
+$$
+\begin{array}{rcl}
+	H_0 &:& \beta_1=0\\
+	H_1 &:& \beta_1\not=0
+\end{array}
+$$
+
+\vspace{-2pt}
+L'estimation de l'écart type de la pente de régression est 
+$$
+s_{b_1} = \frac{s_\epsilon}{\sqrt{(x-\bar{x})^2}}
+\qquad \mbox{avec } \ s_\epsilon = \sqrt{\frac{SSE}{n-2}}
+$$
+
+La variable de test à utiliser est
+$$
+t=\frac{b_1-\beta_1}{s_{b_1}}\quad dl=n-2
+$$
+
+\vspace{-6pt}
+avec\\[4pt]
+\begin{tabular}{ccl}
+$\beta_1$ &=& pente supposée de la droite de régression\\
+$b_1$ &=& pente calculée de la droite de régression\\
+$s_{b_1}$ &=& estimation de l'écart type de la pente de régression
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}[toc=Analyse]{Analyse d'une régression linéaire simple}
+Les étapes suivantes montrent comment effectuer une analyse de régression linéaire simple :
+\begin{enumerate}
+	\item Définir la variable dépendante $y$ et la variable indépendante~$x$
+	\item Dessiner un diagramme de dispersion sur $x$ et $y$ afin de vérifier visuellement si une relation linéaire est probable.
+	\item Calculer le coefficient de corrélation $r_{xy}$
+	\item Calculer les coefficients de la régression, ainsi que le coefficient de détermination $R^2$
+	\item Effectuer un test statistique pour valider ou invalider le modèle linéaire simple.
+	\item \'Etablir une conclusion.
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{}
+$$\includegraphics[scale=0.7]{Fin}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

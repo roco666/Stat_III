@@ -1,0 +1,369 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage{../../../../LaTeX/Template/heg_exam}
+\usepackage{graphicx}
+\graphicspath{{../../../../LaTeX/Template/}}
+%\usepackage{amsfonts,amsmath,array,amssymb}
+\usepackage{amsfonts, array}
+
+
+
+
+
+\newcommand{\justification}{\smallskip Justification : \hrulefill \\[5pt] \mbox{}\hrulefill \\[5pt] \mbox{}\hrulefill}
+\newcommand{\vraifaux}{\smallskip
+\begin{tabular}{ll}
+$\square$ VRAI &
+$\square$ FAUX
+\end{tabular}
+}
+\newcommand{\reponse}[1]{\smallskip {\blue Réponse : #1}}
+\newcommand{\hypotabular}[2]{\smallskip
+\begin{tabular}[t]{ll}
+$H_0$ : & #1
+\\
+$H_1$ : & #2
+\end{tabular}}
+
+\newcommand{\erh}[1]{\setlength{\extrarowheight}{#1}} % nécessite le package{array}
+
+
+\begin{document}
+\title{Examen de Rattrapage}
+\semestre{hiver 2009}
+\author{Sacha Varone et Christophe Hebeisen}
+\departement{\'Economie d'entreprise}
+\module{Branches instrumentales}
+\cours{Statistiques III}
+\date{Février 2010}
+%\duree{60'}
+\indication{\vspace*{-2cm}Documentation et matériel autorisés :\\
+- formulaire personnel de 3 pages A4 recto-verso maximum\\
+- machine à calculer\\
+Ne pas écrire en rouge.\\
+La précision de vos calculs doit être de 4 chiffres après la virgule.\\
+Veuillez laisser cet examen agrafé. Si vous choisissez d'enlever l'agrafe, tout manque de page sera sous votre entière responsabilité. Merci.}
+\examinateur{$\square$ \hspace{5mm}  Varone S. \\$\square$ \hspace{5mm}  Hebeisen C.}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\section{Conditions de test (3 points)}
+Sous quelle(s) condition(s) pouvez-vous effectuer un test sur la proportion de consommateurs ayant l'intention d'acheter un nouveau produit ? Indiquez le point de vue statistique !
+
+
+
+\newpage
+\section{Consommation d'eau (8 points)}
+La quantité d'eau utilisée par jour pour un ménage, exprimée en litres, suit une loi normale.
+Une étude sur un échantillon de 16 ménages donne une consommation moyenne de 162 lt et un écart type de 20 lt.
+Construisez un test bilatéral au seuil de risque de 15 \% pour tester si la quantité d'eau moyenne utilisée est égale à 160 lt. Utilisez la méthode de la $p$-valeur en spécifiant toutes les étapes.
+
+\begin{enumerate}
+\item \textbf{(1 point)} Quel est le paramètre d'intérêt ?\\[1cm]
+% consommation moyenne d'eau par jour par ménage
+\item \textbf{(1 point)} Quelles sont les hypothèses nulle et alternative ?\\[2cm]
+%\hypotabular{$\mu_0=160$}{$\mu_1\neq 160$}
+\item \textbf{(1 point)} Quel est le niveau de signification ? \\[1cm]
+% risque : $\alpha = 0.15$ (1pt)
+
+\item \textbf{(2 points)} Donner la (ou les) valeur(s) critique(s) du test (au besoin, donner une estimation). \\[3cm]
+%la valeur critique est $\alpha=0.15$ ou  $t_{0.075,15}\in [1.3406 ; 1.7531]$ et $t_{0.925,15}\in [-1.7531; -1.3406]$ \\
+
+\item \textbf{(2 points)} Donner une estimation de la $p$-valeur. \\[3cm]
+% avec Student : $t_0=\frac{162-160}{20/\sqrt{16}} = 0.4$
+% $P(T_{15}>0.4) \in [0.3\,;\,0.4]$, d'où $p$-valeur $\in [0.6\,;\,0.8]$
+%comme $p$-valeur > $\alpha=0.15$, l'hypothèse nulle n'est pas rejetée
+\item \textbf{(1 point)} Quelle est la conclusion du test ?
+%il est possible, au seuil $\alpha=0.15$, que la quantité moyenne d'eau utilisée soit de 160 lt pr ménage.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Faillite (7 points)}
+Une étude sur la relation entre la survie d'une start-up et son turn-over a été effectuée. 120 start-ups ont été examinées et questionnées. La variable $X$ associe à chaque start-up la modalité\linebreak 
+A = ''est en faillite après moins de 2 ans d'activité''
+ou B = ''n'est pas en faillite, avec au moins 2 ans d'activités'', et la variable $Y$ associe à chaque
+start-up la modalité Plus=''a un turn-over de plus de 30\%'' ou Moins=''a un turn-over de moins de 30\%''.
+
+Testez l'indépendance des deux variables au seuil $0.05$, sachant que les données de l'étude sont les suivantes:
+
+\bigskip
+\centerline{
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & A & B & Total
+\\
+\hline
+Plus & 70 & 30 & 100
+\\
+\hline
+Moins & 5 & 15 & 20
+\\
+\hline
+Total & 75 & 45 & 120
+\\
+\hline
+\end{tabular}
+}
+
+Indiquez toutes les étapes du test.
+%\bigskip
+%Solution : les effectifs par cellule sont supérieurs à 5, donc on peut faire le test.
+%\begin{itemize}
+%\item hypothèses 1 pt
+%\item niveau de signification : 1 pt
+%\item valeur critique $\ki^2_{0.05 ; 1}$ 1 pt
+%\item calcul des $e_{ij}$ 1 pt
+%\item calcul de la statistique $\ki^2$ (calcul des $(o_{ij}-e_{ij})^2/e_{ij}$) 2 pt
+%\item conclusion 1 pt
+%\end{itemize}
+%\bigskip
+%Calculs :
+%\bigskip
+%\centerline{
+%\begin{tabular}{c|c|c}
+
+%tableau des $e_{ij}$ & faillite & pas de faillite
+%\\
+%\hline
+%plus & 62.5 & 37.5
+%\\
+%\hline
+%moins & 12.5 & 7.5
+%\end{tabular}
+%}
+%
+%Degrés de liberté = $(2-1)(2-1) = 1$, donc $\ki^2_{0.05 ; 1} = 3.8415$
+%
+%Calcul de la statistique : $\ki^2 = 0.9+1.5+4.5+7.5 = 14.4$, qui est plus grand que 3.8415. L'hypothèse $H_0$ : "il n'existe aucun lien entre la survie d'une start-up et le résultat du turn-over (?)" sera rejetée.
+%
+%\begin{verbatim}
+%tabac <- matrix(c(70,30,5,15),ncol=2,byrow=TRUE)
+%res <- chisq.test(tabac,correct=FALSE)
+%res$observed ; res$expected ; res$residuals^2 ; res
+%(oij-eij)^2/eij
+%\end{verbatim}
+
+
+
+\newpage
+\section{Accus (5 points)} % Test de la médiane
+	% \cite{groebner2006} ex 16.5 p. 674
+Un fabricant d'appareils photo affirme que les accus de son dernier appareil ont une durée de vie médiane de 4000 heures. Un magazine de consommateurs décide de vérifier les dires de ce fabricant et teste la durée de vie des accus de 12 de ces appareils. Les résultats, exprimés en heures, sont les suivants :
+
+\medskip
+\centerline{
+\begin{tabular}{*{6}{c}}
+5894 & 4838 & 3805 & 4494 & 4738 & 5249\\
+4459 & 4098 & 4722 & 1973 & 3322 & 4800
+\end{tabular}
+}
+
+\medskip
+Le magazine décide d'analyser le résultat au moyen du logiciel R, en appliquant le test des rangs signés de Wilcoxon :
+
+%> accus <- c(5894, 4838, 3805, 4494, 4738, 5249,4459, 4098, 4722, 1973, 3322, 4800)
+%> wilcox.test(accus,alternative="two.sided",mu=4000,exact=TRUE,conf.level=0.9,conf.int=TRUE)
+
+\begin{verbatim}
+        Wilcoxon signed rank test
+
+data:  accus
+V = 59, p-value = 0.1294
+alternative hypothesis: true location is not equal to 4000
+90 percent confidence interval:
+ 3933.5 4838.0
+sample estimates:
+(pseudo)median
+       4485.25
+\end{verbatim}
+
+\begin{enumerate}
+\item \textbf{(1 point)}
+Formulez les hypothèses nulle et alternative.\\[2cm]
+% $H_0 : \tilde{\mu} = 4000$, $H_1 : \tilde{\mu} \neq 4000$
+
+\item \textbf{(2 point)}
+Quelle conclusion le magazine de consommateurs peut-il avoir, au seuil de signification $\alpha=0.1$ ?\\[2cm]
+% $p$-valeur = 0.1294 > $\alpha = 0.1$ => acceptation de $H_0$ => probablement les batteries tiennent 4000 heures
+
+% ou alors en disant que $W^+ = 59$ fait partie de l'intervalle $[17,61]$ = zone d'acceptation
+
+\item \textbf{(2 points)}
+Supposons maintenant qu'on rajoute une treizième valeur, à savoir 6000. Quelle sera cette fois la conclusion ?
+
+% On avait $W^+ = 59$ pour 12 valeurs, intervalle [17,61]. Pour 13 valeurs l'intervalle à considérer est [21,70]. Si on rajoute 6000, la plus grande valeur, on aura nécessairement pour celle-ci le rang (positif) 13, à rajouter à 59 (les rangs négatifs restent inchangés) : comme 59 + 13 = 72 ne fait pas partie de l'intervalle [21,70], on va cette fois rejeter $H_0$.
+
+\end{enumerate}
+
+
+%	\begin{enumerate}
+%		\item Le paramètre est $\tilde{\mu}=4000$
+%		\item $$\begin{array}{ll}
+%	  H_0 &: p \tilde{\mu}\leq4000 \\
+%	  H_1 :& \tilde{\mu}>4000
+%	 \end{array}$$
+%	  \item Le niveau de signification est $\alpha=0.05$
+%	  \item La région critique est $[61 ; \infty [$
+%	  \item Calcul de la statistique
+%	
+%\begin{tabular}{*{6}{c}}
+%Données & Différences & Abs(Différences) & Rang	& Rang + & 	Rang -\\
+%1973 & -2027 & 2027 & 12 &  & 12\\
+%4838 & 838 & 838 & 9 & 9 &\\
+%3805 & -195 & 195 & 2 & &  2\\
+%4494 & 494 & 494 & 4 & 4 & \\
+%4738 & 738 & 738 & 7 & 7 & \\
+%5249 & 1249 & 1249 & 10 & 10 & \\
+%4459 & 459 & 459 & 3 & 3 & \\
+%4098 & 98 & 98 & 1 & 1 & \\
+%4722 & 722 & 722 & 6 & 6 & \\
+%5894 & 1894 & 1894 & 11 & 11 & \\
+%3322 & -678 & 678 & 5 &  & 5\\
+%4800 & 800 & 800 & 8 & 8 & \\
+% & & & & W=	59 &	
+%\end{tabular}
+%	
+%	  \item Comme $W=59<61=W_0$ l'hypothèse $H_0$ n'est pas rejetée
+%	  \item La conclusion est qu'il n'y a pas suffisamment d'évidence pour rejeter l'affirmation du fabricant
+%	\end{enumerate}
+
+
+
+
+
+
+
+\newpage
+\section{Contrats (4 points)}
+On a demandé à 18 petites sociétés informatiques le nombre de contrats reçus tout au long du mois de janvier 2009.
+
+\medskip
+\centerline{\erh{4pt}
+\begin{tabular}{l|rrrrr|r}
+Nombre de contrats $x_i$ & 0 & 1 & 2 & 3 & 4 & Total
+\\
+\hline
+Effectif (sociétés) $n_i$ & 4 & 6 & 3 & 5 & 0 & 18
+\\
+\end{tabular}
+}
+
+Le nombre moyen de contrats $\bar{x}$ par société est $1.5$, et l'écart type $s$ du nombre de contrats par société est $1.150447$
+
+% avec R :
+%effectifs <- c(rep(0,6),rep(1,7),rep(2,5),rep(3,2),rep(4,0))
+%effectifs <- c(rep(0,4),rep(1,6),rep(2,3),rep(3,5),rep(4,0))
+%m <- mean(effectifs)
+%sd(effectifs)
+%var(effectifs)
+%lb <-m-sd(effectifs); ub <- m+sd(effectifs)
+%indices <- which(effectifs>=lb&effectifs<=ub)
+%length(indices)/length(effectifs)
+
+\begin{enumerate}
+\item \textbf{(2 points)}
+Sur la base de cet échantillon, calculez le pourcentage de sociétés dont le nombre de contrats se situe à au plus 1 écart type de la moyenne. \\[5cm]
+%
+%  1pt :  l'intervalle est $1.5 \pm 1.150447 = [0.3495525 ; 2.650447]$, donc on regarde les sociétés ayant soit 1, soit 2 contrats : total $= 6+3 = 9$
+%
+%  1pt :  donc la proportion est $9/18 = 0.5$, ou 50\%
+
+% 1pt : on ne peut pas utiliser le résultat empirique car la taille de l'échantillon n'est pas assez grande et on ne sait pas encore s'il suit une distribution normale
+
+%\item \textbf{(2 points)}
+%Donnez la probabilité que l'intervalle
+%$[\,\bar{x}-1.645 \cdot\frac{s}{\sqrt{810}} \,;\, \bar{x}+1.645 \cdot\frac{s}{\sqrt{810}}\,]$
+%recouvre le nombre moyen d'enfants par foyers dans la population.\\[3cm]
+%	%
+%	%    $IC_{(1-\alpha)\%} = [\bar{x}\pm z_{\alpha/2}\cdot \frac{s}{\sqrt{n}}]$, donc
+%	% $z_{\alpha/2} = 1.645$ => $\alpha/2 = 5\%$ => $\alpha = 10\%$, donc P[IC] = 90\%
+%	%
+%	%    rem. $n = 810 >30$, donc on peut prendre la loi normale
+
+
+\item \textbf{(2 points)}
+Calculez un intervalle de confiance à 90\% pour la variance du nombre de contrats par société dans l'ensemble des petites sociétés informatiques. Vous pouvez supposer que les conditions nécessaires à l'utilisation d'un intervalle de confiance sont valides (échantillon dont les éléments sont i.i.d. de distribution normale).
+
+%
+% estimation de la variance $\sigma^2$, moyenne $\mu$ inconnue, population normale, dl = 19
+% IC = $[(n-1)s^2/q_{0.05;17} ; (n-1)s^2/q_{0.95;17}]
+% = [17\cdot 1.323529^2/27.58711 ; 17\cdot 1.323529^2/8.67176] = [0.8155983 ; 2.594629]$
+
+% avec R :
+%q.min = qchisq(0.95,17,lower.tail=FALSE)
+%q.max = qchisq(0.05,17,lower.tail=FALSE)
+%q.min;q.max
+%(length(effectifs)-1)*var(effectifs)/q.max
+%(length(effectifs)-1)*var(effectifs)/q.min
+\end{enumerate}
+
+
+
+
+
+
+
+
+%\newpage
+%\section{Qualité des soins (6 points)}
+%Une étude sur la qualité des soins en milieu hospitalier indique le jugement subjectif des patients sur la qualité des soins (échelle de 1=exécrable à 7=excellent) en fonction de la durée de séjour en jours.
+%
+%\begin{tabular}{l|rrrrrr}
+%Durée [jours] & 2&3&4&12&13&14\\
+%\hline
+%Qualité & 7&6&5&3&4&5
+%\end{tabular}
+%
+%Vous utilisez le logiciel $R$ afin de calculer l'équation de la régression linéaire (partie de gauche), ainsi qu'effectuer le test de la corrélation au seuil de 5\% (partie de droite).
+%\begin{verbatim}
+%        Pearson's product-moment correlation            | Coefficients:
+%                                                        | (Intercept)        Duree
+%data:  Duree and Qualite                                |      6.5584      -0.1948
+%t = -2.3717, df = 4, p-value = 0.03834                  |
+%alternative hypothesis: true correlation is less than 0 |
+%95 percent confidence interval:                         |
+% -1.00000000 -0.05716649                                |
+%sample estimates:                                       |
+%       cor                                              |
+%-0.7644708                                              |
+%\end{verbatim}
+%
+%Indication: la droite de régression est donc
+%$\widehat{Qualite} = 6.5584 - 0.1948 * Dur\acute{e}e$\\
+%et le coefficient de corrélation vaut $r=-0.7644708$
+%
+%%\begin{verbatim}
+%%Duree<-c(2,3,4,12,13,14)
+%%Qualite<-c(7,6,5,3,4,5)
+%%plot(Duree,Qualite, xlab="Durée", ylab="Qualite")
+%%cor(Duree,Qualite)
+%%dr <- lm(Qualite~Duree)
+%%abline(dr)
+%%summary(dr)
+%%cor.test(Duree,Qualite,method="pearson", alternative="less")
+%%\end{verbatim}
+%
+%\begin{enumerate}
+%	\item \textbf{(2 points)} Quelle est la qualité du modèle de régression linéaire obtenu ?\\[1cm]
+%	\item \textbf{(2 points)} Le modèle est-il valide ? Justifiez.\\[1cm]
+%	\item \textbf{(2 points)} Utiliseriez-vous ce modèle ? Justifiez.
+%\end{enumerate}
+
+\appendix
+\newpage
+\section{Loi normale centrée réduite}
+{\footnotesize \input{../../../polycopie/tableNormale}}
+\newpage
+\section{Table de la loi du $\chi^2$}
+{\footnotesize \input{../../../polycopie/tableChiCarre}}
+\newpage
+\section{Table de la loi de Student}
+{\footnotesize \input{../../../polycopie/tableStudent}}
+\newpage
+\section{Table du test des rangs signés de Wilcoxon}
+Les valeurs critiques sont données par la table suivante:\\[5mm]
+\input{../../../polycopie/tableWilcoxon}
+
+\end{document}

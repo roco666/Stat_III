@@ -1,0 +1,56 @@
+\documentclass[french,a4paper,12pt]{report}
+\usepackage[pdftex]{graphicx}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel, fancyhdr, amsmath, amsfonts}
+%\usepackage{pst-plot, pst-tree}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+\input{mydef_stat}
+\pagestyle{fancy}
+\rhead{}
+\lfoot{} \cfoot{}
+\rfoot{\thepage}
+%
+\pagenumbering{roman}
+\title{Statistique inf\'erentielle\\
+{\small\it - Statistiques III -}}
+\author{Dr Sacha Varone}
+\date{\'Edition 2011\\[10cm]
+\flushright \includegraphics[scale=0.7]{HEG_fr_ang}}
+\thispagestyle{empty}
+
+%\includeonly{normal}
+
+\begin{document}
+\include{titre}
+\pagenumbering{arabic}
+\include{introduction}
+\include{va_continues}
+\include{normale}
+\include{student}
+\include{chi2}
+%\include{Fisher}
+\include{estimation}
+\include{tests}
+\include{nonparametrique}
+\include{chi2test}
+\include{regression}
+% \include{compar_param}
+% \include{compar_nonparam}
+\appendix
+\include{tables}
+\include{logiciels}
+% \include{exercices}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+
+%%% TeX-master: t
+%%% End:

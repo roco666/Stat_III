@@ -1,0 +1,263 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Test d'ajustement\\
+Test d'indépendance}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 12}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir effectuer 
+\begin{itemize}
+	\item un test d'ajustement
+	\item un test d'indépendance
+\end{itemize}
+\end{slide}
+
+\section{Rappels}
+\begin{slide}[toc=]{Test de la médiane}
+Si la médiane hypothétique de la population est trop éloignée de la médiane de l'échantillon, 
+alors $H_0$ rejeté.\\[3mm]
+-> Test des rangs signés de Wilcoxon\\[3mm]
+{\small
+La statistique de test $W$ suit la loi tabulée pour le test des rangs signés de Wilcoxon.
+\begin{enumerate}
+	\item Calculer les différences $d_i$ entre chaque valeur et la médiane postulée $\tilde{\mu}$
+	\item Calculer la valeur absolue des différences précédentes: $|d_i|$
+	\item Déterminer le rang pour chacune des valeurs $|d_i|$, en ne tenant pas compte des valeurs nulles.\\
+	Si des observations ont la même valeur $|d_i|$, alors affecter le rang moyen de ces observations.
+	\item Calculer la statistique $W$ qui est la somme des rangs dont les $d_i$ sont positifs.
+\end{enumerate}
+Rejet de $H_0$ si $W > W_{\alpha}$ = valeur critique.
+}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'ajustement                    %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'ajustement}
+\begin{slide}{Utilité}
+Supposition nécessaire pour certain tests\\
+population suit une loi spécifique (ex loi normale).\\[5mm]
+Vérification ? \pause Test d'ajustement du $\ki^2$\\[5mm]
+- Adéquation entre distribution hypothétique et empirique -
+\end{slide}
+
+\begin{slide}{Principe}
+1. Acquisition d'un échantillon de taille suffisamment grande.\\
+2. Classement en $k$ différentes catégories des données.\\
+3. Calcul des fréquences absolues observées.\\
+4. Comparaison des fréquences absolues théoriques $e_i$ et fréquences observées.\\[5mm]
+Rejet de $H_0$ = distribution théorique\\
+si une trop grande différence existe.
+\end{slide}
+
+\begin{slide}[toc=]{Statistique de test}
+La statistique à utiliser suit une loi du $\ki^2$ à $k-1$ degrés de liberté et est calculée ainsi:
+$$\ki^2=\sum\limits_{i=1}^k \frac{(o_i-e_i)^2}{e_i}$$
+où\\
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée pour la catégorie $i$\\
+	$e_i$     & = fréquence théorique pour la catégorie $i$\\
+	$k$       & = nombre de catégories
+\end{tabular}
+\\[5mm]
+{\red Supposition suivante}:\textsc{La taille de l'échantillon est suffisamment grande}
+\end{slide}
+
+\begin{slide}{Exemple}
+Un nouveau directeur d'un centre d'appels pour FAI constate que le personnel est réduit de 20\% les mercredi, jeudi et dimanche. Son prédécesseur avait procédé ainsi car le nombre d'appels était 20\% moins élevé ces jours-là. Afin de savoir si tel est toujours le cas, il fait relever le nombre d'appels sur 1 mois pour chaque jour de la semaine et obtient les données aggrégées suivantes:
+
+\begin{center}
+\begin{tabular}{c|ccccccc}
+	Jours & Lu & Ma & Me & Je & Ve & Sa & Di\\
+	\hline
+	Nombre d'appels & 1000 & 1200& 900 & 1000 & 1200& 1100 & 800
+\end{tabular}
+\end{center}
+
+Il souhaite savoir s'il y a effectivement une baisse de 20\% les mercredi, jeudi et dimanche, avec un niveau de signification de 0.05.
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{enumerate}
+	\item Hypothèses nulle et alternative\\
+	\pause
+	  \begin{tabular}{cl}
+	  $H_0$ & La distribution des appels est identique\\
+	        & les lu, ma, ve et sa,\\
+	        & et 20\% moins élevée les me, je et di.\\
+	  $H_1$ & La distribution des appels n'est pas celle décrite en $H_0$\\	  
+    \end{tabular}
+  \item Le niveau de signification \pause 0.05
+  \item La valeur critique \pause est celle d'une distribution du $\ki^2$ à 6 degrés de libertés.\\
+  $$\ki^2_{0.05}=12.5916$$ 
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (fin)}
+\begin{itemize}
+  \item[4. ] Le nombre total d'appels sur la période observée est 7200
+  \begin{center} 
+		\begin{tabular}{c|ccccccc}
+			Jours & L & Ma & Me & Je & Ve & Sa & Di\\
+			\hline
+			$o_i$ & 1000 & 1200& 900 & 1000 & 1200& 1100 & 800\\
+			$e_i$ & 1125 & 1125 & 900 & 900 & 1125 & 1125 & 900
+		\end{tabular}
+		\end{center}
+		La statistique est alors $$\ki^2 = 46.6$$
+  \item[5. ] \pause Comme $46.6>12.5916$, l'hypothèse $H_0$ est rejetée.
+  \item[6. ] La conclusion est \pause que la distribution du nombre d'appels n'est plus telle qu'indiquée par le précédent directeur.
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'indépendance                  %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'indépendance}
+\begin{slide}[toc=Table contingence]{Rappel}
+Table de contingence = tableau croisé = crosstable\\
+Principe: 2 variables qualitatives, données groupées
+\end{slide}
+
+\begin{slide}[toc=Principe]{Pricipe du test d'indépendance}
+But   : Tester l'indépendance de deux variables de type catégoriel\\
+Moyen : Table de contingence.\\[5mm]
+Principe du test \\ 
+Comparaison des fréquences observées avec les fréquences théoriques $e_i$ en cas d'indépendance.\\
+Si une trop grande différence existe, alors l'hypothèse d'indépendance des variables est rejetée.
+$$e_{ij} = \frac{ (\mbox{Total ligne }i)(\mbox{ Total colonne }j) }{ \mbox{Taille de l'échantillon}}$$
+\end{slide}
+
+\begin{slide}[toc=Statistique]{Statistique du test}
+$$\ki^2=\sum\limits_{i=1}^r\sum\limits_{j=1}^c\frac{(o_{ij}-e_{ij})^2}{e_{ij}}$$
+où\\
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée de la cellule $(i,j)$\\
+	$e_i$     & = fréquence théorique de la cellule $(i,j)$\\
+	$r$       & = nombre de lignes\\
+	$c$       & = nombre de colonnes
+\end{tabular}
+\\[5mm]
+{\red Supposition}:\textsc{La taille de l'échantillon est suffisamment grande}\\[5mm]
+En pratique, effectif observé par cellule $\geq 5$
+\end{slide}
+
+\begin{slide}{Exemple}
+Une recherche est effectuée afin de savoir si le nombre de sorties le week-end est indépendant des résultats aux examens, avec un niveau de signification de 0.05. La table de contingence suivante résume les données récoltées:
+
+\begin{center}
+\begin{tabular}{r|cccc|c}
+	& \multicolumn{4}{c}{Résultat} & \\
+	& Insuffisant & Acquis & Bien & Excellent & {\it\small Total}\\
+	\hline
+	Sortie WE   & & & & & \\
+	Jamais      & 84 & 50 & 50 & 16 & 200\\
+	Occasionnel & 82 & 64 & 34 & 20 & 200\\
+	Fréquent    & 34 & 36 & 16 & 14 & 100\\
+	\hline
+	{\it\small Total} & 200 & 150 & 100 & 50 & 500 
+\end{tabular}
+\end{center}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{enumerate}
+	\item Hypothèses nulle et alternative\\
+	\pause
+	  \begin{tabular}{cl}
+	  $H_0$ & Sorties du week-end indépendantes\\
+	        & des résultats aux exams.\\
+	  $H_1$ & Sorties du week-end ne sont PAS indépendantes\\
+	        & des résultats aux examens\\	  
+    \end{tabular}
+  \item Niveau de signification \pause 0.05
+  \item Valeur critique est \pause celle d'une distribution du $\ki^2$ à $(3-1)(4-1)=6$ degrés de libertés.\\
+  $$\ki^2_{0.05}=12.5916$$ 
+\end{enumerate}
+\end{slide}
+  
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+  \item[4. ] Les fréquences théoriques de la table de contingence sont
+	\pause 
+	\begin{center}
+	\begin{tabular}{r|cccc|c}
+		& \multicolumn{4}{c}{Résultat} & \\
+		& Insuffisant & Acquis & Bien & Excellent & {\it\small Total}\\
+		\hline
+		Sortie WE   & & & & & \\
+		Jamais      & 80 & 60 & 40 & 20 & 200\\
+		Occasionnel & 80 & 60 & 40 & 20 & 200\\
+		Fréquent    & 40 & 30 & 20 & 10 & 100\\
+		\hline
+		{\it\small Total} & 200 & 150 & 100 & 50 & 500 
+	\end{tabular}
+	\end{center}
+		La statistique est alors $$\ki^2 = 10.88$$
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (fin)}
+\begin{itemize}
+  \item[5. ] Comme $10.88<12.5916$, l'hypothèse $H_0$ ne peut pas être rejetée.
+  \item[6. ] La conclusion est \pause qu'il n'y a pas suffisamment d'évidence pour conclure que les sorties du week-end et le résultat aux examens ne sont pas indépendants.\\[5mm]
+  ... et ceci n'est aucunement une incitation à faire la fête le week-end!
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=]{}
+$$\includegraphics[scale=0.7]{Fin}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

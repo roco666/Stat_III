@@ -1,0 +1,351 @@
+\documentclass[style=heg, mode=print]{powerdot}
+%\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts,amsmath,array}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+    \frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\usepackage{hyperref}
+% Definitions hyperref
+\hypersetup{colorlinks,%
+            citecolor=black,%
+            filecolor=black,%
+            linkcolor=black,%
+            urlcolor=blue}
+\graphicspath{{../../fig/}}
+\usepackage{bm} % gras mathématique avec \bmath déf. ci-dessous
+    \newcommand{\bmath}[1]{\ensuremath\bm{#1}}
+
+% Definitions Maths
+\include{mydef_slides}
+
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Méthode de la $p$-valeur\\
+Comparaison IC et test statistique}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 9}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+\begin{itemize}
+\item 
+Savoir interpréter des résultats de tests statistiques utilisant la méthode de la $p$-valeur
+\item 
+Comprendre le lien entre intervalle de confiance et test statistique
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=Test proportion]{Statistique de test d'une proportion}
+$$
+z=\frac{\bar{p}-\pi}{\sqrt{\frac{\pi(1-\pi)}{n}}}
+$$
+où\\[4pt]
+\begin{tabular}{cl}
+	$\bar{p}$ & = proportion de l'échantillon\\
+	$\pi$       & = proportion supposée de la population étudiée\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+
+\vspace{5mm}
+{\red Supposition}: \textsc{taille de l'échantillon suffisamment grande}\\[5mm]
+En pratique
+$$
+n\pi\geq 5  \quad\mbox{et}\quad   n(1-\pi)\geq 5
+$$
+\end{slide}
+
+\begin{slide}[toc=Test variance]{Statistique de test d'une variance}
+La statistique de test à utiliser suit une loi du $\ki^2$ à $n-1$ degrés de libertés:
+$$
+\ki^2=\frac{(n-1)s^2}{\sigma^2}
+$$
+où\\[4pt]
+\begin{tabular}{cl}
+	$\sigma^2$ & = variance supposée de la population\\
+	$s^2$       & = variance de l'échantillon\\
+	$n$       & = taille de l'échantillon
+\end{tabular}
+\\[5mm]
+Hypothèse: échantillon aléatoire provenant d'une population dont les éléments sont {\red i.i.d. de distribution normale}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Méthode de la p-valeur               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Méthode de la $p$-valeur}
+\begin{slide}[toc=]{Qu'est-ce?}
+La \emph{$p$-valeur}, appelée \emph{niveau (ou degré) de signification observé},  est la probabilité d'observer l'échantillon réellement utilisé sachant que l'hypothèse nulle $H_0$ est vraie.
+\\[5mm]
+\begin{itemize}
+	\item Autre méthode d'interprétation du résultat d'un test d'hypothèse.
+	\item Utilisée avec un ordinateur
+\end{itemize}
+\vspace{5mm}
+Interprétation:\\
+probabilité d'obtenir à partir d'un autre échantillon tiré de la même population une valeur du paramètre testé au moins aussi extrême (plus éloignée de $H_0$) que la valeur réellement observée.
+\end{slide}
+
+\begin{slide}{Utilisation}
+Critère : si $p$-valeur < $\alpha$, alors rejet de $H_0$.\\
+Sinon, $H_0$ n'est pas rejetée.
+\\[5mm]
+Logiciels: Excel, Calc, Gnumeric, SPSS, R,  ...\\[5mm]
+Avantage : La $p$-valeur donne plus d'information que simplement le rejet ou non d'une hypothèse.\\
+$\Rightarrow$ degré de signification associé au résultat.
+\end{slide}
+
+\begin{slide}{Illustration}
+Test unilatéral à gauche
+$$\includegraphics[width=11cm]{p_value_4}$$
+Rejet de $H_0$, car $p$-valeur < risque $\alpha$
+\end{slide}
+
+\begin{slide}[toc=output, method=direct]{Résultat du logiciel R}
+\begin{verbatim}
+        One Sample t-test
+
+data:  x
+t = 1.6771, df = 9, p-value = 0.1278
+alternative hypothesis: true mean is not equal to 500
+99 percent confidence interval:
+ 499.0622 502.9378
+sample estimates:
+mean of x
+      501
+\end{verbatim}
+
+\medskip
+Obtenu avec les commandes suivantes :\\[6pt]
+{\it x <- c(498, 502, 501, 499, 503, 503, 503, 499, 500, 502)\\
+t.test(x, mu=500, alternative="two.sided", conf.level=0.99)}
+\end{slide}
+
+\begin{slide}{Interprétation}
+\begin{itemize}
+	\item Hypothèses nulle et alternative\pause
+	$$\begin{array}{ll}
+		 H_0 : &  \mu = 500 \\
+		 H_1 : & \mu \not= 500
+		 \end{array}$$ \pause
+	\item Taille de l'échantillon ? \pause $n=10$ \pause
+	\item Degré de confiance? \pause $0.99$\pause
+	\item Valeur de la statistique ? \pause $\bar{x}=501$\pause
+	\item Résultat du test ? \pause hypothèse nulle non rejetée\pause
+	\item Conclusion ? \pause on peut supposer que la moyenne est effectivement de 500
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=\'Etapes]{\'Etapes d'un test utilisant la $p$-valeur}
+\begin{enumerate}
+	\item Spécifier la valeur de la population d'intérêt.
+	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+	\item Choisir le niveau de signification $\alpha$
+	\item Déterminer la région critique:\\
+	Si la $p$-valeur est inférieure à $\alpha$, alors rejeter $H_0$\\
+	Sinon, ne pas rejeter $H_0$
+	\item {\red Calculer la $p$-valeur associée à l'échantillon}.
+	\item Prendre une  décision.\\
+	(Rejeter $H_0$ seulement si la $p$-valeur est inférieure à $\alpha$)
+	\item Énoncer une conclusion.
+\end{enumerate}
+\end{slide}
+
+\begin{slide}{Exemple}
+Une étude sur la mobilité des employés de l'entreprise ''Jeux Mendors'' affirme que la moyenne des temps de trajet des employés pour venir à leur travail excède 40 minutes. Vous devez tester cette affirmation avec une niveau de signification de 0.05. Pour cela, 100 employés vous ont indiqué leur temps de trajet actuel, dont la moyenne est 43.5 minutes. Basé sur une étude précédente, vous pouvez supposer que l'écart type de la population est de 8 minutes.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est \\
+ le temps de trajet moyen de tous les employés de l'entreprise ''Jeux Mendors''.
+	\item Les hypothèses nulle et alternative sont:\\
+
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu\leq 40$ minutes\\
+	  $H_1$ & $\mu >40$ minutes\\	
+    \end{tabular}
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+  \item[3. ] Niveau de signification \pause  0.05
+  \item[4. ] Région critique \pause  $p$-valeur < $\alpha$
+  \item[5. ] Calcul de la $p$-valeur:\pause
+  $$z=\frac{43.5-40}{\frac{8}{\sqrt{100}}}=4.38$$
+  $p\mbox{-valeur} = \mbox{P}(z>4.38)=1-\mbox{P}(z\leq 4.38) \approx 0$ \pause
+  \item[6. ] Comme la $p$-valeur appartient à la région critique, l'hypothèse $H_0$ est rejetée. \pause
+  \item[7. ] La conclusion est  que la moyenne des temps de trajet excède 40 minutes.
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Test bilatéral}
+Considérons une statistique suivant une distribution symétrique.\\
+Calculons la probabilité que la statistique prenne des valeurs plus extrêmes que celles obtenue à partir de l'échantillon, du côté correspondant à la situation observée.
+$$P(\Theta \leq \theta_0)\quad \mbox{ ou } \quad P(\Theta \geq \theta_0)$$
+La $p$-valeur est le {\red double} de cette probabilité.
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+Tester la moyenne d'un échantillon du nombre d'employés par PME suisse contre la moyenne de la population, $\mu=35$, en ne connaissant pas la valeur de la variance de la population.\\
+Par des études précédentes, nous savons que le nombre d'employés est distribué selon une loi normale.\\
+20 PME suisses ont été interrogées sur le nombre d'employés qu'elles occupent.\\
+La moyenne calculée vaut $\overline{x}=27$ et la variance calculée vaut $s^2=334.7$.\\
+Choix d'un niveau de signification de 0.05.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est \\
+	\pause
+	le nombre moyen d'employés des PME suisses.\pause
+	\item Les hypothèses nulle et alternative sont:\\
+	\pause
+	  \begin{tabular}{cl}
+	  $H_0$ & $\mu = 35$ employés\\
+	  $H_1$ & $\mu \not= 35$ employés\\	
+    \end{tabular}
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+\item[3. ] 
+Niveau de signification 0.05\pause
+
+\item[4. ] 
+Région critique $p$-valeur < $\alpha$\pause
+
+\item[5. ] 
+Le calcul de la $p$-valeur
+$$
+t = \frac{27 - 35}{\sqrt{\frac{334.7}{20}}} \approx -1.955
+$$
+Comme la moyenne de l'échantillon est inférieure à la moyenne de la population postulée sous $H_0$, on considère tout d'abord la région de rejet de gauche. 
+\onslide*{4}{$$P(t_{?,19}<-1.955)\approx 0.0327$$}
+\onslide*{5}{$$P(t_{1-\frac{p-\text{value}}{2},19}<-1.955)\approx 0.0327$$}
+\pause
+Test bilatéral, donc cette probabilité doit être doublée\\
+$p$-value $\approx 2\cdot 0.0327 = 0.0654$
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (fin)}
+\begin{itemize}
+  \item[6. ] Comme la $p$-valeur n'appartient pas à la région critique, l'hypothèse $H_0$ n'est pas rejetée.
+  \item[7. ] La conclusion est que \pause la vraie moyenne de la population peut être égale à 35 employés par petite entreprise suisse.
+\end{itemize}
+\end{slide}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Comparaison IC et test               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Comparaison IC et tests}
+
+
+\begin{slide}{Illustration}
+$$\includegraphics[scale=0.6]{test_t_vs_x}$$
+\end{slide}
+
+\begin{slide}{Explications}
+$$
+t = \frac{\bar{x} - \mu}{\hat\sigma_{\bar{x}}} 
+\quad\Longleftrightarrow\quad
+\bar{x} = \mu + t \; \hat\sigma_{\bar{x}}
+$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple précédent}
+Test sur la moyenne, variance inconnue.\\[4pt]
+20 observations, niveau de signification $\alpha=0.05$.\\[4pt]
+Valeur observée $\overline{x}=27$ transformée en $t_0=\frac{27 - 35}{\sqrt{\frac{334.7}{20}}} \approx -1.955$
+Seuils de la loi de Student:
+\begin{eqnarray*}
+r_{1,\bar{x}} &=& \mu + t_{1-\frac{\alpha}{2}, 19} \cdot \hat{\sigma}_{\bar x}
+\\[4pt]
+& \approx & 35 - 2.093 \cdot 4.0908 \approx 26.43
+\end{eqnarray*}
+et
+\vspace{-12pt}
+\begin{eqnarray*}
+r_{2,\bar{x}} &=& \mu + t_{\frac{\alpha}{2}, 19} \cdot \hat{\sigma}_{\bar{x}}
+\\[4pt]
+& \approx & 35 + 2.093 \cdot 4.0908 \approx 43.56
+\end{eqnarray*}
+
+\smallskip
+$r_{1,\bar{x}} \ \leq \ \bar{x}=27 \ \leq \ r_{2,\bar{x}} \quad\Rightarrow\quad H_0$ n'est pas rejetée.
+\end{slide}
+
+\begin{slide}[toc=]{IC et test}
+\'Equivalence entre le test d'hypothèse bilatéral et l'intervalle de confiance.\\[5mm]
+Exemple:
+$$
+P\bigl(\mu \in 
+\bar{x} \pm t_{\frac{\alpha}{2}, n-1} \cdot \hat\sigma_{\bar{x}}
+\bigr) = 1-\alpha
+$$
+\centerline{$\Longleftrightarrow$}
+$$P(H_0 \mbox{ accepté})$$
+$$\includegraphics[scale=0.5]{test_vs_interval}$$
+\end{slide}
+
+\begin{slide}{Résumé}
+{\tiny
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & distribution
+    \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu
+        & $Z =
+%    \dfrac{\bar X-\mu}{\sigma/\sqrt{n}}=  \dfrac{\bar X-\mu}{\sigma_{\bar X}}\;\sim\norm (0,1)$
+    \frac{\bar X-\mu}{\sigma/\sqrt{n}}\sim\norm (0,1)$
+    \\[3ex]
+  & $\sigma^2$ inconnu, distr. normale
+     & $T_{(n-1)} =
+%    \dfrac{\bar X - \mu}{s/\sqrt{n-1}}=\dfrac{\bar X - \mu}{\hat \sigma_{\bar X}} \; \sim\st_{n-1}$
+    \frac{\bar X - \mu}{s/\sqrt{n}}\sim\st_{n-1}$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\pi$ & $n\pi\geq 5$ et $n(1-\pi)\geq 5$ &
+    $Z=\frac{\bar{P}-\pi}{\sqrt{\frac{\pi(1-\pi)}{n}}}\sim\norm (0,1)$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale
+    & $Q_{(n)}=\frac{\sum_{i=1}^{n} (X_i - \mu)^2}{\sigma^2} \;\sim\; \chi^2_n$
+    \\[3ex]
+     & $\mu$ inconnu, distr. normale
+    & $Q_{(n-1)}=\frac{\sum_{i=1}^{n} (X_i - \bar X)^2}{\sigma^2}= \frac{(n-1)s^2}{\sigma^2} \;\sim\; \chi^2_{n-1}$
+    \\[3ex]
+    \hline
+    \end{tabular}
+}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,1039 @@
+\chapter{Estimation}
+
+L'estimation a pour objectif d'attribuer une valeur à un ou plusieurs paramètres de la population sur la base d'un échantillon issu de celle-ci. L'estimation peut être ponctuelle ou par intervalle.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Estimation  ponctuelle               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estimation ponctuelle}
+
+\begin{defi}
+Une \emph{estimation ponctuelle}, ou point d'estimation, est une valeur calculée à partir d'un échantillon pour estimer un paramètre d'une population.
+\end{defi}
+
+\begin{ex}
+Soit une variable aléatoire représentant la taille des ménages (nombre de personnes composant un ménage) et soit deux
+échantillons aléatoires X et Y:
+
+ \begin{center}
+ \begin{tabular}{lcccccccc}
+ échantillon $X$ & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ &
+$x_7$ & $x_8$\\
+ & 1 & 3 & 2 & 4 & 4 & 1 & 2 & 6\\
+ \\
+ échantillon $Y$ & $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+ & 2 & 2 & 1 & 1 & 3
+ \end{tabular}
+ \end{center}
+
+\'Echantillon $X$: $\bar{x} = \frac{23}{8}$\\
+\'Echantillon $Y$: $\bar{y} = \frac{9}{5}$\\
+Les valeurs $\bar{x}$ et $\bar{y}$ sont des estimations ponctuelles de la taille moyenne des ménage (=paramètre de la population).
+\end{ex}
+
+\subsection{Propriétés des estimateurs}
+
+Chaque échantillon conduit à une estimation différente du paramètre. Il y a bien sûr des ensembles de valeurs qui sont plus adéquates que d'autres pour un estimateur.
+
+\begin{defi}
+Une \emph{distribution d'échantillonnage} est la distribution des valeurs possibles d'une statistique pour un échantillon de taille fixée, sélectionné à partir d'une population.
+\end{defi}
+
+%\begin{defi}
+%La suite des valeurs possibles de l'estimateur $\hat\theta$ du paramètre $\theta$, ainsi que les probabilités correspondantes s'appelle la \emph{loi} de l'estimateur.
+%\end{defi}
+
+Ainsi, un estimateur $\hat{\Theta}$ est considéré comme une variable aléatoire dont le comportement en moyenne est
+$$\E(\hat{\Theta})$$
+et dont la variance est une mesure de dispersion des estimations
+$$\var(\hat{\Theta})$$
+
+Dans les situations o\`u l'espérance de l'estimateur est égal au paramètre, on dit que l'estimateur est sans biais. Cependant, quel que soit le sondage (qui n'est pas un recensement), la différence entre le point $\hat\theta$ calculé et le paramètre $\theta$ de la population n'est pas connu. On attend d'un estimateur qu'il soit fiable, et aussi proche que possible de la véritable valeur du paramètre. Pour cela, deux propriétés sont souhaitables pour un estimateur $\hat{\Theta}$:
+
+ \begin{itemize}
+    \item l'absence de biais
+    \item la convergence
+ \end{itemize}
+
+\begin{defi}
+Le \emph{biais} est la quantité
+$$\E(\hat{\Theta}-\theta) = \E(\hat{\Theta})-\theta$$
+Un estimateur est dit \emph{non-biaisé} lorsque son espérance est
+égale à la vraie valeur du paramètre estimé:
+$$\E(\hat{\Theta}) = \theta$$
+\end{defi}
+
+%------------------------------------
+\begin{center}
+ \begin{tabular}{ccc}
+  \includegraphics[width=5cm,clip]{cible_biais} & & \includegraphics[width=4cm,clip]{cible_abs_biais}\\
+  Biais & & Absence de bais	
+ \end{tabular}
+\end{center}
+ %------------------------------------
+
+\begin{defi}
+ Un estimateur est dit \emph{convergent} si, lorsque la taille $n$ de l'échantillon devient grande
+\begin{enumerate}
+	\item le biais disparaît:
+		$$\lim_{n\rightarrow\infty} \biais(\hat{\Theta}) = 0$$
+  \item la variance devient nulle
+  $$\lim_{n\rightarrow\infty} \var(\hat{\Theta}) = 0$$
+\end{enumerate}
+\end{defi}
+
+Cela revient à dire que lorsque la taille de l'échantillon augmente, l'estimation devient de plus en plus précise.
+
+\begin{defi}
+Un estimateur sans biais et convergent est dit \emph{absolument correct}.
+\end{defi}
+
+
+
+\subsection{Estimation de la moyenne de la population}
+Considérons un échantillon de taille $n$.\\
+La moyenne de la population, $\mu$, est estimée à l'aide de la moyenne de l'échantillon, notée $\overline{x}$:
+$$\hat{\mu} = \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i$$
+
+\begin{pro}
+$\overline{x}$ est un estimateur absolument correct de la moyenne $\mu$.
+\end{pro}
+
+\begin{rem}
+La moyenne tronquée, le mode et la médiane calculés à partir d'un échantillon sont aussi des estimateurs absolument
+corrects pour respectivement la moyenne tronquée, le mode et la médiane de la population.
+\end{rem}
+
+
+
+
+\subsection{Estimation de la variance de la population}
+Considérons un échantillon de taille $n$.\\
+La variance de la population, $\sigma^2$, peut être estimée à partir de la variance de  l'échantillon. La première idée serait de prendre comme estimateur de $\sigma^2$
+$$S^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\overline{x})^2$$
+
+Si nous calculons l'espérance de cet estimateur $S^2$ nous obtenons:\\
+%$\begin{eqnarray*}
+%    \E(S^2) & = & \var (x) - \var (\overline x)\\[1ex]
+%        &=& \sigma^2 - \dfrac{\sigma^2}{n}\\[1ex]
+%        & = & \boxed{\dfrac{(n-1)}{n}\,\sigma^2}
+%\end{eqnarray*}$
+$$\E(S^2)=\frac{(n-1)}{n}\,\sigma^2$$
+$S^2$ est donc un estimateur biaisé de $\sigma^2$
+
+En revanche, on peut montrer que $S^2$ est un estimateur convergent de
+$\sigma^2$
+%$\biais (S^2) = -\,\dfrac{\sigma^2}{n}
+%\xrightarrow[n\to\infty]{}0$\\[2ex]
+%    $\var (S^2) = \tfrac{n-1}{n^2}\left(\tfrac{n-1}{n}\,\mu_4
+%- \tfrac{n-3}{n}\,\sigma^4\right)
+%\xrightarrow[n\to\infty]{}0$
+%\textbf{$\Longrightarrow$ $S^2$ est un estimateur convergent de
+%$\sigma^2$}\\
+
+Ainsi, la variance de l'échantillon, $S^2$, n'est pas un estimateur absolument correct de la variance de la population, car $S^2$ sous-estime la variance de la population.
+
+Un meilleur estimateur $\hat{\sigma}^2$ de la variance de la population est obtenu en enlevant le biais de $S^2$:
+
+%$$ \begin{eqnarray*}
+%    \hat{\sigma}^2
+%    &=& \frac{n}{n-1} \: S^2\\[2ex]
+%    &=& \frac{1}{n-1} \sum_{i=1}^n (x_i-\overline{x})^2
+% \end{eqnarray*}$$
+
+$$ s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i-\overline{x})^2$$
+
+\begin{pro}
+% \begin{itemize}
+%    \item $\E(\hat{\sigma}^2) = \sigma^2$ $\longrightarrow$ pas de
+%biais\\
+%    \item $\var (\hat{\sigma}^2) =
+%\tfrac{1}{n-1}\left(\tfrac{n-1}{n}\,\mu_4 -
+%\tfrac{n-3}{n}\,\sigma^4\right)
+% \xrightarrow[n\to\infty]{} 0$
+% \end{itemize}
+$s^2$ est un estimateur absolument correct de la variance $\sigma^2$ de la population.
+\end{pro}
+
+Nous allons donc considérer dorénavant $s^2$ comme estimateur de la variance $\sigma^2$ d'une population. L'exemple suivant permet de constater que $s^2$ est un meilleur estimateur que $S^2$ de la variance réelle $\sigma^2$.
+
+%\begin{ex}
+%Soit une variable aléatoire représentant la taille des ménages (nombre de personnes composant un ménage) et soit deux
+%échantillons aléatoires X et Y:
+%
+% \begin{center}
+% \begin{tabular}{lcccccccc}
+% échantillon $X$ & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ &
+%$x_7$ & $x_8$\\
+% & 1 & 3 & 2 & 4 & 4 & 1 & 2 & 6\\
+% \hline
+% échantillon $Y$ & $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+% & 2 & 2 & 1 & 1 & 3\\
+% \hline
+% \end{tabular}
+% \end{center}
+%
+% {\itshape Echantillon} $X$: $s_X^2$ = 2.61 $\longrightarrow$ $\hat{\sigma}^2$ = 2.98\\[1ex]{\itshape Echantillon} $Y$: $s_Y^2$ = 0.56
+%$\longrightarrow$ $\hat{\sigma}^2$ = 0.7
+%\end{ex}
+
+\begin{ex}
+% Prob et stat, Freddy Taillard p.14, exemple 3
+Supposons que la population est composée des trois nombres 1,2 et 6.\\
+La moyenne vaut
+$$\mu =\frac{1+2+6}{3}=3$$
+et la variance vaut
+$$\sigma^2 = \frac{(1-3)^2+(2-3)^2+(6-3)^2}{3}=\frac{14}{3}$$
+Formons tous les échantillons possibles de taille 2 en prélevant 2 éléments au hasard dans la population. Comme la population n'est pas très vaste, on replace le premier élément tiré dans la population avant de tirer le second. Nous obtenons les $\overline{A_3^2}=3^2=9$ échantillons possibles suivants:
+$$(1;1), (1;2), (1;6), (2;1), (2;2), (2;6), (6;1), (6;2), (6;6)$$
+Les moyennes de ces couples de nombres sont:
+$$1, \frac{3}{2}, \frac{7}{2}, \frac{3}{2}, 2, 4, \frac{7}{2}, 4, 6$$
+Les variances $S^2$ de ces couples de nombres sont:
+$$0, \frac{1}{4}, \frac{25}{4}, \frac{1}{4}, 0, 4, \frac{25}{4}, 4, 0$$
+La moyenne des variances de ces couples de nombres est égale à $\frac{7}{3}$, ce qui n'est pas égale à la variance de la population ($\frac{14}{3}$).
+En revanche,
+$$\frac{n}{n-1}\cdot\frac{7}{3}=\frac{2}{2-1}\cdot\frac{7}{3}=\frac{14}{3}$$
+
+Ainsi, afin d'obtenir une estimation non biaisée de la variance d'une population, on utilisera la formule
+$$\hat{\sigma^2} = s^2=\frac{\sum\limits_{i=1}^n (x_i-\bar{x})^2}{n-1}$$
+où $n$ désigne le nombre d'observations dans l'échantillon
+\end{ex}
+
+\begin{rem}
+Beaucoup de calculatrices et de logiciels statistiques donnent par défaut $\hat{\sigma}^2$ plutôt que $S^2$. La valeur donnée par $\hat{\sigma}^2$ est correcte lorsque l'on veut estimer un paramètre de la population. En revanche, lorsque l'on fait de la statistique descriptive sur les données, c'est à dire lorsque les données sont considérée comme une population, il faut utiliser $S^2$. La relation entre $\hat{\sigma}^2$ et $S^2$ est la suivante:
+$$ \hat{\sigma}^2 = \frac{n}{n-1}S^2$$
+\end{rem}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%         Théorème central limite          %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Théorème central limite}
+
+L'écart type $\sigma(\hat\Theta)$ et la variance $\var(\hat\Theta)$ sont des mesures de précision de l'estimateur $\hat\Theta$. Plus ils sont grands, moins bonne est l'estimation du paramètre étudié. Afin d'améliorer la précision, il faut alors soit trouver une meilleure formule pour estimer le paramètre, soit changer la méthode d'échantillonnage. En pratique, on cherche le plus souvent à réduire la variance en premier.
+
+
+\subsection{Distribution de la moyenne d'un échantillon}
+
+Le théorème suivant indique que si la population suit une loi normale, alors l'échantillon aussi.
+
+\begin{theo}
+Si une population est normalement distribuée, de moyenne $\mu$ et d'écart type $\sigma$, alors la distribution d'échantillonnage de la moyenne $\bar{x}$ est aussi normalement distribuée de même moyenne que la population
+$$\mu_{\bar{x}}=\mu$$
+et dont l'écart type vaut l'écart type de la population divisé par la racine carrée de la taille de l'échantillon
+$$\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$$
+\end{theo}
+
+\begin{defi}
+L'écart type de la distribution d'échantillonnage de la moyenne, aussi appelée \emph{erreur standard de la moyenne}, est le terme
+$$\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$$
+\end{defi}
+
+\begin{rem}
+Notons que l'erreur standard de la moyenne est toujours inférieure ou égale à l'écart type de la population.
+\end{rem}
+
+La distribution d'échantillonnage de la moyenne est composée de toutes les moyennes possibles sur tous les échantillons de même taille. La distance relative d'une moyenne particulière à la moyenne d'échantillonnage (i.e. l'espérance) peut être déterminée par une variable centrée réduite $z$. Cette variable $z$ mesure le nombre d'écart type entre la moyenne (i.e. l'espérance) et une valeur particulière (i.e. une moyenne d'un échantillon particulier).
+
+\begin{defi}
+La variable centrée réduite associée à la moyenne d'échantillonnage est la variable
+$$z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}$$
+\begin{tabular}{ccl}
+	$\bar{x}$ & = & moyenne de l'échantillon\\
+	$\mu$ & = & moyenne de la population\\
+	$\sigma$ & = & écart type de la population\\
+	$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{defi}
+
+
+\begin{ex}
+D'après l'étiquetage, la quantité de poisson contenue dans un plat surgelé de 1 kg  suit une loi normale, de moyenne 500 g, avec une variation de $\pm 100$ grammes (écart type). Un magazine de consommateurs achète 25 de ces plats surgelés et vérifie la quantité de poisson. Les résultats du test donne une moyenne de 490 g par plat. Peut-on affirmer qu'il y a tromperie du consommateur?\\
+\begin{enumerate}
+	\item La moyenne pour cet échantillon est de $\bar{x} = 490$
+	\item La distribution d'échantillonnage de la moyenne doit suivre une loi normale de moyenne $\mu_{\bar{x}}=\mu=500$ et d'écart type $\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}=\frac{100}{\sqrt{25}}=20$
+	\item L'événement d'intérêt est le suivant: Comme la moyenne d'échantillon trouvée (490) est inférieure à la moyenne attendue (500), nous désirons connaître la probabilité d'un tel événement
+	$$P(\bar{x}\leq 490)=?$$
+	\item Conversion de la moyenne d'échantillonnage en une valeur centrée réduite
+	 $$z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}=\frac{490-500}{\frac{100}{\sqrt{25}}}=-0.5$$
+	\item Utiliser la distribution normale centrée réduite pour déterminer la probabilité désirée
+	$$P(z\leq -0.5)=0.3085$$
+\end{enumerate}
+Il y a donc  une probabilité d'environ 0.3 que la moyenne d'un échantillon de 25 plats surgelé soit d'au plus 490 grammes.
+\end{ex}
+
+\begin{rem}
+Si la taille de l'échantillon est \emph{plus du 5\%} de la taille de la population, et que l'échantillon tiré est fait \emph{sans remise}, alors un facteur de correction pour une population finie doit être considéré. Ce facteur de correction, qui s'applique à la valeur de l'écart type $\sigma_{\bar{x}}$, est de
+$$\sqrt{\frac{N-n}{N-1}}$$
+où\\
+$N$ = taille de la population\\
+$n$ = taille de l'échantillon
+\end{rem}
+
+Beaucoup de méthodes statistiques reposent sur l'hypothèse selon laquelle les données observées sont distribuées selon une loi normale. En pratique, cela n'est pas toujours vérifié, mais le {\bfseries théorème central limite} assure que même si la population ne satisfait pas à la normalité, la moyenne d'un échantillon de grande taille issu de celle-ci est distribuée de façon normale, ce qui est suffisant pour l'emploi de la plupart des outils statistiques.
+
+\begin{figure}
+  \includegraphics[width=14cm,clip]{central-limite}
+  \caption{Distribution de $\overline{X}$ en fonction de la taille $n$ d'échantillon.}
+\end{figure}
+
+\begin{theo}\label{theoCentralLimit}[Théorème central limite]
+Soit une suite $(X_1, X_2, \ldots, X_n)$ de $n$ variables aléatoires identiquement et indépendamment distribuées $(\mu,\sigma^2)$. Lorsque $n \rightarrow \infty$, la distribution de
+$$\bar{X} = \frac{1}{n} \sum_i X_i$$
+tend vers la loi $\norm\bigl(\mu, \frac{\sigma^2}{n}\bigr)$
+\end{theo}
+
+\begin{rem}
+Plus la taille de l'échantillon augmente, meilleure est l'approximation par la loi normale.
+\end{rem}
+
+En d'autres termes, pour des échantillons de taille suffisamment grande, en pratique de taille au moins 30, on remarque que la distribution d'échantillonnage a une forme en ''courbe en cloche''. Il s'agit de la loi de Gauss, ou loi normale. Un plan de sondage très précis correspond à une courbe très peu étalée.  Si le plan de sondage est en plus très peu biaisé, alors le pic de la courbe est au voisinage de la vraie valeur du paramètre $\theta$.
+
+%\begin{exo} En classe
+%\begin{itemize}
+%	\item Chaque étudiant joue 10 fois à pile ou face et inscrit la proportion de piles. Faire un graphique de la distribution de $p$= proportion de piles.
+%  \item Chaque étudiant indique un budget pour ses soirées et les données sont récoltées afin de déterminer le budget moyen, à l'aide d'échantillons. Les budgets sont triés par ordre croissant. Quel échantillon semble le plus représentatif?
+%\begin{enumerate}
+%	\item Les 6 premiers budgets
+%	\item Les 6 derniers budgets
+%	\item les 6 valeurs centrales
+%	\item 6 nombres pris au hasard
+%\end{enumerate}
+%Prendre 20 échantillons de 6 budgets et représenter les valeurs des 20 moyennes d'échantillons correspondants
+%\end{itemize}
+%Conclusion: Pour une population donnée, les caractéristiques d'un échantillon issu de cette population fluctuent, d'un échantillon à l'autre
+%\end{exo}
+
+Ainsi, pour $n$ suffisamment grand
+$$\frac{\bar X-\mu}{\sigma/\sqrt{n}} = \frac{\bar X - \mu}{\sigma_{\bar X}}\;\; \stackrel{\text{\footnotesize app}}{\sim}\;\norm(0,1)$$
+quelle que soit la distribution des $X_i$.
+
+\newpage
+\subsection{Distribution d'une proportion d'un échantillon}
+Remarquons qu'une proportion peut être vue comme une moyenne particulière, dans laquelle la variable d'investigation vaut 1 si la caractéristique recherchée est présente, et 0 sinon. Une telle variable est appelée variable booléenne, ou dichotomique.
+
+Notations:
+
+\begin{tabular}{cl}
+	$X$ & nombre d'individus dans la population avec la caractéristique\\
+	$N$ & taille de la population\\
+	$x$ & nombre d'individus dans l'échantillon avec la caractéristique\\
+	$n$ & taille de l'échantillon\\
+	$\pi=\frac{X}{N}$ & proportion d'individus dans la population ayant la caractéristique\\
+	$\bar{p}=\frac{x}{n}$ & proportion d'individus dans l'échantillon avec la caractéristique\\
+	$\bar{p}-\pi$ & erreur d'échantillonnage
+\end{tabular}
+
+Si la taille de l'échantillon est suffisamment grande, en pratique, si
+$$n\pi\geq 5\quad\quad\mbox{ et } n(1-\pi)\geq 5$$
+alors la distribution normale peut être utilisée.
+
+\begin{theo}
+Lorsque la taille de l'échantillon est suffisamment grande, en pratique si $n\pi\geq 5$ et $n(1-\pi)\geq 5$, alors la distribution d'échantillonnage de la proportion $\bar{p}$ est caractérisée par\\
+\begin{center}
+\begin{tabular}{c|c}
+	Moyenne & \'Ecart-type\\
+	\hline
+	$\mu_{\bar{p}}=\pi$ & $\sigma_{\bar{p}}=\sqrt{\frac{\pi(1-\pi)}{n}}$
+\end{tabular}
+\end{center}
+
+\begin{tabular}{cl}
+$\pi$ & proportion dans la population\\
+$n$ & taille de l'échantillon\\
+$\bar{p}$ & proportion dans l'échantillon
+\end{tabular}
+\end{theo}
+
+\begin{ex}
+Le responsable d'une agence immobilière souhaite passer une annonce vantant la rapidité de traitement des affaires. Il pense que le 80\% des propriétés à vendre trouvent preneur en au plus 4 mois. Il a sélectionné aléatoirement 100 affaires, et parmi celles-là, 73 se sont terminées en au plus 4 mois. Les étapes suivantes déterminent la probabilité de ce résultat:
+\begin{enumerate}
+	\item Déterminer la proportion de la population.\\
+	La population est supposée avoir une proportion de 0.8, basée sur l'intuition du manager.
+	\item Calculer la proportion de l'échantillon.\\
+	$$\bar{p}=\frac{73}{100}$$
+	\item Déterminer la moyenne et l'écart type de la distribution d'échantillonnage.\\
+	$$\mu_{\bar{p}}=0.8 \quad \sigma_{\bar{p}}=\sqrt{\frac{\pi(1-\pi)}{n}}=\sqrt{\frac{0.8(1-0.8)}{100}}=0.04$$
+	\item Définir l'événement d'intérêt.\\
+	$$P(\bar{p}\leq 0.73)=?$$
+	\item Vérifier les hypothèses.\\
+	Comme $n\pi=80$ et $n(1-\pi)=20$ sont suffisamment grands (supérieurs à 5), convertir $\bar{p}$ en la variable centrée réduite $z$
+	 $$z=\frac{\bar{p}-\pi}{\sigma_{\bar{p}}}=\frac{0.73-0.8}{\sqrt{\frac{0.8(1-0.8)}{100}}}=-1.75$$
+	\item Déterminer la probabilité.\\
+	$$P(\bar{p}\leq 0.73)=P(z\leq -1.75)=0.0401$$
+\end{enumerate}
+Ainsi, il y a seulement 4\% de chance que sur un échantillon aléatoire de taille 100, 73 affaires ou moins trouvent preneur en au plus 4 mois.
+\end{ex}
+
+%\begin{exo}
+%Lors d'une élection, $\theta=p=20\%$ des électeurs choisissent le candidat Schroumpf. Un institut de sondage interroge au préalable certains électeurs choisis au hasard. Soit $X$ la variable aléatoire valant 1 si l'électeur vote pour Schroumpf, et 0 sinon.\\
+%Quelle loi suit la variable aléatoire $X$?\\
+%Une loi de Bernoulli  de paramètre $p=0.2$\\
+%On interroge $n=100$ électeurs par un tirage avec remise (ou sans remise si le nombre total d'électeurs est suffisamment grand, car la loi hypergéométrique converge vers la loi binomiale dans ce cas).
+%Le nombre de votes favorables à Schroumpf est donc $X_1+\ldots + X_{100}$. Ce nombre est une variable aléatoire qui suit une loi binomiale $\bin(100,0.2)$
+%La proportion de votants pour Schroumpf est la valeur de la variable aléatoire
+%$$\hat{p}=\frac{X_1+\ldots +X_{100}}{100}$$
+%dont l'espérance est $\E(\hat{p})= 0.2$
+%et la variance $\var(\hat{p})=0.0016$\\
+%Par le théorème central limite, la loi de $\hat{p}$ est donc proche d'une loi normale
+%$\norm (0.2,0.0016)$\\
+%
+%Rappel du Théorème de la Limite Central\\
+%Si $X_1 , X_2 , X_3 , \ldots , X_n$ sont des variables aléatoires indépendantes, de même loi de probabilité, d'espérance $\mu$ et de variance $\sigma^2$, la loi de probabilité de $$\frac{X_1 + X_2 +  \ldots + X_n-n\mu}{\sigma\sqrt{n}}$$
+%tend, quand $n\to\infty$ , vers la loi normale centrée réduite.\\
+%
+%Conclusion:
+%$$E(\hat{p})=p\quad\quad V(\hat{p})=\frac{p(1-p)}{n}$$
+%A la limite, si $n\to\infty$, alors $V(\hat{p})\to 0$ et $\hat{p}\to p$\\
+%La fréquence observée $\hat{p}$ tend vers la proportion $p$ de la population lorsque $n$ tend vers l'infini.
+%\end{exo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Estimation par intervalle            %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Intervalle de confiance}
+Une estimation ponctuelle attribue une valeur précise à un paramètre, mais engendre le risque que la valeur ainsi obtenue soit relativement éloignée de la réalité. L'idée de l'estimation par intervalle est de calculer un intervalle dans lequel se trouve la valeur du paramètre cherché, avec un niveau de confiance fixé.
+
+Soit un paramètre $\theta$. Au lieu de fournir une estimation $\hat{\theta}$, on construit un intervalle de valeurs de la forme
+$$\left[\hat{\theta}_{inf} \; ; \; \hat{\theta}_{sup}\right]$$
+dans lequel la vraie valeur du paramètre a une certaine probabilité fixée à l'avance, notée $1-\alpha$, de se trouver.
+
+% %------------------------------------
+% \begin{center}
+% \includegraphics[width=7cm]{cible_abs_biais} \hfill
+% \includegraphics[width=7cm]{cible_interv}
+% \hspace*{8ex} Estimations ponctuelles \hfill Estimations par intervalle \hspace*{5ex}
+% \end{center}
+% %------------------------------------
+%
+
+%------------------------------------
+\begin{center}
+\begin{tabular}{cc}
+\includegraphics[scale=1.4]{cible_abs_biais}
+&
+\includegraphics[scale=1.4]{cible_interv}\\
+Estimations ponctuelles & Estimations par intervalle%
+\end{tabular}
+\end{center}	
+ %------------------------------------
+
+\begin{defi}
+$1-\alpha$ est appelé le \emph{degré de confiance} ou \emph{niveau de confiance}; il indique la probabilité que l'intervalle de confiance recouvre la vraie valeur  $\theta$ du paramètre.\\
+$$    \underbrace{1-\alpha}_{\parbox{3cm}{\centering\small degré de
+    confiance}}
+    = \; P\bigl(\;\theta \in
+    \underbrace{
+    [\hat\theta_{\text{inf}}\;;\;\hat\theta_{\text{sup}}]
+    }_{\text{\small intervalle aléatoire}}\bigr)\quad
+$$
+\end{defi}
+
+\begin{defi}
+Le \emph{risque de première espèce} $\alpha$ est le risque que l'intervalle ne recouvre pas $\theta$.
+\end{defi}
+
+Le choix du degré de confiance est crucial, car il influence
+directement l'utilité des résultats:
+\begin{itemize}
+    \item Si $\alpha$ est très petit, l'intervalle est très fiable, mais il devient tellement grand qu'il ne nous renseigne plus de façon utile sur la vraie valeur du paramètre.
+    \item Si $\alpha$ est très grand, l'intervalle est très précis (= étroit), mais la probabilité qu'il recouvre effectivement la vraie valeur du paramètre est faible.
+\end{itemize}
+
+En pratique, on choisit généralement un risque $\alpha$ de 5\% ou de 10 \%.
+
+\begin{defi}
+Un \emph{intervalle de confiance} de niveau $1 - \alpha$ pour un paramètre inconnu $\theta$ d'une population est un intervalle tel que la probabilité pour que cet intervalle recouvre $\theta$ est $1 - \alpha$. 
+\end{defi}
+
+Les bornes de cet intervalle se calculent à partir d'un échantillon.
+
+\subsection{Construction d'un intervalle de confiance}
+Tout intervalle de confiance se construit selon le schéma suivant:
+\begin{center}
+Estimation ponctuelle $\pm$ (Valeur critique) $\cdot$ (\'Ecart type)
+\end{center}
+
+ \begin{center}
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(8,1.8)(0,-0.8)
+        \thicklines
+        \put(0,0){\line(1,0){8}}
+        \put(0,-.50){\line(0,1){.6}}
+        \put(0,-1){\parbox[t]{0em}{\makebox[0pt][c]{$\hat{\theta}_{\text{inf}}$}}}
+        \put(4,-.50){\line(0,1){.6}}
+        \put(4,0.5){\parbox[t]{0em}{\makebox[0pt][c]{Estimation ponctuelle}}}
+        \put(4,-1){\parbox[t]{0em}{\makebox[0pt][c]{$\hat{\theta}$}}}
+        \put(8,-.50){\line(0,1){.6}}
+        \put(8,-1){\parbox[t]{0em}{\makebox[0pt][c]{$\hat{\theta}_{\text{sup}}$}}}
+    \end{picture}
+  \end{center}
+
+Après avoir décidé du degré de confiance à utiliser, la construction d'un intervalle de confiance pour un paramètre  $\theta$ quelconque s'effectue en suivant les 3 étapes suivantes:
+
+\begin{enumerate}
+  \item Choix d'une statistique dont la distribution est connue.
+		$$f(\theta) \sim \cal{D}$$
+ 		\textit{Remarque: Le paramètre pour lequel on construit l'intervalle de confiance doit pouvoir être explicité à partir de la distribution choisie.}
+  \item Construction de l'intervalle pour la statistique choisie:
+		$$\left[\cal{D}_{\text{inf}} \; ; \; \cal{D}_{\text{sup}}\right]$$
+  \item Construction de l'intervalle pour le paramètre:
+		$$\left[\hat{\theta}_{\text{inf}} \; ; \; \hat{\theta}_{\text{sup}}\right]$$
+\end{enumerate}
+
+Nous allons tout d'abord étudier l'intervalle de confiance pour estimer une moyenne. Deux cas peuvent se présenter: soit la variance (ou l'écart type) de la population est connue, soit elle ne l'est pas. Ensuite, nous étudierons l'intervalle de confiance pour une proportion, et finalement pour une variance.
+
+%\newcommand{\MyNode}[2][cyan]{\Tr{\psshadowbox[fillcolor=#1]{\makebox[4cm]{\color{blue}#2}}}}
+%\psset{treesep=2.5}
+%  \begin{psmatrix}[mnode=r,colsep=-0.2]
+%                      & & \MyNode[red!10]{Intervalle de Confiance}\\
+%    & \MyNode[red!10]{Moyenne} && \MyNode[red!10]{Proportion}\\
+%    \MyNode[red!10]{$\sigma^2$ connu} && \MyNode[red!10]{$\sigma^2$ inconnu}
+%  \end{psmatrix}
+%  \ncangle[angleA=-90,angleB=90]{1,3}{2,2}
+%  \ncangle[angleA=-90,angleB=90]{1,3}{2,4}
+%  \ncangle[angleA=-90,angleB=90]{2,2}{3,1}
+%  \ncangle[angleA=-90,angleB=90]{2,2}{3,3}
+
+%\newcommand{\MyNode}[2][cyan]{\Tr{\psshadowbox[fillcolor=#1]{\makebox[4cm]{\color{blue}#2}}}}
+%\psset{treesep=2.5}
+%  \begin{psmatrix}[mnode=r,colsep=-0.2]
+%                      & & \MyNode[red!10]{Intervalle de Confiance}\\
+%    & \MyNode[red!10]{Moyenne} && \MyNode[red!10]{Proportion}\\
+%    \MyNode[red!10]{$\sigma^2$ connu} && \MyNode[red!10]{$\sigma^2$ inconnu}
+%  \end{psmatrix}
+%  \ncangle[angleA=-90,angleB=90]{1,3}{2,2}
+%  \ncangle[angleA=-90,angleB=90]{1,3}{2,4}
+%  \ncangle[angleA=-90,angleB=90]{1,3}{2,5}
+%  \ncangle[angleA=-90,angleB=90]{2,2}{3,1}
+%  \ncangle[angleA=-90,angleB=90]{2,2}{3,3}
+
+$$
+\begin{tikzpicture}[
+%	% Label style
+    label distance=1mm,
+    every label/.style={blue},
+	% Event style
+    event/.style={rectangle,thick,draw,fill=yellow!20,
+		text centered,font=\sffamily,anchor=north},
+% Children and edges style
+    edge from parent/.style={very thick,draw=black!70},
+    edge from parent path={(\tikzparentnode.south) -- ++(0,-1.05cm)
+			-| (\tikzchildnode.north)},
+    level 1/.style={sibling distance=3cm,level distance=1.4cm,
+			growth parent anchor=south,nodes=event},
+    level 2/.style={sibling distance=3cm},
+%%  For compatability with PGF CVS add the absolute option:
+%   absolute
+    ]
+%% Draw events and edges
+    \node (g0) [event] {Intervalle de Confiance}
+	     	   child { node (g1) {Moyenne}
+	     	      	child {node (g11) {$\sigma^2$ connu}}
+	     	      	child {node (g12) {$\sigma^2$ inconnu}}
+	     	      	}
+	     	   	child { node (g2) {Proportion} }
+	     	   	child { node (g3) {Variance}
+	     	      	child {node (g31) {$\mu$ connu}}
+	     	      	child {node (g32) {$\mu$ inconnu}}
+	     	      	};
+\end{tikzpicture}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    IC de mu, sigma connu                 %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour estimer $\mu$, $\sigma^2$ connu}
+Lorsque la population dont on cherche à estimer la moyenne suit une loi normale de variance $\sigma^2$ connue, l'intervalle de confiance est calculé de la manière suivante:
+
+$$\bar{x}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+$\sigma$ &= &  écart type de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+
+
+\begin{ex}
+Considérons la population suivante: l'ensemble des pots de peinture de 1lt remplis par une machine industrielle.
+Supposons que la quantité de peinture soit une variable aléatoire $X$ suivant une loi normale d'écart type $\sigma=0.04$lt. Votre but en tant que responsable qualité est de contrôler qu'en moyenne, la machine remplisse 1lt de peinture par pot.
+
+Vous prélevez 4 pots de peinture au hasard et mesurez la quantité de peinture dans chaque pot:
+
+\begin{center}
+\begin{tabular}{c|cccc}
+	Pot & $x_1$ & $x_2$ & $x_3$ & $x_4$\\
+	\hline
+	Quantité [lt] & 1.0 & 0.98 & 1.1 & 1.1
+\end{tabular}
+\end{center}
+
+Vous voulez connaître l'intervalle de confiance à 95\% pour la quantité de peinture par pot.
+\begin{enumerate}
+	\item La population d'intérêt est l'ensemble des pots de peinture d'1lt remplis par la machine
+	\item Le degré de confiance $1-\alpha$ vaut 0.95. Donc $\alpha  = 0.05$
+	\item La moyenne de l'échantillon est $\bar{x}=\frac{1.0+0.98+1.1+1.1}{4}=1.045$
+	\item L'erreur standard de la moyenne (=écart type de l'estimateur) vaut
+	$$\sigma_{\bar{x}} = \frac{0.04}{\sqrt{4}}=0.02$$
+	\item Les pots peuvent être trop peu remplis, ou trop remplis. L'erreur de première espèce $\alpha$ est alors divisée en 2 parties.
+	La valeur critique est donc $z_{\alpha/2}=z_{0.025}=1.96$
+	\item L'intervalle de confiance est
+	$$\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}} = 1.045\pm 1.96\cdot 0.02 = [1.0058;1.0842]$$
+\end{enumerate}
+Comme l'intervalle de confiance ne comprend pas la valeur de 1lt, vous concluez que la machine n'est pas bien réglée car elle remplit trop les pots en moyenne.
+\end{ex}
+
+Les étapes suivantes permettent de calculer l'intervalle de confiance estimé pour une moyenne de population, lorsque l'écart type de la population est connue, et la moyenne suit une loi normale ou lorsque l'échantillon est de taille au moins 30.
+\begin{enumerate}
+	\item Définir la population d'intérêt et sélectionner un échantillon aléatoire de taille $n$
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Calculer la moyenne de l'échantillon
+	$$\bar{x}=\frac{\sum x_i}{n}$$
+	\item Déterminer l'erreur standard de la moyenne
+	$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}$$
+	\item Déterminer la valeur critique $z_{\alpha/2}$
+	\item Calculer l'intervalle de confiance
+	$$\bar{x}\pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    Estimation de mu, sigma inconnu       %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour estimer $\mu$, $\sigma^2$ inconnu}
+Considérons l'\emph{hypothèse suivante}: {\textcolor{red}{la distribution de la population suit une loi normale}.\\
+Dans la plupart des cas où la moyenne de la population est inconnue, la variance de la population est aussi inconnue. Il est alors nécessaire d'estimer la variance de la population à l'aide de l'échantillon. Il faut alors modifier la façon dont sont calculés la valeur critique et l'écart type.
+
+$$\bar{x}\pm t_{\alpha/2, n-1} \frac{s}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$t_{\alpha/2, n-1}$ &= &  valeur critique de la $t$-distribution à $n-1$ degrés de liberté \\
+& & pour un degré de confiance de $1-\alpha$\\
+$s$ &= &  écart type de l'échantillon\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+
+%\begin{ex}
+%Considérons une population dont la moyenne est $\mu=2.5$ et le variance $\sigma^2=3$ pour une variable quantitative.
+%
+%{\itshape Echantillon} $X$:
+% \begin{tabular}{lcccccccc}
+%  $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$
+%& $x_7$ & $x_8$\\
+% \hline
+% 1 & 3 & 2 & 4 & 4 & 1 & 2 & 6
+% \end{tabular}
+%
+%La moyenne de l'échantillon $X$ vaut $\overline{x} = 2.875$ et sa variance vaut $s_X^2=2.61$\\
+%
+% {\itshape Echantillon} $Y$:
+% \begin{tabular}{lcccccccc}
+%  $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+% \hline
+% 2 & 2 & 1 & 1 & 3
+% \end{tabular}
+%
+%La moyenne de l'échantillon $Y$ vaut $\overline{y} = 1.8$ et sa variance vaut $s_Y^2=0.56$
+%
+%Considérons un degré de confiance fixé à $1-\alpha=95\%$. Ainsi $\alpha=5\%$
+%
+% \begin{enumerate}
+% \item Choix de la statistique
+% \begin{eqnarray*}
+%    t^{(n-1)} &=& \dfrac{\bar X - \mu}{\hat\sigma_{\bar X}}\;\sim\;\st_{n-1}\\
+%    \Longrightarrow \quad \mu &=& \bar X - \hat\sigma_{\bar X}\,t^{(n-1)}
+% \end{eqnarray*}
+%	avec $\hat\sigma_{\bar X} = s/\sqrt{n-1}$
+% \item Intervalle pour la statistique
+%		On répartit le risque total $\alpha$ en deux parts égales à $\alpha / 2=0.025$ et les valeurs des 2 seuils sont déterminées à partir de la table de la loi de Student.
+% \begin{center}
+% \includegraphics[width=10cm]{interv_sym_T}
+% \end{center}
+% 		$$P(t_{\mbox{inf}} < t < t_{\mbox{sup}}) = 1 - \alpha$$
+%		$$\left[t_{\mbox{inf}}=t_{\frac{\alpha}{2}}^{(n-1)} \; ; \; t_{\mbox{sup}}=t_{1-\frac{\alpha}{2}}^{(n-1)}\right]$$
+% \item Intervalle pour le paramètre\\
+%		\'Etant donné que la loi de Student est symétrique, $t_{\frac{\alpha}{2}}^{(n-1)} = - t_{1-\frac{\alpha}{2}}^{(n-1)}$ et l'intervalle s'écrit
+%		$$\mu = \bar X \pm \hat\sigma_{\bar X}\;t_{1-\frac{\alpha}{2}}^{(n-1)}$$
+% \end{enumerate}
+%
+%{\itshape Echantillon $X$ (n=8):}
+%$$\left[t_{0.025}^{(7)}=-2.365 \; ; \; t_{0.975}^{(7)}=2.365\right]$$
+%  \begin{eqnarray*}
+%  \hat\sigma_{\bar X} &=& \sqrt{s^2/(n-1)} = \sqrt{2.61/7} = 0.6106\\[2ex]
+%        \mu & = & 2.875 \pm 0.6106 \cdot 2.365 = 2.875 \pm 1.444
+%    \end{eqnarray*}
+%$$\Longrightarrow \quad P(\mu \in \left[1.341 \; ; \; 4.319\right]) = 95\%$$
+%
+%{\itshape Echantillon $Y$ (n=5):}
+%$$\left[t_{0.025}^{(4)}=-2.777 \; ; \; t_{0.975}^{(4)}=2.777\right]$$
+% \begin{eqnarray*}
+% \hat\sigma_{\bar X} &=& \sqrt{0.56/4} = 0.3742\\[2ex]
+% \mu &=& 1.8 \pm 1.039
+% \end{eqnarray*}
+%$$\Longrightarrow \quad P(\mu \in \left[0.761 \; ; \; 2.839\right]) = 95\%$$
+%\end{ex}
+
+\begin{ex}\label{exICMoyenneStudent}
+% cf \cite{Groebner2005} p.277 Heritage software
+En tant que responsable d'un ''backoffice'' dans une entreprise, vous souhaitez calculer l'intervalle de confiance à 95\% du temps moyen passé au téléphone par les employés du ''backoffice'' avec les clients. Vous avez recueilli les temps, en minutes, de 25 appels.
+$$\begin{array}{ccccc}
+	 7.1 & 13.6 &  1.4 &  3.6 & 1.9\\
+	11.6 &  1.7 & 16.9 &  2.6 & 7.7\\
+	12.4 & 11.0 &  3.7 & 14.6 & 8.8\\
+	 8.5 &  6.1 &  3.3 &  6.1 & 6.9\\
+	 0.4 & 11.0 &  0.8 &  6.4 & 9.1
+\end{array}$$
+
+\begin{enumerate}
+	\item la population consiste en tous les appels des clients au ''backoffice'', et l'échantillon contient les 25 durées sélectionnées au hasard.
+	\item le niveau de confiance souhaité est de $1-\alpha=0.95$
+	\item la moyenne vaut $\bar{x}\approx 7.088$ et l'écart type vaut $s\approx 4.64$
+	\item l'erreur standard de la distribution d'échantillonnage vaut
+	$$\sigma_{\bar{x}}=\frac{s}{\sqrt{n}}\approx 0.928$$
+	\item Comme vous ne savez pas à priori si la population est normalement distribuée, vous vérifiez à l'aide d'une boîte à moustache que la distribution de votre échantillon soit normalement distribuée:\\
+	% avec R
+	%% x <- c(7.1,13.6,1.4,3.6,1.9,11.6,1.7,16.9,2.6,7.7,12.4,11,3.7,14.6,8.8,8.5,6.1,3.3,6.1,6.9,0.4,11,0.8,6.4,9.1)
+	%% boxplot(x,main="Durée des appels", horizontal=TRUE)
+	%% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/fig")
+	%% dev.copy2eps(file="exICstudent.eps")
+	$$\includegraphics[scale=0.5]{exICstudent}$$
+	la valeur critique vaut $t_{0.025,24} = 2.0639$
+	\item l'intervalle de confiance vaut alors
+	$$7.088\pm 2.0639\cdot 0.928 \ i.e.\ [5.173;9.003]$$
+	%% t.test(x)
+\end{enumerate}
+\end{ex}
+
+Les étapes suivantes permettent de calculer l'intervalle de confiance estimé pour une moyenne de population, lorsque la variance de la population est inconnue, mais que la population est distribuée suivant une loi normale,  et avec des échantillons de petite taille (<30).
+\begin{enumerate}
+	\item Définir la population d'intérêt et sélectionner un échantillon aléatoire de taille $n$
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Calculer la moyenne et l'écart type de l'échantillon
+	$$\bar{x}=\frac{\sum x_i}{n}\quad s=\sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$
+	\item Déterminer l'erreur standard de la moyenne
+	$$\sigma_{\bar{x}} = \frac{s}{\sqrt{n}}$$
+	\item Déterminer la valeur critique $t_{\alpha/2,n-1}$
+	\item Calculer l'intervalle de confiance
+	$$\bar{x}\pm t_{\alpha/2,n-1}\sigma_{\bar{x}}$$
+\end{enumerate}
+
+\begin{rem}
+Sous R (version 2.9.1) vous pouvez utiliser la fonction {\it t.test()} pour trouver l'intervalle de confiance.
+\end{rem}
+
+\begin{rem}
+Lorsque l'échantillon est de grande taille, c'est à dire de taille au moins 30, la statistique de test peut être approchée à l'aide d'une $z$-valeur. On peut donc dans ce cas utiliser la formule suivante pour calculer l'intervalle de confiance:
+ $$\bar{x}\pm z_{\alpha/2} \frac{s}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+$s$ &= &  écart type de l'échantillon\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{rem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    IC d'une proportion                   %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour estimer une proportion}
+Lorsque la variable d'intérêt est une proportion, il est aussi possible d'utiliser le théorème central limite  \ref{theoCentralLimit}, car une proportion n'est rien d'autre qu'une moyenne particulière: la variable d'investigation vaut 1 si la caractéristique recherchée est présente, et 0 sinon.
+
+\begin{ex}
+$Y_i = \left\{
+\begin{array}{ll}
+	1 & \mbox{la personne a l'intention d'acheter le produit}\\
+	0 & \mbox{sinon}
+\end{array}
+\right.$
+\\[4pt]
+$Y_i = \left\{
+\begin{array}{ll}
+	1 & \mbox{la personne a l'intention de voter pour Mme L.U.}\\
+	0 & \mbox{sinon}
+\end{array}
+\right.$
+\\[4pt]
+$Y_i = \left\{
+\begin{array}{ll}
+	1 & \mbox{le client est satisfait du service}\\
+	0 & \mbox{sinon}
+\end{array}
+\right.$
+\end{ex}
+
+\begin{theo}
+Dans un sondage aléatoire simple, la proportion dans l'échantillon $\bar{p}$ est un estimateur sans biais de la proportion $\pi$ dans la population.
+\end{theo}
+
+\begin{theo}
+Lorsque la taille $n$ de l'échantillon est suffisamment grande, i.e.
+$n\pi\geq 5$ et $n(1-\pi)\geq 5$, la distribution d'échantillonnage peut être approchée par une distribution normale centrée en $\pi$, avec comme écart type
+$$\sigma_{\bar{p}}=\sqrt{ \frac{\pi(1-\pi)}{n} }$$
+où\\
+\begin{tabular}{rcl}
+$\pi$ & = & proportion dans la population\\
+$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{theo}
+
+Comme le paramètre $\pi$ n'est pas connu,  il est alors simplement estimé par $\bar{p}$.
+
+L'intervalle de confiance pour une proportion s'écrit donc, sous l'hypothèse que la taille de l'échantillon soit suffisamment grande:
+$$\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$$
+où\\
+\begin{tabular}{rcl}
+$\bar{p}$ & = & proportion dans l'échantillon\\
+$\pi$ & = & proportion dans la population\\
+$n$ & = & taille de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+\end{tabular}
+
+\begin{ex}
+Une entreprise réunissant plusieurs marques désire estimer la proportion de ses clients connaissant plus de 5 de leur marques. Elle veut un degré de confiance de 0.9. Elle effectue alors un sondage aléatoire parmi 100 clients et obtient comme estimation ponctuelle 0.2.
+\begin{enumerate}
+	\item La population d'intérêt est l'ensemble de ses clients.
+	\item L'échantillon aléatoire sélectionné est suffisamment grand si la proportion cherchée est entre 0.05 et 0.95, ce qui est le cas ici.
+	\item Le degré de confiance est $1-\alpha=0.9$
+	\item La valeur critique $z_{\alpha/2}=z_{0.05}=1.645$
+ 	\item La proportion estimée est $\bar{p}=0.2$
+	\item L'intervalle de confiance vaut donc
+	$$0.2\pm 1.645\sqrt{ \frac{0.2(1-0.2)}{100} } = [0.134,0.266]$$
+\end{enumerate}
+\end{ex}
+
+
+Les étapes suivantes permettent de calculer l'intervalle de confiance estimé d'une proportion
+\begin{enumerate}
+	\item Définir la population d'intérêt et la variable dont on veut estimer la proportion.
+	\item Sélectionner un échantillon aléatoire de taille $n$ suffisamment grande, telle que
+	$$n\bar{p}\geq 5 \quad\mbox{ et }\quad n(1-\bar{p})\geq 5$$
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Déterminer la valeur critique $z_{\alpha/2}$  tirée d'une loi normale centrée réduite
+ 	\item Calculer la proportion $\bar{p}$
+	\item Calculer l'intervalle de confiance
+	$$\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$$
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    Estimation de sigma^2, mu inconnnu    %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour estimer $\sigma^2$, $\mu$ inconnu}
+\label{section:variance-estimation}
+
+L'estimation de la variance d'une population est utilisée par exemple pour mesurer la fiabilité d'un site de production ou d'un fournisseur. La fiabilité d'un instrument de mesure comme un altimètre est cruciale: il n'est pas suffisant de savoir qu'un altimètre donne en moyenne la bonne mesure (!) mais il faut aussi que les écarts par rapport à la moyenne soient suffisamment faibles.
+
+La propriété \ref{pro:chi2} permet de calculer l'intervalle de confiance d'une variance:\\
+\begin{eqnarray*}
+\prob\left( q_{\inf} \leq Q_{n-1} \leq q_{\sup} \right) & = & 1-\alpha\\
+\prob\left( \chi^2_{1-\alpha/2}\leq Q_{n-1} \leq \chi^2_{\alpha/2} \right) & = & 1-\alpha\\
+\prob\left( \chi^2_{1-\alpha/2}\leq \frac{(n-1)s^2}{\sigma^2} \leq \chi^2_{\alpha/2} \right) & = & 1-\alpha\\
+\prob\left( \frac{\chi^2_{1-\alpha/2}}{(n-1)s^2}  \leq \frac{1}{\sigma^2} \leq \frac{\chi^2_{\alpha/2}}{(n-1)s^2} \right) & = & 1-\alpha\\
+\prob\left( \frac{(n-1)s^2}{\chi^2_{\alpha/2}}  \leq \sigma^2 \leq \frac{(n-1)s^2}{\chi^2_{1-\alpha/2}} \right) & = & 1-\alpha\\
+\end{eqnarray*}
+
+\begin{center}
+\includegraphics[width=10cm]{interv_stat_asym}
+\end{center}
+
+L'intervalle de confiance d'une variance s'écrit donc, sous l'hypothèse que l'échantillon aléatoire provient d'une population dont les éléments sont {\textcolor{red}{iid de distribution normale}:
+$$\left[ \frac{(n-1)s^2}{q_{\alpha/2,n-1}}  ; \frac{(n-1)s^2}{q_{1-\alpha/2,n-1}} \right]$$
+où\\
+\begin{tabular}{rcl}
+$n$ & = & taille de l'échantillon\\
+$q_{\alpha/2,n-1}$ &= &  valeur critique de la distribution $\chi^2$ à $n-1$ degrés de liberté\\
+& & pour un degré de confiance de $1-\alpha$\\
+$s^2$ & = & variance de l'échantillon\\
+\end{tabular}
+
+\begin{rem}
+L'utilisation de la statistique du $\chi^2$ pour estimer la variance est très sensible à une violation de l'hypothèse d'une population normalement distribuée. Cette technique n'est donc pas une technique robuste.
+\end{rem}
+
+\begin{ex}
+% cf \cite{Groebner2005} p.388 H&L Machines
+Une entreprise fabriquant des photocopieuses assure aussi le service après-vente. Une nouvelle équipe vient d'être formée, et le responsable doit prévoir l'affectation des services. Il veut en estimer avec un degré de confiance de 0.9 le temps moyen de service et l'écart type, afin de pouvoir planifier les services de la nouvelle équipe. Pour cela, il inscrit la durée de 20 services pris aléatoirement parmi ceux effectué par la nouvelle équipe. Il calcule un écart type de 0.5h et peut supposer que les données proviennent d'une loi normale.
+
+\begin{enumerate}
+	\item La population d'intérêt est l'ensemble des services effectués par la nouvelle équipe.
+	\item L'échantillon sélectionné est de taille 20, et provient d'une population normalement distribuée.
+	\item Le degré de confiance est de 0.9
+	\item Les valeurs critiques sont $\chi^2_{0.05}=30.14$ et $\chi^2_{0.95}=10.12$ avec 19 degrés de liberté.
+	\item La variance estimée est de $s^2=0.5^2=0.25$
+	\item L'intervalle de confiance associé à la variance est donc
+$$\left[ \frac{(19)0.25}{30.14}  ; \frac{(19)0.25}{10.12} \right]
+= [0.16;0.47]$$
+\end{enumerate}
+\end{ex}
+
+%\begin{ex}
+%Considérons une population dont la moyenne est $\mu=2.5$ et le variance $\sigma^2=3$ pour une variable quantitative.
+%
+%{\itshape Echantillon} $X$:
+% \begin{tabular}{lcccccccc}
+%  $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$
+%& $x_7$ & $x_8$\\
+% \hline
+% 1 & 3 & 2 & 4 & 4 & 1 & 2 & 6
+% \end{tabular}
+%
+%La moyenne de l'échantillon $X$ vaut $\overline{x} = 2.875$ et sa variance vaut $s_X^2=2.61$\\
+%
+% {\itshape Echantillon} $Y$:
+% \begin{tabular}{lcccccccc}
+%  $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+% \hline
+% 2 & 2 & 1 & 1 & 3
+% \end{tabular}
+%
+%La moyenne de l'échantillon $Y$ vaut $\overline{y} = 1.8$ et sa variance vaut $s_Y^2=0.56$
+%
+%Considérons un degré de confiance fixé à $1-\alpha=95\%$. Ainsi $\alpha=5\%$
+%
+%{\itshape Echantillon $X$, $n$=8:}
+%$$\left[q_{0.025}^{(7)}=1.69 \; ; \; q_{0.975}^{(7)}=16.01\right]$$
+%$$\sum_i \;(x_i-\bar x)^2 = n\,s^2 = 8\cdot 2.61 = 20.88$$
+%
+%
+%$$\Longrightarrow
+%        \left[
+%        \frac{20.88}{16.01}
+%        \right.
+%        ;
+%        \left.
+%        \frac{20.88}{1.69}
+%        \right]
+%        \quad = \quad
+%        \left[
+%        1.30
+%        \right.
+%        ;
+%        \left.
+%        12.36
+%        \right]$$
+%$$\Longrightarrow \mbox{ Intervalle pour }\sigma: \quad [1.14\;;\;3.52]$$
+%
+%{\itshape Echantillon $Y$, $n$=5:}
+%$$\left[q_{0.025}^{(4)}=0.484 \; ; \; q_{0.975}^{(4)}=11.14 \right]$$
+%$$\sum_i \;(x_i-\bar x)^2 = n\,s^2 = 5\cdot 0.56 = 2.80$$
+%
+%$$\Longrightarrow
+%        \left[
+%        \frac{2.80}{11.14}
+%        \right.
+%        ;
+%        \left.
+%        \frac{2.80}{0.484}
+%        \right]
+%        \quad = \quad
+%        \left[
+%        0.25
+%        \right.
+%        ;
+%        \left.
+%        5.79
+%        \right]$$
+%
+%$$\Longrightarrow \mbox{ Intervalle pour }\sigma: \quad[0.50\;;\;2.41]$$
+%\end{ex}
+
+%{\itshape Remarque: La statistique $Q$ est une fonction monotone \textit{décroissante} $g(\theta)$ de l'estimé $\theta$. Il en est de même de la transformation inverse $\theta=g^{-1}(Q)$ }
+%
+%$$Q_{(n)} = \frac{\sum_i \;(X_i-\mu)^2}{\sigma^2}
+%        \quad \Leftrightarrow \quad \sigma^2 = \frac{\sum_i
+%\;(X_i-\mu)^2}{Q_{(n)}}$$
+% \vspace*{2ex}
+%
+% \begin{center}
+% \parbox{10.2cm}{
+% \includegraphics[width=8cm]{trsf_mono_decr}
+%  }
+% \ \parbox{5.5cm}{
+% $q_{inf} \mapsto \theta_{sup}$
+% \\[3ex]
+% $q_{sup} \mapsto \theta_{inf}$
+% }
+% \end{center}
+
+\section{Résumé}
+Le tableau suivant résume les distributions utilisées pour représenter la moyenne, la proportion et la variance de la population:
+
+\begin{center}
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & distribution
+    \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu,  &\\
+            & distr. normale ou $n\geq 30$
+        & $Z =
+%    \dfrac{\bar X-\mu}{\sigma/\sqrt{n}}=  \dfrac{\bar X-\mu}{\sigma_{\bar X}}\;\sim\norm (0,1)$
+    \dfrac{\bar X-\mu}{\sigma/\sqrt{n}}\sim\norm (0,1)$
+    \\[3ex]
+  & $\sigma^2$ inconnu, distr. normale
+     & $T_{(n-1)} =
+%    \dfrac{\bar X - \mu}{s/\sqrt{n-1}}=\dfrac{\bar X - \mu}{\hat \sigma_{\bar X}} \; \sim\st_{n-1}$
+    \dfrac{\bar X - \mu}{s/\sqrt{n}}\sim\st_{n-1}$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\pi$ & $n\pi\geq 5$ et $n(1-\pi)\geq 5$ &
+    $Z=\frac{\bar{P}-\pi}{\sqrt{\frac{\pi(1-\pi)}{n}}}\sim\norm (0,1)$
+    \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale
+    & $Q_{(n)}=\dfrac{\sum_{i=1}^{n} (X_i - \mu)^2}{\sigma^2} \;\sim\; \chi^2_n$
+    \\[3ex]
+     & $\mu$ inconnu, distr. normale
+    & $Q_{(n-1)}=\dfrac{\sum_{i=1}^{n} (X_i - \bar X)^2}{\sigma^2}= \dfrac{(n-1)s^2}{\sigma^2} \;\sim\; \chi^2_{n-1}$
+    \\[3ex]
+    \hline
+    \end{tabular}
+\end{center}
+
+Rappel: lorsque la population est distribuée selon une loi quelconque de paramètres $\mu$ et $\sigma^2$, il est possible d'utiliser le théorème central limite \ref{theoCentralLimit}  pour estimer la moyenne, à condition que l'échantillon utilisé soit de grande taille. En pratique, un échantillon de taille au moins 30 suffit.
+
+\begin{center}
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & intervalle \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu, &\\
+            & distr. normale ou $n\geq 30$
+            & $\mu \in \bar x \pm z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$\\[3ex]
+  & $\sigma^2$ inconnu, distr. normale
+     & $\mu \in \bar x \pm t_{\frac{\alpha}{2},n-1}\frac{s}{\sqrt{n}}$\\[3ex]
+    \hline&&\\[-1ex]
+    $\pi$ & $n\bar{p}\geq 5$ et $n(1-\bar{p})\geq 5$ & $\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$ \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale
+    & $\left[ \frac{\sum (x_i - \mu)^2}{q_{\frac{\alpha}{2},n}}
+        \;;\; \frac{\sum (x_i - \mu)^2}{q_{1-\frac{\alpha}{2},n}}
+        \right]$\\[3ex]
+     & $\mu$ inconnu, distr. normale
+    & $\left[ \frac{\sum (x_i - \bar{x})^2}{q_{\frac{\alpha}{2},n-1}}
+        \;;\; \frac{\sum (x_i - \bar{x})^2}{q_{1-\frac{\alpha}{2},n-1}}
+        \right]$\\[4ex]
+    \hline
+    \end{tabular}
+\end{center}

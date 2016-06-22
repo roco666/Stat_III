@@ -1,0 +1,57 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Série 6}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 6: IC                                   %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Importation} % IC proportion
+% adapté de \cite{groebner2005} ex 7.53
+Les fabricants d'ordinateurs achètent des barrettes mémoire à Ta\"{i}wan au meilleur prix. Toutefois, il arrive que certaines importations ne sont pas de qualité suffisante. Un lot vient d'arriver chez Dell d'un fournisseur de Ta\"{i}wan. Afin de contrôler la qualité du lot, 130 barrettes sont sélectionnées aléatoirement et testées: 13 se sont révélées de qualité insuffisante. 
+\begin{enumerate}
+	\item Donnez un intervalle de confiance à 90\% concernant la proportion de barrettes défectueuses dans le lot.
+	% $0.1\pm 1.645\sqrt{\frac{0.1(1-0.1)}{130}} = 0.1\pm 0.433$ i.e. $[0.0567;0.1433]$
+	\item Supposez que Dell souhaite réduire la marge d'erreur pour l'estimation donnée précédemment. Quelles options a-t-il?
+	% Réduire le degré de confiance ou prendre un échantillon de taille plus grande
+\end{enumerate}
+
+
+\section{Passagers par voiture*} % IC moyenne, variance
+	% source Andre Berchtold B.3.4
+Dans le but d'estimer le nombre moyen de passagers (conducteur
+compris) par véhicule automobile circulant sur l'autoroute
+Genève-Lausanne, un observateur a recueilli les données suivantes:
+
+ \begin{center}
+ \begin{tabular}{lccccccr}
+ \hline\hline
+ Nombre de passagers & 1 & 2 & 3 & 4 & 5 & 6 & Total\\
+ Effectif & 230 & 248 & 117 & 76 & 14 & 3 & 688\\
+ \hline
+ \end{tabular}
+ \end{center}
+
+\`A l'aide d'intervalles de confiance à 95\%
+ \begin{enumerate}
+	\item Estimer la moyenne $\mu$ de la population
+	\item Estimer la variance $\sigma^2$ de la population
+\end{enumerate}
+
+
+\end{document}

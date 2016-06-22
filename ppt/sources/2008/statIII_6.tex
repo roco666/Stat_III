@@ -1,0 +1,258 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\StandardLayout
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Intervalle de confiance\\
+- Proportion, Variance -}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 6}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Comprendre et savoir calculer un intervalle de confiance pour 
+\begin{itemize}
+	\item une proportion
+	\item une variance
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=IC]{Intervalle de confiance}
+Un \emph{intervalle de confiance} de niveau $1 - \alpha$ pour un paramètre inconnu $\theta$ d'une population est un intervalle tel que la probabilité pour que $\theta$ appartienne à cet intervalle est $1 - \alpha$. 
+$$    \underbrace{1-\alpha}_{\parbox{3cm}{\centering\small degré de
+    confiance}}
+    = \; P\bigl(\;\theta \in
+    \underbrace{
+    [\hat\theta_{\mbox{inf}}\;;\;\hat\theta_{\mbox{sup}}]
+    }_{\mbox{\small intervalle aléatoire}}\bigr)\quad
+$$
+Le \emph{risque de première espèce} $\alpha$ est le risque que l'intervalle ne recouvre pas $\theta$.
+\begin{center}
+Estimation ponctuelle $\pm$ (Valeur critique) (\'Ecart type)
+\end{center}
+\end{slide}
+
+\begin{slide}{IC pour $\mu$}
+Population qui suit une loi normale de variance $\sigma^2$ connue\\
+$\bar{x}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$\\[5mm]
+Population qui suit une loi normale de variance $\sigma^2$ inconnue\\
+Hypothèse: {\red la distribution de la population suit une loi normale}.
+$\bar{x}\pm t_{\alpha/2}^{(n-1)} \frac{s}{\sqrt{n}}$\\[5mm]
+Population qui suit une loi normale de variance $\sigma^2$ inconnue et échantillon de grande taille ($n\geq 30)$\\
+$\bar{x}\pm z_{\alpha/2} \frac{s}{\sqrt{n}}$
+\end{slide}
+
+\begin{slide}[toc=\'Etapes]{\'Etapes de construction}
+\begin{enumerate}
+	\item Définir la population d'intérêt et sélectionner un échantillon aléatoire de taille $n$
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Calculer la moyenne et éventuellement l'écart type de l'échantillon
+	\item Déterminer l'erreur standard de la moyenne
+	\item Déterminer la valeur critique  
+	\item Calculer l'intervalle de confiance\\[5mm]
+\centerline{Estimation ponctuelle $\pm$ (Valeur critique) (\'Ecart type)}
+\end{enumerate}
+\end{slide}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%    IC d'une proportion                   %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour $p$}
+\begin{slide}{Rappel}
+Une proportion est une moyenne particulière\\[5mm]
+Lorsque la taille $n$ de l'échantillon est suffisamment grande,\\ 
+i.e. $np\geq 5$ et $n(1-p)\geq 5$, la distribution d'échantillonnage peut être approchée par une distribution normale centrée en $p$, avec comme écart type
+$$\sigma_{\bar{p}}=\sqrt{ \frac{p(1-p)}{n} }$$
+où\\
+\begin{tabular}{rcl}
+$p$ & = & proportion dans la population\\
+$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}{Formule}
+Lorsque la taille $n$ de l'échantillon est suffisamment grande,\\
+i.e. $np\geq 5$ et $n(1-p)\geq 5$ 
+$$\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$$
+où\\
+\begin{tabular}{rcl}
+$\bar{p}$ & = & proportion dans l'échantillon\\
+$p$ & = & proportion dans la population\\
+$n$ & = & taille de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+\end{tabular}
+\end{slide}
+
+\begin{slide}{Exemple}
+Une entreprise réunissant plusieurs marques désire estimer la proportion de ses clients connaissant plus de 5 de leur marques. Elle veut un degré de confiance de 0.9. Elle effectue alors un sondage aléatoire parmi 100 clients et obtient comme estimation ponctuelle 0.2.
+\begin{enumerate}
+	\item La population d'intérêt est \pause l'ensemble de ses clients.
+	\item L'échantillon aléatoire sélectionné est suffisamment grand
+	\item Le degré de confiance est \pause $1-\alpha=0.9$
+	\item La valeur critique est \pause $z_{\alpha/2}=z_{0.05}=1.645$
+ 	\item La proportion estimée est \pause $\bar{p}=0.2$
+	\item L'intervalle de confiance vaut donc \pause
+	$$0.2\pm 1.645\sqrt{ \frac{0.2(1-0.2)}{100} } = [0.134,0.266]$$
+\end{enumerate}
+\end{slide}
+
+\begin{slide}{\'Etapes}
+\begin{enumerate}
+	\item Définir la population d'intérêt et la variable dont on veut estimer la proportion.
+	\item Sélectionner un échantillon aléatoire de taille $n$ suffisamment grande, telle que \\[5mm]
+	\centerline{$np\geq 5 \quad\mbox{ et }\quad n(1-p)\geq 5$}
+	\item Spécifier le degré de confiance $1-\alpha$
+	\item Déterminer la valeur critique $z_{\alpha/2}$  tirée d'une loi normale centrée réduite
+ 	\item Calculer la proportion $\bar{p}$
+	\item Calculer l'intervalle de confiance
+	$$\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$$
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{}
+$$\includegraphics[scale=0.7]{ICEvidentProportion}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     IC d'une variance                    %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{IC pour $\sigma^2$}
+\begin{slide}{Rappel}
+La statistique $\chi^2$ à $n-1$ degrés de liberté vaut
+$$\chi^2 = \frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{ccl}
+$\chi^2$ & = & variable chi-2 standard\\
+$s^2$ &= &  variance de l'échantillon\\
+$\sigma^2$ & = & variance de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}{Formule}
+L'intervalle de confiance d'une variance s'écrit donc, sous l'hypothèse que l'échantillon aléatoire provient d'une population dont les éléments sont {\red iid de  distribution normale}:
+$$\left[ \frac{(n-1)s^2}{q^{n-1}_{\alpha/2}}  ; \frac{(n-1)s^2}{q^{n-1}_{1-\alpha/2}} \right]$$
+où\\
+\begin{tabular}{rcl}
+$n$ & = & taille de l'échantillon\\
+$q^{n-1}_{\alpha/2}$ &= &  valeur critique de la distribution $\chi^2$ à $n-1$ dl\\
+& & pour un degré de confiance de $1-\alpha$\\
+$s^2$ & = & variance de l'échantillon\\
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{Illustration}
+\includegraphics[width=10cm]{interv_stat_asym}
+\end{slide}
+
+\begin{slide}{Exemple}
+{\small
+Une entreprise fabriquant des photocopieuses assure aussi le service après-vente. 
+Sur 20 services, un écart type de 0.5h est mesuré pour une nouvelle équipe.
+Avec un degré de confiance de 0.9, construire un IC de l'écart type, en supposant que les données proviennent d'une loi normale.
+ 
+\begin{enumerate}
+	\item La population d'intérêt est l'ensemble des services effectués par la nouvelle équipe.
+	\item L'échantillon sélectionné est de taille 20, et provient d'une population normalement distribuée.
+	\item Le degré de confiance est de 0.9
+	\item Les valeurs critiques sont $\chi^2_{0.05}=30.14$ et $\chi^2_{0.95}=10.12$ avec 19 degrés de liberté.
+	\item La variance estimée est de $s^2=0.5^2=0.25$
+	\item L'intervalle de confiance associé à la variance est donc 
+$$\left[ \frac{(19)0.25}{30.14}  ; \frac{(19)0.25}{10.12} \right]
+= [0.16;0.47]$$
+\end{enumerate}
+}
+\end{slide}
+
+\begin{slide}{Remarque}
+L'utilisation de la statistique du $\chi^2$ pour estimer la variance est très sensible à une violation de l'hypothèse d'une population normalement distribuée. Cette technique n'est donc pas une technique robuste.\\[5mm]
+Si la moyenne de la population est connue, alors le nombre de degrés de liberté est la taille de l'échantillon ($n$) et l'intervalle de confiance s'écrit:
+$$\left[ \frac{\sum (x_i - \mu)^2}{q^{(n)}_{\alpha/2}}  ; \frac{\sum (x_i - \mu)^2}{q^{(n)}_{1-\alpha/2}} \right]$$
+\end{slide}
+
+\section{Résumé}
+
+\begin{slide}[toc=]{Intervalle de confiance}
+{\small
+\begin{center}
+    \begin{tabular}{|c|l|c|}
+    \hline&&\\[-1.5ex]
+    estimé  & hypothèse    & intervalle \\[.5ex]
+    \hline&&\\[-1ex]
+    $\mu$   & $\sigma^2$ connu, &\\
+            & distr. normale ou $n\geq 30$
+            & $\mu \in \bar x \pm z_{1-\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$\\[3ex]
+  & $\sigma^2$ inconnu, distr. normale  
+     & $\mu \in \bar x \pm t^{(n-1)}_{1-\frac{\alpha}{2}}\frac{s}{\sqrt{n}}$\\[3ex]
+    \hline&&\\[-1ex]
+    p & $np\geq 5$ et $n(1-p)\geq 5$ & $\bar{p}\pm z_{\alpha/2}\sqrt{ \frac{\bar{p}(1-\bar{p})}{n} }$ \\[3ex]
+    \hline&&\\[-1ex]
+    $\sigma^2$   & $\mu$ connu, distr. normale 
+    & $\left[ \frac{\sum (x_i - \mu)^2}{q^{(n)}_{\frac{\alpha}{2}}}
+        \;;\; \frac{\sum (x_i - \mu)^2}{q^{(n)}_{1-\frac{\alpha}{2}}}
+        \right]$\\[3ex]
+     & $\mu$ inconnu, distr. normale
+    & $\left[ \frac{\sum (x_i - \bar{x})^2}{q^{(n-1)}_{\frac{\alpha}{2}}}
+        \;;\; \frac{\sum (x_i - \bar{x})^2}{q^{(n-1)}_{1-\frac{\alpha}{2}}}
+        \right]$\\[4ex]
+    \hline
+    \end{tabular}
+\end{center}
+}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

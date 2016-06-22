@@ -1,0 +1,186 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Corrigé 8}
+\author{Dr. S. Varone}
+\date{Semaine 45, 2008}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 8: Test de la moyenne                   %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{enumerate}
+%	\item Spécifier la valeur de la population d'intérêt.
+%	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+%	\item Choisir le niveau de signification $\alpha$
+%	\item Déterminer la région critique.
+%	\item Calculer la statistique associée à l'échantillon.
+%	\item Rejeter $H_0$ si la statistique appartient à la région critique.\\
+%	Ne pas rejeter $H_0$ dans le cas contraire.
+%	\item Énoncer une conclusion.
+%\end{enumerate}
+
+\section{} % cf exo Andre Berchtold 4.3
+Les données suivantes représentent le taux d'acceptation d'une initiative pour un échantillon de communes en Suisse.
+$$
+ \begin{array}{cccccc}
+ 62.3 & 44.4 & 49.2 & 63.3 & 47.6 & 60.1 \\
+ 37.4 & 55.8 & 57.5 & 58.3 & 56.2 & 54.3
+ \end{array}
+$$
+On suppose que l'écart type des taux pour l'ensemble des communes suisses vaut 5, et que les données proviennent d'une distribution normale.
+
+\begin{verbatim}
+x <- c(62.3,44.4,49.2,63.3,47.6,60.1,37.4,55.8,57.5,58.3,56.2,54.3)
+library(TeachingDemos); z.test(x, mu=50, stdev=5, alternative="greater")
+\end{verbatim}
+
+\begin{enumerate}
+ \item En prenant un risque de première espèce $\alpha = 0.05$, la moyenne $\mu$ des
+taux de la population de communes est-elle significativement supérieure à 50\%? Commenter. 
+		\begin{enumerate}
+			\item La valeur de la population d'intérêt est la moyenne des taux d'acceptation
+			\item Les hypothèses nulle et alternative sont
+			$$\begin{array}{ll}
+			 & H_0 : \mu = \mu_0 \leq 50 \\
+			 \mbox{ contre} & H_1 : \mu = \mu_1 > 50
+			 \end{array}$$
+			\item Le niveau de signification est $\alpha = 0.05$
+			\item Test de la moyenne avec variance connue: 
+			$$Z_0=\frac{\overline{X}-\mu_0}{\sigma_{\bar X}} \sim N(0,1)$$
+			La région critique est déterminée par un test unilatéral à droite:\\
+			\setlength{\unitlength}{1cm}
+			    \begin{picture}(5,2)
+			        \thicklines
+			        \put(0,0.9){\line(1,0){5}}
+			        \put(3.5,0.7){\line(1,2){.2}}
+			        \put(3.8,0.7){\line(1,2){.2}}
+			        \put(4.1,0.7){\line(1,2){.2}}
+			        \put(4.4,0.7){\line(1,2){.2}}
+			        \put(4.7,0.7){\line(1,2){.2}}
+			        \put(3.4,0.7){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+			        \put(3.4,0){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+			        \put(2,1.3){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+			        \put(4.4,1.3){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+			    \end{picture}
+			\\Le seuil de rejet est $r=z_{\alpha}=z_{0.05}=1.645$
+			\item Valeur observée de la statistique:
+			$$z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}}
+			= \frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}
+			= \frac{53.87-50}{\frac{5}{\sqrt{12}}}= 2.68$$
+			\item $2.68> 1.645$, l'hypothèse $H_0$ est donc rejetée.
+			\item La moyenne des taux est donc significativement supérieure à 50\%
+		\end{enumerate}
+
+ \item Soit un échantillon de taille 100 pour lequel on a obtenu la même moyenne que pour l'échantillon précédent de taille 12. Déterminer la région critique du test pour ce nouvel échantillon et comparer avec celle obtenue au point 1. Commenter.
+		\begin{enumerate}
+			\setcounter{enumi}{3}
+			\item  Le seuil de rejet ne dépendant pas de la taille de l'échantillon, il reste le même que précédemment, soit
+			$r=z_{\alpha}=z_{0.05}=1.645$
+			\item La valeur observée de la statistique dépend de la taille de l'échantillon. En fait, seul l'écart type de la statistique change: elle diminue. Et donc la statistique augmente sa valeur, et reste donc donc la région critique.
+			$$z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}}
+			= \frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}
+			= \frac{53.87-50}{\frac{5}{\sqrt{100}}}= 7.74$$
+			\item Comme $7.74> 1.645$ l'hypothèse $H_0$ est rejetée.
+			\item La moyenne des taux est donc dans ce cas aussi significativement supérieure à 50\%
+		\end{enumerate}
+\end{enumerate}
+
+\section{} % cf exo Andre Berchtold 4.4
+En 2005, une enquête menée auprès de femmes quant à leur âge $x_i$ à la naissance de leur premier enfant a donné, pour 51 femmes interrogées au hasard, les résultats suivants: 
+$$ \bar{x} = 28 \mbox{ années } $$ 
+$$ \sum (x_i - \bar{x})^2 = 816 \: \mbox{années}^2  $$ 
+Les âges $x_i$ représentent les réalisations d'une variable aléatoire $X$ distribuée selon une loi normale ($\mu$, $\sigma^2$).
+ 
+\begin{enumerate} 
+  \item On sait qu'en 1990, pour la population, l'âge moyen des femmes à la naissance de
+		leur premier enfant était de 27 ans. Peut-on affirmer, avec un degré de confiance de 95
+		\%,  que l'âge moyen a augmenté en 3 ans ? Pour cela, on testera l'hypothèse $H_0$ :
+		$\mu=27$ contre l'hypothèse $H_1$ : $\mu>27$ .
+
+			\begin{enumerate}
+				\item Le paramètre d'intérêt est la moyenne $\mu=27$
+				\item 
+				$$\begin{array}{ll}
+				 & H_0 : \mu = \mu_0 = 27 \\
+				 \mbox{ contre} & H_1 : \mu = \mu_1 > 27
+				 \end{array}$$
+				\item Le niveau de signification $\alpha = 0.05$
+				\item Test de la moyenne avec variance inconnue: 
+				$$T_0=\frac{\overline{X}-\mu_0}{\hat\sigma_{\bar X}} \sim St_{n-1}$$
+				La région critique est déterminée par un test unilatéral à droite.
+				La valeur du seuil de rejet est $$r= t_{0.05}^{(50)} =1.676\approx z_{0.05}\approx 1.645$$
+				\item La valeur de la statistique est 
+				$$\hat\sigma_{\overline{x}} = 
+				\frac{\sqrt{\sum_{i=1}^n (x_i-\overline{x})^2}}{\sqrt{n}\cdot\sqrt{n-1}}
+				= \frac{\sqrt{816}}{\sqrt{51}\cdot\sqrt{50}}
+				=0.5657 \approx \frac{\sqrt{816}}{\sqrt{50}\cdot\sqrt{50}} = 0.5713$$
+				$$t_0=\frac{\overline{x}-\mu_0}{\hat\sigma_{\bar x}}=\frac{28-27}{0.5657}=1.768 \approx \frac{28-27}{0.5657}=1.75035$$
+				\item Comme $t_0=1.768> 1.676=r$, l'hypothèse $H_0$ est rejetée.
+				\item En conclusion, l'âge moyen a augmenté.
+			\end{enumerate}
+
+  \item Selon certains chercheurs, l'écart type $s$ de l'échantillon sous-estime l'écart
+		type $\sigma $ de la population, qu'ils évaluent à 5 ans. Refaire le test précédent en
+		supposant que la vraie valeur de $\sigma $ est égale à 5 et commenter.
+			\begin{enumerate}
+			\setcounter{enumii}{3}
+				\item Test de la moyenne avec variance connue: 
+				$$Z_0=\frac{\overline{X}-\mu_0}{\sigma_{\bar X}} \sim N(0,1)$$
+				\item Seuil de rejet:   $r= z_{0.05} =1.645$
+				Valeur observée de la statistique:
+				$$\sigma_{\overline{x}} 
+				=\frac{\sigma_0}{\sqrt{n}} 
+				= \frac{5}{\sqrt{51}}
+				=0.7$$
+				$$z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}} =\frac{28-27}{0.7}=1.43$$
+				\item Comme $z_0=1.43< 1.645=r$, l'hypothèse $H_0$ n'est pas rejetée.
+				\item En d'autres termes, il n'y a pas suffisamment d'évidence pour affirmer que l'âge moyen aurait augmenté, i.e. l'âge moyen n'a pas augmenté.
+			\end{enumerate}
+\end{enumerate}
+
+\section{} % cf exo Andre Berchtold 4.5
+Dans une grande entreprise américaine, le salaire annuel moyen des hommes possédant entre 3 et 5 ans d'expérience est de 58'000\$. Les salaires (en milliers de dollars) d'un échantillon aléatoire de 10 femmes possédant entre 3 et 5 ans d'expérience sont les suivants:
+$$54 \quad 57 \quad 61 \quad 51 \quad 49 \quad 56 \quad 60 \quad 52 \quad 45 \quad 66$$
+Y a-t-il suffisamment d'évidence, en prenant un risque $\alpha=0.05$, pour attester de niveaux de salaires différents pour les hommes et les femmes?
+
+Moyenne $\bar{x}=55.1$\\
+
+\begin{verbatim}
+x <- c(54, 57, 61, 51, 49, 56, 60, 52, 45, 66)
+t0 <- qt(0.95,9)
+taille <- length(x)
+seuilcritique <- mean(x) + t0 * sd(x)/sqrt(taille)
+t.test(x,mu=58,alternative="less")
+\end{verbatim}
+
+\begin{enumerate}
+	\item Le paramètre d'intérêt est la moyenne des salaires, qui vaut 58 milliers de \$
+	\item Comme il peut être supposé que le salaire moyen des femmes soit inférieur à celui des hommes, nous pouvons utiliser un test unilatéral à gauche.
+	$$\begin{array}{ll}
+				 & H_0 : \mu =  58 \\
+				 \mbox{ contre} & H_1 : \mu < 58
+				 \end{array}$$
+	\item Le niveau de signification $\alpha = 0.05$
+	\item Le seuil critique vaut $t^{9}_{0.95} = -1.8331$
+	et donc la région critique est $[-\infty ; -1.8331]$
+	\item La statistique associée à l'échantillon vaut 
+	$\sigma_{\bar{x}}=\sqrt{\frac{348.9}{10\times 9}} = 1.97$ \\
+	$$t_0=\frac{55.1-58}{1.97}=-1.47$$
+	\item Comme $t_0\not\in [-\infty ; -1.8331]$ l'hypothèse $H_0$ n'est pas rejetée.
+	\item Il n'y a donc pas suffisamment d'évidence pour rejeter l'égalité moyenne des salaires hommes et femmes.
+\end{enumerate}
+
+\end{document}

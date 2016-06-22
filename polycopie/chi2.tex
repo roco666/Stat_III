@@ -1,0 +1,61 @@
+\section{Loi du chi carré ($\chi^2$)}
+
+\subsection{Loi du chi-2 à $n$ degrés de liberté}
+\begin{defi}
+Soit $n$ variables aléatoires normales centrées-réduites $Z_i$, indépendantes les unes des autres et identiquement distribuées: $Z_i  \mbox{ i.i.d.} \sim\norm(0,1)$, $i=1,2,\ldots,n$. Alors la variable formée de la somme des carrés de ces variables
+$$Q_n = \sum_{i=1}^{n} Z_i^2 \sim \chi^2$$
+suit une \emph{loi du $\chi^2$ à $n$ degrés de liberté}.
+\end{defi}
+
+On note parfois $\chi^2(n)$ ou $\chi^2_n$ pour indiquer une loi du $\chi^2$ à $n$ degrés de liberté
+
+\begin{pro} La loi du $\chi^2$ à $n$ degrés de liberté possède les propriétés suivantes
+\begin{itemize}
+	\item Son espérance vaut $n$
+	%$\E (Q_n) = \sum_i\var (Z_i) = n$
+	\item Sa variance vaut $2n$
+	%$\var (Q_n)= \sum_i\var (Z_i^2) = 2n$
+\end{itemize}
+\end{pro}
+
+%\begin{proof}
+%$\chi^2=\frac{(n-1)s^2}{\sigma^2}=\frac{(n-1)\frac{\sum(x-\bar{x})^2}{n-1}}{\sigma^2}
+%=\frac{\sum(x-\bar{x})^2}{\sigma^2} = \sum(\frac{x-\bar{x}}{\sigma})^2$
+%\end{proof}
+ 
+$$\includegraphics[scale=0.7]{chisquare}$$
+
+\begin{rem}
+La loi du chi-2 étant définie comme une somme de carrés, elle ne prend que des valeurs positives.
+\end{rem}
+
+Nous utiliserons la propriété suivante lorsque nous calculerons (cf. \ref{section:variance-estimation}
+) un intervalle de confiance pour la variance d'une population.
+
+\begin{pro}\label{pro:chi2}
+La statistique $\chi^2$ à $n-1$ degrés de liberté vaut
+$$\chi^2 = \frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{ccl}
+$\chi^2$ & = & variable chi-2 standard\\
+$s^2$ &= &  variance de l'échantillon\\
+$\sigma^2$ & = & variance de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{pro}
+
+
+\subsection{Table du $\chi^2$}
+\centerline{\includegraphics[width=10cm]{chi2b}}
+
+Pour une variable $Q_n$ suivant une loi du $\chi^2$ à $n$ degrés de liberté, $p = P(Q_n\leq q_{\alpha,n})$ et $\alpha = P(Q_n>q_{\alpha,n})$.
+La relation entre $p$ et $\alpha$ est donnée par 
+$$p=1-\alpha$$
+
+La table du $\chi^2$ en annexe \ref{sec:tablechideux} donne le seuil $q$ associé à une erreur de première espèce $\alpha$ (colonne) et un nombre de degrés de liberté $n$ (ligne).
+
+\begin{ex}
+$P(Q_7 \leq q_{\alpha,7}) = 0.95$\\
+Alors $\alpha=1-0.95=0.05$\\
+Et donc $\quad q_{0.05,7} = 14.0671$
+\end{ex}

@@ -1,0 +1,861 @@
+\documentclass[12pt, french]{article}
+
+\usepackage{babel, textcomp, pst-tree, fancyhdr, latexsym}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,epsfig,color}
+
+ \date{}
+  \author{}
+        
+\begin{document}
+\begin{center}
+{\large Statistiques 3 \\
+        Corrigé des exercices  }           
+\end{center}
+\vspace{0.5cm}
+\underline{Exercice 2.1}\\[0.5 cm]
+Soit une variable $Z$ distribuée selon une loi normale centrée-réduite. Calculer la probabilité pour la variable $Z$ de se trouver
+dans chacun des cas suivants:
+
+ \begin{enumerate}
+    \item Entre $z=0$ et $z=1.2$.\\
+    \begin{eqnarray*}
+    P(0<Z<1.2)&=&P(Z<1.2)-P(Z<0)\\
+    &=&0.8849 -0.5 \\
+    &=&0.3849
+    \end{eqnarray*}
+    \item Entre $z=-0.68$ et $z=0$.\\
+    \begin{eqnarray*}
+    P(-0.68<Z<0)&=&P(Z<0)-P(Z<-0.68)\\
+    &=& P(Z<0)-(1-P(Z<0.68))\\
+    &=&0.5-(1-0.7517)=0.2517
+    \end{eqnarray*}
+    \item Entre $z=-0.46$ et $z=2.21$.\\
+    \begin{eqnarray*}
+    P(-0.46<Z<2.21)&=&P(Z<2.21)-P(Z<-0.46)\\
+    &=&P(Z<2.21)-(1-P(Z<0.46))\\
+    &=&0.9864-(1-0.6772)=0.6636
+    \end{eqnarray*}
+    \item Entre $z=0.81$ et $z=1.94$.\\
+    \begin{eqnarray*}
+    P(0.81<Z<1.94)&=&P(Z<1.94)-P(Z<0.81)\\
+    &=&0.9738-0.7910=0.1828
+    \end{eqnarray*}
+    \item A gauche de $z=-0.6$.\\
+    \begin{eqnarray*}
+     P(Z<-0.6)&=&1-P(Z<0.6)\\
+     &=&1-0.7257=0.2743
+    \end{eqnarray*}
+    \item A droite de $z=-1.28$.\\
+    \begin{eqnarray*}
+    P(Z>-1.28) &=& P(Z<1.28) \\
+    &=& 0.8997
+    \end{eqnarray*}
+    \item A droite de $z=2.05$ et à gauche de $z=-1.44$.\\
+    \begin{eqnarray*}
+    P(2.05 <Z<-1.44) &=& 0
+    \end{eqnarray*}
+     C'est impossible car $2.05>-1.44$.
+     \\[0.25cm]
+    \item A droite de $z=2.05$ ou à gauche de $z=-1.44$.\\
+    \begin{eqnarray*}
+    P(Z>2.05)+P(Z<-1.44)&=&(1-P(Z<2.05)+(1-P(Z<1.44))\\
+     &=&(1-0.9798)+(1-0.9251)=0.0951
+    \end{eqnarray*} 
+ \end{enumerate}
+
+
+\vspace{0.5cm}
+\noindent
+\underline{Exercice 2.2}\\[0.5 cm]
+ Soit $Z$, une variable aléatoire suivant une loi
+normale centrée et  réduite $N(0,1)$.
+
+ \begin{enumerate}
+ \item % 1
+Déterminer la probabilité des événements suivants :
+ \begin{enumerate}
+    \item $Z < 2.14$
+    \[P(Z<2.14)=0.9838 \]
+    \item $Z < -2.14$
+    \[P(Z<-2.14)=1-P(Z<2.14))=1-0.9838=0.0162\]
+    \item $Z \in [-2.14 \; ;\; 2.14]$
+        \begin{eqnarray*}
+        P(-2.14<Z<2.14) &=& 2( P(Z<2.14)-0.5)\\
+        &=&2 P(Z<2.14)-1\\
+        &=&2\cdot 0.9838-1=0.9676        
+        \end{eqnarray*} 
+ \end{enumerate}
+ \item % 2
+ Pour quel seuil $a$ a-t-on $P(Z < a) = p$ lorsque $p$ prend les
+valeurs  suivantes : 
+ \begin{enumerate}
+    \item $p = 0.8686$
+    \[a=1.12\]
+    \item $p = 0.9719$
+    \[a=1.91\]
+    \item $p = 0.2912$
+           \begin{eqnarray*}
+        P(Z<a)&=& 0.2912\\
+        P(Z<-a)&=& 1-0.2912 = 0.7088\\
+          -a&=&0.55\\
+          a&=&-0.55
+        \end{eqnarray*} 
+ \end{enumerate}
+
+ \hspace*{-6ex} Soit $X$, une variable aléatoire suivant une loi normale $N(2,1)$.
+
+ \item % 3
+ Déterminer les probabilités suivantes :
+ \begin{enumerate}
+    \item $P(X < 3.98)$
+     \begin{eqnarray*}
+     P(X < 3.98)&=&P(Z<\frac{3.98 -2}{1})\\
+    &=& P(Z<1.98)= 0.9761
+     \end{eqnarray*} 
+    \item $P(X < 1.5)$
+    \begin{eqnarray*}
+    P(X < 1.5)&=&P(Z<\frac{1.5-2}{1})\\
+    &=& P(Z<-0.5)\\
+    &=& 1-P(Z<0.5)\\
+    &=&1-0.6915=0.3085
+     \end{eqnarray*} 
+    \item $P(X \in  [2\;;\;3])$
+    \begin{eqnarray*}
+    P(2<X<3)&=& P(X<3)-P(X<2)\\
+    &=& P(Z<\frac{3-2}{1})-P(Z<\frac{2-2}{1})\\
+    &=& P(Z<1)-P(Z<0)\\
+    &=& 0.8413-0.5=0.3413
+     \end{eqnarray*} 
+ \end{enumerate}
+
+ \item % 4
+ Pour quelle valeur de $a$ a-t-on :
+ \begin{enumerate}
+    \item $P(X < a) = 0.7454$
+        \begin{eqnarray*}
+        P(X < a) &=& 0.7454\\
+        P(Z<\frac{a-2}{1})&=&0.7454\\
+        a-2&=&0.66\\
+        a&=&2.66
+     \end{eqnarray*} 
+    
+    \item $P(-a+2 < X < a+2) = 0.7458$
+           \begin{eqnarray*}
+           P(-a+2 < X < a+2) &=& 0.7458\\
+           P(X<a+2)-P(X<-a+2)&=& 0.7458\\
+           P(Z<\frac{(a+2)-2}{1})-P(Z<\frac{(-a+2)-2}{1}) &=&0.7458\\
+           P(Z<a)-P(Z<-a)&=&0.7458\\
+           P(Z<a)-(1-P(Z<a))&=&0.7458\\
+           2P(Z<a) -1 &=&0.7458\\
+           P(Z<a)&=& 0.8729\\
+           a&=&1.14
+     \end{eqnarray*} 
+ \end{enumerate}
+
+ \hspace*{-6ex} Soit $Y$, une variable aléatoire suivant une loi normale $N(2,9)$.
+
+ \item % 5
+ Déterminer les probabilités suivantes:
+ \begin{enumerate}
+    \item $P(Y < 4.25)$
+    \begin{eqnarray*}
+     P(Y < 4.25) &=& P(Z<\frac{4.25-2}{3})\\
+     &=& P(Z<0.75)=0.7734
+     \end{eqnarray*} 
+    \item $P(Y < 1.5)$
+     \begin{eqnarray*}
+     P(Y < 1.5) &=& P(Z<\frac{1.5-2}{3})\\
+     &\approx & P(Z<-0.17)\\
+      &=& 1-P(Z<0.17)\\
+      &=&1-0.5675 =0.4325
+     \end{eqnarray*} 
+     \item $P( |Y| < 1)$
+          \begin{eqnarray*}
+ P(Y<1)-P(Y<-1) &=& P(Z<\frac{1-2}{3})-\frac{-1-2}{3})\\
+ &\approx& P(Z<-0.33)-P(Z<-1)\\
+ &=& (1-P(Z<0.33)-(1-P(Z<1))\\
+  &=& P(Z<1)-P(Z<0.33)\\
+  &=&0.8413-0.6293=0.212
+     \end{eqnarray*} 
+ \end{enumerate}
+
+ \item % 6
+   Pour quelle valeur de $a$ a-t-on: 
+   \begin{enumerate}
+    \item $P(Y < a) = 0.64$
+\begin{eqnarray*}
+P(Y<a)&=&0.64\\
+P(Z<\frac{a-2}{3})&=&0.64\\
+\frac{a-2}{3}&\approx& 0.36\\
+a&=&3\cdot 0.36+2=3.08
+\end{eqnarray*} 
+    
+    \item $P(a < Y < 2.5) = 0.3788$
+    
+    \begin{eqnarray*}
+P(Y<2.5)-P(Y<a)&=&0.3788\\
+P(Z<\frac{2.5-2}{3}) -P(Z<\frac{a-2}{3})&=&0.3788\\
+P(Z<0.17) -P(Z<\frac{a-2}{3})&\approx&0.3788\\
+0.5675 -P(Z<\frac{a-2}{3})&\approx&0.3788\\
+ P(Z<\frac{a-2}{3})&\approx&0.5675 -0.3788\\
+  P(Z<\frac{a-2}{3})&\approx&0.1887\\
+  1-P(Z<\frac{a-2}{3})&\approx&1-0.1887\\
+  P(Z<-\frac{a-2}{3})&\approx&0.8113\\
+  -\frac{a-2}{3} &\approx& 0.88\\
+  a&\approx&2-3\cdot 0.88 = -0.64 
+\end{eqnarray*} 
+
+
+    \item $P(- a < Y < a) = 0.9$
+  \begin{eqnarray*}  
+   P(- a < Y < a) &=& 0.9 \\
+   P(Y<a)-P(Y<-a) &=& 0.9 \\
+   P(Z<\frac{a-2}{3})-P(Z<-\frac{-a-2}{3}) &=& 0.9
+  \end{eqnarray*}  
+  Pas de solution direct car il n'est pas possible d'utiliser la symétrie.
+  En faisant varier la valeur de $a$ il est possible de trouver la solution:
+  $a\approx 5.917$ 
+    
+ \end{enumerate}
+ \end{enumerate}
+
+
+
+
+
+\vspace{0.5cm}
+\noindent
+\underline{Exercice 2.3}\\[0.5 cm]
+ 
+ 
+  \begin{enumerate}
+  \item
+  
+    \item  
+     \begin{eqnarray*}  
+     P(X>36)&=& P(Z>\frac{36-30}{6})\\
+     &=&P(Z>1)\\
+      &=&1-P(Z<1)\\
+      &=&1-0.8413=0.1587
+  \end{eqnarray*}  
+  
+    \item
+        \begin{eqnarray*}  
+     P(Y<30)&=& P(Z<\frac{30-36}{12})\\
+     &=&P(Z<-0.5)\\
+      &=&1-P(Z<0.5)\\
+      &=&1-0.6915=0.3085
+  \end{eqnarray*}  
+  
+ \end{enumerate}
+
+\underline{Exercice 2.4}\\[0.5 cm]
+
+\begin{enumerate}
+ \item % 1
+ Soit la variable $X$ suivant une loi normale $N(10,4)$.
+    \begin{eqnarray*}
+    P(8<X<13)&=& P(\frac{8-10}{2}< Z < \frac{13-10}{2})\\
+    &=& P(Z<1.5)-P(Z<-1)\\
+    &=& P(Z<1.5)-(1-P(Z<1))\\
+    &=& 0.9332-(1-0.8413)=0.7745
+    \end{eqnarray*}
+ \item % 2
+ Soit la variable $Q_{10}$ suivant une loi du chi-2 à 10 degrés de liberté.
+ \newline
+ \[
+ P(Q_{10} < 12.55) =0.75
+ \]
+ \[
+ P(Q_{10} > 18.31) =1-0.95 =0.05
+ \]
+ \[
+ P(Q_{10} <18.31) =0.95
+ \]
+ \[
+ P(12.55 < Q_{10} < 18.31)=P( Q_{10} < 18.31)-P(Q_{10}<12.55)0.95-0.75=0.2
+ \]
+ Trouver la valeur $a$ telle que $P(Q_{10} < a) = 0.975$.
+ \[
+ a=20.48
+ \]
+ \item % 3
+ Soit la variable $T_{8}$ suivant une loi de Student à 8 degrés de
+liberté.
+ \[
+ P(T_{8} < 0.546)=0.7
+ \]
+\[
+P(T_{8} < - 0.546)=1-P(T_{8} < 0.546)=1-0.7=0.3
+\]
+\begin{eqnarray*}
+P( - 0.546 < T_{8} < 1.86)&=&P( T_{8} < 1.86)-P( T_{8} <  - 0.546)\\
+&=&P( T_{8} < 1.86)- (1-P( T_{8} <  - 0.546))\\
+&=&0.95-(1-0.7)=0.65
+\end{eqnarray*}
+ \begin{eqnarray*}
+P(T_{8}> b) &=& 0.6\\
+P(T_{8}<- b) &=& 0.6\\
+-b&=&0.262\\
+b&=&-0.262
+\end{eqnarray*}
+
+ \item % 4
+ \begin{eqnarray*}
+ P (F_{8,5} < c) &=& 0.95\\
+ c&=&4.82
+ \end{eqnarray*}
+ \item % 5
+ \begin{eqnarray*}
+ P(F_{5,8} < d) &=& 0.95\\
+ d&=&3.69
+  \end{eqnarray*}
+ \item % 6
+ \begin{eqnarray*}
+P (F_{12,3} < e) &=& 0.99\\
+e&=&27.05
+   \end{eqnarray*}
+ \item % 7
+ \begin{eqnarray*}
+P(F_{3,12} < f) &=& 0.99\\
+f&=&5.95
+   \end{eqnarray*}
+ \end{enumerate}
+ 
+ 
+
+
+
+
+
+\vspace{0.5cm}
+\underline{Exercice 2.5}\\[0.5 cm]
+\begin{enumerate}
+ \item Loi du Chi-2
+ \item Loi de Poisson
+ \item Loi Binomiale
+ \item Loi Normale
+  \end{enumerate}
+
+
+
+\underline{Exercice 3.1}\\[0.5 cm]
+
+
+ \begin{enumerate}
+ \item 
+\[
+\dot Y = 295
+\]
+\[
+\overline{Y}=\frac{1475}{5}=295
+\]
+
+ \item 
+
+\[
+\dot Y = 295
+\]
+\[
+\overline{Y}=\frac{2668}{9}\approx 296.4
+\]
+
+ \item 
+ \[
+ \hat \sigma ^2 = \frac{n}{n-1}s^2= \frac{n}{n-1}
+ \left( \frac{1}{n} \sum\limits^n_{i=1} y^2_i  -\bar y ^2\right)
+ \]
+ \begin{itemize}
+ \item[a) cinq observations]
+ \[
+ s^2 = \frac{435625}{5} -295^2=100
+ \]
+ \[
+ \hat \sigma ^2 = \frac{5}{5-1}100= 125
+ \]
+  \[
+ \hat \sigma  = \sqrt{125} \approx 11.18
+ \]
+ Pour la moyenne de l'échantillon, nous avons
+ \[
+ \hat \sigma_{\bar y_1} = \frac{ \hat \sigma}{\sqrt{n}}= \frac{11.18}{\sqrt{5}}
+ =5
+ \]
+  \item[b) neuf observations]
+  \[
+ s^2 = \frac{792274}{9} -296.4^2\approx151.14
+ \]
+ \[
+ \hat \sigma ^2 = \frac{9}{9-1}151.14\approx 170.03
+ \]
+  \[
+ \hat \sigma \approx \sqrt{170.03} \approx 13.04
+ \]
+ Pour la moyenne de l'échantillon, nous avons
+ \[
+ \hat \sigma_{\bar y_2} = \frac{ \hat \sigma}{\sqrt{n}}= \frac{13.04}{\sqrt{9}}
+ \approx 4.35
+ \] 
+ \end{itemize}
+
+ \item 
+ \[
+\dot Y = 295
+\]
+\[
+\overline{Y}=\frac{2416}{9}\approx 268.4
+\]
+ La médiane est ici plus pertinente que la moyenne comme estimateur de $\mu$
+ car elle est plus robuste.
+ \end{enumerate}
+
+\underline{Exercice 3.4}\\[0.5 cm]
+a) Intervalle de confiance pour $\mu$ avec $\sigma^2$ inconnu:
+\[
+\mu = \bar x \pm t^{(n-1)}_{1-\frac{\alpha}{2}}\;\hat\sigma_{\bar X}
+ \]
+ \\[0.5cm]
+ La moyenne se calcule ainsi
+  \[
+ \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i 
+ \]
+ Dans le cas où les données sont groupées par classes, cette formule s'écrit 
+ \[
+ \overline{x} = \frac{1}{n} \sum_{i=1}^c n_i \cdot x_i 
+ \] 
+ où $n_i$ représente la fréquence de la classe $i$ et $c$ le nombre de classes.
+\\[0.2cm]
+ Nous avons donc
+\[
+ \overline{x} =\frac{230 \cdot 1 + 248\cdot 2 +\cdots +3\cdot 6}{688}
+=\frac{1469}{688} \approx 2.1352
+\]
+ \\[0.25cm]
+La variance de l'estimateur $\bar X$ se calcule de la manière suivante
+\[
+\hat\sigma_{\overline{x}} = \frac{\hat \sigma}{\sqrt{n}} 
+ \]
+et l'estimation de la variance de la population se calcule ainsi
+\[
+\hat \sigma = 
+\frac{\sqrt{\sum_{i=1}^n (x_i-\overline{x})^2}}{\sqrt{n-1}}
+ \]
+ Dans le cas où les données sont groupées par classes, cette formule s'écrit 
+ \[
+\hat \sigma = 
+\frac{\sqrt{\sum_{i=1}^c n_i\cdot(x_i-\overline{x})^2}}{\sqrt{n-1}}
+ \]
+Nous avons donc
+\[
+\hat \sigma = 
+\frac{\sqrt{230 \cdot (1-2.1352)^2 + 248\cdot (2-2.1352)^2 +\cdots +3\cdot (6-2.1352)^2}}{\sqrt{687}}
+ \approx  1.8075
+ \]
+et par conséquent
+\[
+\hat\sigma_{\overline{x}} = \frac{1.8075}{\sqrt{688}}   \approx 0.0415
+ \] 
+ \\[0.25cm]
+ Pour $\alpha = 5\%$ et $n=688$, nous avons 
+\[
+t^{(n-1)}_{1-\frac{\alpha}{2}}
+=
+t^{(687)}_{0.975}\approx z_{0.975}\approx 1.96
+\]
+ \\[0.25cm]
+ Nous obtenons alors
+\[
+\mu = \bar x \pm t^{(n-1)}_{1-\frac{\alpha}{2}}\;\hat\sigma_{\bar X}
+ =2.1352\pm 0.0415 \cdot 1.96
+ =  2.1352\pm 0.0813
+ \]
+ \\[0.25cm]
+  En d'autres termes, l'intervalle de confiance pour $\alpha = 5\%$ est donné par 
+ $[2.0539; 2.2165]$. 
+ \newpage
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+b) Intervalle de confiance pour $\sigma^2$ avec $\mu$  inconnu:
+ \[
+ \Bigl[\frac{\sum (x_i - \overline{x})^2}{q^{(n-1)}_{1-\frac{\alpha}{2}}}
+        \;;\; \frac{\sum (x_i - \overline{x})^2}{q^{(n-1)}_{\frac{\alpha}{2}}}
+        \Bigr]
+\]
+$n=688$, \\[0.2cm]
+$n-1=687$,\\[0.2cm] 
+$1-\frac{\alpha}{2}=0.975$ \\[0.2cm]
+$\frac{\alpha}{2}=0.025$.\\[0.4cm]
+ Avec la fonction EXCEL KHIDEUX.INVERSE nous pouvons trouver que 
+\[
+q^{(687)}_{0.975}= 761.53 \quad\quad\quad
+q^{(687)}_{0.025}= 616.26 
+\]
+Notez que cette fonction d'EXCEL définit la probabilité comme le risque de première espèce.
+\\[0.2cm]
+Pour des données groupées par classes, la formule
+\[
+\sum_{i=1}^c (x_i - \overline{x})^2
+\]
+s'écrit
+\[
+\sum_{i=1}^c n_i\cdot (x_i - \overline{x})^2
+\]
+Nous avons donc
+\[
+\sum_{i=1}^c n_i\cdot (x_i - \overline{x})^2
+=230 \cdot (1-2.1352)^2 + 248\cdot (2-2.1352)^2 +\cdots +3\cdot (6-2.1352)^2
+\approx 812.43
+\]
+L'intervalle de confiance pour la variance est donné par
+\[
+ \left[
+ \frac{812.43}{761.53}
+        \;;\; 
+ \frac{812.43}{616.26}
+        \right]
+        =
+        \left[
+1.07
+        \;;\; 
+1.32
+        \right]       
+\]
+
+\underline{Exercice 4.6}\\[0.5 cm]
+
+C'est un cas particulier du test de la moyenne avec variance connue et un échantillon de taille 1.
+\[
+\sigma_0 =\sigma_1=20
+\]
+\[
+\mu_0 =100
+\]
+\[
+\mu_1 =80
+\]
+Nous choisissons la statistique 
+\[
+z_0 =\frac{x-\mu_0}{\sigma_0}= \;\sim\; N(0,1)
+\]
+\begin{enumerate}
+\item $\alpha=0.05$
+\begin{eqnarray*}
+x_c &=& \mu_0+ z_\alpha\cdot \sigma_0
+\\&=& \mu_0+ z_{0.05}\cdot \sigma_0
+\\&=&100+(-1.645)\cdot 20
+\\&=&67.1
+\end{eqnarray*}
+
+\item 
+$\alpha=0.01$
+\begin{eqnarray*}
+x_c &=& \mu_0+ z_\alpha\cdot \sigma_0
+\\&=& \mu_0+ z_{0.01}\cdot \sigma_0
+\\&=&100+(-2.33)\cdot 20
+\\&=&53.4
+\end{eqnarray*}
+\item
+$\alpha=0.05$\\
+Le risque de seconde espèce est donné par
+\begin{eqnarray*}
+\beta &=& P(x_1> x_c \quad | \quad x_1 \;\sim\; N(\mu_1=80,\sigma^2_1 =20))
+\\&&\\&=& P(z_1> \frac{x_c-80}{20} \quad | \quad z_1 \;\sim\; N(1,1))
+\\&&\\&=& P(z_1> \frac{67.1-80}{20})
+\\&&\\&=& P(z_1> -0.645)
+\\&&\\&\approx& 0.74
+\end{eqnarray*}
+
+\item
+$\alpha=0.01$\\
+\begin{eqnarray*}
+\beta &=& P(x_1> x_c \quad | \quad x_1 \;\sim\; N(\mu_1=80,\sigma^2_1 =20))
+\\&&\\&=& P(z_1> \frac{x_c-80}{20} \quad | \quad z_1 \;\sim\; N(1,1))
+\\&&\\&=& P(z_1> \frac{53.4-80}{20})
+\\&&\\&=& P(z_1> -1.33)
+\\&&\\&=& 0.9082
+\end{eqnarray*}
+\end{enumerate}
+
+\underline{\bf Exercice 6.3}\\[0.25 cm]
+
+Le  test de la somme des rangs de Wilcoxon vérifie l'égalité des médianes de deux populations dans le cas de données
+indépendantes:
+ \begin{eqnarray*}
+ H_0 &:& \mbox{med}(X) = \mbox{med} (Y)\\
+ H_1 &:& \mbox{med}(X) \neq \mbox{med}(Y)
+ \end{eqnarray*}
+ 
+ \begin{enumerate}
+\item Classer les observation par ordre croissant.
+\\[0.25cm]
+\begin{center}
+\begin{tabular}{|c|cc|cc|}
+\hline
+&\multicolumn{2}{|c|}{Bâtiment} & \multicolumn{2}{|c|}{Automobile}
+\\
+\hline
+  &  rang& salaire & rang & salaire\\
+\hline
+1 & 1.5 & 12 & & 
+\\
+2  &  &  &  1.5& 12
+  \\
+3  & 3 & 15 &  &
+  \\
+4  &  5.5& 16 &  &
+  \\
+5  &  &  & 5.5 &16
+  \\
+ 6 &  &  & 5.5 &16
+    \\
+ 7 &  &  & 5.5 &16 
+\\
+\hline
+\end{tabular}
+\end{center}
+\item Calculer $w$, la somme des rangs du plus petit échantillon ordonné par ordre
+croissant.
+\\[0.25cm]
+$w=1.5+3+5.5=10$
+\item Calculer $w_i$, la somme des rangs du plus petit échantillon ordonné par ordre
+décroissant.
+ \[
+   w_i = n_X \; (n_X + n_Y +1) - w = 3\;(3+4+1)-10 =14
+ \]
+  \item Calculer $w_{\min}$ le minimum entre $w$ et $w_i$.
+ \\[0.25cm]
+  $w_{\min}=10$
+\item Trouver le seuil de rejet dans la table.
+\\[0.25cm]
+Pour $n_x=3$ et  ${\mathbf n_y}${\bf=5}, le seuil de rejet pour $\alpha=5\%$ est de 6.
+Par conséquent, pour $n_x=3$ et $n_y=4$, le seuil de rejet pour $\alpha=5\%$ est inférieur à 6.
+\item Déterminer le résultat du test:
+\\[0.25cm]
+Accepter $H_0$ car $w_{\min}$ est strictement supérieur au seuil de rejet.\\
+Statistiquement, il n'y a pas de différence  significative à 5\% entre les salaires horaires des deux branches.  
+
+
+\end{enumerate}
+
+\underline{\bf Exercice 4.3}\\[0.25 cm]
+{\bf Question 1.\\[0.25 cm]}
+\begin{enumerate}
+\item 
+\[
+\begin{array}{ll}
+ & H_0 : \mu = \mu_0 = 50 \\
+ \mbox{ contre} & H_1 : \mu = \mu_1 > 50
+ \end{array}
+\]
+\vspace{0.1cm}
+\item $\alpha = 0.05$
+\vspace{0.1cm}
+\item Test de la moyenne avec variance connue: 
+\[
+Z_0=\frac{\overline{X}-\mu_0}{\sigma_{\bar X}} \sim N(0,1)
+\]
+\vspace{0.5cm}
+\item Déterminer la région critique:
+\begin{itemize}
+   \item Test unilatéral à droite:\\[0.5cm]
+       \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(3.5,0.1){\line(1,2){.2}}
+        \put(3.8,0.1){\line(1,2){.2}}
+        \put(4.1,0.1){\line(1,2){.2}}
+        \put(4.4,0.1){\line(1,2){.2}}
+        \put(4.7,0.1){\line(1,2){.2}}
+        \put(3.4,0.1){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+        \put(3.4,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+        \put(2,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(4.4,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+    \end{picture}
+    \\[0.5cm]
+   \item Seuil de rejet:
+   \[
+   r=z_{1-\alpha}=z_{0.95}=1.645
+   \]
+\end{itemize}
+\vspace{0.5cm}
+\item Valeur observée de la statistique:
+\[
+z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}}
+= \frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}
+= \frac{53.87-50}{\frac{5}{\sqrt{12}}}= 2.68
+\]
+\vspace{0.5cm}
+\item $2.68> 1.645$
+\\[0.5cm]
+L'hypothèse $H_0$ est rejetée.
+\end{enumerate}
+
+%%%%%%%%%%%%%%
+
+\newpage
+{\bf Question 2.\\[0.5 cm]}
+\begin{enumerate}
+\setcounter{enumi}{3}
+\item  Dans ce cas particulier, le seuil de rejet ne dépend pas de la taille de l'échantillon:
+   \[
+   r=z_{1-\alpha}=z_{0.95}=1.645
+   \]
+\vspace{0.5cm}
+\item La valeur observée de la statistique dépend de la taille de l'échantillon:
+\[
+z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}}
+= \frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}
+= \frac{53.87-50}{\frac{5}{\sqrt{100}}}= 7.74
+\]
+\vspace{0.5cm}
+\item $7.74> 1.645$
+\\[0.5cm]
+L'hypothèse $H_0$ est rejetée.
+\\[0.5cm]
+\end{enumerate}
+%\vspace{0.5cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+\underline{\bf Exercice 4.4}\\[0.25 cm]
+{\bf Question 1.\\[0.25 cm]}
+\begin{enumerate}
+\item 
+\[
+\begin{array}{ll}
+ & H_0 : \mu = \mu_0 = 27 \\
+ \mbox{ contre} & H_1 : \mu = \mu_1 > 27
+ \end{array}
+\]
+\vspace{0.1cm}
+\item $\alpha = 0.05$
+\vspace{0.1cm}
+\item Test de la moyenne avec variance inconnue: 
+\[
+T_0=\frac{\overline{X}-\mu_0}{\hat\sigma_{\bar X}} \sim St_{n-1}
+\]
+\vspace{0.5cm}
+\item Déterminer la région critique:
+\begin{itemize}
+   \item Test unilatéral à droite.\\[0.5cm]
+   \item Seuil de rejet:
+   \[
+   r= t_{0.95}^{(50)} =1.676
+   \]
+\end{itemize}
+\vspace{0.5cm}
+\item Valeur observée de la statistique:
+ \[
+\hat\sigma_{\overline{x}} = 
+\frac{\sqrt{\sum_{i=1}^n (x_i-\overline{x})^2}}{\sqrt{n}\cdot\sqrt{n-1}}
+= \frac{\sqrt{816}}{\sqrt{51}\cdot\sqrt{50}}
+=0.5657
+ \]
+   \[
+   t_0=\frac{\overline{x}-\mu_0}{\hat\sigma_{\bar x}}
+   \frac{28-27}{0.5657}=1.768
+   \]
+   \vspace{0.5cm}
+\item $1.768> 1.676$
+\\[0.5cm]
+L'hypothèse $H_0$ est rejetée. En d'autres termes, l'âge moyen a augmenté.
+\\[0.25 cm]
+\end{enumerate}
+
+%%%%%%%%%%%%%
+\noindent
+{\bf Question 2.\\[0.25 cm]}
+\begin{enumerate}
+\setcounter{enumi}{2}
+\item Test de la moyenne avec variance connue: 
+\[
+Z_0=\frac{\overline{X}-\mu_0}{\sigma_{\bar X}} \sim N(0,1)
+\]
+\vspace{0.5cm}
+\item Seuil de rejet:
+   \[
+   r= z_{0.95} =1.645
+   \]
+\vspace{0.5cm}
+\item Valeur observée de la statistique:
+ \[
+\sigma_{\overline{x}} 
+=\frac{\sigma_0}{\sqrt{n}} 
+= \frac{5}{\sqrt{51}}
+=0.7
+ \]
+   \[
+   z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}}
+   \frac{28-27}{0.7}=1.43
+   \]
+   \vspace{0.5cm}
+\item $1.43< 1.645$
+\\[0.5cm]
+L'hypothèse $H_0$ est acceptée. En d'autres termes, l'âge moyen n'a pas augmenté.
+\\[0.25 cm]
+\end{enumerate}
+
+
+%%%%%%%%%%%%%% 
+\newpage
+{\bf Question 3.\\[0.25 cm]}
+\begin{enumerate}
+\item 
+\[
+\begin{array}{ll}
+ & H_0 : \sigma = \sigma_0 = 5 \\
+ \mbox{ contre} & H_1 : \sigma = \sigma_1 < 5
+ \end{array}
+\]
+\vspace{0.1cm}
+\item $\alpha = 0.05$
+\vspace{0.1cm}
+\item Test de la variance avec moyenne inconnue: 
+\[
+Q_0 = \frac{\sum_{i=1}^n (X_i-\bar X)^2}{\sigma_0^2} \sim \chi_{n-1}^2
+\]
+\vspace{0.5cm}
+\item Déterminer la région critique:
+\begin{itemize}
+   \item Test unilatéral à gauche:\\[0.5cm]
+    \setlength{\unitlength}{1cm}
+    \begin{picture}(5,1)
+        \thicklines
+        \put(0,0.3){\line(1,0){5}}
+        \put(1.5,0.5){\line(-1,-2){.2}}
+        \put(1.2,0.5){\line(-1,-2){.2}}
+        \put(.9,0.5){\line(-1,-2){.2}}
+        \put(.6,0.5){\line(-1,-2){.2}}
+        \put(.3,0.5){\line(-1,-2){.2}}
+        \put(1.6,0.1){\parbox[t]{0em}{\makebox[0pt][c]{]}}}
+        \put(3.3,.7){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+        \put(.9,.7){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+        \put(1.6,-0.6){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+    \end{picture}
+    \\[0.5cm]
+   \item Seuil de rejet:
+   \[
+   r=q^{(n-1)}_{\alpha}=q^{(50)}_{0.05}=34.76
+   \]
+\end{itemize}
+\vspace{0.5cm}
+\item Valeur observée de la statistique:
+\[
+q_0=\frac{\sum_{i=1}^n (x_i-\bar x)^2}{\sigma_0^2}
+=\frac{816}{5^2}
+=32.64
+\]
+\vspace{0.5cm}
+\item $32.64< 34.76$
+\\[0.5cm]
+L'hypothèse $H_0$ est rejetée.
+En d'autres termes l'écart-type est plus petit que 5.
+\\[0.25cm]
+Par conséquent, le résultat de la Question 1 est plus correct que celui de la Question 2.
+\end{enumerate} 
+
+
+\end{document}

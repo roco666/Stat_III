@@ -1,0 +1,317 @@
+\newcommand\@tpversion{1999/03/01 v2.0a }
+
+%%% Modified by A. Berchtold, 2004 %%%
+
+% TP.STY 2.0  Extension TP  (c) G. Ritschard, nov 98 
+% TP.STY 1.7 Style pour TP  (c) G. Ritschard, 12 oct 1992, 
+% f\'{e}v 98, oct 98
+
+%% !!!!!!!!!!!! NE PAS MODIFIER CE FICHIER !!!!!!!!!!!!!!!!
+%%
+%%  Pour des modifications, red\'{e}finir les commandes dans un fichier
+%%  .sty  \`{a} charger apr\`{e}s  TP.STY .
+%
+%	\catcode`\@=11\relax
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tp_heg}[\@tpversion by G. Ritschard]
+ % \newwrite\@unused
+ % \def\typeout#1{{\let\protect\string\immediate\write\@unused{#1}}}
+ % \typeout{tp/GR 1.7}
+ % \typeout{tp package \@tpversion  (c) G.Ritschard}
+
+
+ \RequirePackage{graphicx}
+
+\newif\ifexinsection\exinsectionfalse
+\newif\if@mtrilogo\@mtrilogofalse
+\newcount\exsize \exsize=0
+
+\DeclareOption{logo}{
+  \@mtrilogotrue
+}
+\DeclareOption{nologo}{
+  \@mtrilogofalse
+} 
+\DeclareOption{section}{
+  \exinsectiontrue
+}
+\DeclareOption{titres1}{
+  \exsize=0
+}
+\DeclareOption{titres2}{
+  \exsize=1
+}
+\DeclareOption{titres3}{
+  \exsize=2
+}
+
+
+ %\ExecuteOptions{logo,section}
+ \ProcessOptions
+
+%\setlength\textwidth{15.7cm}
+\hoffset         -1in
+\voffset         -1in
+\topmargin        2cm
+\oddsidemargin    2cm
+\evensidemargin   2cm
+\textwidth        16cm
+\textheight       24cm
+\footskip         10eX
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.3cm}
+%
+%% 	replacing the following in article.sty
+%%	\def\fnum@table{Table \thetable}
+
+%\def\fnum@table{Tableau \thetable} %% It's now done by babel
+
+%	
+%	Suppression du d\'{e}crochement pour enumerate et itemize
+%
+ %\advance\leftmargini by -1em
+ \settowidth{\labelwidth}{22.}
+ \advance\leftmargini by -\leftmargini
+ \advance\leftmargini by \labelsep
+ \advance\leftmargini by \labelwidth
+
+%
+%	D\'{e}finition de la commande "\exercice{}"
+%
+\newcounter{nexercice}
+\newcounter{prevsection}
+\setcounter{nexercice}{0}
+\setcounter{prevsection}{0}
+\newcounter{donnees}\setcounter{donnees}{0}
+\def\@@exercice{}
+\def\exercice#1{
+	\ifcase\exsize{\gdef\@@exercice{\section}}
+		\or   {\gdef\@@exercice{\subsection}}
+		\else {\gdef\@@exercice{\subsubsection}}
+	\fi\ifexinsection\ignorespaces
+	\ifnum\c@section=\c@prevsection\else\c@nexercice=0\fi\ignorespaces
+	\c@prevsection=\c@section\else\ignorespaces
+	\ifnum\c@prevsection>0\c@nexercice=0\c@prevsection=0\fi\fi\ignorespaces
+    \stepcounter{nexercice}
+    \@@exercice*{Exercice 
+       \ifexinsection\thesection.\fi\thenexercice\hspace{1em}#1}}
+%
+%  D\'{e}finition de la fonction "\subplan"
+%
+ \newcounter{subplan}\setcounter{subplan}{0}
+ \newcounter{prevsecplan}\setcounter{prevsecplan}{1}
+ \newlength{\planwidth}
+ \def\subplan#1{
+	\ifnum\c@section=\c@prevsecplan\else\c@subplan=0\ignorespaces
+	\c@prevsecplan=\c@section\fi\ignorespaces
+	 \refstepcounter{subplan}\noindent\hspace*{1em}
+	 \parbox[t]{2em}{\thesection.\thesubplan}
+	 \setlength{\planwidth}{\linewidth}\addtolength{\planwidth}{-3.7em}
+	 \parbox[t]{\planwidth}{\raggedright#1\vspace{1ex}}\par}
+
+%  D\'{e}finition de la fonction "\subsubplan"
+%
+ %\newcounter{subsubplan}\setcounter{subsubplan}{0}
+ %\newcounter{prevsubplan}\setcounter{prevsubplan}{1}
+ \newlength{\subplanwidth}
+ \def\subsubplan#1{
+	%\ifnum\c@subplan=\c@prevsubplan\else\c@subsubplan=0\ignorespaces
+	%\c@prevsubplan=\c@subplan\fi\ignorespaces
+	% \refstepcounter{subsubplan}
+	 \noindent\hspace*{3.5em}
+	 \parbox[t]{.8em}{--}
+	 \setlength{\subplanwidth}{\planwidth}\addtolength{\subplanwidth}{-1.5em}
+	 \parbox[t]{\subplanwidth}{\raggedright#1\vspace{1ex}}\par}
+% 
+%	D\'{e}finition de l'ent\^{e}te
+%
+\long\def\tp@cours{}
+\long\def\nomcours#1{\long\def\tp@cours{#1}}
+\def\tp@prof{}
+\def\nomprof#1{\def\tp@prof{#1}}
+\newcommand*{\prof}{Cours du professeur}
+\def\tp@examen{}
+\def\examenprog#1{\long\def\tp@examen{#1}}
+\def\tp@nomtp{}
+\def\tpnumero#1{\def\tp@nomtp{#1}
+	\pagestyle{myheadings}
+	\markright{\tp@nomtp}
+	}
+\def\tp@delai{}
+\newif\if@delai\@delaifalse
+\def\tpdelai#1{\def\tp@delai{#1}\@delaitrue}
+\def\tplogo{\@mtrilogotrue}
+%
+%	Impression de l'ent\^{e}te (commande "\entete")
+%
+
+\newcommand{\entete}{\thispagestyle{empty}
+  \if@mtrilogo\ignorespaces
+ %%% logo %%%
+   \def\@logo{\includegraphics[width=40mm]{g:/tex/figs/logos/logo40mm_.eps}}
+   \def\Futural{\sffamily\mdseries\fontshape{sl}\fontsize{12}{15}\selectfont} 
+ %vtex%   \font\Futural=mvfutr scaled 1300 slant 100 
+ %vtex%   \input picbox.sty
+ %vtex%   \def\@logo{\makepicbox{300}{300}
+ %vtex% 	{g:/tex/figs/logos/gris40.pcx}\special{I+}\box0
+ %vtex% 	}\ignorespaces
+	{\raisebox{0.2cm}[0in]
+ 	%{\parbox[t]{\textwidth} {	%}}
+ 	%\raisebox{0cm}[0cm]
+ 	%{\makebox[40pt]{\@logo}} 
+ 	{\makebox[25mm]{\@logo}}
+ 	\hfill\ \makebox[0pt][l]{\makebox[20pt][r]{
+ 	\raisebox{1.1cm}[0cm]
+ 	{\parbox[b]{10cm}{\flushright\Futural
+	 Haute Ecole de Gestion\\
+	 Gen\`{e}ve}\ignorespaces
+	 }}}}
+ %%% end logo %%%
+  \else
+ 	\noindent{\sc 	Haute Ecole de Gestion
+ 			\hfill Gen\`{e}ve}
+ %\vspace{.5ex}
+ \ignorespaces
+  \fi\ignorespaces
+	\par{\noindent\bf\tp@cours}\hfill\tp@nomtp
+	\par\noindent \prof\ \tp@prof
+	\par\noindent \tp@examen \par
+	\if@delai\begin{center}\tp@delai\end{center}\else\ \fi
+	\hrule\vspace{3ex}\par
+	}
+%
+\newcounter{lst@enumi}
+\newcommand{\savei}{
+	\setcounter{lst@enumi}{\value{enumi}}
+	}
+\newcommand{\previ}{
+	\addtocounter{enumi}{\value{lst@enumi}}
+	}
+\newcounter{lst@enumii}
+\newcommand{\saveii}{
+	\setcounter{lst@enumii}{\value{enumii}}
+	}
+\newcommand{\previi}{
+	\addtocounter{enumii}{\value{lst@enumii}}
+	}
+\newcounter{lst@enumiii}
+\newcommand{\saveiii}{
+	\setcounter{lst@enumiii}{\value{enumiii}}
+	}
+\newcommand{\previii}{
+	\addtocounter{enumiii}{\value{lst@enumiii}}
+	}
+%
+%  \definboxwidth  calcule la largeur maximale du parbox
+%  qui peut \^{e}tre plac\'{e} dans un  \framebox{\linewidth}{...}
+%
+\newlength{\inboxwidth}
+\newcommand{\definboxwidth}{
+	\setlength{\inboxwidth}{\linewidth}\addtolength{\inboxwidth}{-7pt}
+	}
+%
+%  D\'{e}finition des macros \repqcm et \repqcmnext  pour placer les r\'{e}ponses
+%  propos\'{e}es d'un QCM
+%
+\newlength{\qcm@width}
+\newcounter{@qcm@}
+\newcommand{\prt@qcm@}[1]{\ifcase#1\alph{@qcm@}\or\Alph{@qcm@}\fi}
+\newcommand{\Repqcm}[5]{\repqcm@{#1}{#2}{#3}{#4}{#5}{1}}
+\newcommand{\repqcm}[5]{\repqcm@{#1}{#2}{#3}{#4}{#5}{0}}
+%\newcommand{\repqcm}[5]{\gdef\alphtype#1{\alph{#1}}\repqcm@{#1}{#2}{#3}{#4}{#5}}
+\newcommand{\repqcm@}[6]{\setcounter{@qcm@}{0}
+ \ifnum#6=0\gdef\@qcm@type{0}\else\gdef\@qcm@type{1}\fi
+ \ifcase#1
+  \or\setlength{\qcm@width}{\linewidth}\addtolength{\qcm@width}{-4em}
+  \or\setlength{\qcm@width}{.5\linewidth}\addtolength{\qcm@width}{-3.5em}
+  \or\setlength{\qcm@width}{.333\linewidth}\addtolength{\qcm@width}{-3.5em}
+  \or\setlength{\qcm@width}{.25\linewidth}\addtolength{\qcm@width}{-3.5em}
+ \fi
+ \@repqcmnext{#1}{#2}{#3}{#4}{#5}{#6}
+	}
+\newcommand{\repqcmnext}[5]{\@repqcmnext{#1}{#2}{#3}{#4}{#5}{\@qcm@type}}
+\newcommand{\@repqcmnext}[6]{\par\noindent
+ \ifcase#1\or
+   \begin{tabular}
+    {@{\hspace{1em}}lp{\qcm@width}}
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #2 
+   \end{tabular}
+  \or
+   \begin{tabular}
+    {@{\hspace{1em}}lp{\qcm@width}lp{\qcm@width}}
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #2 & 
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #3 	
+   \end{tabular}
+  \or
+   \begin{tabular}
+    {@{\hspace{1em}}lp{\qcm@width}lp{\qcm@width}lp{\qcm@width}}
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #2 & 
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #3 &	
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #4 
+   \end{tabular}
+  \or
+   \begin{tabular}
+    {@{\hspace{1em}}lp{\qcm@width}lp{\qcm@width}lp{\qcm@width}lp{\qcm@width}}
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #2 & 
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #3 &	
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #4 &
+	\stepcounter{@qcm@}\prt@qcm@{#6}) & \raggedright #5 	
+   \end{tabular}
+   \fi\par
+   }
+%
+%  Grille r\'{e}ponse  commande \gbox{#}  o\`{u} # est le nombre de r\'{e}ponses
+%
+ \newcounter{numrep}\setcounter{numrep}{0}
+ \newcommand{\ggbox}{
+%	\framebox[2ex]{\parbox{.1cm}{\ \vspace{1ex} } } }
+	\fbox{\rule{0cm}{.2cm}\hspace{.2cm}} }
+ \newcommand{\@numrep}{\hfill\bf \thenumrep}
+ \def\gbox@space{\hspace{1.5em}}
+ \newcommand{\gbox}[1]{
+ 	\refstepcounter{numrep}\par\noindent
+ 	\ifcase#1\or
+ 	  \begin{tabular}{p{2em}@{\gbox@space}c}
+ 	  	      	& a	      	 \\[-.6ex]
+ 		\@numrep & \ggbox 
+	  \end{tabular}
+	\or
+ 	  \begin{tabular}{p{2em}@{\gbox@space}cc}
+ 	       	 	& a	 & b \\[-.6ex]
+ 	       	\@numrep	& \ggbox & \ggbox  
+	  \end{tabular}
+	\or
+ 	  \begin{tabular}{p{2em}@{\gbox@space}ccc}
+ 	       	  	& a	 & b      & c	 \\[-.6ex]
+ 	       	\@numrep & \ggbox & \ggbox & \ggbox 
+	  \end{tabular}
+	\or
+ 	  \begin{tabular}{p{2em}@{\gbox@space}cccc}
+ 	       		& a	 & b      & c	   & d\\[-.6ex]
+ 	       	\@numrep & \ggbox & \ggbox & \ggbox & \ggbox
+	  \end{tabular}
+	\or
+ 	  \begin{tabular}{p{2em}@{\gbox@space}ccccc}
+ 	       		& a	& b     & c     & d     & e\\[-.6ex]
+ 	       	\@numrep &\ggbox &\ggbox &\ggbox &\ggbox &\ggbox
+	  \end{tabular}
+	\or
+ 	  \begin{tabular}{p{2em}@{\gbox@space}cccccc}
+ 	       		& a	& b    & c    & d    & e    &f \\[-.6ex]
+ 	       	\@numrep &\ggbox &\ggbox&\ggbox&\ggbox&\ggbox&\ggbox
+	  \end{tabular}
+	 \fi\vspace{.3ex}\par
+		} 
+%
+%  commande \aliv  pour aligner sur la virgule
+%
+%\def\aliv#1,#2;{\aligne{#1}{,#2}}
+%\def\alip#1.#2;{\aligne{#1}{.#2}}
+
+%\def\aligne#1#2{\makebox[0pt][r]{#1}\makebox[0pt][l]{#2}}
+\providecommand\aligne[2]{\makebox[0pt][r]{#1}\makebox[0pt][l]{#2}}
+
+%%\catcode`\@=12\relax
+	
+

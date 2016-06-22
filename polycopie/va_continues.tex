@@ -1,0 +1,71 @@
+\chapter{Distributions continues}
+
+Les donn\'ees peuvent provenir d'\'ev\'enements ponctuels comme le nombre de personnes entrant dans une banque en 1 heure, ou le nombre d'appels t\'el\'ephonique \`a faire afin de trouver 10 acheteurs d'un nouveau produit. Mais souvent, les donn\'ees sont continues, comme la quantit\'e de panure sur les mets \`a base de poisson, la longueur de coupes d'aciers, le temps de recharge d'une batterie de t\'el\'ephone, $\ldots$ .
+
+Afin de mod\'eliser ces ph\'enom\`enes de type continu, nous utilisons des distributions continues, comme
+\begin{itemize}
+	\item la loi uniforme
+	\item la loi normale
+	\item la loi exponentielle
+	\item ....
+\end{itemize}
+
+Des \emph{tables statistiques} sont disponibles pour chacune de ces lois, ainsi que des fonctions associ\'ees dans les logiciels de bureautique (MS Excel, Calc d'Openoffice, Gnumeric, ...) ou sp\'ecialis\'es (R).
+
+\subsubsection{Variable al\'eatoire continue}
+Une variable al\'eatoire continue $X$ prend ses valeurs dans un intervalle qui est un sous-ensemble de l'ensemble des r\'eels $\IR$ :
+$$X \in [u,v]$$
+avec $u,v\in\IR, u < v$
+
+Le nombre de valeurs possibles de $X$ \'etant infini, chacune de ces valeurs a une probabilit\'e nulle. En revanche, il est possible de calculer la probabilit\'e associ\'ee \`a n'importe quel sous-intervalle $[a, b]$ de $[v,w]$ :
+$$\begin{array}{ll}
+	P(X = x) = 0 & \forall x \in [v,w]\\
+  P(X \in [a, b]) \geq 0 & \forall a < b, [a, b] \subseteq [v,w]$$
+\end{array}$$
+
+\subsubsection{Fonction de densit\'e}
+Une distribution continue est d\'efinie soit par sa fonction de densit\'e, soit par sa fonction de r\'epartition.
+
+Une distribution continue peut \'etre repr\'esent\'ee par un histogramme. Si l'on dispose d'un grand nombre d'observations, il est possible de d\'efinir des classes de tr\`es petites amplitudes. A la limite, les classes deviennent d'amplitude nulle et l'histogramme devient une courbe. Cette courbe est la fonction de densit\'e de la variable al\'eatoire continue X, not\'ee $f(x)$.
+
+La fonction de densit\'e n'est pas une distribution de probabilit\'e. En effet, pour tout $x$ appartenant \`a l'intervalle $[v,w]$, $P(X = x) = 0$, mais $f(x) \geq 0$.
+
+En revanche, l'aire sous la courbe d'une fonction de densit\'e doit valoir 1, qui est la somme de toutes les probabilit\'es. Ainsi, la relation suivante est v\'erifi\'ee pour toute fonction de densit\'e
+$$P(X \in ] -\infty,\infty[) = 1$$
+
+\subsubsection{Fonction de r\'epartition}
+La probabilit\'e d'\'etre dans un intervalle de longueur $dx$ tr\`es petit est donn\'ee par $f(x) dx$ :
+$$P(X \in [x, x + dx]) = f(x) dx$$
+
+La probabilit\'e de se trouver dans un intervalle $[a, b]$ est d\'efinie comme l'aire sous la fonction de densit\'e.
+Math\'ematiquement, cela revient \`a calculer l'int\'egrale de la fonction $f(x)$ entre $a$ et $b$ :
+$$P(X \in [a, b]) = \int^b_a f(x) dx$$
+
+\begin{defi}
+La fonction de r\'epartition, not\'ee $F(a)$, exprime pour une variable al\'eatoire $X$ la probabilit\'e d'\'etre inf\'erieure ou \'egale \`a $x$. Cela correspond \`a la surface sous la fonction de densit\'e \`a gauche de $x$ :
+
+$$F(a) = P(X \leq a) = \int^a_{-\infty} f(x) dx$$
+\end{defi}
+
+\begin{pro}
+La fonction de r\'epartition est telle que
+\begin{itemize}
+	\item $F(-\infty) = 0$, 
+	\item $F(\infty) = 1$
+	\item $P(X <a) = P(X \leq a) = F(a)$
+  \item $P(X \in [a, b]) = F(b) - F(a)$
+  \item Par compl\'ementarit\'e, $P(X>a) = 1- P(X\leq a) = 1-F(a)$
+\end{itemize}
+\end{pro}
+
+\subsubsection{Esp\'erance et variance}
+
+\begin{defi}
+L'\emph{esp\'erance math\'ematique} d'une variable al\'eatoire continue $X$ le nombre
+$$\E(X)=\int^{\infty}_{-\infty} x f(x) dx$$
+\end{defi}
+
+\begin{defi}
+La \emph{variance} d'une variable al\'eatoire continue $X$ le nombre
+$$\var(X)=\E\left[ X-\E(X)\right]^2 = \E(X^2)-\left[ \E(X)\right]^2$$
+\end{defi}

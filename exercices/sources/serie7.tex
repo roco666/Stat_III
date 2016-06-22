@@ -1,0 +1,109 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Série 7}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 7: Test de la moyenne                   %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{} % cf exo Andre Berchtold 4.3
+Les données suivantes représentent le taux d'acceptation d'une initiative pour un échantillon de communes en Suisse.
+$$
+ \begin{array}{cccccc}
+ 62.3 & 44.4 & 49.2 & 63.3 & 47.6 & 60.1 \\
+ 37.4 & 55.8 & 57.5 & 58.3 & 56.2 & 54.3
+ \end{array}
+$$
+On suppose que l'écart type des taux pour l'ensemble des communes suisses vaut 5, et que les données proviennent d'une distribution normale.
+
+\begin{enumerate}
+ \item En prenant un risque de première espèce $\alpha = 0.05$, la moyenne $\mu$ des
+taux de la population de communes est-elle significativement supérieure à 50\%? Commenter.\\
+%Formellement, on testera:
+% $$
+% \begin{array}{ll}
+% & H_0 : \mu = \mu_0 = 50 \\
+% \mbox{ contre} & H_1 : \mu = \mu_1 > 50
+% \end{array}
+% $$
+
+		\begin{enumerate}
+			\item Spécifier la valeur du paramètre d'intérêt.
+%			\\La valeur de la population d'intérêt est la moyenne des taux d'acceptation
+			\item Quels sont les hypothèses nulle et alternative ?
+%			$$\begin{array}{ll}
+%			 & H_0 : \mu = \mu_0 = 50 \\
+%			 \mbox{ contre} & H_1 : \mu = \mu_1 > 50
+%			 \end{array}$$
+			\item Quel est la valeur du niveau de signification $\alpha$ ?
+%			\\Le niveau de signification est $\alpha = 0.05$
+			\item Quel test doit être appliqué ? Quelle est la région critique?
+%			\\Test de la moyenne avec variance connue: 
+%			$$Z_0=\frac{\overline{X}-\mu_0}{\sigma_{\bar X}} \sim N(0,1)$$
+%			La région critique est déterminée par un test unilatéral à droite:\\
+%			\setlength{\unitlength}{1cm}
+%			    \begin{picture}(5,2)
+%			        \thicklines
+%			        \put(0,0.9){\line(1,0){5}}
+%			        \put(3.5,0.7){\line(1,2){.2}}
+%			        \put(3.8,0.7){\line(1,2){.2}}
+%			        \put(4.1,0.7){\line(1,2){.2}}
+%			        \put(4.4,0.7){\line(1,2){.2}}
+%			        \put(4.7,0.7){\line(1,2){.2}}
+%			        \put(3.4,0.7){\parbox[t]{0em}{\makebox[0pt][c]{[}}}
+%			        \put(3.4,0){\parbox[t]{0em}{\makebox[0pt][c]{$r$}}}
+%			        \put(2,1.3){\parbox[t]{0em}{\makebox[0pt][c]{$A$}}}
+%			        \put(4.4,1.3){\parbox[t]{0em}{\makebox[0pt][c]{$R$}}}
+%			    \end{picture}
+%			\\Le seuil de rejet est $r=z_{1-\alpha}=z_{0.95}=1.645$
+			\item Calculer la statistique de test.
+%			Valeur observée de la statistique:
+%			$$z_0=\frac{\overline{x}-\mu_0}{\sigma_{\bar x}}
+%			= \frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}
+%			= \frac{53.87-50}{\frac{5}{\sqrt{12}}}= 2.68$$
+			\item L'hypothèse nulle est-elle rejetée ?
+%			$2.68> 1.645$, l'hypothèse $H_0$ est donc rejetée.
+			\item Quelle conclusion doit donc être établie ?
+%			La moyenne des taux est donc significativement supérieure à 50\%
+		\end{enumerate}
+
+ \item Soit un échantillon de taille 100 pour lequel on a obtenu la même moyenne que pour l'échantillon précédent de taille 12. Déterminer la région critique du test pour ce nouvel échantillon et comparer avec celle obtenue au point 1. Commenter.
+\end{enumerate}
+
+\section{} % cf exo Andre Berchtold 4.4
+En 2005, une enquête menée auprès de femmes quant à leur âge $x_i$ à la naissance de leur premier enfant a donné, pour 51 femmes interrogées au hasard, les résultats suivants: 
+$$ \bar{x} = 28 \mbox{ années } $$ 
+$$ \sum (x_i - \bar{x})^2 = 816 \: \mbox{années}^2  $$ 
+Les âges $x_i$ représentent les réalisations d'une variable aléatoire $X$ distribuée selon une loi normale ($\mu$, $\sigma^2$).
+ 
+\begin{enumerate} 
+  \item On sait qu'en 1990, pour la population, l'âge moyen des femmes à la naissance de
+		leur premier enfant était de 27 ans. Peut-on affirmer, avec un degré de confiance de 95
+		\%,  que l'âge moyen a augmenté en 3 ans ? Pour cela, on testera l'hypothèse $H_0$ :
+		$\mu=27$ contre l'hypothèse $H_1$ : $\mu>27$ .
+  \item Selon certains chercheurs, l'écart type $s$ de l'échantillon sous-estime l'écart
+		type $\sigma $ de la population, qu'ils évaluent à 5 ans. Refaire le test précédent en
+		supposant que la vraie valeur de $\sigma $ est égale à 5 et commenter.
+\end{enumerate}
+
+\section{} % cf exo Andre Berchtold 4.5
+Dans une grande entreprise américaine, le salaire annuel moyen des hommes possédant entre 3 et 5 ans d'expérience est de 58'000\$. Les salaires (en milliers de dollars) d'un échantillon aléatoire de 10 femmes possédant entre 3 et 5 ans d'expérience sont les suivants:
+$$54 \quad 57 \quad 61 \quad 51 \quad 49 \quad 56 \quad 60 \quad 52 \quad 45 \quad 66$$
+y a-t-il suffisamment d'évidence pour attester que les femmes gagnent moins que les hommes, en prenant un risque $\alpha=0.05$ ?
+
+\end{document}

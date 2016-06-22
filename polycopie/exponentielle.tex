@@ -1,0 +1,35 @@
+\subsection{Loi exponentielle}
+Soit $X$ une variable aléatoire suivant une loi de Poisson de paramètre $\lambda$. La distribution de Poisson permet de modéliser le nombre d'occurrences par intervalle. Si l'on s'intéresse à la longueur des intervalles séparant deux réalisations du modèle étudié, il faut alors considérer une  variable aléatoire $Y$.  Cette variable aléatoire $Y$ est alors distribuée suivant une loi exponentielle de paramètre $\lambda$
+
+\begin{defi}
+Une \emph{loi exponentielle} de paramètre $\lambda$ est définie par la densité de probabilité
+$$f(x)=\left\{
+\begin{array}{ll}
+	0 & \mbox{si } t<0\\
+	\lambda e^{-\lambda t} & \mbox{sinon}
+\end{array}
+\right.
+$$
+\end{defi}
+
+On en déduit les probabilités suivantes:
+$$P(Y>t)=e^{-\lambda t} \quad\mbox{ et }\quad P(0\leq Y\leq t)=1-e^{-\lambda t}$$
+
+\begin{pro}
+Soit une variable aléatoire  suivant une loi exponentielle de paramètre $\lambda$
+\begin{itemize}
+	\item Son espérance vaut $$\frac{1}{\lambda}$$
+	Il s'agit de l'attente moyenne entre deux réalisations du phénomène observé.
+	\item Sa variance  vaut $$\frac{1}{\lambda^2}$$
+\end{itemize}
+\end{pro}
+
+\begin{ex}
+Supposons que le nombre moyen d'employés engagé chaque mois (20 jours ouvrables) dans une entreprise à forte croissance s'élève à 10 personnes. Quelle est la probabilité que l'écart de temps entre deux engagements soit supérieur à 3 jours ouvrables ?
+
+Le nombre d'employés $X$ engagés par mois est distribué selon une loi de Poisson de paramètre $\lambda=10$.
+Le temps écoulé entre 2 engagements est représenté par la variable $Y$. Puisque 10 employés sont engagés en moyenne sur une période d'un mois, alors le temps moyen séparant deux engagement est de 1/10 d'un mois, soit 2 jours ouvrables ($=1/10\cdot 20$).
+
+La probabilité que l'écart de temps entre deux engagements soit supérieur à 3 jours ouvrables ($=3/20=0.15$ mois) est donc 
+$$P(Y>0.15)=e^{-10\cdot 0.15}=e^{1.5}\approx 0.2231$$
+\end{ex}

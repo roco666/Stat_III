@@ -1,0 +1,244 @@
+%\documentclass[style=heg, mode=print]{powerdot}
+\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../fig/}}
+
+% Definitions Maths
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\var} {{\rm var}}
+\newcommand{\cov} {{\rm cov}}
+\newcommand{\corr} {{\rm corr}}
+\newcommand{\E}{{\rm E}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Test d'une proportion\\ 
+Test d'une variance}
+\author{Dr. Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 9}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir effectuer un test
+\begin{itemize}
+	\item sur une proportion
+	\item sur une variance
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=\'Etapes]{\'Etapes d'un test}
+\begin{enumerate}
+	\item Spécifier la valeur de la population d'intérêt.
+	\item Formuler l'hypothèse nulle $H_0$ et l'hypothèse alternative $H_1$
+	\item Choisir le niveau de signification $\alpha$
+	\item Déterminer la région critique.
+	\item Calculer la statistique associée à l'échantillon.
+	\item Rejeter $H_0$ si la statistique appartient à la région critique.\\
+	Ne pas rejeter $H_0$ dans le cas contraire.
+	\item Énoncer une conclusion.
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=$\sigma^2$ connu]{Test de $\mu$, $\sigma^2$ connu}
+Population qui suit une loi normale de variance $\sigma^2$ connue
+$$\bar{x}\pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+où:\\
+\begin{tabular}{ccl}
+$\bar{x}$ & = & moyenne de l'échantillon\\
+$z_{\alpha/2}$ &= &  valeur critique de la distribution normale standard\\
+& & pour un degré de confiance de $1-\alpha$\\
+$\sigma$ &= &  écart type de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=$\sigma^2$ inconnu et $n$ grand]{Test de $\mu$, $\sigma^2$ inconnu, $n$ grand}
+Par le TCL, si $n\geq 30$,
+$$z=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$s$       & = écart type de l'échantillon\\
+	$n$       & = taille de l'échantillon 
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=$\sigma^2$ inconnu et $n$ petit]{Test de $\mu$, $\sigma^2$ inconnu, $n$ petit}
+Utiliser la distribution de Student, à $n-1$ degrés de liberté
+$$t=\frac{\bar{x}-\mu}{\frac{s}{\sqrt{n-1}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{x}$ & = moyenne de l'échantillon\\
+	$\mu$     & = moyenne supposée de la population étudiée\\
+	$s$       & = écart type de l'échantillon\\
+	$n$       & = taille de l'échantillon 
+\end{tabular}
+
+\vspace{5mm}
+{\red Supposition}:\textsc{population normalement distribuée}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'une proportion                %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'une proportion}
+\begin{slide}{Statistique de test}
+$$z=\frac{\bar{p}-p}{\sqrt{\frac{p(1-p)}{n}}}$$
+où\\
+\begin{tabular}{cl}
+	$\bar{p}$ & = proportion de l'échantillon\\
+	$p$       & = proportion supposée de la population étudiée\\
+	$n$       & = taille de l'échantillon 
+\end{tabular}
+
+\vspace{5mm}
+{\red Supposition}:\textsc{taille de l'échantillon suffisamment grande}\\[5mm]
+En pratique
+$$np\geq 5\quad\mbox{et}\quad n(1-p)\geq 5$$
+\end{slide}
+
+\begin{slide}{Exemple}
+Un contrôle interne doit être effectué dans une banque pour vérifier que les contrats des hypothèques accordées comportent tous les documents nécessaires. Parfois, un contrat ne comporte pas tous les documents, auquel cas, le dossier n'est pas complet. La banque a octroyé 22500 hypothèques. et exige qu'il n'y ait pas plus d'1\% de contrats incomplets. L'équipe chargée du contrôle n'a pas le temps d'examiner les 22500 contrats et décide de contrôler 600 contrats choisis aléatoirement, et fixe le niveau de signification à 0.02. Elle trouve 9 contrats incomplets.
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est\\
+	\pause la proportion de contrats incomplets $p=0.01$\\
+	$600\times 0.01 = 6\geq 5\quad\mbox{et}\quad 600\times (1-0.01)=594\geq 5$
+	l'utilisation de la statistique $z$ est alors possible.
+	\item Les hypothèses du test sont\\
+	\pause
+	      $H_0$: $p\leq 0.01$\\
+	      $H_1$: $p> 0.01$
+\end{enumerate} 
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{enumerate}
+	\item Le niveau de signification est \pause $\alpha = 0.02$
+	\item La région critique est \pause $[z_\alpha \approx 2.05;\infty [$
+	\item La statistique associée à l'échantillon est 
+	\pause
+	$$\bar{p}=9/600=0.015 \quad z=\frac{0.015-0.01}{\sqrt{\frac{0.01(1-0.01)}{600}}}=1.23$$
+	\item Comme $z=1.23<2.05$, $H_0$ n'est pas rejetée.
+	\item Conclusion:\\
+	\pause L'équipe de contrôle interne peut donc supposer que l'exigence de la banque est satisfaite.
+\end{enumerate} 
+\end{slide}
+
+\begin{slide}[toc=uni/bi latéral]{Test unilatéral et bilatéral}
+\begin{itemize}
+	\item Lors d'un test unilatéral, la valeur critique est déterminée par $z_{\alpha}$
+	\item Lors d'un test bilatéral, les valeurs critiques sont déterminées par $\pm z_{\alpha/2}$ 
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=]{}
+$$\includegraphics{CartoonProportions}$$
+{\scriptsize\it source: http://davidmlane.com/ben/cartoons.html}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'une variance                  %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'une variance}
+\begin{slide}[toc=Raison]{Pourquoi sur la variance ?}
+Intérêt : dispersion des données\\
+$\Rightarrow$ \'Ecart type ? \pause Non, pas de test sur l'écart type!\\
+Mais des tests sur la variance existent
+\\[5mm]
+Généralement la moyenne de la population n'est pas connue\\
+$\Rightarrow$  Estimer la moyenne grâce à l'échantillon. \\
+\end{slide}
+
+\begin{slide}{Statistique de test}
+La statistique de test à utiliser suit une loi du $\ki^2$ à $n-1$ degrés de libertés:
+$$\ki^2=\frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{cl}
+	$\sigma^2$ & = variance supposée de la population\\
+	$s^2$       & = variance de l'échantillon\\
+	$n$       & = taille de l'échantillon 
+\end{tabular}
+\\[5mm]
+Hypothèse: échantillon aléatoire provenant d'une population dont les éléments sont {\red iid de distribution normale}:
+\end{slide}
+
+\begin{slide}{Remarque}
+Le nombre de degrés de liberté n'est pas $n$ mais $n-1$ car la véritable moyenne  (de la population) n'est pas connue. Il faut donc l'estimer par la moyenne de l'échantillon.  
+\end{slide}
+
+\begin{slide}{Exemple}
+Le système de satellites Galileo est un projet européen prévu pour concurrencer le système GPS américain actuel. Supposons qu'un constructeur de GPS fournisse un appareil utilisant Galileo, et annonce une précision de $\pm 5$ cm. Un test est effectué pour vérifier cette affirmation, en utilisant un échantillon de taille 20, et un niveau de signification de 0.05. La variance de l'échantillon est calculée $s^2=0.0108$.
+Les données de l'échantillon suivent une loi normale, et l'on peut supposer qu'il en est de même pour la population.
+
+\begin{enumerate}
+	\item La valeur de la population d'intérêt est \\
+	\pause la précision de l'appareil, qui est une variance.
+	\item Les hypothèse du test sont\\
+	\pause $H_0$: $\sigma^2\leq 0.0025$\\
+	      $H_1$: $\sigma^2 > 0.0025$
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+	\item[3. ] Le niveau de signification est \pause fixé à $\alpha = 0.05$
+	\item[4. ]  La région de rejet du test est \pause l'ensemble des valeurs supérieures à 
+	$$\ki^2_{0.05}\approx 30.1435$$
+	La valeur limite calculée est celle pour une distribution $\ki^2$ à $20-1=19$ degrés de liberté, et un niveau de signification de 0.05.
+	\item[5. ]  La statistique associée à l'échantillon est \pause
+	$$s^2=0.0108 \quad \ki^2=\frac{(20-1)0.0108}{0.0025}=82.08$$
+\end{itemize}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (fin)}
+\begin{itemize}
+	\item[6. ]  Comme  $\ki^2=82.08$ appartient à la région critique, l'hypothèse $H_0$ est rejetée.
+	\item[7. ]  Conclusion\\
+	\pause Il est donc très peu probable que la précision  annoncée soit correcte.
+\end{itemize}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

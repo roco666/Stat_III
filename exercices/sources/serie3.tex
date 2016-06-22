@@ -1,0 +1,73 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Série 3}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 3: Distribution                         %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Téléphones ''Android''} % Erreur d'échantillonnage
+Considérons une population de 20 points de vente permettant de se procurer un téléphone portable fonctionnant avec le nouveau système d'exploitation ''Android''. Le nombre de téléphones vendus par chaque point de vente est donné ci-après:
+
+\begin{center}
+\begin{tabular}{*{10}{r}}
+143	& 100	& 85	& 125 & 36	& 28	& 12 & 27 & 123 & 93\\
+100& 56 & 32 & 98 & 37& 82& 56& 21& 12& 54
+\end{tabular}
+\end{center}
+% moyenne=66, total=1320
+\begin{enumerate}
+	\item Vous voulez évaluer le nombre de ces téléphones portables vendus en prenant un échantillon de taille 5.\\
+Dans quel intervalle peut varier l'erreur d'échantillonnage ?
+	% prendre les 5 plus petits nombres, faire la moyenne, et multiplier par 20
+	% moyenne inf = 20, donc estimation à 400
+	% prendre les 5 plus grands nombres, faire la moyenne, et multiplier par 20
+	% moyenne sup = 118.2, donc estmation à 2364
+	% Intervalle = de 400-1320=-920 à 2364-1320=1044
+	\item Existe-t-il toujours un échantillon de taille fixée avec une erreur d'échantillonnage nulle?
+	% Non
+	\item Sur tous les échantillons possibles (de taille non nulle), quelle est l'erreur d'échantillonnage maximale que vous puissiez commettre?
+	% Prendre la taille 1 et choisir max(|max-\bar{x}|,|min-\bar{x}|)
+	% max = (143-66)*20 =  1540
+	\item Comment varie l'erreur d'échantillonnage moyen lorsque la taille de l'échantillon augmente?
+	% elle diminue
+\end{enumerate}
+
+\section{Tickets de caisse} % Distribution d'une moyenne
+% source \cite{groebner2005} p. 247
+L'analyse de la comptabilité d'une quincaillerie révèle que les ventes par client suivent une distribution fortement asymétrique vers la droite, dont la moyenne est 12.5 et l'écart type 5.5. Le propriétaire a sélectionné aléatoirement 100 tickets de caisse. La moyenne des valeurs de ces 100 tickets est 13. Cela semble-t-il normal? 
+\begin{enumerate}
+	\item Quelle est la moyenne d'échantillonnage à considérer?
+	% $\bar{x}=13$
+	\item Quelle est la distribution d'échantillonnage ?
+	% $$\norm (\mu_{\bar{x}}, \sigma^2)$$ où $\mu=12.5$ et  $\sigma_{\bar{x}}=\frac{5.5}{\sqrt{100}}=0.55$
+	\item Quel est l'événement d'intérêt?
+	% P(\bar{x}\geq 13)
+	\item Calculer la probabilité associée à l'événement d'intérêt
+	% P(\bar{x}\geq 13)= 1-P(\bar{x}\leq 13)=1-P( z \leq 0.91) = 1-0.8186 = 0.1814$
+	\item Quelle conclusion tirez-vous (cela semble-t-il normal) ?
+	% Oui
+\end{enumerate}
+
+\section{Location de films} % Distribution d'une proportion
+Un groupe de location de films a récemment changé sa politique de location. Il est désormais possible de louer les films 3 jours pour le prix d'un jour de location. L'équipe marketing a basé sa décision sur le postulat que 70\% des clients retournent le film de toute manière le second jour. Sur un échantillon de 500 clients, 68\% ont retourné le film avant le troisième jour. \\
+En vous référant au postulat de l'équipe marketing, quelle serait la probabilité que sur un échantillon de 500 clients, 68\% ou moins retourne le film avant le troisième jour?
+% P( \hat{p}<0.68) = P(z < (0.68 - 0.70)/\sqrt{0.7\cdot 0.3/500}  ) = P(z < -0.98) = 0.5 - 0.3365 = 0.1635
+
+
+\end{document}

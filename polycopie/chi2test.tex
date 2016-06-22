@@ -1,0 +1,156 @@
+%\chapter{Test du $\ki^2$}
+% Des tests du $ki^2$ peuvent aussi se baser sur les différences entre des effectifs théoriques et des effectifs observés. Dans ce cas, ces tests ne comportent que très peu de restrictions quant à la distribution sous-jacente, c'est pourquoi ils sont souvent classés parmi les tests non paramétriques.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'ajustement                    %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'ajustement}
+Certains tests exigent que la distribution de la population suive une loi spécifique, comme la loi normale. Comment peut-on vérifier que cette condition est satisfaite? Le test d'ajustement du $\ki^2$ permet justement de le faire. 
+Le test d'ajustement du $\ki^2$ peut être utilisé pour déterminer si un échantillon provient d'une hypothétique distribution.
+
+La procédure de test débute par l'acquisition d'un échantillon de taille suffisamment grande. Les données sont ensuite classées en $k$ différentes catégories, afin d'obtenir les fréquences absolues observées $o_ij$, associées à chaque catégorie. En utilisant la distribution hypothétique, les fréquences absolues théoriques $e_ij$ sont calculées. Il suffit alors de comparer les fréquences observées à celles théoriques. Si une trop grande différence existe, alors l'hypothèse d'un échantillon tiré de la distribution hypothétique est rejetée.
+
+La statistique à utiliser suit une loi du $\ki^2$ à $k-1$ degrés de liberté et est calculée ainsi:
+$$\ki^2=\sum\limits_{i=1}^k \frac{(o_i-e_i)^2}{e_i}$$
+où\\
+\begin{tabular}{cl}
+	$o_ij$ & = fréquence observée pour la catégorie $i$\\
+	$e_ij$     & = fréquence théorique pour la catégorie $i$\\
+	$k$       & = nombre de catégories
+\end{tabular}
+
+Toutefois, afin de pouvoir utiliser ce test, nous devons faire la \textcolor{red}{supposition suivante}:\\
+\textsc{La taille de l'échantillon est suffisamment grande}
+
+En pratique, un échantillon de taille au moins 30 est suffisant, pour autant que les fréquences observées par cellule sont suffisamment élevées.
+
+\begin{ex}
+Un nouveau directeur d'un centre d'appels pour FAI constate que le personnel est réduit de 20\% les mercredi, jeudi et dimanche. Son prédécesseur avait procédé ainsi car le nombre d'appels était 20\% moins élevé ces jours-là. Afin de savoir si tel est toujours le cas, il fait relever le nombre d'appels sur 1 mois pour chaque jour de la semaine et obtient les données agrégées suivantes:
+
+\begin{center}
+\begin{tabular}{c|ccccccc}
+	Jours & Lu & Ma & Me & Je & Ve & Sa & Di\\
+	\hline
+	Nombre d'appels & 1000 & 1200& 900 & 1000 & 1200& 1100 & 800
+\end{tabular}
+\end{center}
+
+Il souhaite savoir s'il y a effectivement une baisse de 20\% les mercredi, jeudi et dimanche, avec un niveau de signification de 0.05.
+
+\begin{enumerate}
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & La distribution des appels est identique les lu, ma, ve et sa,\\
+	        & et 20\% moins élevée les me, je et di.\\
+	  $H_1$ & La distribution des appels n'est pas celle décrite en $H_0$\\	  
+    \end{tabular}
+  \item Le niveau de signification est de 0.05
+  \item La valeur critique est celle d'une distribution du $\ki^2$ à 6 degrés de libertés.\\
+  $$\ki^2_{0.05}=12.5916$$ 
+  \item Le nombre total d'appels sur la période observée est 7200
+  \begin{center} 
+		\begin{tabular}{c|ccccccc}
+			Jours & Lu & Ma & Me & Je & Ve & Sa & Di\\
+			\hline
+			$o_i$ & 1000 & 1200& 900 & 1000 & 1200& 1100 & 800\\
+			$e_i$ & 1125 & 1125 & 900 & 900 & 1125 & 1125 & 900
+		\end{tabular}
+		\end{center}
+% Dans R
+% x <- seq(1:7)
+% Jours <- c("Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche")
+% observe <- c(1000,1200,900,1000,1200,1100,800)
+% theorique <- c(1125,1125,900,900,1125,1125,900)
+% A terminer
+		La statistique est alors $$\ki^2 = 46.6$$
+  \item Comme $46.6>12.5916$, l'hypothèse $H_0$ est rejetée.
+  \item La conclusion est que la distribution du nombre d'appels n'est plus telle qu'indiquée par le précédent directeur.
+\end{enumerate}
+\end{ex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Test d'indépendance                  %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Test d'indépendance de deux variables catégorielles}
+Afin de tester l'indépendance de deux variables de type catégoriel, nous allons utiliser une table de contingence.
+Nous comparons alors les fréquences observées avec les fréquences théoriques en cas d'indépendance. Si une trop grande différence existe, alors l'hypothèse d'indépendance des variables est rejetée.
+
+Les fréquences théoriques sont calculées ainsi:
+$$e_{ij} = \frac{ (\mbox{Total ligne }i)\cdot(\mbox{ Total colonne }j) }{ \mbox{Taille de l'échantillon}}$$
+
+La statistique à utiliser est celle du $\ki^2$ à dl = $(c-1)(r-1)$ degrés de liberté
+$$\ki^2=\sum\limits_{i=1}^r\sum\limits_{j=1}^c\frac{(o_{ij}-e_{ij})^2}{e_{ij}}$$
+où\\
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée de la cellule $(i,j)$\\
+	$e_i$     & = fréquence théorique de la cellule $(i,j)$\\
+	$r$       & = nombre de lignes\\
+	$c$       & = nombre de colonnes
+\end{tabular}
+
+Toutefois, afin de pouvoir utiliser ce test, nous devons faire la \textcolor{red}{supposition suivante}:\\
+\textsc{La taille de l'échantillon est suffisamment grande}\\
+En pratique, l'effectif observé par cellule doit être d'au moins 5 unités.
+
+\begin{ex}
+Une recherche est effectuée afin de savoir si le nombre de sorties le week-end est indépendant des résultats aux examens, avec un niveau de signification de 0.05. La table de contingence suivante résume les données récoltées:
+
+\begin{center}
+\begin{tabular}{r|cccc|c}
+	& \multicolumn{4}{c}{Résultat} & \\
+	& Insuffisant & Acquis & Bien & Excellent & {\it\small Total}\\
+	\hline
+	Sortie WE   & & & & & \\
+	Jamais      & 84 & 50 & 50 & 16 & 200\\
+	Occasionnel & 82 & 64 & 34 & 20 & 200\\
+	Fréquent    & 34 & 36 & 16 & 14 & 100\\
+	\hline
+	{\it\small Total} & 200 & 150 & 100 & 50 & 500 
+\end{tabular}
+\end{center}
+
+
+\begin{enumerate}
+	\item Les hypothèses nulle et alternative sont:\\
+	  \begin{tabular}{cl}
+	  $H_0$ & Les sorties du week-end sont indépendantes des résultats aux examens.\\
+	  $H_1$ & les sorties du week-end ne sont PAS indépendantes des résultats aux examens\\	  
+    \end{tabular}
+  \item Le niveau de signification est de 0.05
+  \item La valeur critique est celle d'une distribution du $\ki^2$ à $(3-1)(4-1)=6$ degrés de libertés.\\
+  $$\ki^2_{0.05}=12.5916$$ 
+  \item Les fréquences théoriques de la table de contingence sont
+  
+\begin{center}
+\begin{tabular}{r|cccc|c}
+	& \multicolumn{4}{c}{Résultat} & \\
+	& Insuffisant & Acquis & Bien & Excellent & {\it\small Total}\\
+	\hline
+	Sortie WE   & & & & & \\
+	Jamais      & 80 & 60 & 40 & 20 & 200\\
+	Occasionnel & 80 & 60 & 40 & 20 & 200\\
+	Fréquent    & 40 & 30 & 20 & 10 & 100\\
+	\hline
+	{\it\small Total} & 200 & 150 & 100 & 50 & 500 
+\end{tabular}
+\end{center}
+		La statistique est alors $$\ki^2 = 10.88$$
+  \item Comme $10.88<12.5916$, l'hypothèse $H_0$ ne peut pas être rejetée.
+  \item La conclusion est qu'il n'y a pas suffisamment d'évidence pour conclure que les sorties du week-end et le résultat aux examens ne sont pas indépendants.\\
+  ... et ceci n'est aucunement une incitation à faire la fête le week-end!
+\end{enumerate}
+
+% Dans R
+%\begin{verbatim}
+%sorres <- matrix(c(84,50,50,16,82,64,34,20,34,36,16,14),ncol=4,byrow=TRUE)
+%rownames(sorres)<-c("Jamais","Occasionnel","Fréquent")
+%colnames(sorres)<-c("Insuffisant","Acquis","Bien","Excellent")
+%sorres <- as.table(sorres)
+%chisq.test(sorres)
+%\end{verbatim}
+
+\end{ex}

@@ -1,0 +1,68 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Série 3}
+\author{Dr S. Varone}
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%             COURS 3: Estimations                  %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Nombre de spectateurs} % Estimations de la moyenne et de la variance 
+% Berchtold ex 3.1
+Soit $Y$ le nombre de personnes qui assistent à la représentation d'une pièce de théâtre.
+ \begin{enumerate}
+ \item Pour 5 jours de représentation pris au hasard on a observé:
+	 $$
+	 \begin{array}{l|ccccc}
+	 i & 1 & 2 & 3 & 4 & 5\\
+	 \hline
+	 y_i & 300 & 280 & 290 & 310 & 295
+	 \end{array}
+	 $$
+	 Estimer l'espérance $E(Y) = \mu $ par la médiane de l'échantillon 	 $\tilde{Y}$, puis par la moyenne de l'échantillon $\overline{Y}$.
+ \item Pour 4 nouveaux jours choisis au hasard on a observé :
+	 $$
+	 \begin{array}{l|cccc}
+	 i & 6 & 7 & 8 & 9\\
+	 \hline
+	 y_i & 305 & 318 & 290 & 280
+	 \end{array}
+	 $$
+	 Recalculer les deux estimations de $\mu $ en considérant l'échantillon formé par l'ensemble des 9 observations. Commenter.
+ \item Pour les cinq premières observations on trouve:
+	 $$
+	 \sum\limits^5_{i=1} y^2_i = 435'625
+	 $$
+	 et pour l'ensemble des 9 observations:
+	 $$
+	 \sum\limits^9_{i=1} y^2_i = 792'274
+	 $$
+	 Donner une estimation non-biaisée de la variance de $Y$, ainsi qu'une estimation
+	non-biaisée de l'écart type de $\overline{Y}$ dans chacun des deux cas considérés.
+	Commenter.
+ \item Supposons maintenant qu'à la suite d'une erreur le nombre d'entrées du 9ème jour ait été mal relevé. De ce fait nous avons:
+	 $$
+	 \begin{array}{l|ccccccccc}
+	 i & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9\\
+	 \hline
+	 y_i & 300 & 280 & 290 & 310 & 295 & 305 & 318 & 290 & 28
+	 \end{array}
+	 $$
+	 Recalculer les deux estimations de $\mu $. Lequel des deux estimateurs est-il le plus	pertinent?
+ \end{enumerate}
+
+\end{document}

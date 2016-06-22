@@ -1,0 +1,145 @@
+\select@language {french}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {2}Distributions continues}{3}
+\thispagestyle {empty}
+\contentsline {subsubsection}{Variable al\'eatoire continue}{3}
+\thispagestyle {empty}
+\contentsline {subsubsection}{Fonction de densit\'e}{4}
+\thispagestyle {empty}
+\contentsline {subsubsection}{Fonction de r\'epartition}{4}
+\thispagestyle {empty}
+\contentsline {subsubsection}{Esp\'erance et variance}{5}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {2.1}Loi normale}{6}
+\thispagestyle {empty}
+\contentsline {paragraph}{Table de la loi normale}{9}
+\thispagestyle {empty}
+\contentsline {paragraph}{R\`egle empirique}{9}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {2.2}Loi de Student ($\mathcal {T}_n$)}{10}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {2.2.1}Loi de Student \`a $n$ degr\'es de libert\'e}{10}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {2.2.2}Table de Student}{11}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {2.3}Loi du chi carré ($\chi ^2$)}{12}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {2.3.1}Loi du chi-2 à $n$ degrés de liberté}{12}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {2.3.2}Table du $\chi ^2$}{13}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {3}Estimation}{14}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.1}Estimation ponctuelle}{14}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {3.1.1}Propriétés des estimateurs}{14}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {3.1.2}Estimation de la moyenne de la population}{16}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {3.1.3}Estimation de la variance de la population}{16}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.2}Théorème central limite}{18}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {3.2.1}Distribution de la moyenne d'un échantillon}{18}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {3.2.2}Distribution d'une proportion d'un échantillon}{22}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.3}Intervalle de confiance}{23}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {3.3.1}Construction d'un intervalle de confiance}{24}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.4}IC pour estimer $\mu $, $\sigma ^2$ connu}{25}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.5}IC pour estimer $\mu $, $\sigma ^2$ inconnu}{27}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.6}IC pour estimer une proportion}{29}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.7}IC pour estimer $\sigma ^2$, $\mu $ inconnu}{31}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {3.8}Résumé}{32}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {4}Tests paramétriques}{34}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.1}Principe des tests d'hypothèses}{34}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.1.1}Hypothèses nulle et alternative}{35}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.1.2}Région critique et valeur critique}{36}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.1.3}Risques de première et de seconde espèce}{37}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.1.4}Procédure de test statistique}{39}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.2}Test de $\mu $, $\sigma ^2$ connu, grand échantillon}{40}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.3}Test de $\mu $, $\sigma ^2$ inconnu, grand échantillon}{41}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.4}Test de $\mu $, $\sigma ^2$ inconnu, petit échantillon}{41}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.5}Value at Risk}{42}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.6}Test de la proportion}{43}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.7}Test de la variance avec moyenne inconnue}{45}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.8}Méthode de la $p$-valeur}{46}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.8.1}Procédure de test statistique utilisant la $p$-valeur}{47}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.9}Relation entre IC et tests statistiques}{49}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.9.1}Test dans l'unité du paramètre}{49}
+\thispagestyle {empty}
+\contentsline {subsection}{\numberline {4.9.2}Intervalle de confiance et test statistique}{50}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {4.10}Résumé}{51}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {5}Tests non paramétriques}{52}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {5.1}Test d'ajustement}{53}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {5.2}Test d'indépendance de deux variables catégorielles}{54}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {6}Régression linéaire simple}{56}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {6.1}Rappel}{56}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {6.2}Validité d'une corrélation}{57}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {6.3}Qualité d'un modèle linéaire}{58}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {6.4}Validité d'un modèle linéaire}{60}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {6.5}Analyse d'une régression linéaire simple}{61}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {A}Tables statistiques}{62}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {A.1}Loi normale centrée réduite}{63}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {A.2}Table de la loi du $\chi ^2$}{64}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {A.3}Table de la loi de Student}{65}
+\thispagestyle {empty}
+\contentsline {chapter}{\numberline {B}Instructions pour logiciels}{66}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.1}Loi normale}{66}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.2}$t$-distribution}{67}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.3}$\chi ^2_n$ distribution}{67}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.4}Intervalle de confiance}{67}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.5}Test d'une moyenne}{68}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.6}Test d'une proportion}{69}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.7}Test d'une variance}{69}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.8}Test d'ind\'ependance}{69}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.9}Test de corr\'elation lin\'eaire}{70}
+\thispagestyle {empty}
+\contentsline {section}{\numberline {B.10}R\'egression lin\'eaire}{70}

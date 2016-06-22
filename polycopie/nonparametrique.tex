@@ -1,0 +1,84 @@
+\chapter{Tests non paramétriques}
+Lorsque nous voulons tester des hypothèses, nous devons tenir compte des conditions sous lesquelles les tests peuvent être faits. Par exemple, si nous désirons tester si la moyenne d'une population s'écarte significativement d'une valeur donnée, et que sa distribution ne suit pas une loi normale, nous ne pouvons pas utiliser le test de la moyenne décrit en \ref{sec:mu-sigmainconnu-petit}. Beaucoup de populations, comme par exemple le revenu moyen par famille, ont une distribution fortement asymétrique. Dans ce cas, l'emploi d'une procédure de test non paramétrique est nécessaire. Ces dernières sont moins restrictives que les procédures de test paramétrique.
+
+Des tests du $\ki^2$ peuvent aussi se baser sur les différences entre des effectifs théoriques et des effectifs observés. Dans ce cas, ces tests ne comportent que très peu de restrictions quant à la distribution sous-jacente, c'est pourquoi ils sont souvent classés parmi les tests non paramétriques.
+
+%\section{Test des rangs signés de Wilcoxon}
+%Ce test non paramétrique n'est pas soumis à une restriction sur une forme particulière de distribution. Il est utilisé pour tester  la valeur hypothétique de la médiane d'une population. Il se base sur le principe suivant:\\
+%Puisque la médiane sépare une population en deux parties de même taille, la médiane hypothétique de la population sera rejetée si les données se répartissent trop fortement au-dessus ou au-dessous de cette valeur.
+%
+%\subsection{Échantillon de petite taille}
+%La statistique de test $W$ suit la loi tabulée pour le test des rangs signés de Wilcoxon en annexe \ref{sec:wilcoxonsigne}.
+%\begin{enumerate}
+%	\item Calculer les différences $d_i$ entre chaque valeur et la médiane postulée $\tilde{\mu}$
+%	\item Calculer la valeur absolue des différences précédentes: $|d_i|$
+%	\item Déterminer le rang pour chacune des valeurs $|d_i|$, en ne tenant pas compte des valeurs nulles.\\
+%	Si des observations ont la même valeur $|d_i|$, alors affecter le rang moyen de ces observations.
+%	\item Calculer la statistique $W$ qui est la somme des rangs dont les $d_i$ sont positifs.
+%\end{enumerate}
+%L'hypothèse nulle est rejetée si la valeur de la statistique est supérieure à celle de la valeur critique supérieure associée (test unilatéral à droite ou test bilatéral), ou inférieure à la valeur critique inférieure associée  (test unilatéral à gauche ou test bilatéral).
+%
+%\begin{ex}
+%% \cite{groebner2005} p. 671
+%% % Avec R:
+%%x <- c(36400, 38500, 27000, 35000, 29000, 40000, 52000, 34000, 38900, 41000)
+%%wilcox.test(x, alternative = "greater", mu=35000, exact = FALSE)
+%
+%Une étude a été faite sur les salaires en début de carrière des diplômés de l'école ''Jess Aitou'', afin de savoir si le salaire médian est supérieur à 35000 Euros, à un seuil $\alpha=0.05$. Les données récoltées sont les salaires en euros:\\
+%$$\begin{array}{c}
+%36400\\
+%38500\\
+%27000\\
+%35000\\
+%29000\\
+%40000\\
+%52000\\
+%34000\\
+%38900\\
+%41000
+%\end{array}$$
+%Nous pouvons utiliser le test des rangs signés de Wilcoxon afin de répondre à l'objet de l'étude.
+%
+%\begin{enumerate}
+%	\item La valeur de la population d'intérêt est le salaire médian en début de carrière.
+%	\item Les hypothèses nulle et alternative sont:\\
+%	  \begin{tabular}{cl}
+%	  $H_0$ & $\tilde{\mu} \leq 35'000$ euros\\
+%	  $H_1$ & $\tilde{\mu} > 35'000$ euros\\	
+%    \end{tabular}
+%  \item Le niveau de signification est de 0.05
+%  \item
+%	$$
+%	\begin{array}{crcccc}
+%	\mbox{Salaire}=x_i & d_i=x_i-\tilde{\mu} & |d_i| & \mbox{Rang} & R_+ & R_-\\
+%	\hline
+%	36400 & 1400  & 1400 & 2   & 2 & \\
+%	38500 &  3500 & 3500 & 3   & 3 & \\
+%	27000 & -8000 & 8000 & 8   &   & 8\\
+%	35000 &     0 & 0    &     &   & \\
+%	29000 & -6000 & 6000 & 6.5 &   & 6.5\\
+%	40000 &  5000 & 5000 & 5   & 5 & \\
+%	52000 & 17000 & 17000& 9   & 9 & \\
+%	34000 & -1000 & 1000 & 1   &   & 1\\
+%	38900 &  3900 & 3900 & 4   & 4 & \\
+%	41000 &  6000 & 6000 & 6.5 & 6.5\\
+%	\hline
+%	      &       &      &      & W=29.5 & 15.5
+%	\end{array}$$	
+%	Soit $n$ le nombre de $d_i$ différents de 0. Il y a donc $n=9$ rangs attribués.\\
+%	La valeur critique du test est $W_{\alpha}=37$
+%	\item La statistique est $W=29.5$
+%  \item Comme $$W=29.5<37$$
+%  l'hypothèse $H_0$ ne peut pas être rejetée.
+%  \item Nous ne pouvons donc pas conclure que le salaire médian en début de carrière dépasse 35000 euros.
+%\end{enumerate}
+%\end{ex}
+%
+%\subsection{Échantillon de grande taille}
+%Lorsque la taille de l'échantillon est suffisamment grande, en pratique, lorsque $n>20$, alors la statistique de test $W$ peut être approchée par une distribution normale. La statistique de test est transformée en une $z$-valeur, qui suit une loi normale centrée réduite.
+%$$z=\frac{W-\frac{n(n+1)}{4}}{\sqrt{\frac{n(n+1)(2n+1)}{24}}}$$
+%où\\
+%\begin{tabular}{cl}
+%	$n$       & = taille de l'échantillon\\
+%	$W$ & = somme des rangs positifs $R_+$
+%\end{tabular}

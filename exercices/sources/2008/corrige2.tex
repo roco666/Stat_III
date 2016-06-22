@@ -1,0 +1,71 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+
+\newcommand{\ki}{\mathcal{\chi}}
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Corrigé 2}
+\author{Dr. S. Varone}
+\date{Semaine 39, 2008}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     CORRIGE 2: Loi du Chi-deux, de Student        %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Loi du Chi-deux} % Loi du Chi-deux
+Soit la variable $Q_{10}$ suivant une loi du chi-2 à 10 degrés de liberté. Déterminer
+\begin{enumerate}
+	\item $P(Q_{10} < 15.98)=0.9$ 
+	\item $P(Q_{10} > 18.31)=0.05$
+	\item $P(Q_{10} <18.31)=0.95$
+	\item $P(15.98 < Q_{10} < 18.31)=P( Q_{10} < 18.31)-P(Q_{10}<15.98)=0.95-0.9=0.05$
+  \item la valeur $a$ telle que $P(Q_{10} < a) = 0.975$, $a=20.48$
+\end{enumerate}
+
+
+
+\section{Loi de Student} % Loi de Student
+Soit la variable $T_{8}$ suivant une loi de Student à 8 degrés de liberté. Déterminer
+\begin{enumerate}
+	\item $P(T_{8} < 0.546)= 0.7$
+	\item $P(T_{8} < - 0.546) = 1-P(T_{8} < 0.546)=1-0.7=0.3$
+	\item $ P( - 0.546 < T_{8} < 1.86)$
+		\begin{eqnarray*}
+			P( - 0.546 < T_{8} < 1.86)&=&P( T_{8} < 1.86)-P( T_{8} <  - 0.546)\\
+			&=&P( T_{8} < 1.86)- (1-P( T_{8} <  0.546))\\
+			&=&0.95-(1-0.7)=0.65
+		\end{eqnarray*}
+	\item La valeur $b$ telle que $P(T_{8}> b) = 0.6$
+		 \begin{eqnarray*}
+			P(T_{8}> b) &=& 0.6\\
+			P(T_{8}<- b) &=& 0.6\\
+			-b&=&0.2619\\
+			b&=&-0.26219
+			\end{eqnarray*}
+\end{enumerate}
+
+\section{Arrivée des vols} % Loi du Chi-deux
+	% cf \cite{groebner2008} ex 10.9 p. 392
+Un challenge pour les compagnies aérienne est de respecter les horaires des vols. Une mesure utilisée est le nombre de minutes d'un vol séparant l'heure d'arrivée réelle de celle annoncée. La compagnie exige que ses avions arrivent en moyenne à l'heure, avec $\pm 5$ minutes le décalage entre l'heure d'arrivée réelle et celle annoncée. Ce nombre de minutes est donnée ci-dessous pour 11 vols:\\
+-2 9 10 -3 1 7 -3 5 8 12 4\\
+\begin{enumerate}
+	\item\label{s2p3i} Calculer la valeur de la statistique $\ki^2=\frac{(n-1)s^2}{\sigma^2}$
+\\Avec R
+\\ x <- c(-2, 9, 10, -3, 1, 7, -3, 5, 8, 12, 4)
+\\ $chideux <-\quad 10*sd(x)^2/25$
+\\ 11.70182
+	\item Calculer la probabilité d'une valeur supérieure ou égale à celle trouvée en \ref{s2p3i}) (un logiciel est ici nécessaire pour une bonne approximation)
+\\ pchisq(chideux,10)
+\\ $P(\ki^2 \geq 11.70182) =  0.6944917$
+\end{enumerate}
+\end{document}

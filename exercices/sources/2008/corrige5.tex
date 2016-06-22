@@ -1,0 +1,79 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage[dvips]{graphicx}
+% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+% Pour traduire par exemple Chapter -> Chapitre
+\usepackage{babel}
+\usepackage{hegexo}
+\usepackage{pictex}
+
+
+\begin{document}
+\cours{Statistique inférentielle}
+\title{Corrigé 5}
+\author{Dr. S. Varone}
+\date{Semaine 42, 2008}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%     COURS 5: IC                                   %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Livreurs de pizzas} % IC moyenne, variance inconnue, petit échantillon
+La pizzeria ''C Bon'' a un service de livraison de pizzas. Le propriétaire désire estimer le pourboire moyen reçu par les livreurs. Pour cela, il a pris un échantillon de 12 livraisons et a noté les pourboires reçus.
+
+\begin{tabular}{*{6}r}
+2.25 & 2.5 & 2.25 & 2 & 2 & 1.5\\
+0 & 2 & 1.5 & 2 & 3 & 1.5
+\end{tabular}
+
+\begin{enumerate}
+	\item Quelle distribution devrait être utilisée pour développer un intervalle de confiance pour le pourboire moyen par livraison?
+	\\Distribution de Student
+	\item Quelle condition doit satisfaire la distribution pour pouvoir obtenir une valeur critique ?
+	\\La distribution de la population doit être normale.
+	\item Vérifier si la condition semble satisfaite à l'aide d'un graphique.
+  \\quantiles = $q_1=1.5$, $q_2=2$, $q_3=2.25$
+  
+	 \begin{verbatim}
+x <- c(2.25,2.5,2.25,2,2,1.5,0,2,1.5,2,3,1.5)
+quantile(x,type=6)
+setwd("P:/Mes Documents/Cours/Stat_III/fig"); require(graphics)
+pictex(file = "s5ex1.tex")
+layout(matrix(1:2,1,2)); boxplot(x);hist(x)
+dev.off()
+	 \end{verbatim}
+
+\begin{figure}[h]
+  \centerline{\input{../fig/s5ex1.tex}}
+  \caption{}
+\end{figure}
+	\item Construire un intervalle de confiance à 90\% pour le pourboire moyen par livraison.
+	\\$1.875 \pm 1.7959(.735/\sqrt{12}) =  1.875 \pm .3810 =   [1.494 ; 2.256]$
+	\\ Attention: ne pas prendre $t^{11}_{\alpha}$ mais bien $t^{11}_{\alpha/2}$ 
+	\\ $\sum{x_i-\bar{x}}=5.9375$, $s^2=0.5397727$, $s=0.7346923$, $\frac{s}{\sqrt{n}}=0.2120874$
+
+	 \begin{verbatim}
+t.test(x, conf.level=0.9)$conf.int
+	 \end{verbatim}
+
+\end{enumerate}
+
+\section{Interprétations}
+Une compagnie d'assurances a commandé une étude pour estimer le nombre moyen de km parcourus par année par leurs clients ayant souscrits une police d'assurance voiture. L'étude, basée sur un échantillon aléatoire de 200 clients, a conclu que le nombre moyen de km parcourus se situait entre 8000 et 13000 km par année. Cette estimation fut faite avec niveau de confiance de 95\%.
+\begin{enumerate}
+	\item Un manager dit à son collègue que le 95\% de leurs clients parcourent entre 8000 et 13000 km par année. Cette affirmation est-elle correcte? Justifiez.
+	\\Non, 0.95 est une probabilité, pas une proportion.
+	\item Un autre manager résume en séance l'étude commandée en affirmant ''La compagnie peut être sûr à 95\%  que le nombre moyen de km parcourus en une année par les 200 clients de l'échantillon, se trouve entre 8000 et 13000km''. Cette affirmation est-elle correcte? Justifiez.
+  \\Non, l'IC porte sur la moyenne de la population, pas de l'échantillon
+	\item Un troisième manager affirme qu'il y a 95\% de chance que le véritable nombre moyen de km parcourus par tous leurs clients se situe entre 8000 et 13000 km par année. Cette affirmation est-elle correcte? Justifiez. 
+	\\Non, le nombre moyen de km est une valeur et n'a donc pas de probabilité.
+\end{enumerate}
+
+La seule interprétation correcte est de dire que parmi tous les IC possibles construits à partir d'échantillons aléatoires de taille 200, le 95\% d'entre eux recouvrent la vraie valeur moyenne.
+
+
+\end{document}

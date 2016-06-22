@@ -1,0 +1,315 @@
+\documentclass[style=heg, mode=print]{powerdot}
+%\documentclass[style=heg]{powerdot}
+
+\usepackage{amsfonts}
+\usepackage{pst-plot}
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\graphicspath{{../../fig/}}
+
+% Definitions Maths
+\include{mydef_slides}
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+\title{Estimations ponctuelles\\
+Distribution de la moyenne}
+\author{Dr Sacha Varone}
+\date{}
+\pdsetup{
+rf={\tiny stat III - cours 2}
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+\begin{itemize}
+	\item Comprendre et maîtriser l'estimation ponctuelle
+	\item Connaître la distribution d'une moyenne
+\end{itemize}
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Rappel                               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rappels}
+\begin{slide}[toc=]{Rappel}
+La distribution de Student $\st_n$
+\begin{itemize}
+	\item Ligne\\
+	nombre de degrés de liberté $n$
+	\item Colonne\\
+	une erreur de première espèce $\alpha$.
+	\item Intersection ligne/colonne $t_{\alpha,n}$
+$$P(\st_n\geq t_{\alpha,n})=\alpha$$
+\end{itemize}
+La relation entre $p$ et $\alpha$ est $p=1-\alpha$.
+\end{slide}
+
+\begin{slide}[toc=]{Rappel}
+Soit un échantillon aléatoire de taille $n$, de moyenne $\bar{x}$ et de variance $s^2$, issu d'une loi normale $\norm(\mu,\sigma^2)$. Alors
+$$\frac{\bar{x}- \mu}{\frac{s}{\sqrt{n}}}\sim \st_{n - 1}$$
+Utilité: inférence sur la moyenne d'une population suivant une loi normale de moyenne $\mu$ et de variance $\sigma^2$ inconnue.
+\end{slide}
+
+\begin{slide}[toc=]{Rappel}
+Loi du $\ki^2$\\
+Soit $Q_n\sim \chi^2_n$\\
+$p = P(Q_n\leq q_{\alpha,n})$\\
+$\alpha = P(Q_n>q_{\alpha,n})$
+avec
+$p=1-\alpha$
+\end{slide}
+
+\begin{slide}[toc=]{Rappel}
+La statistique $\chi^2$ à $n-1$ degrés de liberté vaut
+$$\chi^2 = \frac{(n-1)s^2}{\sigma^2}$$
+où\\
+\begin{tabular}{ccl}
+$\chi^2$ & = & variable chi-2 standard\\
+$s^2$ &= &  variance de l'échantillon\\
+$\sigma^2$ & = & variance de la population\\
+$n$ &= &  taille de l'échantillon
+\end{tabular}
+\\[5mm]
+Utilité: inférence sur la variance d'une population
+\end{slide}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Estimation  ponctuelle               %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estimation ponctuelle}
+\begin{slide}{Définition}
+Une \emph{estimation ponctuelle}, ou point d'estimation, est une valeur calculée à partir d'un échantillon pour estimer un paramètre d'une population.
+\\[5mm]
+Objectif: attribuer une valeur à un paramètre\\
+Comment: échantillon
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+$X$ ou $Y$ = Taille des ménages (nombre de personnes composant un ménage)\\
+
+ \begin{center}
+ \begin{tabular}{lcccccccc}
+ échantillon $X$ & $x_1$ & $x_2$ & $x_3$ & $x_4$ & $x_5$ & $x_6$ &
+$x_7$ & $x_8$\\
+ & 1 & 3 & 2 & 4 & 4 & 1 & 2 & 6\\
+ \\
+ échantillon $Y$ & $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+ & 2 & 2 & 1 & 1 & 3
+ \end{tabular}
+ \end{center}
+
+\'Echantillon $X$: $\bar{x} = \frac{23}{8}$\\
+\'Echantillon $Y$: $\bar{y} = \frac{9}{5}$\\[5mm]
+$\bar{x}\approx \mu$ et $\bar{y} \approx \mu$ \hfill $\mu$ = paramètre
+\end{slide}
+
+\begin{slide}{Estimateur}
+Une \emph{distribution d'échantillonnage} d'une estimateur $\hat{\Theta}$ est la distribution des valeurs possible d'une statistique pour un échantillon de taille fixée, sélectionné à partir d'une population.
+\begin{itemize}
+	\item comportement moyen:
+	$$\E(\hat{\Theta})$$ 
+	\item dispersion:
+	$$\Var(\hat{\Theta})$$
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Propriétés}
+$$\includegraphics[width=5cm,clip]{cible_biais}\hfill \includegraphics[width=4cm,clip]{cible_abs_biais}$$
+\end{slide}
+
+\begin{slide}[toc=]{Propriétés}
+Le \emph{biais} : $\E(\hat{\Theta}-\theta) = \E(\hat{\Theta})-\theta$\\[5mm]
+Estimateur \emph{non-biaisé} lorsque son espérance est
+égale à la vraie valeur du paramètre estimé, i.e. $\E(\hat{\Theta}) = \theta$\\[5mm]
+Estimateur \emph{convergent} si, lorsque la taille $n$ de l'échantillon devient grande
+\begin{enumerate}
+	\item le biais disparaît: $\lim_{n\rightarrow\infty} \Biais(\hat{\Theta}) = 0$
+  \item la variance devient nulle: $\lim_{n\rightarrow\infty} \mbox{Var}(\hat{\Theta}) = 0$
+\end{enumerate} 
+\vspace{5mm}
+Un estimateur sans biais et convergent est dit \emph{absolument correct}.
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Estimateurs: biais, convergence      %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estimateurs}
+\begin{slide}[toc=Moyenne]{Estimation de la moyenne}
+$$\hat{\mu} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i$$
+est un estimateur absolument correct de la moyenne $\mu$
+\\[5mm]
+Remarque:\\
+La moyenne tronquée, le mode et la médiane calculés à partir d'un échantillon sont aussi des estimateurs absolument
+corrects pour respectivement la moyenne tronquée, le mode et la médiane de la population.
+\end{slide}
+
+\begin{slide}[toc=Variance]{Estimation de la variance}
+Première idée: $$S^2 = \frac{1}{n} \sum_{i=1}^n (x_i-\bar{x})^2$$
+$S^2$ estimateur biaisé, mais convergent.\\[5mm]
+Meilleur estimateur 
+$$\hat{\sigma}^2 = s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i-\bar{x})^2$$
+$s^2$ estimateur absolument correct. 
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+\centerline{Population $1, 2, 6$}
+\begin{itemize}
+	\item Moyenne et variance ?\\
+	\pause
+  $\mu =\frac{1+2+6}{3}=3$ et $\sigma^2 = \frac{(1-3)^2+(2-3)^2+(6-3)^2}{3}=\frac{14}{3}$
+  \item Échantillons possibles de taille 2, avec remise ?\\
+  \pause
+  (1,1) (1,2) (1,6) (2,1) (2,2) (2,6) (6,1) (6,2) (6,6)
+  \item Moyenne et variance de ces couples (en tant que populations)?\\
+  \pause
+  moyennes : $1, \frac{3}{2}, \frac{7}{2}, \frac{3}{2}, 2, 4, \frac{7}{2}, 4, 6$\\
+  variances: $0, \frac{1}{4}, \frac{25}{4}, \frac{1}{4}, 0, 4, \frac{25}{4}, 4, 0$
+  \item Moyenne de ces variances ? \pause $\frac{7}{3}\not=\frac{14}{3}$
+\end{itemize}
+mais $$\frac{n}{n-1}\cdot\frac{7}{3}=\frac{2}{2-1}\cdot\frac{7}{3}=\frac{14}{3}$$
+\end{slide}
+
+\begin{slide}[toc=]{Remarque}
+Calculatrices: variance par défaut $s^2$. 
+$$ s^2 = \frac{n}{n-1}S^2\quad\quad\quad S^2=\frac{n-1}{n}s^2$$
+\end{slide}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%%     Distribution d'une moyenne           %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Distribution $\bar{x}$}
+\begin{slide}[toc=Pop. normale]{Moyenne dans une population normale}
+Si une population est normalement distribuée, de moyenne $\mu$ et d'écart type $\sigma$, alors la distribution d'échantillonnage de la moyenne $\bar{x}$ est 
+$$\bar{X}\sim \norm (\mu ,\frac{\sigma^2}{n})$$
+Remarque\\
+La distribution d'échantillonnage de la moyenne est composée de toutes les moyennes possibles sur tous les échantillons de même taille. 
+\end{slide}
+
+\begin{slide}[toc=Erreur standard]{Erreur standard de la moyenne}
+L'écart type de la distribution d'échantillonnage de la moyenne, aussi appelée \emph{erreur standard de la moyenne}, est le terme
+$$\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}$$
+Remarque:\\
+$\sigma_{\bar{x}}\leq\sigma$
+\end{slide}
+
+\begin{slide}[toc={\it z}]{Variable centrée réduite}
+La variable centrée réduite associée à la moyenne d'échantillonnage est la variable
+$$z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}$$
+\begin{tabular}{ccl}
+	$\bar{x}$ & = & moyenne de l'échantillon\\
+	$\mu$ & = & moyenne de la population\\
+	$\sigma$ & = & écart type de la population\\
+	$n$ & = & taille de l'échantillon
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{Exemple}
+Étiquette: poids en poisson d'un plat surgelé de 1 kg: 
+$\norm (500, 100^2)$ en grammes.\\ 
+Échantillon: 25 plats achetés pour vérifier la quantité de poisson.\\ 
+Résultats: moyenne de 490 g par plat.\\
+Question: Y a-t-il tromperie du consommateur?
+\begin{enumerate}
+	\item La moyenne pour cet échantillon: 
+	\pause $\bar{x} = 490$
+	\item La distribution d'échantillonnage de la moyenne:\\
+	\pause 
+	$\norm(500,\frac{100^2}{25}=400)$
+	\item L'événement d'intérêt :\\
+	\pause 
+	$P(\bar{x}\leq 490)=?$
+	\item Conversion en une valeur centrée réduite $z$\\
+	\pause
+	$z=\frac{\bar{x}-\mu}{\frac{\sigma}{\sqrt{n}}}=\frac{490-500}{\frac{100}{\sqrt{25}}}=-0.5$
+	\item Probabilité désirée\\
+	\pause
+	$P(z\leq -0.5)=0.3085$
+\end{enumerate}
+\end{slide}
+
+\begin{slide}[toc=Correction]{Facteur de correction}
+Si la taille de l'échantillon est \emph{plus du 5\%} de la taille de la population, et que l'échantillon tiré est fait \emph{sans remise}\\
+$\Rightarrow$ facteur de correction sur l'écart type
+$$\sqrt{\frac{N-n}{N-1}}$$
+où\\
+$N$ = taille de la population\\
+$n$ = taille de l'échantillon
+\end{slide}
+
+\begin{slide}[toc=]{Jeu}
+Chacun indique un budget pour ses soirées.\\
+Budget moyen ?\\
+Les budgets sont triés par ordre croissant. Quel échantillon semble le plus représentatif?
+\begin{enumerate}
+	\item Les 6 premiers budgets
+	\item Les 6 derniers budgets
+	\item les 6 valeurs centrales
+	\item 6 nombres pris au hasard
+\end{enumerate}
+%Prendre 30 échantillons de 6 budgets et représenter les valeurs des 30 moyennes d'échantillons correspondants
+%Conclusion: Pour une population donnée, les caractéristiques d'un échantillon issu de cette population fluctuent, d'un échantillon à l'autre
+%%
+%% Avec R
+%%
+%# Population
+%x <- c(100,200,150,90,80, 50, 50, 100, 50, 80, 80, 120, 30, 40 ,40, 20, 60, 50, 50)
+%# Création de 30 moyennes d'échantillons
+%taille <- 6
+%y <- numeric(30)
+%# Echantillon de 6 valeurs
+%for (i in 1:30){
+%y[i] <- mean(sample(x,taille))
+%}
+%estimateur <- mean(y)
+%mean(x); estimateur
+%hist(y)
+\end{slide}
+
+\begin{slide}[toc=TCL]{}
+$$\includegraphics[scale=0.4]{central-limite}$$
+% Dessiner à la main les différentes distributions p.244,245 de \cite{Groebner2006}
+\end{slide}
+
+\begin{slide}[toc=]{Théorème central limite}
+Soit une suite $(X_1, X_2, \ldots, X_n)$ de $n$ variables aléatoires identiquement et indépendamment distribuées $(\mu,\sigma^2)$. Lorsque $n \rightarrow \infty$, la distribution de
+$$\overline{X} = \frac{1}{n} \sum_i X_i$$
+tend vers la loi $N\bigl(\mu, \frac{\sigma^2}{n}\bigr)$
+\\[5mm]
+Remarque\\
+Plus la taille de l'échantillon augmente, meilleure est l'approximation par la loi normale.
+\end{slide}
+
+\begin{slide}[toc=]{Importance du TCL}
+Hypothèse de nombreuses méthodes statistiques: loi normale.\\
+En pratique:  pas toujours vérifié.\\[5mm]
+Mais, grâce au {\bfseries théorème central limite}, même si la population ne satisfait pas à la normalité, la moyenne d'un échantillon de grande taille issu de celle-ci est distribuée de façon normale\\[5mm]
+Donc: ok pour employer la plupart des outils statistiques.
+\end{slide}
+
+\begin{slide}[toc=]{Illustration}
+$$\includegraphics[scale=0.7]{TCL}$$
+{\scriptsize\it source: ''The Cartoon Guide to Statistics'', L. Gonick \& W. Smith}
+\end{slide}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

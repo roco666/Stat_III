@@ -1,0 +1,109 @@
+
+% Definitions Style
+\newenvironment{defi}[1][]%
+{\begin{flushleft}\textbf{Définition }\\}%
+{\end{flushleft}\vspace{1mm}}
+%
+\newenvironment{pro}[1][]%
+{\begin{flushleft}\textbf{Propriété }}%
+{\end{flushleft}\vspace{1mm}}
+%
+\newenvironment{cor}[1][]%
+{\begin{flushleft}\textbf{Corollaire }}%
+{\end{flushleft}\vspace{1mm}}
+%
+\newenvironment{lem}[1][]%
+{\begin{flushleft}\textbf{Lemme }}%
+{\end{flushleft}\vspace{1mm}}
+%
+\newenvironment{theo}[1][]%
+{\begin{flushleft}\textbf{Théorème }}%
+{\end{flushleft}\vspace{1mm}}
+%
+\newenvironment{proof}
+{\begin{quote}\textbf{Preuve :}\\} {\\$\sharp$\end{quote}}
+%
+\newenvironment{ex}
+{\textit{Exemple :}\begin{quote}} {\end{quote}}
+%
+\newenvironment{rem}
+{\textit{Remarque : }} {}
+%
+\newenvironment{exo}
+{\textit{Exercice :}\begin{quote}} {\end{quote}}
+%
+\newenvironment{algoC}
+{\footnotesize\setlength{\parskip}{0.2em}\begin{multicols}{2}}
+{\end{multicols}}
+
+
+
+\let\ds=\displaystyle
+\let\ts=\textstyle
+\let\emph=\textit
+
+
+%couleurs
+
+\newcommand{\Rouge}[1]{{\red #1}}
+\renewcommand{\Vert}[1]{{\green #1}}
+\newcommand{\Bleu}[1]{{\blue #1}}
+
+
+% Definitions Maths
+\newcommand{\C}{{\mathbb C}}
+\newcommand{\R}{{\mathbb R}}
+\newcommand{\Q}{{\mathbb Q}}
+\newcommand{\Z}{{\mathbb Z}}
+\newcommand{\N}{{\mathbb N}}
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\med}{med}
+\DeclareMathOperator{\prob}{P}
+
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+%\newcommand{\expo}{\mathcal{Exp}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Biais}{Biais}
+\DeclareMathOperator{\EQM}{EQM}
+\DeclareMathOperator{\sas}{sas}
+\DeclareMathOperator{\boot}{bootstrap}
+\DeclareMathOperator{\jack}{jackknife}
+\DeclareMathOperator{\str}{str} % \st = conflit avec Student
+\DeclareMathOperator{\SC}{s.c.}
+\DeclareMathOperator{\prop}{prop}
+\DeclareMathOperator{\stprop}{stprop}
+\DeclareMathOperator{\opt}{opt}
+\DeclareMathOperator{\inter}{inter}
+\DeclareMathOperator{\intra}{intra}
+\DeclareMathOperator{\post}{post}
+\DeclareMathOperator{\quot}{quot}
+\DeclareMathOperator{\reg}{reg}
+
+\let\Ra=\Rightarrow
+\let\Lra=\Longrightarrow
+\let\Llra=\Longleftrightarrow
+
+
+\newcommand{\cad}{c'est-à-dire\xspace}
+\newcommand{\Cad}{C'est-à-dire\xspace}
+\newcommand{\ie}{\textit{i.e.}\xspace}
+
+\newcommand{\place}[3]{\vspace*{#1cm}\hspace*{#2cm}#3} 

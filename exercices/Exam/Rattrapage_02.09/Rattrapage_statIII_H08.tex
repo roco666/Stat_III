@@ -1,0 +1,284 @@
+\documentclass[french,a4paper,12pt]{article}
+\usepackage{heg_exam}
+
+
+\begin{document}
+\title{RATTRAPAGE MODULAIRE}
+\semestre{hiver 2008}
+\author{Sacha Varone}
+\departement{\'Economie d'entreprise}
+\module{Branches instrumentales}
+\cours{Statistiques III}
+\date{Février 2009}
+\indication{Veuillez laisser cet examen agrafé. Si vous choisissez d'enlever l'agrafe, tout manque de page sera sous votre entière responsabilité. La précision de vos calculs doit être de 4 chiffres après la virgule.\\[5mm]
+Formulaire de 3 pages (recto-verso) autorisé et calculatrice.}
+\nomexaminateur{Varone}
+\prenomexaminateur{Sacha}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                   %% 
+%%             Examen Stat III                       %%
+%%                                                   %% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Salaires (5 points)} % test de la médiane : test du rang signé de Wilcoxon
+% \cite{Groebner2006} ex 16.2 p. 673
+Vous désirez être engagé dans une entreprise, et un responsable RH vous laisse entendre que  la moitié des personnes travaillent moins de 40 heures par semaine, et l'autre moitié plus de 40 heures par semaine. Vous connaissez 7 personnes travaillant pour cette entreprise, et vous leur demandez le nombre d'heures de travail par semaine qu'elles font. (Ces données ne proviennent pas d'une distribution normale).
+
+\centerline{31 48 23 56 28 29 44}
+
+Sur la base des ces données, estimez-vous vraisemblable que le 50\% des employés travaillent moins de  40 h/semaine, et 50\% plus de 40h/semaine, avec un risque de première espèce de 0.1 ? (Justifiez et indiquez toutes les étapes)
+
+
+
+
+
+
+
+
+
+
+\newpage
+% Exo 5 de l'exam
+\section{Traders (3 points)}
+% Résultat du test non paramétrique à interpréter 
+Une base de données comportant les résultats de traders et la saison est résumée dans le tableau croisé suivant. La variable colonne ''Qualité'' indique la qualité des résultats de traders, et la variable ligne ''Type'' indique la catégorie dans laquelle figure les traders.
+ 
+\begin{tabular}{r|cccc}
+& Très mauvais & Mauvais & Bon & Excellent\\
+\hline\\
+Novice   &    84   &   50   &   44   &    16\\
+\'Etabli     &    82   &   64   &   34   &    10\\
+Expert &    44   &   21   &    8   &     5
+\end{tabular}              
+
+Un test sur l'indépendance de ces deux variables a été fait à l'aide du logiciel R, dont le résultat est fourni ci-dessous.
+\'Ecrivez les hypothèses nulle et alternative, concluez en fonction du résultat et commentez. Le risque de première espèce est fixé à 10\%.
+
+\begin{verbatim}
+        Pearson's Chi-squared test
+
+data:  Traders 
+X-squared = 10.6935, df = 6, p-value = 0.09833
+\end{verbatim}
+
+\begin{enumerate}
+ \item (1pt) Quelles sont les hypothèses nulle et alternatives ?
+ \vspace{2cm}
+ \item (1 pt) Sous quelle condition ce test est-il valide ?
+ \vspace{2cm}
+ \item (1 pt) Quelle est votre conclusion ?
+\end{enumerate}
+
+\newpage
+\section{Tomates (11 points)} % IC pour une variance, $\mu$ et $\sigma$ inconnus et Test sur variance
+% Groebner, 7th edition, p.
+Un cultivateur de tomates utilise une nouvelle serre, qui devrait permettre de réduire la variabilité de l'arrivée à maturité de ses tomates (la durée nécessaire à leur maturité, en jours). Il fait un test sur 12 nouvelles serres et trouve les rendements suivant par serre, qui sont issus d'une loi normale:
+
+\begin{center}
+\begin{tabular}{cccc}
+	89 & 85 & 91 & 95\\
+	95 & 97 & 81 & 89\\
+	94 & 86 & 87 & 82
+\end{tabular}
+\end{center}
+
+\'A partir de ces données sont calculées les valeurs suivantes:
+\\{\it médiane = 89; moyenne = 89.25; variance = 27.84}
+
+
+\begin{enumerate}
+	\item (8 pts) Le fabricant de la nouvelle serre assure que l'écart type  des rendements est de 6 par hectare. Le cultivateur peut-il dire, avec un niveau de confiance de 90\%, que  la nouvelle serre génère une telle variabilité de la production ? 
+
+\begin{enumerate}
+	\item (1 pt) Quel est le paramètre d'intérêt ?
+\vspace{2cm} 
+	\item (1 pt) Quelles sont les hypothèses nulles et alternatives ?
+\vspace{2cm}
+  \item (1 pt) Quelle loi (distribution) suit la statistique de test, et sous quelle condition ?
+\vspace{3cm}
+  \item (1 pt) Déterminez la ou les valeur(s) critique(s).
+\vspace{2cm}
+  \item (1 pt) Déterminez la région de rejet de l'hypothèse nulle.
+\vspace{2cm}
+  \item (1 pt) Que vaut la statistique de test ?
+\vspace{2cm}
+  \item (1 pt) Rejetez-vous l'hypothèse nulle (Justifiez) ?
+\vspace{2cm}
+  \item (1 pt) Concluez
+\vspace{2cm}
+\end{enumerate}
+
+	\item (3 pts) Calculez un intervalle de confiance à 90\% sur la variabilité de l'arrivée à maturation avec la nouvelle serre. Indiquez les étapes (au minimum les valeurs critiques et l'intervalle de confiance).\\
+{\it Indication: certains résultats de la partie précédente peuvent être repris}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\newpage
+\section{Corrections: 7 points} % IC pour une moyenne, $\mu$ et $\sigma$ inconnus
+% Groebner, 7th edition, p.342
+Un profeseur désire estimer la durée moyenne de correction d'un examen, dont la distribution suit une loi normale. Il relève la durée de 25 corrections de manière aléatoire, et calcule une durée moyenne de  30 minutes, avec un écart type de 10 minutes. Votre tâche est de l'aider à calculer un intervalle de confiance à 95\% pour la durée moyenne d'une correction.
+
+
+\begin{enumerate}
+  \item (1 pt) Quel est le paramètre d'intérêt ?
+\vspace{2cm}
+  \item (1 pt) Quelle loi (distribution) suit la statistique de test, et sous quelle condition ?
+\vspace{3cm}
+  \item (2 pt) Quelles sont les valeurs critiques ?
+\vspace{2cm}
+  \item (1 pt) Quelles sont les statistiques, et leur valeur, calculées sur l'échantillon ?
+\vspace{2cm}
+  \item (1 pt) Quelle est l'erreur standard de la moyenne ? 
+\vspace{2cm}
+  \item (1 pt) Quelle est l'intervalle de confiance ?
+\end{enumerate}
+
+
+
+
+
+
+
+
+\newpage
+\section{Compréhension: 4 points} % IC
+Le nombre de minutes passées à réviser le cours de statistique inférentielle  suit une loi normale $\norm (900,50)$.
+
+\begin{enumerate}
+	\item (2 pts) Considérons le nombre $y$ de minutes passées par l'étudiant Stud à réviser le cours de statistique inférentielle. Quelle est la probabilité que $y$ soit supérieur à 900 ? Quelle est la probabilité que $y$ soit inférieure à 900 ? Justifiez.
+\vspace{6cm}
+
+	
+	\item (2 pts) Un échantillon de 6 étudiants, à qui l'on a demandé le nombre de minutes passées à réviser le cours de statistique inférentielle,  a servi à calculer l'intervalle de confiance à 90\% suivant: $[810;890]$. Interprétez ce résultat, en indiquant ce que signifie un tel intervalle de confiance.
+	
+	
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Panneaux solaires (5 points)}
+% Résultat du test paramétrique à interpréter.
+Le rendements de panneaux solaires est considéré (variable rendement). 
+Un test portant sur le rendement moyen a été réalisé à l'aide du logiciel R. Voici ci-dessous le résultat du test. Le risque de première espèce est fixé à 5\%.
+
+\begin{verbatim}
+        One Sample t-test
+
+data:  rendement 
+t = -0.3771, df = 14, p-value = 0.3559
+alternative hypothesis: true mean is less than 40 %
+95 percent confidence interval:
+     -Inf 42.24088 
+sample estimates:
+mean of x 
+ 39.38949 
+\end{verbatim}
+
+\begin{enumerate}
+  \item (1 pt) Quelles sont les hypothèses nulle et alternative ?
+\vspace{2cm}
+\item (1 pt) Sous quelle condition ce test est-il valide ?
+ \vspace{2cm}
+ \item (1 pt) Quelle est la taille de l'échantillon sélectionné ?
+ \vspace{2cm}
+ \item (1 pt) Qu'est-ce que ''$t = -0.3771$'' ?
+ \vspace{2cm}
+ \item (1 pt) Quelle doit être la conclusion du test ?
+\end{enumerate}
+
+\appendix
+\newpage
+\section{Loi normale centrée réduite}
+\label{sec:tablenormale}
+$$\includegraphics[scale=0.25]{../../fig/norm_table}$$
+{\footnotesize \input{../../polycopie/tableNormale}}
+
+
+
+\newpage
+\section{Table de la loi du $\chi^2$}
+\label{sec:tablechideux}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_chi2}
+% \end{center}
+%
+%% Avec R
+% # Se mettre dans le bon répertoire
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/polycopie")
+% # Degrés de liberté
+% dl <- c( seq(1,30,by=1),seq(40,100,by=10) )
+% # Erreurs de première espèce
+% alpha <- c(0.995,0.99,0.975,0.95,0.9,0.1,0.05,0.025,0.01,0.005)
+% # Fonction à utiliser pour trouver la valeur du pertile
+% f <- function(dl,alpha ) round(qchisq(alpha,dl,lower.tail=FALSE),digits=4) 
+% # Tableau des résultats
+% q2 <- outer(dl,alpha,f)
+% # Entête des lignes et colonnes du tableau de résultat
+% dimnames(q2) <- list(dl,alpha)
+% # Package pour convertir en LaTeX
+% library(Hmisc)
+% # Conversion en LaTeX
+% latex(q2, file="tableChiCarre.tex") # print to screen instead of write into file y.tex
+{\footnotesize \input{../../polycopie/tableChiCarre}}
+
+\newpage
+\section{Table de la loi de Student}
+%\begin{center}
+%\includegraphics[width=\linewidth,clip]{table_student}
+%\end{center}
+%% Avec R
+% # Se mettre dans le bon répertoire
+% setwd("C:/Documents and Settings/Varone/Mes documents/Cours/Stat_III/polycopie")
+% # Degrés de liberté
+% dl <- c( seq(1,30,by=1),seq(40,100,by=10),200,500)
+% # Erreurs de première espèce
+% alphaonetail <- c(0.45,0.4,0.3,0.25,0.2,0.1,0.05,0.025,0.01,0.005)
+% # Fonction à utiliser pour trouver la valeur du pertile
+% f <- function(dl,alphaonetail ) round(qt(alphaonetail,dl, lower.tail=FALSE),digits=4) 
+% # Tableau des résultats
+% t <- outer(dl,alphaonetail,f)
+% # Entête des lignes et colonnes du tableau de résultat
+% dimnames(t) <- list(dl,alphaonetail)
+% # Package pour convertir en LaTeX
+% library(Hmisc)
+% # Conversion en LaTeX
+% latex(t, file="tableStudent.tex") # print to screen instead of write into file y.tex
+{\footnotesize \input{../../polycopie/tableStudent}}
+
+% \newpage
+% \section{Table de la loi de Fisher, $p$=0.95}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_fisher_95}
+% \end{center}
+%
+% \newpage
+% \section{Table de la loi de Fisher, $p$=0.99}
+% \begin{center}
+% \includegraphics[width=\linewidth,clip]{table_fisher_99}
+% \end{center}
+
+\newpage
+\section{Table du test des rangs signés de Wilcoxon}
+Les valeurs critiques sont données par la table suivante:\\[5mm]
+\input{../../polycopie/tableWilcoxon}
+
+\end{document}

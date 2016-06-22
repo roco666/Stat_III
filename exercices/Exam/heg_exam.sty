@@ -1,0 +1,185 @@
+%
+% 
+%
+% $Author: S. Varone $
+% $Date: 2007/02/01 10:00:00 $
+% $Modified: 2007 by varone $
+%
+% $Log$
+%
+% Original author: Paolo Ienne
+% Original file: EPFL_Rpt.sty
+%
+
+\typeout{Document Style `heg_exam.sty' -- October 2008.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                             REQUIRED PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[dvips]{graphicx}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{babel}
+\RequirePackage{color}
+\RequirePackage{lastpage}
+
+\renewcommand{\textheight}{24cm}
+\renewcommand{\textwidth}{17cm}
+\setlength{\oddsidemargin}{-0.5cm}
+\setlength{\evensidemargin}{-0.5cm}
+\setlength{\topmargin}{0cm}
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+ 
+%  MACRO: \maketitle
+%
+%  Purpose
+%     This macro redefines the standard "\maketitle".
+%     The following definitions are required:
+%        \title{}
+%        \date{}
+%        \arendre{}
+
+\def\departement#1{\gdef\@departement{#1}}
+\def\module#1{\gdef\@module{#1}}
+\def\cours#1{\gdef\@cours{#1}}
+\def\semestre#1{\gdef\@semestre{#1}}
+\def\indication#1{\gdef\@indication{#1}}
+\def\nomexaminateur#1{\gdef\@nomexaminateur{#1}}
+\def\prenomexaminateur#1{\gdef\@prenomexaminateur{#1}}
+
+\def\maketitle{
+  \thispagestyle{empty}
+  \vspace*{-2cm}
+%  \includegraphics{heg_entete_3}
+  \includegraphics[scale=0.5]{logo_heg_3_filiers}
+  \hrule % ligne horizonzale au-dessous du logo de la HEG
+  \vspace{1cm}
+  \begin{center}
+    {\LARGE\bf \@title} \\[1em]
+    \normalsize \mdseries 
+    {\bf Semestre d'\@semestre}
+  \end{center}
+ 
+  \framebox[17cm]{\bf
+  \begin{tabular}{ll}
+  Filière:& \@departement\\
+  Module:& \@module\hspace{5cm}\hfill Type: \'Ecrit\\
+  Unité de cours:& \@cours\\
+  Date:& \@date\\[3mm]
+  \rm Nombre de pages:& \pageref{LastPage} {\rm (sans la présente page de garde)}
+  \end{tabular}
+  }
+  \\[5mm]
+  \centerline{\LARGE\bf \'Etudiant-e}
+  \\[3mm]
+  \framebox[17cm]{
+	  \begin{tabular}{ll}
+	  \\[3mm]
+		  Nom: \hspace{7cm} & Prénom: \hspace*{6cm}\\[8mm]
+	  \end{tabular}
+  }
+  \\[5mm]
+  \centerline{\LARGE\bf Enseignant-e}
+  \\[3mm]
+  \framebox[17cm]{
+  \sc
+	  \begin{tabular}{ll}
+	  \\[3mm]
+	  Nom: \@nomexaminateur \hspace{4cm} & Prénom: \@prenomexaminateur \hspace*{3cm}\\[8mm]
+	  \end{tabular}
+  }
+  \vspace{5mm}
+  \begin{quotation}
+     \@indication
+  \end{quotation}
+  \vspace{5mm}
+  \begin{center}
+	  \colorbox[gray]{0.8}{\bf
+			  \begin{tabular}{ll}
+			  \\
+			  Points:&\hspace{25mm}  {\sc\Large Note obtenue:\hspace{2cm}}
+			  \\
+			  \\
+			  \end{tabular}
+			  }
+  \end{center}
+%  \gdef\@date{}\gdef\@title{}%\gdef\@arendre{}%
+ \vspace{5mm}
+  \hrule % ligne horizontale au dessus du logo de la HES-SO
+  \hfill\includegraphics{HESSO_fr_quadri}
+  \newpage
+  \let\maketitle\relax}
+
+%  MACROS: \section \subsection
+%
+%  Purpose
+%     This macro redefines the standard "\section" and "\subsection"
+
+\renewcommand\thesection{Probl\`eme \@arabic\c@section}
+\renewcommand\thesubsection{}
+
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+
+%  MACROS:
+%
+%  Purpose
+%     This redefines the changing of paragraph.
+
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0em}
+
+%  MACROS:
+%
+%  Purpose
+%     This redefines the numbering of enumerations.
+
+\renewcommand\theenumi{\@alph\c@enumi}
+\renewcommand\theenumii{\@roman\c@enumii}
+\renewcommand\theenumiii{\@arabic\c@enumiii}
+\renewcommand\theenumiv{\@Alph\c@enumiv}
+
+\renewcommand\labelenumi{\theenumi)}
+\renewcommand\labelenumii{\theenumii)}
+\renewcommand\labelenumiii{\theenumiii.}
+\renewcommand\labelenumiv{\theenumiv.}
+
+% Redefine the counter of the page
+\setcounter{page}{0}
+
+% Maths MACROS
+\newcommand{\IN} {\mathbb{N}}
+\newcommand{\ZZ} {\mathbb{Z}}
+\newcommand{\IR} {\mathbb{R}}
+\newcommand{\IB} {\mathbb{B}}
+\newcommand{\absol}[1]{\left |\, #1 \,\right |}
+\newcommand{\mod}{\,mod\,}
+\newcommand{\pgcd}[2]{\textup{PGCD}(#1,#2)}
+\newcommand{\var} {\mbox{var}}
+\newcommand{\cov} {\mbox{cov}}
+\newcommand{\corr} {\mbox{corr}}
+\newcommand{\E}{{\rm E}}
+\def\X{\mathop{\lower 2pt\hbox{\large{\textsf X}}}}
+\newcommand{\biais}{{\rm biais}}
+\newcommand{\med}{{\rm med}}
+\newcommand{\prob}{{\rm Pr}}
+\newcommand{\bin}{\mathcal{B}}
+\newcommand{\binneg}{\mathcal{BN}}
+\newcommand{\pois}{\mathcal{P}}
+\newcommand{\hyperg}{\mathcal{H}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\unif}{\mathcal{U}}
+\newcommand{\st}{\mathcal{T}}
+\newcommand{\ki}{\mathcal{\chi}}
+
+% Definir un mode de reponse
+\newenvironment{rep}
+{\textcolor{red}{Réponse}: \begin{quote}}
+{\end{quote}}

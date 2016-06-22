@@ -1,0 +1,824 @@
+\documentclass[style=heg, mode=print]{powerdot}
+%\documentclass[style=heg]{powerdot}
+
+	% Pour la c\'esure des mots
+\usepackage[T1]{fontenc}
+	% Pour traduire par exemple Chapter -> Chapitre
+\usepackage[frenchb]{babel}
+\frenchbsetup{StandardLayout}
+	% Chemin des graphiques
+\usepackage{hyperref}
+% Definitions hyperref
+\hypersetup{colorlinks,%
+            citecolor=black,%
+            filecolor=black,%
+            linkcolor=black,%
+            urlcolor=blue}
+\graphicspath{{../../fig/}}
+\usepackage{bm} % gras mathématique avec \bmath déf. ci-dessous
+    \newcommand{\bmath}[1]{\ensuremath\bm{#1}}
+
+
+\usepackage{amsfonts,amsmath}
+%\usepackage{marvosym} % pour utiliser ? (commande \EUR)
+\usepackage{pst-plot}
+
+%\usepackage{auto-pst-pdf} % plus besoin d'images au format .eps, utiliser avec pdftex
+%\usepackage[pdftex]{graphicx}
+%\usepackage{epstopdf} incompatible avec powerdot, semble-t-il
+
+
+% Definitions Maths
+\usepackage{mydef_slides}
+
+
+	%\Logo{\includegraphics[scale=0.35]{heg}}
+
+\title{Statistique inférentielle\\
+{\tiny -- Statistiques III --}}
+\author{Dr Christophe Hebeisen\\
+christophe.hebeisen@hesge.ch\\[5mm]
+\textbf{Cours 12 : régression linéaire simple}\\[5mm]
+{\small HEG - Économie d'Entreprise}}
+\date{automne 2010}
+\pdsetup{
+rf={\tiny stat III }
+}
+
+\begin{document}
+\maketitle
+
+\begin{slide}[toc=]{Objectif}
+Savoir valider et estimer la qualité d'une régression linéaire simple.
+\end{slide}
+
+\section{Rappels}
+\begin{slide}{Test d'ajustement du $\chi^2$}
+Supposition nécessaire pour certain tests : la population suit une loi spécifique (p.ex. loi normale).
+
+\bigskip
+1. Acquisition d'un échantillon de taille suffisamment grande.\\
+2. Classement des données en $k$ différentes catégories.\\
+3. Calcul des fréquences absolues observées $o_i$.\\
+4. Comparaison des fréquences absolues théoriques $e_i$ et des fréquences observées $o_i$.
+
+\bigskip
+\textbf{Hypothèse nulle considérée :} $H_0$ = distribution théorique.
+
+\bigskip
+\textbf{Critère basé sur un test du $\chi^2$:} comme d'habitude, $H_0$ sera rejetée si une trop grande différence existe. On procédera {\og comme pour un test à droite \fg} ($\chi^2>\chi^2_{\alpha;n}$).
+\end{slide}
+
+\begin{slide}[toc=]{Statistique de test}
+La statistique à utiliser suit une loi du $\ki^2$ à $k-1$ degrés de liberté et est calculée ainsi:
+$$
+\ki^2=\sum\limits_{i=1}^k \frac{(o_i-e_i)^2}{e_i}
+$$
+où\\[4pt]
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée pour la catégorie $i$\\
+	$e_i$     & = fréquence théorique pour la catégorie $i$\\
+	$k$       & = nombre de catégories
+\end{tabular}
+\\[5mm]
+{\red Supposition}: \textsc{la taille de l'échantillon est suffisamment grande} (en pratique, $n\geq 30$, taille par cellule $\geq 5$, sinon regrouper).
+\end{slide}
+
+
+\begin{slide}{Test d'indépendance}
+\textbf{But :} Tester l'indépendance de deux variables catégorielles.
+
+\bigskip
+\textbf{Moyen :} Table de contingence.
+
+\bigskip
+\textbf{Principe :} comparer les fréquences observées $o_{ij}$ avec les fréquences théoriques $e_{ij}$ en cas d'indépendance :
+$$
+e_{ij} = \frac{(\mbox{Total ligne }i)\cdot(\mbox{Total colonne }j) }{\mbox{Taille de l'échantillon}} = \frac{n_{i.} \cdot n_{.j}}{n}
+$$
+% indépendance parfaite implique n_ij = n_i n_j / n (stats I, 7.2.2)
+% stat chi-deux voir 7.2.4
+
+\bigskip
+\textbf{Hypothèse nulle considérée :} $H_0$ = les deux variables sont indépendantes.
+
+\bigskip
+\textbf{Critère :} l'hypothèse d'indépendance des variables sera rejetée {\og comme dans le cas d'un test à droite \fg}.
+\end{slide}
+
+\begin{slide}[toc=]{Statistique du test}
+$$\ki^2=\sum\limits_{i=1}^r\sum\limits_{j=1}^c\frac{(o_{ij}-e_{ij})^2}{e_{ij}}$$
+où\\[4pt]
+\begin{tabular}{cl}
+	$o_i$ & = fréquence observée de la cellule $(i,j)$\\
+	$e_i$     & = fréquence théorique de la cellule $(i,j)$\\
+	$r$       & = nombre de lignes\\
+	$c$       & = nombre de colonnes
+\end{tabular}
+\\[5mm]
+{\red Supposition}: \textsc{la taille de l'échantillon est suffisamment grande}.\\[5mm]
+En pratique, $n\geq 30$ et effectif observé par cellule $\geq 5$.
+\end{slide}
+
+
+
+
+
+\section{Corrélation et régression linéaire}
+
+
+\begin{slide}[toc=Corrélation]{Coefficient de corrélation}
+Pour des données bivariées, le \Rouge{coefficient de corrélation linéaire} de Pearson est défini par la covariance standardisée des deux variables, et peut se calculer ainsi :
+
+$$
+\begin{array}{rcl}
+r_{xy} = \displaystyle\frac{s_{xy}}{s_x\cdot s_y} &=&
+\displaystyle
+\frac{ \sum(x_i-\bar{x})(y_i-\bar{y}) }{ \sqrt{\sum(x_i-\bar{x})^2 \cdot \sum(y_i-\bar{y})^2} }
+\\[22pt]
+&=& 
+\displaystyle
+\frac{ \sum x_iy_i - n\bar{x}\bar{y} }{ \sqrt{\bigl(\sum x_i^2 - n\bar{x}^2\bigr) \cdot \bigl(\sum y_i^2 - n\bar{y}^2\bigr)} }
+\end{array}
+$$
+
+\bigskip
+\pause
+Une corrélation linéaire étant le plus souvent calculée à partir d'échantillons, sa valeur est sujette à des erreur d'échantillonnage. Ainsi, $r_{xy}$ n'est qu'une estimation de la véritable valeur du coefficient de corrélation linéaire $\rho$.
+
+%\bigskip
+%\textbf{Remarque.} La dernière formule permet un calcul plus rapide.
+\end{slide}
+
+
+\begin{slide}{Propriétés et interprétation}
+Le coefficient de corrélation linéaire est une grandeur comprise entre $-1$ et $+1$~:
+$$
+-1 \leq r_{xy} \leq 1
+$$
+
+Plus il est proche de $-1$ ou $1$, plus les données seront alignées sur une droite. Plus il est proche de 0, plus les données seront dispersées dans le plan. 
+
+\pause
+\begin{itemize}
+\item $r_{xy}=\pm 1$ $\Leftrightarrow$ relation linéaire parfaite
+entre les deux variables~: droite $y(x)=b_0+b_1\cdot x$\\
+\item $r_{xy}>0$ $\Leftrightarrow$ les deux variables évoluent dans
+le même sens (si $x$ augmente, $y$ augmente)\\
+\item $r_{xy}<0$ $\Leftrightarrow$ les deux variables évoluent en
+sens contraire (si $x$ augmente, $y$ diminue, et inversement)
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Illustrations}
+\includegraphics[width=.4\linewidth]{corr100}\hspace{1em}
+\includegraphics[width=.4\linewidth]{corr95}
+
+\includegraphics[width=.4\linewidth]{corr_neg}\hspace{1em}
+\includegraphics[width=.4\linewidth]{corr39}
+\end{slide}
+
+\begin{slide}[toc=]{Illustrations}
+\begin{center}
+\includegraphics[width=0.95\textwidth]{Correlation_examples}
+\end{center}
+
+\smallskip
+\pause
+\textbf{Remarque :} la valeur {\og ? \fg} est due au fait que $y_i = \bar{y}$ pour tout $i$ (donc $s_y = 0$). Toutefois la dépendance est clairement linéaire.
+
+\bigskip
+\pause
+\textbf{Moralité :} toujours faire la représentation graphique (nuage de point) des variables conjointes, pour se faire une idée a priori de la situation. 
+\end{slide}
+
+
+\begin{slide}[toc=Validité]{Validité d'une corrélation}
+Test a priori sur l'existence ou non d'une corrélation linéaire :
+\begin{eqnarray*}
+	H_0 &:& \rho = \rho_0 = 0 \\
+	H_1 &:& \rho = \rho_1 \neq 0
+\end{eqnarray*}
+Si l'on souhaite tester une corrélation positive ou négative, on fera respectivement un test unilatéral à droite ou à gauche.
+
+\bigskip
+\pause
+Le test à considérer est celui de Student. La statistique de test est :
+$$
+t = \frac{r}{\sqrt{\frac{1-r^2}{n-2}}} \qquad dl=n-2
+$$
+\vspace*{-1cm}
+\begin{tabbing}
+%$t$ &=& nombre d'écart-type de $r$ depuis 0\\
+avec : \quad \= $r$ \= = \= coefficient de corrélation linéaire\\
+\> $n$ \> = \> taille de l'échantillon
+\end{tabbing}
+
+\pause
+Bien entendu, la $p$-valeur permet aussi de conclure.
+\end{slide}
+
+
+\begin{slide}[toc=Régression]{Régression linéaire simple}
+Le \emph{modèle de régression linéaire simple} est défini par l'équation suivante :
+$$
+y=\beta_0 + \beta_1 x + \epsilon
+$$
+avec\\[4pt]
+\begin{tabular}{ccl}
+$y$ &=& variable dépendante (ou variable expliquée), $y = y(x)$\\
+$x$ &=& variable indépendante (ou variable explicative)\\
+$\beta_0$ &=& constante de la droite de régression pour la population\\
+&& (ordonnée à l'origine)\\
+$\beta_1$ &=& pente de la droite de régression pour la population\\
+$\epsilon$ &=& terme d'erreur (ou résidu)
+\end{tabular}
+
+\bigskip
+\pause
+Hypothèses : 
+\begin{itemize}
+\item
+les erreurs sont i.i.d. selon une loi normale $\norm(0,\sigma^2)$
+
+\item
+la relation linéaire entre les deux variables est légitime
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=]{Estimation du modèle}
+Méthode des moindres carrés : la somme des carrés des résidus (distance verticale à la droite) est minimisée.
+
+\medskip
+\centerline{\Bleu{\href{http://www.aiaccess.net/French/Glossaires/GlosMod/f_gm_moindres_carres.htm}{Animation interactive.}}}
+
+\pause
+\medskip
+La droite d'ajustement s'écrit :
+$$
+\hat{y}=b_0+b_1x
+$$
+\vspace*{-1.3cm}
+\begin{tabbing}
+%$t$ &=& nombre d'écart-type de $r$ depuis 0\\
+avec : \quad \= $\hat{y}$ \= = \= valeur estimée de $y$\\
+\> $x$ \> = \> valeur de la variable indépendante
+\end{tabbing}
+
+\pause
+\smallskip
+$b_0$ et $b_1$ sont des estimateurs sans biais des paramètres $\beta_0$ et $\beta_1$ et se calculent ainsi :\\[10pt]
+\begin{tabular}{ccl}
+$b_1$ &=& $\displaystyle \frac{s_{xy}}{s_x^2} = \frac{\sum (x_i-\bar{x})(y_i-\bar{y})} {\sum(x_i-\bar{x})^2}$  
+\qquad\mbox{ou :}\quad 
+$b_1 \ = \ r_{xy}\cdot\dfrac{s_y}{s_x}$\\[6mm]
+$b_0$ &=& $\bar{y}-b_1\bar{x}$ \quad (la droite passe par le point milieu $(\bar{x},\bar{y})$)
+\end{tabular}
+\end{slide}
+
+\begin{slide}[toc=]{Illustration}
+\begin{center}
+\includegraphics[height=8cm]{Linreg}
+\end{center}
+\end{slide}
+
+
+\begin{slide}[toc=Adéquation]{Adéquation du modèle}
+Un outil pour vérifier l'adéquation du modèle est le \Rouge{coefficient de détermination}, noté \Rouge{$R^2$} : c'est la proportion de variation totale dans la variable dépendante $y$ qui est expliquée par sa relation avec la (ou les) variable(s) indépendante(s) $x$. 
+
+
+\bigskip
+Dans le cas d'une seule variable indépendante, le coefficient de détermination est simplement égal au carré de la valeur du coefficient de corrélation linéaire de Pearson: 
+$$
+R^2=r_{xy}^2
+$$
+
+\bigskip
+\pause
+C'est une mesure de la qualité d'un modèle de régression linéaire. Et puisque $r_{xy}^2$ varie entre $-1$ et $+1$, $R^2$ varie entre 0 et 1. Plus $R^2$ est proche de 1, meilleur est le modèle. En pratique, \Bleu{des valeurs supérieures ou égales à 0.7 indiquent que le modèle est satisfaisant}.
+\end{slide}
+
+\begin{slide}[toc=]{Ajustement de $R^2$}
+Lorsque la taille de l'échantillon $n$ est petite, la valeur de $R^2$ est surestimée : il est préférable d'utiliser le \Rouge{coefficient de détermination ajusté} $R^2_{adj}$. Pour des données bivariées, ce coefficient se calcule comme
+
+$$
+R^2_{adj} = 1-(1-R^2)\cdot\frac{n-1}{n-2}
+$$
+\end{slide}
+\begin{slide}[toc=]{Si on vous le dit...}
+\vspace*{-0.3cm}
+$$
+\includegraphics[height=8.5cm]{R2_ajuste}
+$$
+\end{slide}
+
+
+\begin{slide}[toc=Tour de Pise]{Exemple : la Tour de Pise}
+La Tour de Pise ne cessait de s'incliner avant d'être stabilisée. Existait-il une relation linéaire entre l'inclinaison de la Tour et l'année, avant les travaux de stabilisation ?
+
+$$
+\includegraphics[scale=1]{pise_tour}
+$$
+\end{slide}
+
+
+\begin{slide}[toc=]{Exemple (suite)}
+L'inclinaison de la Tour a été relevée de 1975 à 1987 :
+\small 
+\begin{center}
+\erh{3pt}
+\begin{tabular}{c|c|c}
+& année & inclinaison\\
+\hline
+1 & 1975 & 642 \\
+2 & 1976 & 644 \\
+3 & 1977 & 656 \\
+4 & 1978 & 667 \\
+5 & 1979 & 673 \\
+6 & 1980 & 688 \\
+7 & 1981 & 696 \\
+8 & 1982 & 698 \\
+9 & 1983 & 713 \\
+10 & 1984 & 717 \\
+11 & 1985 & 725 \\
+12 & 1986 & 742 \\
+13 & 1987 & 757
+\end{tabular}
+\end{center}
+\end{slide}
+
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{itemize}
+\item 
+La première valeur pour la variable inclinaison est 642. Elle correspond à 2.9642 m et il s'agit en fait de la distance entre un point de référence si la Tour de Pise était droite et le point correspondant de la Tour à l'année considérée.
+
+\item 
+L'inclinaison est la variable de réponse $y$ (variable dépendante), et l'année est la variable explicative $x$ (variable indépendante).
+
+\item 
+Question : peut-on prédire l'inclinaison de la Tour à partir de l'année ?
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=]{Exemple (suite)}
+Les données peuvent être représentée par un nuage de points, ce qui nous donne une première impression visuelle :
+\\[-1cm]
+$$
+\includegraphics[height=8cm]{pise_inclinaison_plot}
+$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+Les données semblent bien s'ajuster à un modèle linéaire. Notons $A$ les années, et $I$ les inclinaisons. 
+
+\bigskip
+\pause
+\textbf{Droite de régression et coefficient de détermination} :
+\vspace*{-8pt}
+\begin{center}
+\erh{4pt}
+\begin{tabular}{ll}
+moyennes : & $\bar{A} = 1981$, $\bar{I} = 693.692$\\
+écarts-type : & $s_A = 3.894$, $s_I = 36.511$\\
+covariance : & $s_{AI} = 141.333$\\
+coeff. de corrélation : & $r_{AI} = 0.994$\\
+droite de régression : & $y = -17766.615 + 9.319 \cdot x$\\
+coeff. de détermination : & $R^2 = 0.9880$\\
+$R^2$ ajusté : & $R^2_{adj}=0.9869$
+\end{tabular}
+\end{center}
+
+\smallskip
+\pause
+\textbf{Test sur la corrélation :} $dl = 11$, statistique $t = 30.06858$ (plus grand que la valeur critique pour n'importe quel $\alpha$) et une $p$-valeur de $6.50\cdot 10^{-12} \simeq 0$.
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+Droite de régression : $y = -17766.615 + 9.318681 \cdot x$
+\\[-1cm]
+$$
+\includegraphics[height=8cm]{pise_droite_regression}
+$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+Cette droite minimise la somme des carrés des résidus :
+\\[-1cm]
+$$
+\includegraphics[height=8cm]{pise_residus}
+$$
+\end{slide}
+
+\begin{slide}[toc=]{Exemple (suite)}
+Le coefficient de détermination (ajusté ou non) vaut environ 0.99, ce qui est excellent.
+
+\pause
+\bigskip
+En particulier, cela indique que près de 99\% de la variabilité de l'inclinaison est expliquée par (la régression de l'inclinaison de la Tour sur) l'année.
+
+\bigskip
+Ainsi, bien que la régression soit en mesure d'expliquer une grande partie de la variabilité de l'inclinaison de la Tour de Pise, elle ne parvient pas à le faire totalement. D'autres facteurs peuvent intervenir.
+\end{slide}
+
+\begin{slide}[toc=Résultat logiciel]{Résultat logiciel R}
+\footnotesize
+\ttfamily
+Call:\\
+lm(formula = inclinaison $\sim$ annee)
+
+\bigskip
+Residuals:\\
+\begin{tabular}{rrrrr}
+    Min &     1Q  & Median &    3Q  &  Max \\
+-5.9670 & -3.0989 & 0.6703 & 2.3077 & 7.3956
+\end{tabular}
+
+\bigskip
+Coefficients:
+
+\begin{tabular}{lrrrl}
+            & Estimate   & Std. Error & t value & Pr(>|t|)\\
+(Intercept) & -1.777e+04 &  6.139e+02 &  -28.94 & 9.86e-12 ***\\
+annee       &  9.319e+00 &  3.099e-01 &   30.07 & 6.50e-12 ***\\
+-\,-\,-\\
+\multicolumn{5}{l}{Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '\ ' 1}
+\end{tabular}
+
+\bigskip
+Residual standard error: 4.181 on 11 degrees of freedom
+Multiple R-squared: 0.988,  \quad  Adjusted R-squared: 0.9869 
+F-statistic: 904.1 on 1 and 11 DF, \quad  p-value: 6.503e-12 
+\end{slide}
+
+
+\begin{slide}[toc=Validation des hypothèses]{Validation des hypothèses du modèle}
+Nous avons déjà mentionné les hypothèses inhérentes au modèle de régression linéaire :
+\begin{itemize}
+\item Linéarité de la relation.
+\item Nullité de l'espérance des erreurs $\varepsilon_i$ et leur variance constante $\sigma^2$.
+\item Normalité des variables aléatoires erreurs $\varepsilon_i$.
+\end{itemize}
+
+\bigskip
+Quatre graphiques permettent de vérifier ces hypothèses. Leur construction est essentielle.
+\end{slide}
+
+
+\begin{slide}[toc=]{Validation des hypothèses (suite)}
+\vspace*{-0.5cm}\centerline{\includegraphics[height=8.5cm]{pise_4graph_verif_hyp}}
+\end{slide}
+
+\begin{slide}[toc=]{Validation des hypothèses (suite)}
+\begin{itemize}
+\item Graphiques 1. et 3. : résidus contre valeurs ajustées.
+
+$\leadsto$ vérification de l'ajustement du modèle (si une tendance se dessine, le modèle n'est pas adéquat) ; vérification des hypothèses sur l'espérance nulle et la variance constante (une variabilité semblable doit se dessiner autour de 0 dans le graphique 1.), et détection de valeurs atypiques (indiquées par leur numéro d'observation)
+
+\item Graphique 2. : résidus standardisés contre résidus théoriques.
+
+$\leadsto$ vérification de la normalité des erreurs (si l'hypothèse est vraie, les points ne doivent pas s'éloigner d'une droite) et détection de valeurs atypiques
+
+\item Graphique 4. : distance de Cook.
+
+$\leadsto$ identification de possibles valeurs atypiques
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=Pièges]{Pièges de la régression linéaire}
+Une corrélation forte n'implique pas nécessairement causalité. En effet, les deux variables peuvent être influencées par une troisième variable. Elle pousse davantage à la réflexion et à de nouvelles investigations.
+$$
+\includegraphics[height=4cm]{causalite}
+$$
+\pause
+À l'inverse, une corrélation nulle indique uniquement qu'il n'y a pas de relation \textit{linéaire}. D'autres relations peuvent exister.
+\end{slide}
+
+\begin{slide}[toc=]{Exemples}
+\begin{itemize}
+\item 
+Pour l'ensemble des communes d'Alsace, il a été observé une étonnante corrélation entre le nombre de naissances et celui des cigognes recensées sur les cheminées. Est-ce à dire que les enfants alsaciens ont été apportés par les cigognes ?
+% non, mais elles ont tendance à nicher dans de grandes villes ou de grands villages, où la natalité est plus forte
+
+\item 
+Les services de santé ont observé une corrélation positive entre le taux d'utilisation de crème solaire et le risque de cancer de la peau. Les crèmes solaires seraient-elles cancérigènes ? 
+% non, mais ceux qui utilisent de la crème sont normalement s'exposent plus au soleil
+
+\item 
+La parabole $y=x^2$ implique une corrélation nulle, mais les deux variables sont complètement dépendantes !
+\end{itemize}
+\end{slide}
+
+\begin{slide}{Valeurs atypiques}
+Attention aux valeurs atypiques : elles influencent fortement la droite de régression et nécessitent une étude particulière !
+
+\begin{tabular}{cc}
+\includegraphics[width=0.47\textwidth]{regression_sans_val_aberrante}
+&
+\includegraphics[width=0.47\textwidth]{regression_avec_val_aberrante}
+\end{tabular}
+
+\pause
+La constatation visuelle parle d'elle-même. Selon le critère du coefficient de détermination, dans le premier cas le modèle est assez bon, avec un $R^2 = 0.8762$, tandis que le deuxième est inutilisable avec un $R^2= 0.5667$
+\end{slide}
+
+\begin{slide}{Régression multiple}
+Le modèle de régression peut être étendu à plusieurs variables explicatives $x_i$. On parle alors de régression linéaire multiple.
+%, mais ce n'est pas l'objet de ce cours.
+
+\small
+\begin{itemize}
+\item 
+En 1984, le temps record de plusieurs courses de montagnes en Écosse a été relevé. On se demandait alors s'il existait une relation linéaire entre le temps record, la longueur et la dénivellation totale du parcours.
+\item 
+Une enquête a été menée pour prédire la consommation des véhicules, exprimée en MPG (miles parcourus par gallon de carburant, plus le chiffre est élevé, moins la voiture consomme), à partir de leurs caractéristiques : poids, rapport de pont, puissance, etc. Au final, les variables significatives étaient le poids (weight) et le rapport de pont (drive ratio). Les autres semblaient sans effet dans l'explication de la consommation. 
+
+Cette lecture très simplifiée du rôle des variables doit bien sûr être relativisée (cf. pièges). La puissance (horsepower) est vraisemblablement masquée par le poids auquel elle est très fortement corrélée.
+\end{itemize}
+\end{slide}
+
+
+\begin{slide}[toc=Étapes]{Analyse d'une régression linéaire simple}
+Les étapes suivantes montrent comment effectuer une analyse de régression linéaire simple :
+\begin{enumerate}
+	\item Définir la variable dépendante $y$ et la variable indépendante~$x$
+	\item Dessiner un diagramme de dispersion sur $x$ et $y$ afin de vérifier visuellement si une relation linéaire est probable.
+	\item Calculer le coefficient de corrélation $r_{xy}$ et le coefficient de détermination $R^2$.
+	\item Effectuer un test statistique pour valider ou invalider le modèle linéaire simple. Commenter les graphiques s'ils sont à disposition.
+	\item Calculer la droite de régression.
+	\item Établir une conclusion.
+\end{enumerate}
+\end{slide}
+
+\end{document}
+
+
+
+
+
+
+\begin{slide}{Exemple}
+Une entreprise souhaite analyser la relation entre la taille d'une annonce publicitaire, et le nombre d'appels reçus générés par l'annonce. Elle veut savoir s'il existe une corrélation linéaire positive entre ces deux variables, au seuil 0.05. Pour cela, elle demande à ses clients d'indiquer quelle annonce leur a fait connaître l'entreprise.
+
+\bigskip
+Le dépouillement de l'enquête donne:\\[3mm]
+
+%% Dans R
+%taille <- c(9, 16, 25, 16, 20, 16, 20, 20, 16, 9); taille <- 10*taille;
+%proportion <- c(0.13, 0.16, 0.21, 0.18, 0.18, 0.19, 0.15, 0.17, 0.13, 0.11)
+%cor(taille, proportion)
+%cor.test(taille, proportion, method = "pearson", alternative = "greater")
+
+\begin{tabular}{l|*{6}{r}}
+Taille [cm$^2$] & 90 & 160 & 250 & 160 & 200 & \ldots\\
+\hline
+Prop. appels & 0.13 & 0.16 & 0.21 & 0.18 & 0.18 & \ldots
+\end{tabular}
+
+\bigskip
+\begin{tabular}{l|*{6}{r}}
+Taille [cm$^2$] & \ldots & 160 & 200 & 200 & 160 & 90 \\
+\hline
+Prop. appels & \ldots & 0.19 & 0.15 & 0.17 & 0.13 & 0.11 
+\end{tabular}
+\end{slide}
+
+
+%% R
+%taille = c(90,160,250,160,200,160,200,200,160,90)
+%prop = 0.01*c(13,16,21,18,18,19,15,17,13,11)
+%cor(prop,taille) # = 0.7795506
+%reg = lm(taille~prop)
+%summary(reg)
+%
+%Call:
+%lm(formula = taille ~ prop)
+%
+%Residuals:
+%    Min      1Q  Median      3Q     Max 
+%-43.142 -26.369   1.784  21.896  46.709 
+%
+%Coefficients:
+%            Estimate Std. Error t value Pr(>|t|)   
+%(Intercept)   -33.65      57.94  -0.581  0.57744   
+%prop         1246.26     354.02   3.520  0.00784 **
+%---
+%Signif. codes:  0 ?***? 0.001 ?**? 0.01 ?*? 0.05 ?.? 0.1 ? ? 1 
+%
+%Residual standard error: 33 on 8 degrees of freedom
+%Multiple R-squared: 0.6077,     Adjusted R-squared: 0.5587 
+%F-statistic: 12.39 on 1 and 8 DF,  p-value: 0.007842 
+%
+% rem. 0.6077 = R^2 = r^2 = 0.7795506^2
+
+% pour tracer la droite :
+% fr <- data.frame(taille,proportion)
+% plot(proportion ~ taille, fr)
+% abline(reg, fr)
+% text(coord_x,coord_y,"Y=a+bX")
+
+
+\begin{slide}[toc=]{Exemple (suite)}
+\begin{enumerate}
+\item 
+Le paramètre d'intérêt est la corrélation linéaire $\rho$ entre la taille d'une annonce publicitaire et la proportion d'appels générés par l'annonce.
+
+\item 
+L'hypothèse nulle et alternative sont :
+
+\medskip
+\centerline{
+$\begin{array}{rcl}
+	H_0 &:& \rho\leq 0\\
+	H_1 &:& \rho >0
+\end{array}$
+}
+\vspace{-2pt}
+
+\item 
+Le niveau de signification choisi est $\alpha=0.05$
+
+\item 
+La $p$-valeur associée est 0.003921
+
+\item 
+Comme la $p$-valeur est inférieure au niveau de signification, l'hypothèse nulle est rejetée.
+
+\item 
+L'échantillon suppose la possibilité d'une relation linéaire positive entre la taille d'une annonce publicitaire et la proportion d'appels générés par l'annonce.
+\end{enumerate}
+\end{slide}
+
+
+\begin{slide}[toc=Qualité]{Qualité d'un modèle linéaire}
+On définit :
+{\small
+\begin{itemize}
+\item
+La somme des carrés totale (SST = \emph{Total Sum of Squares}) :
+
+\smallskip
+\centerline{$\mbox{SST} = \sum\limits_{i=1}^n (y_i-\bar{y})^2$}
+
+\item
+La somme des carrés des erreurs (SSE = \emph{Sum of Squares Errors}) :
+
+\vspace{-2pt}
+\centerline{$\mbox{SSE} =  \sum\limits_{i=1}^n (y_i-\hat{y}_i)^2$}
+
+\item
+La somme des carrés de régression (SSR = \emph{Sum of Squares Regression}) :
+
+\vspace{-2pt}
+\centerline{$\mbox{SSR} =  \sum\limits_{i=1}^n (\hat{y}_i-\bar{y})^2$}
+\end{itemize}
+}
+\vspace{-2pt}
+où\\[4pt]
+\begin{tabular}{ccl}
+$n$ & = & taille de l'échantillon\\
+$y_i$ & = & $i$-ème valeur de la variable dépendante\\
+$\hat{y}_i$ &=& $i$-ème valeur prédite\\
+$\bar{y}$ &=& moyenne de la variable dépendante\\
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}[toc=]{Variance totale}
+La variance totale se décompose en une partie expliquée et une partie non-expliquée (ou résiduelle) :
+$$
+\mbox{SST} = \mbox{SSE} + \mbox{SSR}
+$$
+
+\bigskip
+Cette propriété est à la base de l'analyse de variance, utilisée pour tester si plusieurs populations sont significativement différentes les unes des autres.
+\end{slide}
+
+
+
+\begin{slide}[toc=]{Propriété}
+Soit une droite de régression linéaire, basée sur la minimisation de la somme des carrés.
+\begin{itemize}
+\item 
+La somme des résidus est nulle : 
+
+\smallskip
+\centerline{$\sum\limits_{i=1}^n (y_i-\hat{y}_i)=0$}
+
+\item 
+La somme des carrés des résidus (SSE) est minimale.
+
+\smallskip
+\centerline{$\mbox{SSE} =  \sum\limits_{i=1}^n (y_i-\hat{y}_i)^2$}
+
+\item 
+La droite de régression linéaire simple passe par le point $(\bar{x},\bar{y})$.
+
+\item 
+Les coefficients estimés $b_0$ et $b_1$ sont des estimateurs sans biais de $\beta_0$ et $\beta_1$.
+\end{itemize}
+\end{slide}
+
+
+
+
+
+
+
+
+\begin{slide}[toc=Coefficient $R^2$]{Coefficient de détermination}
+Le \emph{coefficient de détermination} $R^2$ est la proportion de variation totale dans la variable dépendante qui est expliquée par sa relation avec la variable indépendante.
+$$
+R^2=\frac{\mbox{SSR}}{\mbox{SST}}
+$$
+
+\bigskip
+C'est une mesure de la qualité d'un modèle de régression linéaire. $R^2$ varie entre 0 et 1. Plus il se rapproche de 1, meilleur est le modèle. En pratique, des valeurs supérieures ou égales à 0.7 indiquent que le modèle est satisfaisant.
+
+\bigskip
+\textbf{Remarque :} dans le cas d'une seule variable indépendante, le coefficient de détermination est égal au carré de la valeur du coefficient de corrélation linéaire de Pearson: $R^2=r_{xy}^2$
+\end{slide}
+
+
+
+\begin{slide}[toc=Exemple]{Exemple (suite)}
+L'entreprise souhaitant analyser la relation entre la taille d'une annonce publicitaire et le nombre d'appels reçus générés par l'annonce est parvenue à la conclusion qu'une relation linéaire existe probablement.
+\\[3mm]
+%% Dans R
+%taille <- c(9, 16, 25, 16, 20, 16, 20, 20, 16, 9); taille <- 10*taille;
+%proportion <- c(0.13, 0.16, 0.21, 0.18, 0.18, 0.19, 0.15, 0.17, 0.13, 0.11)
+%cor(taille, proportion)
+%cor.test(taille, proportion, method = "pearson", alternative = "greater")
+
+\bigskip
+Le coefficient de détermination vaut
+$$
+R^2 = r_{xy}^2 = 0.7795506
+$$
+
+\bigskip
+Ainsi, environ 78\% de la variance du nombre d'appels est expliquée par la taille de l'annonce.
+\end{slide}
+
+
+\begin{slide}[toc=Validité]{Validité du modèle}
+Pour tout modèle, il est nécessaire d'en vérifier sa validité. Autrement dit, il est nécessaire de connaître si le modèle est statistiquement significatif. Pour le modèle linéaire simple, en supposant valides les postulats  sur les résidus (i.i.d. et suivant une loi normale), il existe deux méthode de test équivalentes :
+\begin{enumerate}
+	\item Test de signification de la corrélation entre $x$ et $y$ (déjà vu)
+	\item Test de signification du coefficient de la pente de régression
+\end{enumerate}
+\end{slide}
+
+
+\begin{slide}[toc=]{Test sur le coefficient de la pente de régression}
+On utilise les hypothèses nulle et alternative suivantes :
+$$
+\begin{array}{rcl}
+	H_0 &:& \beta_1=0\\
+	H_1 &:& \beta_1\not=0
+\end{array}
+$$
+
+\vspace{-2pt}
+L'estimation de l'écart type de la pente de régression est 
+$$
+s_{b_1} = \frac{s_\epsilon}{\sqrt{(x-\bar{x})^2}}
+\qquad \text{avec } \ s_\epsilon = \sqrt{\frac{SSE}{n-2}}
+$$
+
+La variable de test à utiliser est
+$$
+t=\frac{b_1-\beta_1}{s_{b_1}}\quad dl=n-2
+$$
+
+\vspace{-6pt}
+avec\\[4pt]
+\begin{tabular}{ccl}
+$\beta_1$ &=& pente supposée de la droite de régression\\
+$b_1$ &=& pente calculée de la droite de régression\\
+$s_{b_1}$ &=& estimation de l'écart type de la pente de régression
+\end{tabular}
+\end{slide}
+
+
+\begin{slide}[toc=Analyse]{Analyse d'une régression linéaire simple}
+Les étapes suivantes montrent comment effectuer une analyse de régression linéaire simple :
+\begin{enumerate}
+	\item Définir la variable dépendante $y$ et la variable indépendante~$x$
+	\item Dessiner un diagramme de dispersion sur $x$ et $y$ afin de vérifier visuellement si une relation linéaire est probable.
+	\item Calculer le coefficient de corrélation $r_{xy}$
+	\item Calculer les coefficients de la régression, ainsi que le coefficient de détermination $R^2$
+	\item Effectuer un test statistique pour valider ou invalider le modèle linéaire simple.
+	\item Établir une conclusion.
+\end{enumerate}
+\end{slide}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
